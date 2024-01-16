@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <template id="report_rfq_switch_inh" inherit_id="professional_templates.rfq" name="RFQ Switch Inh">
+        <xpath expr="//t[@t-call='professional_templates.RFQ_12_document']" position="after">
+
+	<t t-if="style.template_rfq.key =='professional_templates_seedor.RFQ_13_document'" t-call="professional_templates_seedor.RFQ_13_document" t-lang="o.partner_id.lang"/>
+	<t t-if="style.template_rfq.key =='professional_templates_seedor.RFQ_14_document'" t-call="professional_templates_seedor.RFQ_14_document" t-lang="o.partner_id.lang"/>
+	<t t-if="style.template_rfq.key =='professional_templates_seedor.RFQ_15_document'" t-call="professional_templates_seedor.RFQ_15_document" t-lang="o.partner_id.lang"/>
+	<t t-if="style.template_rfq.key =='professional_templates_seedor.RFQ_16_document'" t-call="professional_templates_seedor.RFQ_16_document" t-lang="o.partner_id.lang"/>
+	<t t-if="style.template_rfq.key =='professional_templates_seedor.RFQ_17_document'" t-call="professional_templates_seedor.RFQ_17_document" t-lang="o.partner_id.lang"/>
+</xpath>
+</template>
+</data>
+</odoo>

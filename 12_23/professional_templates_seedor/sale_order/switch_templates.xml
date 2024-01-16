@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+		<data>
+
+    <template id="report_saleorder_switch_inh" inherit_id="professional_templates.sale_order" name="Sale Order Switch Inh">
+        <xpath expr="//t[@t-call='professional_templates.SO_14_document']" position="after">
+
+										<t t-if="style.template_so.key == 'professional_templates_seedor.SO_15_document'" t-call="professional_templates_seedor.SO_15_document" t-lang="doc.partner_id.lang"/>
+										<t t-if="style.template_so.key == 'professional_templates_seedor.SO_16_document'" t-call="professional_templates_seedor.SO_16_document" t-lang="doc.partner_id.lang"/>
+										<t t-if="style.template_so.key == 'professional_templates_seedor.SO_17_document'" t-call="professional_templates_seedor.SO_17_document" t-lang="doc.partner_id.lang"/>
+										<t t-if="style.template_so.key == 'professional_templates_seedor.SO_18_document'" t-call="professional_templates_seedor.SO_18_document" t-lang="doc.partner_id.lang"/>
+										<t t-if="style.template_so.key == 'professional_templates_seedor.SO_19_document'" t-call="professional_templates_seedor.SO_19_document" t-lang="doc.partner_id.lang"/>
+									
+</xpath>
+				</template>
+
+    <template id="report_proforma_switch_inh" inherit_id="professional_templates.report_saleorder_pro_forma" name="Pro-forma Switch Inh">
+        <xpath expr="//t[@t-call='professional_templates.SO_14_document']" position="after">
+
+										<t t-if="style.template_so.key == 'professional_templates_seedor.SO_15_document'" t-call="professional_templates_seedor.SO_15_document" t-lang="doc.partner_id.lang"/>
+										<t t-if="style.template_so.key == 'professional_templates_seedor.SO_16_document'" t-call="professional_templates_seedor.SO_16_document" t-lang="doc.partner_id.lang"/>
+										<t t-if="style.template_so.key == 'professional_templates_seedor.SO_17_document'" t-call="professional_templates_seedor.SO_17_document" t-lang="doc.partner_id.lang"/>
+										<t t-if="style.template_so.key == 'professional_templates_seedor.SO_18_document'" t-call="professional_templates_seedor.SO_18_document" t-lang="doc.partner_id.lang"/>
+										<t t-if="style.template_so.key == 'professional_templates_seedor.SO_19_document'" t-call="professional_templates_seedor.SO_19_document" t-lang="doc.partner_id.lang"/>
+									
+</xpath>
+
+</template>
+		</data>
+</odoo>

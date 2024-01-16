@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--Extended the functionality of the employee form view to add the Wizard for send email of daily timesheet report  -->
+    <record id="open_employee_timesheet_record" model="ir.ui.view">
+        <field name="name">send.timesheet.form</field>
+        <field name="model">send.timesheet</field>
+        <field name="arch" type="xml">
+        <form string="Add Email To and Next Step ">
+            <sheet>
+                <group>
+                    <field name="next_step"/>
+                    <field name="email_to_" widget="many2many_tags"/>
+                </group>
+            </sheet>
+            <footer>
+                <button string="Send" name="send_status_report" type="object" class="btn-primary"/>
+                <button string="cancel" class="btn-default" special="cancel"/>
+            </footer>
+        </form>
+        </field>
+    </record> 
+
+    <!--Perform action for functionality of Wizard to send email of daily timesheet report  -->
+    <record id="open_employee_view_timesheet_record_action" model="ir.actions.act_window">
+        <field name="name">Send Email</field>
+        <field name="res_model">send.timesheet</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="open_employee_timesheet_record"/>
+    </record> 
+
+</odoo>
+
