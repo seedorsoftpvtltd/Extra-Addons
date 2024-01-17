@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_hr_attendance_filter_custom" model="ir.ui.view">
+        <field name="name">hr.attendance.filter.custom</field>
+        <field name="model">hr.attendance</field>
+        <field name="inherit_id" ref="hr_attendance.hr_attendance_view_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='check_in_filter']" position="after">
+                <filter string="This Week" name="this_week" domain="[
+                        ('check_in', '>=', (datetime.datetime.combine(context_today() + relativedelta(weeks=-1,days=1,weekday=0), datetime.time(0,0,0)).to_utc()).strftime('%Y-%m-%d %H:%M:%S')),
+                        ('check_in', '&lt;', (datetime.datetime.combine(context_today() + relativedelta(days=1,weekday=0), datetime.time(0,0,0)).to_utc()).strftime('%Y-%m-%d %H:%M:%S'))]"/>
+                <filter string="Today" name="today" domain="[('check_in','>=', datetime.datetime.combine(context_today(), datetime.time(0,0,0))),
+         ('check_in','&lt;=', datetime.datetime.combine(context_today(), datetime.time(23,59,59)))]"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
+
+
+
+
+
+

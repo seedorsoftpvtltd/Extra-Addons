@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="acespritech_view_warehouse_product_tree_uom_extend" model="ir.ui.view">
+            <field name="name">acespritech.product.warehouse.tree.uom</field>
+            <field name="model">warehouse.order</field>
+            <field name="inherit_id" ref="asn_views.view_asn_views_extend_model"/>
+            <field eval="7" name="priority" />
+            <field name="arch" type="xml">
+<!--                <xpath expr="//tree/field[@name='product_id']" position="after">-->
+<!--                             <button string="View Qty" name="%(hb_warehouse_fields.action_wizard_uom_productware)d" icon="fa-bars" type="action" />-->
+
+<!--                </xpath>-->
+                <xpath expr="//header/button[@name='button_done']" position="after">
+                    <button name="%(warehouse_import.action_import_warehouse_order_line_wizard)d" class="oe_highlight"
+                            string="Import Goods" type="action"
+                            attrs="{'invisible': [('state', '!=', 'draft'),('state', '!=', 'sent'),('state', '!=', 'warehouse')]}"/>
+                </xpath>
+
+                <xpath expr="//field[@name='company_id']" position="after">
+                              <field name="agreement_id" invisible="1"/>
+                    <field name="storage_type" attrs="{'invisible':[('x_medium','in',(12,13,14))], 'required':[('x_medium','not in',(12,13,14))]}"/>
+                       <field name="x_eta" attrs="{'invisible':[('x_medium','in',(12,13,14))], 'required':[('x_medium','not in',(12,13,14))]}"/>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="after">
+                               <field name="sku" invisible="1"/>
+                               <field name="x_sku_id" readonly="1" invisible="1" domain="[('partner_id','=',parent.partner_id)]"/>
+                </xpath>
+               <xpath expr="//field[@name='order_line']/tree/field[@name='product_qty']" position="after">
+                    <field name="x_weightt" string="Weight(Kg)" readonly="1" invisible="0" options="{'digits': (12, 2)}"/>
+                   <field name="x_volume1" options="{'digits': (12, 2)}"/>
+               </xpath>
+                <xpath expr="//field[@name='currency_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='x_hbl']" position="attributes">
+                    <attribute name="string">BL/AWB No</attribute>
+                </xpath>
+                <xpath expr="//header/button[@name='print_quotation']" position="attributes">
+                       <attribute name="string">Print ASN</attribute>
+                </xpath>
+                <xpath expr="//field[@name='product_qty']" position="attributes">
+                    <attribute name="options">{'digits': (12, 2)}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='product_id']" position="attributes">
+                    <attribute name="string">Product Code</attribute>
+                </xpath>
+                <xpath expr="//field[@name='product_uom']" position="attributes">
+                    <attribute name="string">Primary UOM</attribute>
+                </xpath>
+                <xpath expr="//field[@name='x_consignee']" position="attributes">
+                    <attribute name="domain">[('company_id', '=',company_id)]</attribute>
+                </xpath>
+                <xpath expr="//field[@name='x_shipper']" position="attributes">
+                    <attribute name="domain">[('company_id', '=',company_id)]</attribute>
+                </xpath>
+                <xpath expr="//field[@name='x_ware']" position="attributes">
+                    <attribute name="domain">[('company_id', '=',company_id)]</attribute>
+                </xpath>
+                <xpath expr="//field[@name='x_medium']" position="attributes">
+                    <attribute name="readonly">1</attribute>
+                </xpath>
+                 <xpath expr="//field[@name='partner_id']" position="attributes">
+                   <attribute name="domain">[('company_id', '=',company_id)]</attribute>
+                </xpath>
+
+            </field>
+        </record>
+
+
+        <record id="asn_tree_view_extend" model="ir.ui.view">
+            <field name="name">warehouse.order.tree</field>
+            <field name="model">warehouse.order</field>
+            <field name="inherit_id" ref="warehouse.warehouse_order_tree"/>
+            <field eval="7" name="priority" />
+            <field name="arch" type="xml">
+                <xpath expr="//tree" position="replace">
+                     <tree string="Advance Shipping" multi_edit="1" default_order="create_date asc" decoration-bf="message_unread==True" decoration-muted="state=='cancel'" decoration-info="state in ('wait','confirmed')" class="o_warehouse_order">
+                         <field name="message_unread" invisible="1"/>
+                         <field name="state" invisible="1"/>
+                         <field name="name" string="ASN Ref No" readonly="1"/>
+                    	<field name="partner_id" readonly="1" string="Client Name"/>
+                        <field name="product_id" readonly="1" string="Goods"/>
+                        <field name="x_line" readonly="1" string="Goods Count"/>
+                        <field name="create_uid" readonly="1" string="Created by"/>
+                        <field name="create_date" readonly="1" string="Created on"/>
+                        <field name="date_approve" readonly="1" string="Confirmation Date"/>
+                     </tree>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="warehouse.warehouse_Booking" model="ir.actions.act_window">
+            <field name="name">Advance Shipping</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">warehouse.order</field>
+            <field name="view_mode">tree,kanban,form,pivot,graph,calendar,activity</field>
+            <field name="view_id" ref="warehouse.warehouse_order_tree"/>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="search_view_id" ref="warehouse.view_warehouse_order_filter"/>
+            <field name="context">{'quotation_only': True}</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create an Advance Shipping Note.
+              </p><p>
+                The quotation contains the history of the discussion
+                you had with your vendor.
+              </p>
+            </field>
+        </record>
+
+
+
+    </data>
+</odoo>

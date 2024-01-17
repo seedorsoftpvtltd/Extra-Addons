@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.rule" id="employee_access_to_payslips">
+            <field name="name">Employee Payslip Access: Employee</field>
+            <field name="model_id" ref="hr_payroll_community.model_hr_payslip"></field>
+            <field name="groups" eval="[(4,ref('base.group_portal'))]"></field>
+            <field name="domain_force">[('employee_id.user_id', '=', user.id)]</field>
+        </record>
+
+    </data>
+</odoo>
+

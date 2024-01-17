@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ONBOARDING STEPS -->
+
+    <template id="activities_step1">
+        <t t-call="activities_onboarding.onboarding_default_step">
+            <t t-set="title">Schedule</t>
+            <t t-set="description">
+                Schedule the activities in the respected documents For Ref. Employees.
+            </t>
+            <t t-set="sl">1</t>
+        </t>
+    </template>
+
+    <template id="activities_step2">
+        <t t-call="activities_onboarding.onboarding_default_step">
+            <t t-set="title">Assign</t>
+            <t t-set="description">
+                Assign the activity’s deadlines, responsible person etc.
+            </t>
+            <t t-set="sl">2</t>
+        </t>
+    </template>
+
+    <template id="activities_step3">
+        <t t-call="activities_onboarding.onboarding_default_step">
+            <t t-set="title">To-do List</t>
+            <t t-set="description">
+               Process your to-do list to organize your activity in the menu.
+            </t>
+            <t t-set="sl">3</t>
+        </t>
+    </template>
+
+    <template id="activities_step4">
+        <t t-call="activities_onboarding.onboarding_default_step">
+            <t t-set="title">Update</t>
+            <t t-set="description">
+                Add your feedback and mark them to complete the activity.
+            </t>
+            <t t-set="sl">4</t>
+        </t>
+    </template>
+
+    <template id="activities_step5">
+        <t t-call="activities_onboarding.onboarding_default_step">
+            <t t-set="title">Manage analysis</t>
+            <t t-set="description">
+               Analyze your scheduled activities and get your reports in various measures.
+            </t>
+            <t t-set="sl">5</t>
+        </t>
+    </template>
+
+    <template id="activities_dashboard_onboarding_panel" name="onboarding.dashboard.onboarding.panel">
+        <t t-call="activities_onboarding.onboarding_default_container">
+            <t t-set="classes" t-value="'o_onboarding_blue'"/>
+            <t t-set="bg_image" t-value="'/onboarding/static/src/img/employee_dashboard_onboarding_bg.jpg'"/>
+            <!--            <t t-set="close_method" t-value="'action_close_account_dashboard_onboarding'"/>-->
+            <!--            <t t-set="close_model" t-value="'res.company'"/>-->
+            <!--            <t t-set="text_completed">Congratulations! You are all set.</t>-->
+
+            <t t-call="activities_onboarding.activities_step1" name="schedule_setup"/>
+            <t t-call="activities_onboarding.activities_step2" name="assign_setup"/>
+            <t t-call="activities_onboarding.activities_step3" name="todo_setup"/>
+            <t t-call="activities_onboarding.activities_step4" name="update_setup"/>
+            <t t-call="activities_onboarding.activities_step5" name="analysis_setup"/>
+        </t>
+    </template>
+
+    <!-- SAMPLE INVOICE EMAIL -->
+
+</odoo>

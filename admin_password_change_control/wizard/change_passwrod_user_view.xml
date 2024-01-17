@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="change_password_wizard_user_tree_view_inherit_pswrd_change_pin" model="ir.ui.view">
+            <field name="name">change.password.user.inherit.pswrd.change.pin</field>
+            <field name="model">change.password.user</field>
+            <field name="inherit_id" ref="base.change_password_wizard_user_tree_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='new_passwd']" position="after">
+<!--                    <field name="group_custom_secure_admin" invisible="1"/>-->
+                    <field name="pswd_change_secure_pin" password="True"/><!-- attrs="{'readonly': [('group_custom_secure_admin', '=', False)]}"/-->
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

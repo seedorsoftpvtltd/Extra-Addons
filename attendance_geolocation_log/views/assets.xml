@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="assets_backend" name="attendance geolocation log" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/attendance_geolocation_log/static/src/js/url_widget.js" />
+            <script type="text/javascript" src="/attendance_geolocation_log/static/src/js/user_menu.js"></script>
+            <script type="text/javascript" src="/attendance_geolocation_log/static/src/js/my_attendances.js"></script>
+            <script type="text/javascript" src="/attendance_geolocation_log/static/src/js/kiosk_confirm.js"></script>
+        </xpath>
+    </template>
+</odoo>

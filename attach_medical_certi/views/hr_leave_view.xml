@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<odoo>
+
+    <record id="view_leave_form_inherit_certificate" model="ir.ui.view">
+        <field name="name">view.leave.form.inherit.certificate</field>
+        <field name="model">hr.leave</field>
+        <field name="inherit_id" ref="hr_holidays.hr_leave_view_form"/>
+        <field name="arch" type="xml">
+            <div name="description" position="before">
+                <group>
+                    <field name="is_certificate_required" invisible="1"/>
+                    <field name="file_name" invisible="1"/>
+                    <field name="certificate" attrs="{'invisible': [('is_certificate_required', '=', False)], 'required': [('is_certificate_required', '=', True)]}" filename="file_name"/>
+                </group>
+            </div>
+        </field>
+    </record>
+</odoo>

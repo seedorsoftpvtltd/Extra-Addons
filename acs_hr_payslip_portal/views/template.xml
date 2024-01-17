@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="head" inherit_id="web.assets_frontend">
+        <xpath expr="/t" position="inside">
+            <script type="text/javascript" src="/acs_hr_payslip_portal/static/src/js/custom.js"/>
+        </xpath>
+    </template>
+
+    <template id="portal_my_home_menu_payslips" name="Portal layout : Payslips" inherit_id="portal.portal_breadcrumbs" priority="20">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if="page_name == 'payslip' or payslip" t-attf-class="breadcrumb-item #{'active ' if not payslip else ''}">
+                <a t-if="payslip" t-attf-href="/my/payslips?{{ keep_query() }}">Payslips</a>
+                <t t-else="">Payslips</t>
+            </li>
+            <li t-if="payslip" class="breadcrumb-item active">
+                <t t-esc="payslip.name"/>
+            </li>
+        </xpath>
+    </template>
+
+    <template id="portal_my_home" name="Portal My Home: Issue entries" inherit_id="portal.portal_my_home" priority="30">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Payslips</t>
+                <t t-set="url" t-value="'/my/payslips'"/>
+                <t t-set="count" t-value="payslip_count"/>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="my_payslips" name="My Payslip">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Payslips</t>
+            </t>
+            
+            <t t-if="not payslips">
+                <p>There are currently no Payslips for your account.</p>
+            </t>
+
+            <div class="panel panel-default">
+                <table t-if="payslips" class="table table-hover bg-white status_table o_portal_my_doc_table">
+                    <thead>
+                        <tr class="active">
+                            <th>Name</th>
+                            <th>Period</th>
+                            <th>Print</th>
+                        </tr>
+                    </thead>
+
+                    <t t-foreach="payslips" t-as="payslip">
+                        <tr>
+                            <td><a t-attf-href="/my/payslips/#{payslip.id}?#{keep_query()}"><span t-field="payslip.name"/></a></td>
+                            <td><span t-field="payslip.date_from"/> - <span t-field="payslip.date_to"/></td>
+                            <td>
+                                <a class="btn btn-primary" target="_blank" title="Print Payslip"
+                                    t-att-href="'/report/pdf/hr_payroll_community.report_payslip/'+str(payslip.id)">Print</a>
+                            </td>
+                        </tr>
+                    </t>
+
+                </table>
+            </div>
+            <div t-if="pager" class="o_portal_pager text-center">
+                <t t-call="portal.pager"/>
+            </div>
+        </t>
+    </template>
+
+    <template id="my_payslips_payslip" name="My Payslip">
+        <t t-call="portal.portal_layout">
+            <div id="wrap">
+                <div class="container">
+                    <div class="oe_structure">
+                        <div class="card">
+                            <div class="card-header bg-white">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h4>
+                                            Payslip <span t-field="payslip.name"/>
+                                        </h4>
+                                    </div>
+                                    <div class="col-md-6 pull-right">
+                                        <h4>
+                                            <a t-att-href="'/report/pdf/hr_payroll_community.report_payslip/'+str(payslip.id)" target="_blank">Print</a>
+                                        </h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb8 col-md-6">
+                                    <strong>Employee:</strong> <span t-field="payslip.employee_id" t-field-options='{"widget": "date"}'/>
+                                </div>
+                                <div class="mb8 col-md-6">
+                                    <strong>Period:</strong> <span t-field="payslip.date_from" t-field-options='{"widget": "date"}'/> - <span t-field="payslip.date_to" t-field-options='{"widget": "date"}'/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+</odoo> 

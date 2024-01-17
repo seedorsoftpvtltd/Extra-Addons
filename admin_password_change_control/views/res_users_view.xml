@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_users_form_inherit_pswrd_change_pin" model="ir.ui.view">
+            <field name="name">res.users.form.inherit.pswrd.change.pin</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[2]/group" position="before">
+                    <field name="group_custom_secure_admin" invisible="1"/>
+                    <field name="group_readonly_custom_secure_admin" invisible="1"/>
+                    <group string="Password Change Security PIN" attrs="{'invisible': [('group_custom_secure_admin', '=', False)]}">
+                        <field name="pswd_change_secure_pin" attrs="{'readonly': [('group_readonly_custom_secure_admin', '=', False)]}"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>
