@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ONBOARDING STEPS -->
+
+    <template id="salary_structure_step1">
+        <t t-call="salary_structure_onboarding.onboarding_default_step">
+            <t t-set="title">Define</t>
+            <t t-set="description">
+                Update the predefined structure/add the salary structure’s name with unique reference.
+            </t>
+            <t t-set="sl">1</t>
+            <!--            <t t-set="btn_text">Review</t>-->
+            <!--          <t t-set="cnt_text" t-value="request.env['hr.department'].search_count([])">-->
+            <!--              <t t-esc="cnt_text">Departments</t>-->
+            <!--            </t>-->
+            <!--            <t t-set="cnt_desc">Records</t>-->
+            <!--            <t t-set="method" t-value="'onboarding_step1_action'" />-->
+            <!--            <t t-set="model" t-value="'res.company'" />-->
+            <!--            <t t-set="state" t-value="state.get('onboarding_step1_state')" />-->
+        </t>
+    </template>
+
+    <template id="salary_structure_step2">
+        <t t-call="salary_structure_onboarding.onboarding_default_step">
+            <t t-set="title">Add the Rules</t>
+            <t t-set="description">
+                Verify the predefined rules/add new salary rules with defined conditions and unique code for reference.
+            </t>
+            <t t-set="sl">2</t>
+            <t t-set="btn_text">Salary Rules</t>
+                        <t t-set="done_text">step 2 set.</t>
+                        <t t-set="method" t-value="'onboarding_salary2_action'" />
+                        <t t-set="model" t-value="'res.company'" />
+        </t>
+    </template>
+    <template id="salary_structure_step3">
+        <t t-call="salary_structure_onboarding.onboarding_default_step">
+            <t t-set="title">Setup Categories</t>
+            <t t-set="description">
+                Add the rule categories to group up the salary rules.
+            </t>
+            <t t-set="sl">3</t>
+                        <t t-set="btn_text">Categories</t>
+                        <t t-set="done_text">step 3 set.</t>
+                        <t t-set="method" t-value="'onboarding_salary3_action'" />
+                        <t t-set="model" t-value="'res.company'" />
+        </t>
+    </template>
+
+    <template id="salary_structure_step4">
+        <t t-call="salary_structure_onboarding.onboarding_default_step">
+            <t t-set="title">Add the Structure</t>
+            <t t-set="description">
+                Add the defined salary structure in the employee’s running contract and generate payslips.
+            </t>
+            <t t-set="sl">4</t>
+        </t>
+    </template>
+
+    <template id="salary_structure_dashboard_onboarding_panel" name="onboarding.dashboard.onboarding.panel">
+        <t t-call="salary_structure_onboarding.onboarding_default_container">
+            <t t-set="classes" t-value="'o_onboarding_blue'"/>
+            <t t-set="bg_image" t-value="'/onboarding/static/src/img/employee_dashboard_onboarding_bg.jpg'"/>
+            <!--            <t t-set="close_method" t-value="'action_close_account_dashboard_onboarding'"/>-->
+            <!--            <t t-set="close_model" t-value="'res.company'"/>-->
+            <!--            <t t-set="text_completed">Congratulations! You are all set.</t>-->
+
+            <t t-call="salary_structure_onboarding.salary_structure_step1" name="define_setup"/>
+            <t t-call="salary_structure_onboarding.salary_structure_step2" name="rules_setup"/>
+            <t t-call="salary_structure_onboarding.salary_structure_step3" name="categories_setup"/>
+            <t t-call="salary_structure_onboarding.salary_structure_step4" name="structure_setup"/>
+
+        </t>
+    </template>
+    <!-- SAMPLE INVOICE EMAIL -->
+
+</odoo>
+

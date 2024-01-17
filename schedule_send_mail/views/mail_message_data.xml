@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <template id="assets_backend_mail" name="mail assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+        	<script type="text/javascript" src="/schedule_send_mail/static/src/js/schedule_send_message.js"></script>
+            <link rel="stylesheet" href="/schedule_send_mail/static/src/css/attach.css" />
+        </xpath>
+    </template>
+
+    <record id="ir_cron_send_mails" model="ir.cron">
+        <field name="name">Send Schedule Mail</field>
+        <field name="user_id" ref="base.user_root" />
+        <field name="interval_number">1</field>
+        <field name="interval_type">minutes</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False"/>
+       	<field name="model_id" ref="model_mail_activity"/>
+        <field name="state">code</field>
+        <field name="code">model.action_mail_message_for_scheduler()</field>
+        <field name="active" eval="True" />
+    </record>
+
+    <record id="mail_message_backup_template" model="mail.template">
+        <field name="name">schedule mail</field>
+        <field name="model_id" ref="schedule_send_mail.model_mail_activity" />
+        <field name="auto_delete" eval="True" />
+        <field name="body_html">
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="portal_my_home_menu_activity_custom" name="Portal layout : Activity menu entries" inherit_id="portal.portal_breadcrumbs" priority="20">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if="page_name == 'custom_activity_page_probc' or custom_activity_request" t-attf-class="breadcrumb-item #{'active ' if not custom_activity_request else ''}">
+                 <a t-if="custom_activity_request" t-attf-href="/my/custom_activity_request?{{ keep_query() }}">Activity </a>
+                 <t t-else="">Activity </t>
+                </li>
+                <li t-if="custom_activity_request" class="breadcrumb-item active">
+                    <span t-field="custom_activity_request.res_name"/>
+                </li>
+        </xpath>
+    </template>
+
+    <template id="portal_my_home_activity_custom" name="Portal My Activities: Activity  entries" inherit_id="portal.portal_my_home" priority="28">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-if="custom_activity_count" t-call="portal.portal_docs_entry">
+                <t t-set="title">Activities</t>
+                <t t-set="url" t-value="'/my/custom_activity_request'"/>
+                <t t-set="count" t-value="custom_activity_count"/>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="portal_my_activity_custom" name="My Activities">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Activity </t>
+            </t>
+            <t t-if="not activities">
+                <p>There are currently no Activities for your account.</p>
+            </t>
+            <t t-if="activities" t-call="portal.portal_table">
+                <thead>
+                    <tr class="active">
+                        <th>Document Name</th>
+                        <th>Activity Type</th>
+                        <th>Due Date</th>
+                        <th>Summary</th>
+                        <!-- <th>Assigned to</th> -->
+                    </tr>
+                </thead>
+                <t t-foreach="activities" t-as="custom_activity_request">
+                    <tr>
+                        <td>
+                            <a t-attf-href="/my/custom_activity_request/#{custom_activity_request.id}?{{ keep_query() }}"><span t-field="custom_activity_request.res_name"/></a>
+                        </td>
+                       <td>
+                        <span t-field="custom_activity_request.activity_type_id"/></td>
+                       <td><span t-field="custom_activity_request.date_deadline"/></td>
+                       <td><span t-field="custom_activity_request.summary"/></td>
+                       <!-- <td><span t-field="custom_activity_request.user_id.name"/></td> -->
+                    </tr>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <template id="custom_portal_my_activity" name="My Activity">
+        <t t-call="portal.portal_layout">
+            <t t-set="o_portal_fullwidth_alert">
+                <t t-call="portal.portal_back_in_edit_mode">
+                    <t t-set="backend_url" t-value="'/web#return_label=Website&amp;model=mail.activity&amp;id=%s&amp;view_type=form' % (custom_activity_request.id)"/>
+                </t>
+            </t>
+            <t t-call="portal.portal_record_layout">
+                <t t-set="card_body">
+                    <h4 class="text-center">Activity Details</h4>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="text-right">
+                                <button data-toggle="modal"
+                                   class="update_calendar_details btn-primary" 
+                                   t-attf-data-target="#modal-custom_activity_request-comment-#{custom_activity_request.id}" 
+                                   href="">Send Message</button> 
+                                <t t-call="schedule_activity_share_portal.custom_modal_update_activity_comment"/>
+                                <t t-call="schedule_activity_share_portal.custom_activity_update_message"/>            
+                           </div>
+                        </div>
+                    </div>
+                    <br></br>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="row">
+                                <label class="col-4"><strong>Activity Type:</strong></label>
+                                <span t-field="custom_activity_request.activity_type_id"/>
+                            </div>
+                            <div class="row">
+                                <label class="col-4"><strong>Due Date:</strong></label>
+                                <span t-field="custom_activity_request.date_deadline"/>
+                            </div>
+                            <div class="row">
+                                <label class="col-4"><strong>Summary:</strong></label>
+                                <span t-field="custom_activity_request.summary"/>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="row">
+                                <label class="col-4"><strong>Assigned to:</strong></label>
+                                <span t-esc="custom_activity_request.user_id.name"/>
+                            </div>
+                            <div class="row">
+                                <label class="col-4"><strong>Document Name:</strong></label>
+                                <span t-esc="custom_activity_request.res_name"/>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <t t-if='custom_activity_request.is_custom_description_probc == True'>
+                                <label class="col-4"><strong></strong></label>
+                                <span t-raw="custom_activity_request.note"/>
+                            </t>
+                        </div>
+                    </div>
+                    <t t-set="message" t-value="custom_activity_request.custom_message_ids"/>
+                        <tr>
+                            <td>
+                                <strong><h3 style="text-align: center;">Your Sent Messages</h3></strong>
+                            </td>
+                        </tr>
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Message Sent Date</th>
+                                <th>Activity User</th>
+                                <th>Portal Agent / Contact</th>
+                                <th>Received Message</th>
+                            </tr>
+                        </thead>
+                        <tbody class="custom_message_ids_tbody">
+                            <tr t-foreach="custom_activity_request.custom_message_ids" t-as="message">
+                                <td><span t-field="message.custom_date"/></td>
+                                <td><span t-field="message.custom_user_id.name"/></td>
+                                <td><span t-field="message.custom_partner_id.name"/></td>
+                                <td><span t-raw="message.custom_message_body"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

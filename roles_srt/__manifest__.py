@@ -1,0 +1,22 @@
+#############################################################################
+{
+    'name': "Access for Warehouse/Freight",
+    'version': '13.0.1.0.0',
+    'summary': """This module provides Access/Restrict record from creation,confirmation,view in warehouse/freight modules.""",
+    'description': """This module provides Access/Restrict record from creation,confirmation,view in warehouse/freight modules.""",
+    'category': 'Freight',
+    'author': 'Fousia banu A R',
+    'company': '',
+    'maintainer': '',
+    'website': "https://www.cybrosys.com",
+    'depends': ['scs_freight','warehouse','sale','stock','product','convert_quotation_to_job','gio','job_cost_estimate_customer','agreement','account'],
+    'data': ['security/warehouse_security.xml',
+             'security/freight_security.xml',
+             'views/freight_roles.xml',
+             'views/warehouse_roles.xml',
+             ],
+    'license': "AGPL-3",
+    'images': ['static/description/banner.png'],
+    'installable': True,
+    'application': True,
+}

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <template id="report_deliveryslip_switch_inh" inherit_id="professional_templates.report_deliveryslip" name="Deliveryslip Switch Inh">
+        <xpath expr="//t[@t-call='professional_templates.DN_12_document']" position="after">
+   <t t-if="style.template_dn.key == 'professional_templates_seedor.DN_13_document'" t-call="professional_templates_seedor.DN_13_document" t-lang="o.partner_id.lang"/>
+   <t t-if="style.template_dn.key == 'professional_templates_seedor.DN_14_document'" t-call="professional_templates_seedor.DN_14_document" t-lang="o.partner_id.lang"/>
+   <t t-if="style.template_dn.key == 'professional_templates_seedor.DN_15_document'" t-call="professional_templates_seedor.DN_15_document" t-lang="o.partner_id.lang"/>
+   <t t-if="style.template_dn.key == 'professional_templates_seedor.DN_16_document'" t-call="professional_templates_seedor.DN_16_document" t-lang="o.partner_id.lang"/>
+   <t t-if="style.template_dn.key == 'professional_templates_seedor.DN_17_document'" t-call="professional_templates_seedor.DN_17_document" t-lang="o.partner_id.lang"/>
+	
+     </xpath>
+    
+</template>
+</data>
+</odoo>

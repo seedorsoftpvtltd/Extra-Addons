@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+        <template id="assets_backend" name="rt activity reminder assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+
+                <!-- systray -->
+                <script type="text/javascript" src="/rt_activity_alarm/static/src/js/systray/activity_reminder.js"></script>
+
+                <link rel="stylesheet" type="text/scss" href="/rt_activity_alarm/static/src/scss/systray.scss"/>
+            </xpath>
+        </template>
+
+    
+    </data>
+</odoo>

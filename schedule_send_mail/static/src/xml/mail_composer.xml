@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>    
+		<t t-extend="mail.chatter.Composer">   
+	       <t t-jquery=".o_composer_container" t-operation="before">
+		        <medium class="o_chatter_composer_info">
+		        	<div class = "row">
+		        		<t t-if="!widget.options.isLog">
+		        		<div style = "margin : 10px">
+		        			<b class="text-muted">Want to send schedule mail? </b>
+		        			<input type="checkbox" class = "send_schedule_checkbox" name="Schedule Date"/>
+		        		</div>
+			        	<div style = "padding-left: 20px;margin: 6px;" class="show_date">
+		                    <b class="text-muted">Schedule Date: </b>
+		                    <b>
+		                        <input type="datetime-local" name="Schedule Date" class="o_composer_button_send_scheduler_date d-md-inline-block" id ="o_composer_button_send_scheduler_date"/>
+		                    </b>
+	                	</div>
+	                </t>
+                	</div>
+                </medium>
+	        </t>
+	         <t t-jquery=".o_composer_send" t-operation="replace">
+		       	<div class="o_composer_send">
+		       		<button tabindex="3" class="btn btn-primary o_composer_button_send d-none d-md-inline-block" type="button"><t t-esc="widget.options.sendText"/></button>
+		       		<div class = "send_scheduler" style = "float : right; margin-left: 5px;">
+			       		<t t-if="!widget.options.isLog">
+			            	<button tabindex="3" class="btn btn-primary d-none o_composer_button_send_scheduler d-md-inline-block" id = "o_composer_button_send_scheduler" type="button"><t t-esc="widget.options.sendScheduler"/></button>
+			        	</t>
+			        </div>
+		        </div>
+	        </t>
+    	</t>
+</templates>

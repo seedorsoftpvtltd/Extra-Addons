@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<record model="ir.ui.view" id="my_module_my_model_form_view">
+    <field name="name">Update Invoice</field>
+    <field name="model">my_wizard</field>
+    <field name="arch" type="xml">
+        <form>
+            <p>You are trying to update multiple invoices,Do you want to proceed?</p>
+
+        <footer>
+            <button name="action_confirm" string="Proceed" type="object"/>
+            <button string="Cancel" special="cancel"/>
+        </footer>
+         </form>
+    </field>
+
+</record>
+
+</odoo>

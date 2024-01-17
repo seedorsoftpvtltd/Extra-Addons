@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="sale_request_field" model="ir.ui.view">
+            <field name="name">sale.request.field</field>
+            <field name="model">sale.order</field>
+			<field name="inherit_id" ref="sale.view_order_form"/>			
+            <field name="arch" type="xml">   
+                <xpath expr="//field[@name='partner_id']" position="replace">
+					<field name="partner_id"/>
+                    <!--field name="street" attrs="{'invisible': [('partner_id', '=', False)]}"/>	
+					<field name="street2" attrs="{'invisible': [('partner_id', '=', False)]}"/-->
+					<field name="city" attrs="{'invisible': [('partner_id', '=', False)]}"/>
+					<!--field name="zip_id" attrs="{'invisible': [('partner_id', '=', False)]}"/>
+					<field name="new_state" attrs="{'invisible': [('partner_id', '=', False)]}"/-->
+					<field name="gst" attrs="{'invisible': [('partner_id', '=', False)]}"/>
+                </xpath>
+            </field>
+        </record>
+	</data>
+</odoo>

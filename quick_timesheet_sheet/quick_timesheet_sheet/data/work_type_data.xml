@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        
+        <record model="work.type.quick_timesheet" id="qt_worktype_reqular">
+            <field name="name">Regular</field>
+        </record>
+        
+        <record model="work.type.quick_timesheet" id="qt_worktype_overtime">
+            <field name="name">Assigned</field>
+        </record>
+        
+        <record model="work.type.quick_timesheet" id="qt_worktype_onsite">
+            <field name="name">Onsite</field>
+        </record>
+        
+        <record model="work.type.quick_timesheet" id="qt_worktype_other">
+            <field name="name">Other</field>
+        </record>
+        
+        <record model="work.type.quick_timesheet" id="qt_worktype_overnight">
+            <field name="name">Overnight</field>
+        </record>
+        
+    </data>
+</odoo>

@@ -1,0 +1,96 @@
+<odoo>
+
+	<record model="report.paperformat" id="paperformat_purchase_report_amla">
+        <field name="name">paperformat.purchase.report</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_width">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">30</field>
+        <field name="margin_right">5</field>
+        <field name="margin_bottom">10</field>
+        <field name="margin_left">5</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">20</field>
+        <field name="dpi">90</field>
+    </record>
+                    
+	<report id="purchase_report_amla"
+            model="purchase.order"
+            string="Purchase Report"
+            report_type="qweb-pdf"
+			name="purchase_report_amla.purchase_order_report_amla"
+			paperformat="paperformat_purchase_report_amla"
+			file="purchase_report_amla.purchase_report_amla"
+			menu="True"/>
+		
+		
+	<template id="purchase_order_report_amla">
+		    <t t-call="web.html_container">
+			<t t-call="web.external_layout"> 
+			<t t-foreach="docs" t-as="o">
+			
+			
+			<div class="page">	
+                <p><center><b>PURCHASE ORDER</b></center></p>			
+                <table style="border-collapse: collapse;border: 1px;width: 911px;">
+				
+				<tr><td style="border: 1px solid;padding: 8px;">PO.No.<span t-field="o.name"/></td><td style="border: 1px solid;padding: 8px;">Date:</td></tr>
+				
+				</table>
+				<div style="padding: 8px;border-left: 1px solid;border-right: 1px solid;">Concern Name:</div>
+				
+                <div style="border-top: 1px dotted black; margin_top: -500px;"/>
+				
+				
+				<div style="padding: 8px;border-left: 1px solid;border-right: 1px solid;">Address:</div>
+				
+				<div style="border-top: 1px dotted black; padding_top: -500px;"/>
+				
+				<div style="padding: 8px;border-left: 1px solid;border-right: 1px solid;">Mobile Numbers: 1</div>
+				
+				<div style="border-top: 1px dotted black;"/>
+				
+				<div style="padding: 8px;border-left: 1px solid;border-right: 1px solid;">E-mail:</div>
+				
+				<div style="border-top: 1px dotted black;"/>
+				<div style="padding: 8px;border-left: 1px solid;border-right: 1px solid;">GST Details:</div>
+				<table>				
+				<tr><td style="border: 1px solid;padding: 8px;" colspan="2">Delivery Address:</td></tr>
+				<tr><td style="border: 1px solid;padding: 8px;" colspan="2">Transport:</td></tr>
+				<tr><td style="border: 1px solid;padding: 8px;" colspan="2"><p>Dear Sirs,
+				<br/>We are please to place an order for the following goods which may kindly be despatched immediately <b>The documents may be sent directly to us.</b></p></td></tr>
+                </table>	
+                <table>
+				<thead>
+				<tr>
+				<th style="border: 1px solid;padding: 8px;width: 100%;">S.NO.</th>
+				<th style="border: 1px solid;padding: 8px;width: 100%;">DESCRIPTION</th>
+				<th style="border: 1px solid;padding: 8px;width: 100%;">PRICE</th>
+				<th style="border: 1px solid;padding: 8px;width: 100%;">GST</th>
+				<th style="border: 1px solid;padding: 8px;width: 100%;">NETT AMOUNT</th>
+				</tr>
+				</thead>
+				<tbody>
+				<t t-foreach="o.order_line" t-as="line">
+                <tr>
+				<td style="border: 1px solid;padding: 8px;"></td>
+				<td style="border: 1px solid;padding: 8px;"><span t-field="line.name"/></td>
+				<td style="border: 1px solid;padding: 8px;"><span t-field="line.price_unit"/></td>
+				<td style="border: 1px solid;padding: 8px;"></td>
+				<td style="border: 1px solid;padding: 8px;"><span t-field="line.price_subtotal"/></td>
+				</tr>	
+				</t>
+                </tbody>				
+                </table>
+                <table>	
+                <td style="border: 1px solid;padding: 8px;width: 100%;">Special Instructions</td><td style="border: 1px solid;padding: 8px;width: 100%;">FOR MENAKA CARD PRIVATE LIMITED</td>
+				</table>
+            </div>
+			</t>
+			</t>	
+		    
+			</t>
+	</template>
+</odoo>

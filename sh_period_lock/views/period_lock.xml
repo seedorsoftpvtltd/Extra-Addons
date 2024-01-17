@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <record id="sh_period_lock_view_form" model="ir.ui.view">
+        <field name="name">sh.period.lock.view.form</field>
+        <field name="model">sh.period.lock</field>
+        <field name="arch" type="xml">
+            <form string="Lock Period">
+                <header>
+                    <button class="oe_highlight" string="Lock" name="action_lock" type="object" attrs="{'invisible':[('state','!=','draft')]}"/>
+                    <button class="oe_highlight" string="Unlock" name="action_unlock" type="object"  attrs="{'invisible':[('state','!=','locked')]}"/>
+                    <button  string="Reset To Draft" name="action_reset_to_draft" type="object" attrs="{'invisible':[('state','=','draft')]}"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,locked,unlocked"  />
+                </header>
+
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+
+                    <group>
+                        <group>
+                            <field name="journal_ids" widget="many2many_tags" attrs="{'readonly':[('state','=','locked')]}"/> 
+                            <field name="company_ids" widget="many2many_tags" attrs="{'readonly':[('state','=','locked')]}" groups="base.group_multi_company"/>
+                        </group>
+                        <group>
+                            <field name="from_date" attrs="{'readonly':[('state','=','locked')]}"/>
+                            <field name="to_date" attrs="{'readonly':[('state','=','locked')]}"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="sh_period_lock_view_tree" model="ir.ui.view">
+        <field name="name">sh.period.lock.tree</field>
+        <field name="model">sh.period.lock</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name = "sequence" widget="handle"/>
+                <field name="name" />
+                <field name="journal_ids" widget="many2many_tags"/> 
+                <field name="company_ids" widget="many2many_tags"/> 
+                <field name="from_date"/>
+                <field name="to_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="sh_period_lock_action" model="ir.actions.act_window">
+        <field name="name">Period Lock</field>
+        <field name="res_model">sh.period.lock</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create A New Period Lock</p>
+        </field>
+    </record>
+
+    <menuitem   id="sh_period_lock_action_menu" 
+                name="Period Lock" 
+                parent="account.menu_finance" 
+                action="sh_period_lock_action" 
+                groups = "account.group_account_manager"
+                sequence="99"/>
+    
+</odoo>

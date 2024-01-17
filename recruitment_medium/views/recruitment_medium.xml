@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+
+    <!-- utm.medium -->
+    <!--    <record id="utm_medium_view_tree" model="ir.ui.view">-->
+    <!--        <field name="name">utm.medium.view.tree</field>-->
+    <!--        <field name="model">utm.medium</field>-->
+    <!--        <field name="arch" type="xml">-->
+    <!--            <tree string="Mediums" editable="bottom">-->
+    <!--                <field name="name"/>-->
+    <!--                <field name="active" invisible="1"/>-->
+    <!--            </tree>-->
+    <!--        </field>-->
+    <!--    </record>-->
+
+    <!--    <record id="utm_medium_view_form" model="ir.ui.view">-->
+    <!--        <field name="name">utm.medium.view.form</field>-->
+    <!--        <field name="model">utm.medium</field>-->
+    <!--        <field name="arch" type="xml">-->
+    <!--            <form string="Medium">-->
+    <!--                <sheet>-->
+    <!--                    <group>-->
+    <!--                        <field name="name"/>-->
+    <!--                        <field name="active"/>-->
+    <!--                    </group>-->
+    <!--                </sheet>-->
+    <!--            </form>-->
+    <!--        </field>-->
+    <!--    </record>-->
+
+    <!--    <record id="utm.utm_medium_view_search" model="ir.ui.view">-->
+    <!--        <field name="name">utm.medium.view.search</field>-->
+    <!--        <field name="model">utm.medium</field>-->
+    <!--        <field name="arch" type="xml">-->
+    <!--            <search string="Search UTM Medium">-->
+    <!--                <field name="name"/>-->
+    <!--                <separator/>-->
+    <!--                <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>-->
+    <!--            </search>-->
+    <!--        </field>-->
+    <!--    </record>-->
+<!--    <record id="utm.utm_medium_action" model="ir.actions.act_window">-->
+<!--        <field name="name">Mediums</field>-->
+<!--        <field name="res_model">utm.medium</field>-->
+<!--        <field name="view_mode">tree,form</field>-->
+<!--        <field name="view_ids" eval="[(5, 0, 0),-->
+<!--                (0, 0, {'view_mode': 'tree', 'view_id': ref('utm.utm_medium_view_tree')}),-->
+
+<!--                (0, 0, {'view_mode': 'form', 'view_id': ref('utm.utm_medium_view_form')})]"/>-->
+<!--        <field name="search_view_id" ref="utm.utm_medium_view_search"/>-->
+
+<!--        <field name="help" type="html">-->
+<!--            <p class="o_view_nocontent_smiling_face">-->
+<!--                Define a new UTM medium-->
+<!--            </p>-->
+<!--        </field>-->
+<!--    </record>-->
+    <menuitem id="menu_utm_medium_recruitment"
+              action="utm.utm_medium_action"
+              parent="hr_recruitment.menu_hr_recruitment_configuration"
+              sequence="5"
+              groups="base.group_no_one"
+
+
+    />
+
+
+</odoo>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+<record id="view_order_form_sale_margin" model="ir.ui.view">
+  <field name="name">view.order.form.sale.margin</field>
+  <field name="model">sale.order</field>
+  <field name="inherit_id" ref="sale.view_order_form"/>
+  <field name="arch" type="xml">
+  	
+  	<header>
+        <button name="action_update_margin" string="Update Margin" type="object" class="btn-primary" attrs="{'invisible':[('state','in',['sale','done','cancel'])]}"/>
+    </header>
+  	
+    <field name="date_order" position="after">
+      <field name="margin_percentage"/>
+    </field>
+    <xpath expr="//page/field[@name='order_line']/form/group/group/field[@name='price_unit']" position="before">
+      <field name="margin_percentage"/>
+    </xpath>
+    <xpath expr="//page/field[@name='order_line']/tree/field[@name='price_unit']" position="before">
+      <field name="margin_percentage"/>
+    </xpath>
+    <xpath expr="//page/field[@name='order_line']" position="attributes">
+      <attribute name="context">
+        {'default_margin_percentage': margin_percentage}
+      </attribute>
+    </xpath>
+  </field>
+</record>
+</odoo>

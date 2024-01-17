@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sh_period_lock_seq" model="ir.sequence">
+        <field name="name">Period Lock sequence</field>
+        <field name="code">period.lock.entry</field>
+        <field name="prefix">PD</field>
+        <field eval="1" name="number_next" />
+        <field eval="1" name="number_increment" />
+        <field name="padding">5</field>        
+    </record>
+</odoo>

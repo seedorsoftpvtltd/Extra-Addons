@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+
+    <!--
+        @param {mail.systray.ActivityMenu} widget
+        @param {Object[]} widget.activities
+    -->
+    <t t-name="rt_activity_alarm.systray.activity_reminder.previews">
+        <t t-set="activities" t-value="widget._activities"/>
+        <t t-if="_.isEmpty(activities)">
+            <div class="dropdown-item-text text-center o_no_activity">
+                <span>No activity reminders.</span>
+            </div>
+        </t>
+        <t t-foreach="activities" t-as="activity">
+
+
+			<div class="rt_activity_alarm_systray_notification">
+				<div class="rt_header_area">
+					<img class="rt_header_item module_icon_img" t-att-src="activity.module_icon_path" alt="Activity"/>
+					<span class="rt_header_item res_model_name" t-esc="activity.res_model_name"/> - 
+					<span class="rt_header_item activity_type_name" t-esc="activity.activity_type_name"/> - 
+					<span t-attf-class="rt_header_item label_delay rt_activity_alarm_activity_color_#{activity.state}"				
+					t-esc="activity.label_delay"/>
+				</div>
+
+				<div class="rt_activity_content_area">
+	                <div class="rt_activity_content_left">
+	                    <div class="rt_activity_user">
+	                        <t t-if="activity.user_id">
+	                            <img class="rt_activity_user_avatar" t-attf-src="/web/image/res.users/{{ activity.user_id }}/image_128" t-att-alt="activity.user_id_name"/>
+	                        </t>
+
+						<div t-attf-class="rt_activity_icon_container rt_activity_alarm_activity_bg_color_#{activity.state}">
+							<i  t-attf-class="rt_activity_icon fa #{activity.activity_type_icon}"></i>
+						</div>
+
+	                    </div>
+	                </div>
+
+                <div class="rt_activity_content_right">
+					<span class="rt_activity_summary" t-esc="activity.summary"/>
+					<div>
+						Due on <span t-attf-class="rt_activity_date_deadline rt_activity_alarm_activity_color_#{activity.state}" t-esc="activity.date_deadline"/>
+					</div>
+					<div>
+						Created <span class="" t-esc="activity.user_tz_create_date"/>
+					</div>		
+					<div>
+						Assigned to <span class="" t-esc="activity.user_id_name"/>
+					</div>	
+					
+					
+					<div class="rt_activity_action_button">
+
+						<a href="#"
+						class="js_cls_activity_alarm_open_single_model_record" 
+						t-att-data-res_model="activity.res_model" 
+						t-att-data-model_name="activity.res_model_name"
+						t-att-data-domain="activity.domain"
+						t-att-data-res_id="activity.res_id" 
+						
+						data-filter='my'>
+							Record
+						</a>
+						
+						
+						<a href="#" 
+							class="ml-3 js_cls_mail_activity_action"
+						t-att-data-res_model="activity.res_model" 
+						t-att-data-model_name="activity.res_model_name"
+						t-att-data-domain="activity.domain" 
+						t-att-data-activity_id="activity.activity_id"
+						data-filter='my'>
+							Activity
+						</a>					
+
+
+						<a href="#" 
+							class="ml-3 js_cls_activity_alarm_edit_schedule_activity"
+						t-att-data-res_model="activity.res_model" 
+						t-att-data-model_name="activity.res_model_name"
+						t-att-data-domain="activity.domain" 
+						t-att-data-activity_id="activity.activity_id"
+						data-filter='my'>
+							Edit
+						</a>
+						
+						
+
+					</div>					
+							
+                </div>
+
+
+                <div class="rt_activity_content_right_time">
+					<span class="rt_activity_user_time_hour_minute" t-esc="activity.user_time_hour_minute"/>			
+                </div>
+
+
+
+				</div>
+				
+			</div>
+
+
+
+        </t>
+    </t>
+
+    <t t-name="rt_activity_alarm.systray.activity_reminder">
+        <li class="o_mail_systray_item">
+            <a class="dropdown-toggle o-no-caret" data-toggle="dropdown" data-display="static" aria-expanded="false" title="Activity Reminders" href="#" role="button">
+                <i class="fa fa-bell-o" role="img" aria-label="Activity Reminders"/> <span class="o_notification_counter badge badge-pill"/>
+            </a>
+            <div class="o_mail_systray_dropdown dropdown-menu dropdown-menu-right" role="menu">
+                <div class="o_mail_systray_dropdown_items"/>
+            </div>
+        </li>
+    </t>
+</templates>

@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+         <!-- QWeb Reports -->
+        <report 
+            id="quick_timesheet_report"
+            model="quick.timesheet.sheet"
+            menu="True"
+            report_type="qweb-pdf"
+            string="Timesheet Sheet"
+            name="quick_timesheet_sheet.quick_timesheet_report_template"
+            file="quick_timesheet_sheet.quick_timesheet_report_template"
+           />
+        
+        <template id="quick_timesheet_report_template">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.internal_layout">
+                    <t t-call="web.html_container">
+                        <div class="page">
+                            <h2 class="text-center">
+                                Timesheet for
+                                <span t-field="doc.start_date"/>
+                                to
+                                <span t-field="doc.end_date"/>
+                            </h2>
+                            <div class="row">
+                                <div class="col-6">
+                                    <p>
+                                        <strong>Employee:</strong>
+                                        <span t-field="doc.employee_id"/>
+                                    </p>
+                                </div>
+                                <div class="col-6">
+                                    <p>
+                                        <strong>Company:</strong>
+                                        <span t-field="doc.company_id"/>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <p>
+                                        <strong>Project:</strong>
+                                        <span t-field="doc.project_id"/>
+                                    </p>
+                                </div>
+                                <div class="col-6">
+                                    <p>
+                                        <strong>Task:</strong>
+                                        <span t-field="doc.task_id"/>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <p>
+                                        <strong>Created Date:</strong>
+                                        <span t-field="doc.create_date"/>
+                                    </p>
+                                </div>
+                                <div class="col-6">
+                                    <p>
+                                        <strong>Created By:</strong>
+                                        <span t-field="doc.create_by"/>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <p>
+                                        <strong>Status:</strong>
+                                        <span t-field="doc.state"/>
+                                    </p>
+                                </div>
+                                <div class="col-6">
+                                </div>
+                            </div>
+                            <table class="table table-bordered" style="table-layout: fixed; page-break-inside:auto"
+                                width="100%">
+                                <thead style="display:table-header-group">
+                                    <tr style="page-break-inside:avoid; page-break-after:auto">
+                                        <th>
+                                        </th>
+                                        <th>
+                                            <span t-field="doc.label_day1"/>
+                                        </th>
+                                        <th>
+                                            <span t-field="doc.label_day2"/>
+                                        </th>
+                                        <th>
+                                            <span t-field="doc.label_day3"/>
+                                        </th>
+                                        <th>
+                                            <span t-field="doc.label_day4"/>
+                                        </th>
+                                        <th>
+                                            <span t-field="doc.label_day5"/>
+                                        </th>
+                                        <th>
+                                            <span t-field="doc.label_day6"/>
+                                        </th>
+                                        <th>
+                                            <span t-field="doc.label_day7"/>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tr style="page-break-inside:avoid; page-break-after:auto">
+                                    <td>
+                                        <span t-field="doc.normal_type_id.name"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.normal1" t-options='{"widget": "float_time"}'/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.normal2" t-options='{"widget": "float_time"}'/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.normal3" t-options='{"widget": "float_time"}'/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.normal4" t-options='{"widget": "float_time"}'/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.normal5" t-options='{"widget": "float_time"}'/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.normal6" t-options='{"widget": "float_time"}'/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.normal7" t-options='{"widget": "float_time"}'/>
+                                    </td>
+                                </tr>
+                                <tr style="page-break-inside:avoid; page-break-after:auto">
+                                    <td>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.normal_des1"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.normal_des2"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.normal_des3"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.normal_des4"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.normal_des5"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.normal_des6"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.normal_des7"/>
+                                    </td>
+                                </tr>
+                                <tr style="page-break-inside:avoid; page-break-after:auto">
+                                    <td>
+                                        <span t-field="doc.overtime_type_id.name"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.overtime1" t-options='{"widget": "float_time"}'/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.overtime2" t-options='{"widget": "float_time"}'/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.overtime3" t-options='{"widget": "float_time"}'/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.overtime4" t-options='{"widget": "float_time"}'/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.overtime5" t-options='{"widget": "float_time"}'/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.overtime6" t-options='{"widget": "float_time"}'/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.overtime7" t-options='{"widget": "float_time"}'/>
+                                    </td>
+                                </tr>
+                                <tr style="page-break-inside:avoid; page-break-after:auto">
+                                    <td>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.overtime_des1"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.overtime_des2"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.overtime_des3"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.overtime_des4"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.overtime_des5"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.overtime_des6"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.overtime_des7"/>
+                                    </td>
+                                </tr>
+                                <tr style="page-break-inside:avoid; page-break-after:auto">
+                                    <td>
+                                        <span t-field="doc.free_type_id.name"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.free1" t-options='{"widget": "float_time"}'/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.free2" t-options='{"widget": "float_time"}'/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.free3" t-options='{"widget": "float_time"}'/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.free4" t-options='{"widget": "float_time"}'/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.free5" t-options='{"widget": "float_time"}'/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.free6" t-options='{"widget": "float_time"}'/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.free7" t-options='{"widget": "float_time"}'/>
+                                    </td>
+                                </tr>
+                                <tr style="page-break-inside:avoid; page-break-after:auto">
+                                    <td>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.free_des1"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.free_des2"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.free_des3"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.free_des4"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.free_des5"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.free_des6"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.free_des7"/>
+                                    </td>
+                                </tr>
+                                <tr style="page-break-inside:avoid; page-break-after:auto">
+                                    <td>
+                                        <span t-field="doc.sick_type_id.name"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.sick1" t-options='{"widget": "float_time"}'/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.sick2" t-options='{"widget": "float_time"}'/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.sick3" t-options='{"widget": "float_time"}'/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.sick4" t-options='{"widget": "float_time"}'/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.sick5" t-options='{"widget": "float_time"}'/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.sick6" t-options='{"widget": "float_time"}'/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.sick7" t-options='{"widget": "float_time"}'/>
+                                    </td>
+                                </tr>
+                                <tr style="page-break-inside:avoid; page-break-after:auto">
+                                    <td>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.sick_des1"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.sick_des2"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.sick_des3"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.sick_des4"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.sick_des5"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.sick_des6"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.sick_des7"/>
+                                    </td>
+                                </tr>
+                                <tr style="page-break-inside:avoid; page-break-after:auto">
+                                    <td>
+                                        <span t-field="doc.overnight_type_id.name"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.overnight1" t-options='{"widget": "float_time"}'/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.overnight2" t-options='{"widget": "float_time"}'/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.overnight3" t-options='{"widget": "float_time"}'/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.overnight4" t-options='{"widget": "float_time"}'/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.overnight5" t-options='{"widget": "float_time"}'/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.overnight6" t-options='{"widget": "float_time"}'/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.overnight7" t-options='{"widget": "float_time"}'/>
+                                    </td>
+                                </tr>
+                                <tr style="page-break-inside:avoid; page-break-after:auto">
+                                    <td>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.overnight_des1"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.overnight_des2"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.overnight_des3"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.overnight_des4"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.overnight_des5"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.overnight_des6"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.overnight_des7"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</openerp>

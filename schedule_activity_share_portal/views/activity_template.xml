@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<template id="assets_backend" name="account assets" inherit_id="web.assets_frontend">
+	    <xpath expr="." position="inside">
+			<script type="text/javascript" src="/schedule_activity_share_portal/static/src/js/activity_comment.js"></script>
+		</xpath>
+	</template>
+	
+	<template id="custom_modal_update_activity_comment">
+		<div class="modal fade MyCustomActivityModal" t-attf-id="modal-custom_activity_request-comment-#{custom_activity_request.id}">
+	    	<div class="modal-dialog">
+	        	<div class="modal-content">
+	                <div class="modal-header">
+	                    <h4 class="modal-title" style="color:#00A09D">Send Message</h4>
+	                </div>
+	                <form method="post" t-attf-action="/custom_activity/comment">
+	                	<input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+	                	<input type="hidden" name="custom_calendar_activity_id" id="custom_calendar_activity_id" t-att-value="custom_activity_request.id"/>
+	                    <div class="modal-body">
+			             	<textarea name="custom_activity_comment" class="custom_activity_comment" style="width:100%" placeholder="Type your message....."/>
+						</div>
+	                    <div class="modal-footer">
+	                        <button type="submit" data-toggle="modal" data-target="#success_message_probc_activity_comment"
+		 						class="btn btn-primary comment-submit hide_activity_wizard" >Send</button>
+	 						<button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+	                    </div>
+	                </form>
+	            </div>
+	        </div>
+	    </div>
+	</template>
+    
+	<template id="custom_activity_update_message">
+		<div id="success_message_probc_activity_comment" class="modal fade">
+	    	<div class="modal-dialog">
+	        	<div class="modal-content">
+	                <div class="container">
+                        <span class="d-block fa fa-2x fa-thumbs-up mx-auto rounded-circle bg-primary" style="margin-top:15px;"/><br/>
+                        <h1 class="text-center">Thank You!</h1>
+                        <div class="pb16 pt16 s_hr" data-snippet="s_hr" data-name="Separator">
+                            <hr class="mx-auto border-top w-50 border-dark text-center"/>
+                        </div>
+                        <h5 class="text-center">
+                            <span class="fa fa-check-circle"/>
+                            <span>Your message has been sent <b>successfully</b></span>
+                        </h5>
+                        <p class="text-center">We will get back to you shortly.</p>
+                    </div>
+	                <form method="post" t-attf-action="/custom_activity/comment">
+	                	<input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+	                    <div class="modal-footer">
+	                        <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+	                    </div>
+	                </form>
+	            </div>
+	        </div>
+		</div>
+	</template>
+	
+</odoo>

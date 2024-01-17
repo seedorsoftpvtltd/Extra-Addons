@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="product_sales_menu_action" model="ir.actions.act_window">
+        <field name="name">Products</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">tree,form,kanban</field>
+         <field name="domain">[('type','=','product')]</field>
+    </record>
+
+    <record id="service_sales_menu_action" model="ir.actions.act_window">
+        <field name="name">Services</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">tree,form,kanban</field>
+         <field name="domain">[('type','=','service')]</field>
+    </record>
+     <menuitem id="purchase_product_menu" name="Products"  parent="purchase.menu_purchase_config" action="product_sales_menu_action"/>
+     <menuitem id="purchase_service_menu" name="Services"  parent="purchase.menu_purchase_config" action="service_sales_menu_action" />
+     <menuitem id="account_product_menu" name="Products"  parent="account.menu_finance_configuration" action="product_sales_menu_action"/>
+     <menuitem id="account_service_menu" name="Services"  parent="account.menu_finance_configuration" action="service_sales_menu_action" />
+     <menuitem id="job_product_menu" name="Products"  parent="scs_freight.main_menu_freight_config" action="product_sales_menu_action"/>
+     <menuitem id="job_service_menu" name="Services"  parent="scs_freight.main_menu_freight_config" action="service_sales_menu_action" />
+     <menuitem id="product_sale_menu" name="Products"  parent="sale.menu_sale_config" action="product_sales_menu_action"/>
+     <menuitem id="service_sale_menu" name="Services"  parent="sale.menu_sale_config" action="service_sales_menu_action" />
+</odoo>

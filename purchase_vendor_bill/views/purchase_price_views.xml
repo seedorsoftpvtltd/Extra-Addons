@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="purchase_vendorbill_views_inh" model="ir.ui.view">
+        <field name="name">purchase.vendorbill.inherit</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+       <xpath expr="//header/button[@name='action_view_invoice']" position="replace">
+             <button name="click_vendor_bills" string="Create Bill" type="object" class="oe_highlight" attrs="{'invisible': ['|', ('state', 'not in', ('purchase', 'done')), ('invoice_status', 'in', ('no', 'invoiced'))]}"/>
+
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
+

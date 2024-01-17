@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+    <record id="dashboard_action" model="ir.actions.client">
+         <field name="name">Dashboard</field>
+         <field name="tag">dashboard</field>
+    </record>
+
+    <menuitem id="dashboard_menu" name="Dashboard" parent="sales_contract_subscription_and_recurring_invoice_axis.menu_analytic_contract"
+        action="dashboard_action" sequence="0" />
+
+   </data>
+</odoo>

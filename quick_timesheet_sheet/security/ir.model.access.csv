@@ -1,0 +1,5 @@
+"id","name","model_id/id","group_id/id","perm_read","perm_write","perm_create","perm_unlink"
+"access_work_type_timesheet_manager","work_type_timesheet_manager","model_work_type_quick_timesheet","hr_timesheet.group_timesheet_manager",1,1,1,1
+"access_work_type_timesheet_user","work_type_timesheet_user","model_work_type_quick_timesheet","hr_timesheet.group_hr_timesheet_user",1,1,1,1
+"access_work_type_employee","work_type_employee","model_work_type_quick_timesheet","base.group_user",1,0,0,0
+"access_quick_timesheet_sheet_employee","quick_timesheet_sheet_employee","model_quick_timesheet_sheet","base.group_user",1,1,1,1

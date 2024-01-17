@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="sale_form_view_domain" model="ir.ui.view">
+        <field name="name">sale.line.product.domain</field>
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook//page[3]//field[@name='order_line']//form//field[@name='product_id']"
+                   position="replace">
+<!--                <field name="product_id" width="200" -->
+<!--                       domain="['|',('type','=', 'service'), ('x_medium', '=', parent.x_esti_type), ('x_transport', '=', parent.x_transport_esti), ('x_segment', '=', parent.x_segment_esti), ('x_ocean_shipping', '=', parent.x_ocean_shipping_esti), ('x_land_shipping', '=', parent.x_land_shipping_esti), ('x_air_shipping', '=', parent.x_air_shipping_esti)]"/>-->
+                    <field name="product_id" string = "Services" width = "100"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

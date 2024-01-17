@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+<data>
+<!-- Your List View Definition -->
+
+    <record id="view_freight_operation_view_inherit" model="ir.ui.view">
+			<field name="name">freight.operation</field>
+			<field name="model">freight.operation</field>
+			<field name="inherit_id" ref="jobbooking_custom_view.freight_operation_view_form_custom_view"/>
+			<field name="arch" type="xml">
+<!--				<xpath expr="//button[@name='action_update_invoice']" position="replace" invisible="1">-->
+<!--					 <button-->
+<!--							name="action_update_invoice1"-->
+<!--							type="object"-->
+<!--							string="Update Invoice"-->
+<!--							attrs="{'invisible': ['|',('state', 'not in', ['confirm']),('invoice_count','=',0)]}"-->
+<!--							class="oe_highlight"-->
+<!--							groups="revoke_update_button_job.group_update_revoke"-->
+<!--						/>-->
+<!--             	</xpath>-->
+				<xpath expr="//button[@name='action_update_invoice']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+				<xpath expr="//button[@name='jobbooking_service_salecost_read.action_create_invoice']" position="after">
+						<button
+							name="action_update_invoice1"
+							type="object"
+							string="Update Invoice"
+							attrs="{'invisible': ['|',('state', 'not in', ['confirm']),('invoice_count','=',0)]}"
+							class="oe_highlight"
+							groups="revoke_update_button_job.group_update_revoke"
+						/>
+
+
+				</xpath>
+<!--				<xpath expr="//button[@name='action_update_bill']" position="replace" invisible="1">-->
+<!--					 <button-->
+<!--							name="action_update_bill1"-->
+<!--							type="object"-->
+<!--							string="Update Bill"-->
+<!--							attrs="{'invisible': ['|',('state', 'not in', ['confirm']),('bill_count','=',0)]}"-->
+<!--							class="oe_highlight"-->
+<!--							groups="revoke_update_button_job.group_update_revoke"-->
+<!--						/>-->
+<!--				 </xpath>-->
+				<xpath expr="//button[@name='action_update_bill']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+				<xpath expr="//button[@name='jobbooking_service_salecost_read.action_create_bill']" position="after">
+						<button
+							name="action_update_bill1"
+							type="object"
+							string="Update Bill"
+							attrs="{'invisible': ['|',('state', 'not in', ['confirm']),('bill_count','=',0)]}"
+							class="oe_highlight"
+							groups="revoke_update_button_job.group_update_revoke"
+						/>
+				</xpath>
+
+
+			</field>
+		</record>
+</data>
+</odoo>

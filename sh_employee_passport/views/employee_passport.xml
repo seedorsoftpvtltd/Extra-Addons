@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="sh_employee_passport_form_view" model="ir.ui.view">
+            <field name="name">sh.employee.passport</field>
+            <field name="model">sh.employee.passport</field>
+            <field name="arch" type="xml">
+                <form string="Visa Information">
+                    <header>
+                        <field name="states" widget="statusbar" />
+                    </header>
+                    <sheet>
+                        <group string="Visa Information">
+                            <group>
+                                <field name="name" />
+                                <field name="employee_id" />
+                            </group>
+                            <group>
+                                <field name="sh_application_date" />
+                                <field name="sh_duration" />
+                                <field name="sh_expiry_date" />
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="sh_employee_passport_tree_view" model="ir.ui.view">
+            <field name="name">sh.employee.passport</field>
+            <field name="model">sh.employee.passport</field>
+            <field name="arch" type="xml">
+                <tree string="Visa Information">
+                    <field name="name" />
+                    <field name="employee_id" />
+                    <field name="sh_application_date" />
+                    <field name="sh_duration" />
+                    <field name="sh_expiry_date" />
+                    <field name="states" />
+                </tree>
+            </field>
+        </record>
+        <record id="sh_employee_passport_kanban_view" model="ir.ui.view">
+        <field name="name">sh.employee.passport</field>
+        <field name="model">sh.employee.passport</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="name" />
+                    <field name="employee_id" />
+                    <field name="sh_application_date" />
+                    <field name="sh_duration" />
+                    <field name="sh_expiry_date" />
+                    <field name="states" />
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div class="oe_kanban_details mb16">
+                                <div class="oe_kanban_details mt4">
+                                     <strong><field name="employee_id" /></strong>
+                                </div>
+                                
+
+                            </div>
+                            <div class="oe_kanban_details d-flex flex-column1">
+                                <span>Application Date :</span>
+                                <field name="sh_application_date" />
+                            </div>
+                            <div class="oe_kanban_details d-flex flex-column2">
+                                <span>Expiry Date :</span>
+                                <field name="sh_expiry_date" />
+                            </div>
+
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+        </record>
+        <record id="sh_employee_passport_search_view" model="ir.ui.view">
+            <field name="name">sh.employee.passport</field>
+            <field name="model">sh.employee.passport</field>
+            <field name="arch" type="xml">
+                <search string="Visa Information">
+                    <field name="name" />
+                    <field name="employee_id" />
+                    <field name="states" />
+                    <group expand="0" string="Group By">
+                        <filter name="group_employee" string="Employee" domain="[]" context="{'group_by': 'employee_id'}" />
+                        <filter name="group_date" string="Application Date" domain="[]" context="{'group_by': 'sh_application_date'}" />
+                        <filter name="group_states" string="Status" domain="[]" context="{'group_by': 'states'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record id="sh_employee_passport_action" model="ir.actions.act_window">
+            <field name="name">Visa Information</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sh.employee.passport</field>
+<!--            <field name="view_type">form</field>-->
+            <field name="view_mode">tree,kanban,form</field>
+        </record>
+        <menuitem id="menu_employee_visa_information" name="Employee Visa Information" parent="hr.menu_hr_root" action="sh_employee_passport_action" sequence="3" groups="hr.group_hr_user" />
+    </data>
+</odoo>

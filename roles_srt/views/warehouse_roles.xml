@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+		<record id="view_asn_access_inherit" model="ir.ui.view">
+            <field name="name">warehouse.order</field>
+            <field name="model">warehouse.order</field>
+            <field name="inherit_id" ref="warehouse.warehouse_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='button_confirm'][2]" position="attributes">
+                    <attribute name="groups">roles_srt.group_confirm_access_rec</attribute>
+                </xpath>
+                <xpath expr="//button[@name='button_confirm'][1]" position="attributes">
+                    <attribute name="groups">roles_srt.group_confirm_access_rec</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_gio_access_inherit" model="ir.ui.view">
+            <field name="name">goods.issue.order</field>
+            <field name="model">goods.issue.order</field>
+            <field name="inherit_id" ref="gio.views_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_confirm'][2]" position="attributes">
+                    <attribute name="groups">roles_srt.group_confirm_access_rec</attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_confirm'][1]" position="attributes">
+                    <attribute name="groups">roles_srt.group_confirm_access_rec</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_stock_access_inherit" model="ir.ui.view">
+            <field name="name">stock.picking</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='button_validate'][2]" position="attributes">
+                    <attribute name="groups">roles_srt.group_confirm_access_rec</attribute>
+                </xpath>
+                <xpath expr="//button[@name='button_validate'][1]" position="attributes">
+                    <attribute name="groups">roles_srt.group_confirm_access_rec</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="inventory_report_inherit_id" model="ir.ui.menu">
+            <field name="name">Reporting</field>
+            <field name="parent_id" ref="stock.menu_warehouse_report"/>
+            <field name="groups_id" eval="[(6, 0, [group_reporting_rec])]"/>
+        </record>
+        <record id="inventory_conf_inherit_id" model="ir.ui.menu">
+            <field name="name">Configuration</field>
+            <field name="parent_id" ref="stock.menu_stock_config_settings"/>
+            <field name="groups_id" eval="[(6, 0, [group_reporting_rec])]"/>
+        </record>
+        <record id="warehouse_conf_inherit_id" model="ir.ui.menu">
+            <field name="name">Configuration</field>
+            <field name="parent_id" ref="warehouse.menu_warehouse_config"/>
+            <field name="groups_id" eval="[(6, 0, [group_reporting_rec])]"/>
+        </record>
+
+
+    </data>
+</odoo>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>    
+		<t t-extend="mail.chatter.Buttons">   
+	       <t t-jquery=".o_chatter_button_schedule_activity" t-operation="after">
+		        <button class="btn btn-link o_chatter_button_schedule_send_message" title="Schedule Send Message" disabled="disabled" id="schedule_send">
+            		<i role="img" aria-label="Dates" title="Dates"/> <t t-if="isMobile">Activity</t><t t-else="">Schedule Send Message</t>
+        		</button>
+	        </t>
+    	</t>
+</templates>

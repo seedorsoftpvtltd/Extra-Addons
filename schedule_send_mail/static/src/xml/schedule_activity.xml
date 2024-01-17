@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-extend="mail.activity_items">
+        <t t-jquery=".o_thread_message_core" t-operation="replace">
+            <div class="o_thread_message_core">
+                    <div class="o_mail_info text-muted">
+                        <strong><span t-attf-class="o_activity_date o_activity_color_#{activity.state}"><t t-esc="activity.label_delay" /></span></strong>:
+                        <strong t-if="activity.summary"> &#8220;<t t-esc="activity.summary"/>&#8221;</strong>
+                        <strong t-if="!activity.summary and !activity.schedule_date"> <t t-esc="activity.activity_type_id[1]" /></strong>
+                        <strong t-if="activity.schedule_date"> <t t-esc="activity.activity_type_id[1]" /></strong>
+                        <em> for </em>
+                        <t t-if="!activity.schedule_date">
+                            <t t-esc="activity.user_id[1]" />
+                        </t>
+                        <t t-if="activity.schedule_date">
+                            <t t-esc="activity.partner_name" />
+                        </t>
+                            <a class="btn btn-link btn-info text-muted collapsed o_activity_info ml4" role="button" data-toggle="collapse" t-attf-data-target="#o_chatter_activity_info_#{activity.id}">
+                                <t t-if="!activity.schedule_date">
+                                    <i class="fa fa-info-circle" role="img" aria-label="Info" title="Info"></i>
+                                </t>
+                                <t t-if="activity.schedule_date">
+                                    <i class="fa fa-clock-o" role="img" aria-label="Info" title="Info"></i>
+                                </t>
+                            </a>
+                        <div class="o_thread_message_collapse collapse" t-attf-id="o_chatter_activity_info_#{activity.id}">
+                            <dl class="dl-horizontal">
+                                <dt>Activity type</dt>
+                                <dd class="mb8">
+                                    <t t-esc="activity.activity_type_id[1]"/>
+                                </dd>
+                                <dt>Created on</dt>
+                                <dd class="mb8">
+                                    <t t-esc="activity.create_date.format(datetimeFormat)"/>
+                                    by
+                                    <img t-attf-src="/web/image#{activity.create_uid[0] >= 0 ? ('/res.users/' + activity.create_uid[0] + '/image_128') : ''}"
+                                        height="18" width="18"
+                                        class="rounded-circle mr4"
+                                        t-att-title="activity.create_uid[1]"
+                                        t-att-alt="activity.create_uid[1]"/>
+                                    <b><t t-esc="activity.create_uid[1]"/></b>
+                                </dd>
+                                <t t-if = "activity.attachment_ids.length > 0">
+                                <dt>Show Attachments</dt>
+                                </t>
+                                <t t-foreach="activity.attachment_ids" t-as="attachment">
+                                    <dd>
+                                        <div class="o_attachment">
+                                        <div class="o_attachment_wrap">
+                                            <div class="o_image_box">
+                                                <div class="o_attachment_image"/>
+                                                <div t-attf-class="o_image_overlay o_attachment_view"  t-att-data-id="attachment.name">
+                                                    <span class="o_attachment_title text-black"><t t-esc="attachment.name"/></span>
+                                                    <a class="o_attachment_download" t-att-href='attachment.url' target="new">
+                                                        <i t-attf-class="fa fa-download text-black" t-att-title="'Download ' + attachment.name" role="img" aria-label="Download"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </dd>
+                                </t>
+                                <t t-if="!activity.schedule_date">
+                                    <dt>Assigned to</dt> 
+                                    <dd class="mb8">
+                                        <t t-if = "activity.user_id.length > 0">
+                                            <img t-attf-src="/web/image#{activity.user_id[0] >= 0 ? ('/res.users/' + activity.user_id[0] + '/image_128') : ''}" height="18" width="18" class="rounded-circle mr4" t-att-title="activity.user_id[1]" t-att-alt="activity.user_id[1]"/>
+                                        <b><t t-esc="activity.user_id[1]"/></b>
+                                            <em>, due on </em><span t-attf-class="o_activity_color_#{activity.state}"><t t-esc="activity.date_deadline.format(dateFormat)"/></span></t>
+                                        
+                                    </dd>
+                                </t>
+                                <t t-if="activity.schedule_date">
+                                <dt>Send to</dt>
+                                <t t-if="activity.schedule_date">
+                                    <t t-set="i" t-value="0"/>
+                                    <t t-foreach="activity.partner_ids" t-as="partner">
+                                        <img t-attf-src="/web/image#{partner >= 0 ? ('/res.partner/' + partner + '/image_128') : ''}" height="18" width="18" class="rounded-circle mr4" t-att-title="activity.partner_name" t-att-alt="activity.partner_name"/>
+                                        <b><t t-esc="activity.partner_name[i]"/></b>
+                                        <em> Scheduled on </em><span t-attf-class="o_activity_color_#{activity.state}"><t t-esc="activity.schedule_date"/></span><br/>
+                                    <t t-set="i" t-value="i+1"/>
+                                    </t>
+                                    </t>
+                                </t>
+                            </dl>
+                        </div>
+                    </div>
+                    <div t-if="activity.note" t-attf-class="o_thread_message_#{activity.activity_decoration ? activity.activity_decoration : 'note'} #{activity.activity_decoration ? 'alert alert-' + activity.activity_decoration : ''} small">
+                        <t t-raw="activity.note"/>
+                    </div>
+                    <t t-if="!activity.schedule_date">
+                        <t t-if="activity.mail_template_ids &amp;&amp; activity.mail_template_ids.length &gt; 0">
+                            <div class="mt16" t-att-data-activity-id="activity.id" t-att-data-previous-activity-type-id="activity.activity_type_id[0]">
+                                <t t-foreach="activity.mail_template_ids" t-as="mail_template">
+                                    <div>
+                                        <i class="fa fa-envelope-o" aria-label="Mail" title="Mail" role="img"></i>
+                                        <span t-esc="mail_template.name"/>:
+                                        <span class="o_activity_template_preview" t-att-data-template-id="mail_template.id">Preview</span>
+                                        <span class="text-muted">or</span>
+                                        <span class="o_activity_template_send" t-att-data-template-id="mail_template.id">Send Now</span>
+                                    </div>
+                                </t>
+                            </div>
+                        </t>
+                        <div class="o_thread_message_tools btn-group">
+                            <span class="o_mark_as_done" data-toggle="popover" t-att-data-activity-id="activity.id" t-att-data-force-next-activity="activity.force_next" t-att-data-previous-activity-type-id="activity.activity_type_id[0]">
+                                <a role="button" href="#" class="btn btn-link btn-success text-muted o_activity_link mr8">
+                                <i class="fa fa-check"/> Mark Done </a>
+                            </span>
+                            <a role="button" href="#" class="btn btn-link btn-secondary text-muted o_edit_activity o_activity_link" t-att-data-activity-id="activity.id">
+                                <i class="fa fa-pencil"/> Edit
+                            </a>
+                            <a role="button" href="#" class="btn btn-link btn-danger text-muted o_unlink_activity o_activity_link" t-att-data-activity-id="activity.id">
+                                <i class="fa fa-times"/> Cancel
+                            </a>
+                        </div>
+                        
+                    </t>
+                    
+            </div>
+        </t>
+    </t>
+</templates>

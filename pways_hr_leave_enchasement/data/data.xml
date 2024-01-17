@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data noupdate="1">
+		<record id="sequence_hr_enchasement" model="ir.sequence">
+			<field name="name">Seq</field>
+			<field name="code">hr.employee.enchasement</field>	
+			<field name="padding">3</field>
+		    <field name="number_increment">1</field>
+			<field name="prefix">LE/2021/</field>
+		</record>
+	</data>
+</odoo>

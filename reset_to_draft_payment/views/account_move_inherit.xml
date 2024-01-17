@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="account_payment_approval_inherited_reset">
+        <field name="name">account.payment.approval.inherited.reset</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='invoice_approve']" position="replace">
+                <button name="invoice_approve" class="oe_highlight"
+                        string="Approve" type="object"
+                        groups="invoice_multi_approval.group_approver,invoice_multi_approval.group_approve_manager"
+                        attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

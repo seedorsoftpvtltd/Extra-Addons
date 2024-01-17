@@ -1,0 +1,58 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_price_company_currency
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-04-07 02:34+0000\n"
+"PO-Revision-Date: 2020-04-07 02:34+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_price_company_currency
+#: model:ir.model.fields,field_description:sale_price_company_currency.field_sale_order__company_currency_id
+#: model:ir.model.fields,field_description:sale_price_company_currency.field_sale_order_line__company_currency_id
+msgid "Company Currency"
+msgstr "Devise de la société"
+
+#. module: sale_price_company_currency
+#: model:ir.model.fields,field_description:sale_price_company_currency.field_sale_order_line__product_qty_invoiced_signed
+msgid "Billed"
+msgstr "Facturée"
+
+#. module: sale_price_company_currency
+#: model:ir.model,name:sale_price_company_currency.model_sale_order
+msgid "Sales Order"
+msgstr "Bon de commande"
+
+#. module: sale_price_company_currency
+#: model:ir.model,name:sale_price_company_currency.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Ligne de bons de commande"
+
+#. module: sale_price_company_currency
+#: model:ir.model.fields,field_description:sale_price_company_currency.field_sale_order_line__price_subtotal_signed
+msgid "Subtotal"
+msgstr "Sous-total"
+
+#. module: sale_price_company_currency
+#: model:ir.model.fields,field_description:sale_price_company_currency.field_sale_order__amount_untaxed_signed
+msgid "Untaxed Amount"
+msgstr "Montant HT"
+
+#. module: sale_price_company_currency
+#: model:ir.model.fields,help:sale_price_company_currency.field_sale_order__company_currency_id
+#: model:ir.model.fields,help:sale_price_company_currency.field_sale_order_line__company_currency_id
+msgid "Utility field to express amount currency"
+msgstr "Champ d'utilité pour exprimer la devise du montant"
+
+#. module: sale_price_company_currency
+#: model:ir.model.fields,field_description:sale_price_company_currency.field_sale_order__diff
+msgid "diff"
+msgstr ""

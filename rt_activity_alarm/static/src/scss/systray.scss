@@ -1,0 +1,141 @@
+// Systray icon and dropdown
+.rt_activity_alarm_systray_notification{
+    border-bottom: 1px solid grey;
+	padding:10px;
+}
+.rt_activity_alarm_systray_notification .module_icon_img{
+	height:16px;
+	width:auto;	
+}
+
+.rt_activity_alarm_systray_notification .res_model_name{
+	margin-left: 3px;
+}
+
+.rt_activity_alarm_systray_notification .label_delay{
+    font-weight: bolder;
+}
+
+/* Text Color For Activity
+---------------------------------*/
+.rt_activity_alarm_activity_color_planned{
+	    color: #1e7e34;
+}
+
+.rt_activity_alarm_activity_color_overdue{
+	    color: #bd2130;
+}
+
+.rt_activity_alarm_activity_color_today{
+    color: #d39e00;	
+}
+
+
+/* Background Color For Activity
+---------------------------------*/
+.rt_activity_alarm_activity_bg_color_planned{
+	    background-color: #1e7e34;
+}
+
+.rt_activity_alarm_activity_bg_color_overdue{
+	    background-color: #bd2130;
+}
+
+.rt_activity_alarm_activity_bg_color_today{
+    background-color: #d39e00;	
+}
+
+
+
+
+.rt_activity_alarm_systray_notification .rt_header_area{
+	display: inline-flex;
+    align-items: center;
+}
+
+.rt_activity_alarm_systray_notification .rt_header_area .rt_header_item{
+	margin:0 3px;
+}
+
+.rt_activity_alarm_systray_notification .rt_activity_content_area{
+  display: flex;
+  flex-direction: row;
+margin-top: 5px;
+}
+
+.rt_activity_alarm_systray_notification .rt_activity_content_area .rt_activity_content_left{
+	//width:5rem;
+}
+
+.rt_activity_alarm_systray_notification .rt_activity_content_area .rt_activity_content_left .rt_activity_user {
+    height: 36px;
+    /* margin-left: 0.5rem; */
+    /* margin-right: 0.5rem; */
+    position: relative;
+    width: 36px;
+}
+
+.rt_activity_alarm_systray_notification .rt_activity_content_area .rt_activity_content_left .rt_activity_user_avatar {
+    border-radius: 50%;
+	width: 100%;
+    height: 100%;
+}
+
+.rt_activity_alarm_systray_notification .rt_activity_content_area .rt_activity_content_left .rt_activity_user_avatar {
+    border-radius: 50%;
+	width: 100%;
+    height: 100%;
+}
+
+.rt_activity_alarm_systray_notification .rt_activity_content_area .rt_activity_content_left .rt_activity_icon_container {
+	
+position: absolute;
+    top: auto;
+    left: auto;
+    bottom: -5px;
+    right: -5px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 25px;
+    height: 25px;
+    border-width: 2px;
+    color: white;
+    border-color: white;
+    border-radius: 100%;
+    border-style: solid;
+	
+}
+
+
+.rt_activity_alarm_systray_notification .rt_activity_content_area .rt_activity_content_right{
+	margin-left: 15px;
+}
+
+.rt_activity_alarm_systray_notification .rt_activity_content_area .rt_activity_content_right .rt_activity_summary{
+    font-weight: bolder;
+    font-size: 14px;
+}
+
+.rt_activity_alarm_systray_notification .rt_activity_content_area .rt_activity_content_right .rt_activity_action_button{
+    font-weight: bolder;
+}
+
+
+.rt_activity_alarm_systray_notification .rt_activity_content_area .rt_activity_content_right_time{
+    margin: auto;
+    width: 5rem;
+   // border: 3px solid #73AD21;
+    //padding: 10px;
+    text-align: right;
+margin-right: 5px;
+}
+
+
+.rt_activity_alarm_systray_notification .rt_activity_content_area .rt_activity_content_right_time .rt_activity_user_time_hour_minute{
+font-weight: 600;
+    font-size: 24px;
+}
+

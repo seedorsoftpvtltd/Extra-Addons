@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+ <data>
+     <record id="group_update_revoke" model="res.groups">
+         <field name="name">Update Revoke Button</field>
+     </record>
+ </data>
+</odoo>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+		<record id="view_freight_access_inherit" model="ir.ui.view">
+            <field name="name">freight.operation</field>
+            <field name="model">freight.operation</field>
+            <field name="inherit_id" ref="scs_freight.view_freight_operation_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_confirm']" position="attributes">
+                    <attribute name="groups">roles_srt.group_confirm_access_freight</attribute>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_freight_access1_inherit" model="ir.ui.view">
+            <field name="name">freight.operation</field>
+            <field name="model">freight.operation</field>
+            <field name="inherit_id" ref="scs_freight.view_freight_operation_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='jobbooking_service_salecost_read.action_create_bill']" position="attributes">
+                    <attribute name="groups">roles_srt.group_inv_access_freight</attribute>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_freight_access2_inherit" model="ir.ui.view">
+            <field name="name">freight.operation</field>
+            <field name="model">freight.operation</field>
+            <field name="inherit_id" ref="scs_freight.view_freight_operation_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='jobbooking_service_salecost_read.action_create_invoice']" position="attributes">
+                    <attribute name="groups">roles_srt.group_inv_access_freight</attribute>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_sale_access_inherit" model="ir.ui.view">
+            <field name="name">sale.order</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_create_job']" position="attributes">
+                    <attribute name="groups">roles_srt.group_confirm_access_freight</attribute>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_job_estimate_access_inherit" model="ir.ui.view">
+            <field name="name">sale.estimate.job</field>
+            <field name="model">sale.estimate.job</field>
+            <field name="inherit_id" ref="job_cost_estimate_customer.view_sale_estimate_form_job"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='estimate_confirm']" position="attributes">
+                    <attribute name="groups">roles_srt.group_confirm_access_freight</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="freight_config_inherit_id" model="ir.ui.menu">
+            <field name="name">Configuration</field>
+            <field name="parent_id" ref="scs_freight.main_menu_freight_config"/>
+            <field name="groups_id" eval="[(6, 0, [group_config_access_freight])]"/>
+        </record>
+        <record id="freight_report_inherit_id" model="ir.ui.menu">
+            <field name="name">Reporting</field>
+            <field name="parent_id" ref="scs_freight.main_menu_reporting"/>
+            <field name="groups_id" eval="[(6, 0, [group_config_access_freight])]"/>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,47 @@
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="custom_activity_message_probc_form">
+            <field name="name">custom.activity.message.form</field>
+            <field name="model">custom.activity.message</field>
+            <field name="arch" type="xml">
+                <form create="false" edit='false'>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="custom_activity_id"/>
+                                <field name='custom_date'/>
+                                <field name="custom_message_body"/>
+                            </group>
+                            <group>
+                                <field name='custom_user_id'/>
+                                <field name='custom_partner_id'/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="custom_activity_message_probc_tree">
+            <field name="name">custom.activity.message.tree</field>
+            <field name="model">custom.activity.message</field>
+            <field name="arch" type="xml">
+                <tree create="false" edit='false'>
+                    <field name="custom_activity_id"/>
+                    <field name='custom_date'/>
+                    <field name='custom_user_id'/>
+                    <field name='custom_partner_id'/>
+                    <field name="custom_message_body"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="action_custom_activity_message_" model="ir.actions.act_window">
+            <field name="name">Activity Message Received</field>
+            <field name="res_model">custom.activity.message</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+    </data>
+</odoo>

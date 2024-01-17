@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="airline_config_form_view" model="ir.ui.view">
+        <field name="name">freight.airline.inherited</field>
+        <field name="model">freight.airline</field>
+        <field name="inherit_id" ref="scs_freight.airline_config_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/sheet" position="after">
+                <div class="oe_chatter">
+                   <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+
+            </xpath>
+        </field>
+    </record>
+
+
+</odoo>
