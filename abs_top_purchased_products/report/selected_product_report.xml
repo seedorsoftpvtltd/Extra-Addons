@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <report 
+            id="action_purchase_report_products"
+            string="Products PDF Report"
+            model="report.abs_top_purchased_products.report_products_purchase" 
+            report_type="qweb-pdf"
+            file="abs_top_purchased_products.report_products_purchase" 
+            name="abs_top_purchased_products.report_products_purchase" 
+        />
+
+    </data>
+</odoo>

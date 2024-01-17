@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- add field and page in Saleorder-->
+    <record id="view_order_form_inherited" model="ir.ui.view">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order</field>
+	<field name="inherit_id" ref = "sale.view_order_form"/>	
+        <field name="arch" type="xml">
+            <xpath expr ="//field[@name='payment_term_id']" position="after">
+                <field name ="duplicate_quotation"/>				
+            </xpath>
+            <notebook>
+                <page string="Duplicate Dates">
+		    <field name="duplicate_quotation_ids" attrs="{'invisible': [('duplicate_quotation', '=', False)]}">
+                        <tree editable="bottom">
+		            <field name="duplicate_date" required='True'/>
+                        </tree>
+		    </field>
+                </page>
+            </notebook>
+        </field>
+    </record>
+</odoo>

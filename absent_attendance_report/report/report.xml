@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <report
+            id="absent_report_pdf"
+            model="hr.employee"
+            string="Daily Absence Report"
+            report_type="qweb-pdf"
+            name="absent_attendance_report.report_pdf"
+            file="absent_attendance_report.report_pdf"
+            attachment_use="False"/>
+
+    </data>
+</odoo>

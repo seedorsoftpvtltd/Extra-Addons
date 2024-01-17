@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+       <template id="report_pdf">
+              <t t-call="web.html_container">
+
+             <t t-call="web.external_layout">
+                    <t t-set="doc" t-value="doc.with_context(lang=doc.partner_id.lang) if doc else None"/>
+                    <div class="page">
+                        <div style="margin-left:-5px;">
+                            <img t-if="doc and doc.company_id.favicon" t-att-src="image_data_uri(doc.company_id.favicon)" alt="Logo" style="width:844px;heigth:50px;"/>
+                        </div>
+                        <br/>
+                        <br/>
+
+                      <center>
+                          <span>Daily Absence Report: <t t-esc="start_date[8:]"/>-<t t-esc="start_date[5:7]"/>-<t t-esc="start_date[:4]"/></span><br/>
+                      </center>
+                        <br/>
+                        <br/>
+                      <t t-set="counter" t-value="1"/>
+                              <t t-if="not department_list">
+                               <tbody>
+
+
+                                 <tr t-foreach="department_id" t-as="department_all">
+                                   <t t-set="values" t-value="[]"/>
+                                   <tr t-foreach="employee" t-as="line">
+                                  <tr t-foreach="line" t-as="lines">
+                                    <t t-if="lines.department_id == department_all">
+                                       <t t-set="values" t-value="values + [lines]"/>
+                                      </t>
+                                      </tr>
+                                      </tr>
+
+                                      <t t-if='values'>
+
+                                 <span style="font-weight: bold;">Department : <t t-esc="department_all.name"/></span><br/>
+                                 <span style="font-weight: bold;">Login : <t t-esc="department_all.manager_id.work_email"/></span>
+                                    <br/>
+                                    <br/>
+
+                                     <tbody>
+                                         <table class="table table-bordered table-condensed" style="border: 1px solid black;">
+
+
+                        <tr>
+
+                             <th style="text-align: center;color: #000;"><b>Sr.No</b></th>
+                            <th style="text-align: center;color: #000;;">Employee ID</th>
+                            <th style="text-align: center;color: #000;;">Employee Name</th>
+
+
+                        </tr>
+
+                               <tr t-foreach="employee" t-as="line">
+                                  <tr t-foreach="line" t-as="lines">
+                                    <t t-if="lines.department_id == department_all">
+                                     <td style="height:5px;text-align: center;color: #000;text-color: #000"><span t-esc="counter"/></td>
+                                        <td style="height:5px;text-align: center;color: #000;text-color: #000"><span t-field="lines.barcode"/></td>
+                                     <td style="height:5px;text-align: center;color: #000;text-color: #000"><span t-field="lines.name"/></td>
+                                             <t t-set="counter" t-value="counter + 1"/>
+                                    </t>
+
+
+
+                               </tr>
+
+                              </tr>
+
+
+
+
+
+
+                              </table>
+
+
+
+                            </tbody>
+                                                                    </t>
+                                 </tr>
+
+<!--                                   <table class="table table-bordered table-condensed" style="border: 1px solid black;">-->
+<!--                        <tr>-->
+<!--                             <th style="text-align: center;color: #000;"><b>Sr.No</b></th>-->
+<!--                            <th style="text-align: center;color: #000;;">Batch ID / Employee ID</th>-->
+<!--                            <th style="text-align: center;color: #000;;">Employee Name</th>-->
+
+
+<!--                        </tr>-->
+
+<!--                              <tr t-foreach="employee" t-as="line">-->
+<!--                                  <tr t-foreach="line" t-as="lines">-->
+
+<!--                                     <td style="height:5px;text-align: center;color: #000;text-color: #000"><span t-esc="counter"/></td>-->
+<!--                                        <td style="height:5px;text-align: center;color: #000;text-color: #000"><span t-field="lines.emp_id"/></td>-->
+<!--                                     <td style="height:5px;text-align: center;color: #000;text-color: #000"><span t-field="lines.name"/></td>-->
+
+
+<!--                               </tr>-->
+<!--                                   <t t-set="counter" t-value="counter + 1"/>-->
+<!--                              </tr>-->
+
+
+<!--                              </table>-->
+
+                            </tbody>
+                              </t>
+                             <t else="">
+                                 <t t-set="failed_lines" t-value="[]"/>
+                                 <tr t-foreach="department_list" t-as="department_list">
+
+                                 <span style="font-weight: bold;">Department : <t t-esc="department_list.name"/></span><br/>
+                                  <span style="font-weight: bold;">Login : <t t-esc="department_list.manager_id.work_email"/></span>
+                                    <br/>
+                                    <br/>
+
+                                     <tbody>
+                                         <table class="table table-bordered table-condensed" style="border: 1px solid black;">
+                        <tr>
+                             <th style="text-align: center;color: #000;"><b>Sr.No</b></th>
+                            <th style="text-align: center;color: #000;;">Employee ID</th>
+                            <th style="text-align: center;color: #000;;">Employee Name</th>
+
+
+                        </tr>
+
+                              <tr t-foreach="employee" t-as="line">
+                                  <tr t-foreach="line" t-as="lines">
+                                    <t t-if="lines.department_id == department_list">
+                                     <td style="height:5px;text-align: center;color: #000;text-color: #000"><span t-esc="counter"/></td>
+                                        <td style="height:5px;text-align: center;color: #000;text-color: #000"><span t-field="lines.barcode"/></td>
+                                     <td style="height:5px;text-align: center;color: #000;text-color: #000"><span t-field="lines.name"/></td>
+                                             <t t-set="counter" t-value="counter + 1"/>
+                                    </t>
+
+
+
+                               </tr>
+
+                              </tr>
+
+
+
+
+
+
+                              </table>
+
+
+
+                            </tbody>
+
+                                 </tr>
+                                 <t t-if="not department_list">
+                                 <tr t-foreach="employee" t-as="line">
+                                  <tr t-foreach="line" t-as="lines">
+                                     <t t-if="not lines.department_id">
+
+                                          <t t-set="failed_lines" t-value="failed_lines + [lines]"/>
+                                      </t>
+                                  </tr>
+                                  </tr>
+                                  <t t-if="failed_lines">
+                                 <span style="font-weight: bold;">Undefined Department</span>
+                                 <br/>
+                                 <br/>
+                                 <tbody>
+                                         <table class="table table-bordered table-condensed" style="border: 1px solid black;">
+
+                        <tr>
+                             <th style="text-align: center;color: #000;"><b>Sr.No</b></th>
+                            <th style="text-align: center;color: #000;;">Employee ID</th>
+                            <th style="text-align: center;color: #000;">Employee Name</th>
+
+
+                        </tr>
+                                  <tr t-foreach="failed_lines" t-as="liness">
+                                     <td style="height:5px;text-align: center;color: #000;text-color: #000"><span t-esc="counter"/></td>
+                                      <td style="height:5px;text-align: center;color: #000;text-color: #000"><span t-field="liness.barcode"/></td>
+                                     <td style="height:5px;text-align: center;color: #000;text-color: #000"><span t-field="liness.name"/></td>
+                                             <t t-set="counter" t-value="counter + 1"/>
+
+
+
+
+                              </tr>
+                              </table>
+                              </tbody>
+                              </t>
+                              </t>
+                              </t>
+
+
+
+                    </div>
+                </t>
+              </t>
+
+        </template>
+    </data>
+
+</odoo>

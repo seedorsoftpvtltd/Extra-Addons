@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<!-- create a wizard for field product_id and quantity-->
+<record id="view_create_quotation_wizard" model="ir.ui.view">
+        <field name="name">product.customer.quantity.form</field>
+        <field name="model">product.customer.quantity</field>
+        <field name="arch" type="xml">
+            <form string ="Create Quotation">
+                <group>
+                    <field name ="partner_id"/>
+                    <field name = "product_qty"/>
+                </group>
+	    	<footer>
+	            <button string='Place Order' name = "create_quotation" type='object' class='btn-primary'/>
+	            <button string='Cancel' class='btn-default' special="cancel"/>	
+	    	</footer>
+		</form>		
+	</field>
+</record>
+
+<record id="open_create_quotation_wizard" model="ir.actions.act_window">
+        <field name="name">Create Quotation</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.customer.quantity</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="view_create_quotation_wizard"/>	
+    </record>
+
+</odoo>

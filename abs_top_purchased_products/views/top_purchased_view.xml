@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <menuitem
+            id="menu_top_purchase"
+            name="Top Buying"
+            parent="purchase.menu_purchase_config"
+            sequence="1"
+            action="abs_top_purchased_products.open_top_purchase_action"/>
+</odoo>
