@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <data>
+        <record id="mail_schedule" model="mail.template">
+                  <field name="name">Subscription Mail Template</field>
+                  <field name="model_id" ref="account.model_account_move"/>
+                  <field name="auto_delete" eval="False"/>
+                  <field name="email_from">admin@seedorsoft.com </field>
+                  <field name="email_to">hr@seedorsoft.com</field>
+
+                  <field name="subject">Subscription Invoice Remainder</field>
+                  <field name="body_html">
+                      <![CDATA[
+                            <div>
+                                Hello ${object.partner_id.name},
+                                
+                                 <p>Your Subscription Invoice ${object.name} is in draft state.</p>
+                                
+
+                                 <p>  Kindly confirm it before it's due date ${object.endsubs_date}.</p>
+                            </div>
+                      ]]>
+                  </field>
+
+        </record>
+
+    </data>
+
+     <data noupdate="1">
+       <record id="mail_schedule_action" model="ir.cron">
+       <field name="name">Subscription Remainder Mail</field>
+       <field name="model_id" ref="account.model_account_move"/>
+       <field name="state">code</field>
+       <field name="code">model.subscription_mail()</field>
+       <field name="user_id" ref="base.user_root"/>
+           <field name='interval_number'>1</field>
+       <field name='interval_type'>days</field>
+       <field name="numbercall">1</field>
+       <field name="doall" eval="False"/>
+   </record>
+  </data>
+
+    <record model="mail.message" id="message_notification">
+            <field name="model">mail.channel</field>
+
+            <field name="message_type">notification</field>
+            <field name="subtype_id" ref="mail.mt_comment"/>
+            <field name="subject">Notification</field>
+            <field name="body"><![CDATA[<p>Manage multi-level projects and tasks.  You can delegate tasks, track task work, and review your planning.</p>
+                               <p>You can manage todo lists on tasks by installing the <i>Todo Lists</i> application, supporting the Getting Things Done (GTD) methodology.</p>
+                               <p>You can also manage issues/bugs in projects by installing the "Issue Tracker" application.</p>]]></field>
+        </record>
+
+
+
+
+
+</odoo>

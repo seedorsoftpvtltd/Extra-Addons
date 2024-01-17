@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="account_common_report_view_print_xlsx" model="ir.ui.view">
+        <field name="name">Common Report print xlxs</field>
+        <field name="model">account.tax.report</field>
+        <field name="inherit_id" ref="account.account_common_report_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='company_id']" position="after">
+                <field name="client_id" widget="many2many_tags"/>
+                <field name="coa_ids" widget="many2many_tags" domain="[('tax_flag', '=', False)]"/>
+<!--                <field name="target_move" widget="radio"/>-->
+            </xpath>
+            <xpath expr="//button[@name='check_report']" position="replace">
+                <button name="check_report_srt" type="object" string="Print" class="oe_highlight"/>
+            </xpath>
+            <xpath expr="//button[@name='action_xlsx']" position="replace">
+                <button name="action_xlsx_srt" type="object" string="XLSX" class="oe_highlight"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

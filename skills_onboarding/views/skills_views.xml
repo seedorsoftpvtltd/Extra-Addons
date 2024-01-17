@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="skills_view_tree" model="ir.ui.view">
+            <field name="name">hr.skill.view.tree</field>
+            <field name="model">hr.skill.type</field>
+            <field name="inherit_id" ref="hr_skills.hr_skill_type_view_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree" position="attributes">
+                    <!--            <kanban class="oe_background_grey o_kanban_dashboard o_employee_kanban" banner_route="/employee/employee_dashboard_onboarding" js_class="empliyee_dashboard_kanban">-->
+                    <!--                                    <field name="name"/>-->
+                    <!--                                </kanban>-->
+                    <!--                <attribute name="js_class">empliyee_dashboard_kanban</attribute>-->
+                    <attribute name="banner_route">/skills/skills_dashboard_onboarding</attribute>
+                    <!--                    <attribute name="class">oe_background_grey o_kanban_dashboard o_employee_kanban</attribute>-->
+
+                </xpath>
+                <!--            <xpath expr="//kanban" position="replace">-->
+                <!--            <kanban class="oe_background_grey o_kanban_dashboard o_employee_kanban" banner_route="/employee/employee_dashboard_onboarding" js_class="empliyee_dashboard_kanban">-->
+                <!--                                    <field name="name"/>-->
+                <!--                                </kanban>-->
+
+
+                <!--            </xpath>-->
+            </field>
+        </record>
+
+    </data>
+</odoo>
+

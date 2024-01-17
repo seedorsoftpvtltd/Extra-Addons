@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<template id="sh_report_stock_delivery_document_custom" inherit_id="stock.report_delivery_document">
+			<xpath expr="//table[1]/thead/tr[1]/th[2]" position="before">
+				<th class="text-right">Bag Quantity</th>
+			</xpath>
+			<xpath expr="//table[1]//tbody//tr[1]//td[2]" position="before">
+				<td class="text-right">
+	               <span t-field="move.sh_bag_qty"/>
+	            </td>
+			</xpath>
+
+			<xpath expr="//table[@name='stock_move_table']//thead//tr[1]//th[@name='th_sm_product']" position="after">
+            	<th class="text-right" t-if="o.sh_enable_quantity_in_report==True">Quantity in Bag</th>
+        	</xpath>
+        	<xpath expr="//table[@name='stock_move_table']//tbody//tr[1]//td[1]" position="after">
+            	<td class="text-right" t-if="o.sh_enable_quantity_in_report==True">
+                	<span t-field="move.sh_qty_in_bag" />
+            	</td>
+        	</xpath>
+	</template>
+	</data>
+</odoo>

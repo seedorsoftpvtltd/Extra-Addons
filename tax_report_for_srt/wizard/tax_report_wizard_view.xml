@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <menuitem id="menu_tax_report"
+              name="Tax Report"
+              sequence="8"
+              action="base_accounting_kit.action_account_tax_report"
+              parent="base_accounting_kit.account_reports_audit"
+              groups="account.group_account_manager,account.group_account_user"/>
+
+</odoo>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="stock_balance_form_view_excelbtn" model="ir.ui.view">
+        <field name="name">Report balance</field>
+        <field name="model">report.wizard.quant</field>
+        <field name="inherit_id" ref="stock_balance.report_wizard_quant"/>
+        <field name="arch" type="xml">
+            <field name="product_id" position="after">
+                <field name="company_id" invisible="1"/>
+            </field>
+            <xpath expr="//button[@name='view_stock_balance']" position="after">
+                <button name="action_xlsx" string="Excel" type="object" class="oe_highlight"/>
+            </xpath>
+            <field name="partner_id" position='attributes'>
+                <attribute name="domain">[('company_id', '=', company_id)]</attribute>
+            </field>
+             <field name="ason_date" position='attributes'>
+                <attribute name="required">1</attribute>
+            </field>
+            <field name="product_id" position='attributes'>
+                <attribute name="domain">[('type','=','product'),
+                    ('x_medium.name','=','Warehouse'),('company_id', '=', company_id)]</attribute>
+            </field>
+            <field name="partner_id" position='attributes'>
+                <attribute name="options">{'no_create': True, 'no_open': True}</attribute>
+            </field>
+            <field name="product_id" position='attributes'>
+                <attribute name="options">{'no_create': True, 'no_open': True}</attribute>
+            </field>
+        </field>
+    </record>
+    <report
+            id="balance_report_xlsx"
+            model="report.wizard.quant"
+            string="balance excel report"
+            report_type="xlsx"
+            name="stock_balance_report_view.balance_xlsx"
+            file="stock_balance_report_view.balance_xlsx"
+            attachment_use="False"
+            print_report_name="'stock balance'"
+        />
+</odoo>

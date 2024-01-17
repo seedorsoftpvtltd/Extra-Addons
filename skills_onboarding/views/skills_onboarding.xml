@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ONBOARDING STEPS -->
+
+    <template id="skills_step1">
+        <t t-call="skills_onboarding.onboarding_default_step">
+            <t t-set="title">Define</t>
+            <t t-set="description">
+                Define the skill types and the skill levels.
+            </t>
+            <t t-set="sl">1</t>
+
+        </t>
+    </template>
+
+    <template id="skills_step2">
+        <t t-call="skills_onboarding.onboarding_default_step">
+            <t t-set="title">Add</t>
+            <t t-set="description">
+               Add the employee skills by choosing the skill its level and type.
+            </t>
+            <t t-set="sl">2</t>
+        </t>
+    </template>
+
+    <template id="skills_step3">
+        <t t-call="skills_onboarding.onboarding_default_step">
+            <t t-set="title">Progress</t>
+            <t t-set="description">
+                By adding the levels the progress of employee skills can be seen.
+            </t>
+            <t t-set="sl">3</t>
+        </t>
+    </template>
+
+
+    <template id="skills_dashboard_onboarding_panel" name="onboarding.dashboard.onboarding.panel">
+        <t t-call="skills_onboarding.onboarding_default_container">
+            <t t-set="classes" t-value="'o_onboarding_blue'"/>
+            <t t-set="bg_image" t-value="'/onboarding/static/src/img/employee_dashboard_onboarding_bg.jpg'"/>
+            <!--            <t t-set="close_method" t-value="'action_close_account_dashboard_onboarding'"/>-->
+            <!--            <t t-set="close_model" t-value="'res.company'"/>-->
+            <!--            <t t-set="text_completed">Congratulations! You are all set.</t>-->
+
+            <t t-call="skills_onboarding.skills_step1" name="define_setup"/>
+            <t t-call="skills_onboarding.skills_step2" name="add_setup"/>
+            <t t-call="skills_onboarding.skills_step3" name="progress_setup"/>
+
+
+        </t>
+    </template>
+    <!-- SAMPLE INVOICE EMAIL -->
+
+</odoo>

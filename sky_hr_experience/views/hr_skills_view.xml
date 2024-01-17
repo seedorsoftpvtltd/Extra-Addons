@@ -1,0 +1,41 @@
+<odoo>
+	<!-- Inherited Form view of employee skills-->
+     <record id="view_employee_hr_resume_line_extend" model="ir.ui.view">
+            <field name="name">hr.resume.line.extend</field>
+            <field name="model">hr.resume.line</field>
+            <field name="inherit_id" ref="hr_skills.resume_line_view_form"/>
+            <field name="arch" type="xml">
+            	<xpath expr="//field[@name='display_type']" position="after">
+               			<field name="current_compnay"/>
+               			<field name="relavent_experience"/>
+               			<field name="company_name" attrs="{'invisible':[('current_compnay','=',True)]}"/>
+               	</xpath>
+                <xpath expr="//form/group/group/field[@name='date_end']" position="after">
+                	<field name="experience" invisible="1" attrs="{'invisible':[('experience','=',0)]}"/>
+                	<field name="experience_str" attrs="{'invisible':[('experience','=',0)]}"/>
+                	<field name="attachment" filename="file_name"/>
+             		<field name="file_name" invisible="1"/>
+             		<field name="years" invisible="1"/>
+             		<field name="months" invisible="1"/>
+                </xpath>
+             </field>
+      </record>
+      
+       <!-- Inherited Form view of employee to add experience-->
+     <record id="view_hr_employee_form_inherit" model="ir.ui.view">
+            <field name="name">hr.employee.view.inherit</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr_skills.hr_employee_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div/div" position="before">
+                	<div class="o_hr_skills_group o_group_resume col-lg-7 d-flex">
+                		<group>
+              				<field name="company_exp" string="Company Experience"/>
+              				<field name="relavant_exp" string="Relevant Experience"/>
+              				<field name="total_exp" string="Total Experience"/>
+                		</group>
+                	</div>
+                </xpath>
+             </field>
+      </record>
+</odoo>

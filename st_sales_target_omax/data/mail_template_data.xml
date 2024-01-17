@@ -1,0 +1,140 @@
+<odoo>
+    <data noupdate="0">
+        <!-- SalesTeam Target Mail +++++++++++++++++++++++++++++++++ -->
+        <record id="mail_template_salesteam_target_data" model="mail.template">
+            <field name="name">SalesTeam Target: Send by email</field>
+            <field name="model_id" ref="model_sales_team_target"/>
+            <field name="subject">SalesTeam Target Details For {{object.name}}</field>
+            <field name="email_from">${(object.company_id.email_formatted | safe)}</field>
+            <field name="partner_to">${object.responsible_id.partner_id.id}</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 12px;">
+                        Hello <strong>${object.responsible_id.partner_id.name}</strong>,<br/><br/>
+                        
+                        <strong>Your SalesTeam Target Details :</strong><br/><br/>
+                        Target Ref : <strong>${object.name}</strong><br/>
+                        SalesTeam : <strong>${object.salesteam_id.name}</strong><br/>
+                        Responsible : <strong>${object.responsible_id.partner_id.name}</strong><br/>
+                        Start Date : <strong>${object.start_date}</strong><br/>
+                        End Date : <strong>${object.end_date}</strong><br/>
+                        % if object.target_point == 'sale_confirm':
+                            Target Point : <strong>Sale Order Confirmation</strong><br/><br/>
+                        % endif
+                        % if object.target_point == 'invoice_paid':
+                            Target Point : <strong>Invoice Paid</strong><br/><br/>
+                        % endif
+                        % if object.target_point == 'invoice_validate':
+                            Target Point : <strong>Invoice Validation</strong><br/><br/>
+                        % endif
+                        
+                        Target Amount : <strong>${object.target_amount}</strong><br/>
+                        Target Achieved : <strong>${object.achivement_amount}</strong><br/>
+                        Difference : <strong>${object.difference_amount}</strong><br/>
+                        Target Achieved(in %) : <strong>${object.achivement_per}</strong><br/>
+                        % if object.state == 'open':
+                            Status : <strong>Open</strong><br/><br/>
+                        % endif
+                        % if object.state == 'close':
+                            Status : <strong>Closed</strong><br/><br/>
+                        % endif
+                        
+                        <br/><br/>
+                        Thanks,<br/>
+                        <strong>${object.company_id.name}</strong>
+                    </p>
+                </div>
+            </field>
+            <field name="lang">${object.responsible_id.partner_id.lang}</field>
+            <field name="auto_delete" eval="True"/>
+        </record>
+        
+        <!-- On Confirm button -->
+        <record id="mail_template_salesteam_target_confirm_data" model="mail.template">
+            <field name="name">New SalesTeam Target Created: Send by email</field>
+            <field name="model_id" ref="model_sales_team_target"/>
+            <!--field name="email_from">${user.email_formatted}</field-->
+            <field name="subject">SalesTeam Target Assigned (${object.name})</field>
+            <field name="email_from">${(object.company_id.email_formatted | safe)}</field>
+            <field name="partner_to">${object.responsible_id.partner_id.id}</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 12px;">
+                        Hello <strong>${object.responsible_id.partner_id.name}</strong>,<br/><br/>
+                        
+                        <strong>Your New SalesTeam Target Details :</strong><br/><br/>
+                        Target Ref : <strong>${object.name}</strong><br/>
+                        SalesTeam : <strong>${object.salesteam_id.name}</strong><br/>
+                        Responsible : <strong>${object.responsible_id.partner_id.name}</strong><br/>
+                        Start Date : <strong>${object.start_date}</strong><br/>
+                        End Date : <strong>${object.end_date}</strong><br/>
+                        % if object.target_point == 'sale_confirm':
+                            Target Point : <strong>Sale Order Confirmation</strong><br/><br/>
+                        % endif
+                        % if object.target_point == 'invoice_paid':
+                            Target Point : <strong>Invoice Paid</strong><br/><br/>
+                        % endif
+                        % if object.target_point == 'invoice_validate':
+                            Target Point : <strong>Invoice Validation</strong><br/><br/>
+                        % endif
+                        
+                        Target Amount : <strong>${object.target_amount}</strong><br/>
+                        Target Achieved : <strong>${object.achivement_amount}</strong><br/>
+                        Difference : <strong>${object.difference_amount}</strong><br/>
+                        Target Achieved(in %) : <strong>${object.achivement_per}</strong><br/>
+                        
+                        <br/><br/>
+                        Thanks,<br/>
+                        <strong>${object.company_id.name}</strong>
+                    </p>
+                </div>
+            </field>
+            <field name="lang">${object.responsible_id.partner_id.lang}</field>
+            <field name="auto_delete" eval="True"/>
+        </record>
+        
+        <!-- On Closed button -->
+        <record id="mail_template_salesteam_target_closed_data" model="mail.template">
+            <field name="name">SalesTeam Target Closed: Send by email</field>
+            <field name="model_id" ref="model_sales_team_target"/>
+            <field name="subject">SalesTeam Target Cosed (${object.name})</field>
+            <field name="email_from">${(object.company_id.email_formatted | safe)}</field>
+            <field name="partner_to">${object.responsible_id.partner_id.id}</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 12px;">
+                        Hello <strong>${object.responsible_id.partner_id.name}</strong>,<br/><br/>
+                        
+                        <strong>Your SalesTeam Target is closed now with below details :</strong><br/><br/>
+                        Target Ref : <strong>${object.name}</strong><br/>
+                        SalesTeam : <strong>${object.responsible_id.partner_id.name}</strong><br/>
+                        Responsible : <strong>${object.responsible_id.partner_id.name}</strong><br/>
+                        Start Date : <strong>${object.start_date}</strong><br/>
+                        End Date : <strong>${object.end_date}</strong><br/>
+                        % if object.target_point == 'sale_confirm':
+                            Target Point : <strong>Sale Order Confirmation</strong><br/><br/>
+                        % endif
+                        % if object.target_point == 'invoice_paid':
+                            Target Point : <strong>Invoice Paid</strong><br/><br/>
+                        % endif
+                        % if object.target_point == 'invoice_validate':
+                            Target Point : <strong>Invoice Validation</strong><br/><br/>
+                        % endif
+                        
+                        Target Amount : <strong>${object.target_amount}</strong><br/>
+                        Target Achieved : <strong>${object.achivement_amount}</strong><br/>
+                        Difference : <strong>${object.difference_amount}</strong><br/>
+                        Target Achieved(in %) : <strong>${object.achivement_per}</strong><br/>
+                        
+                        <br/><br/>
+                        Thanks,<br/>
+                        <strong>${object.company_id.name}</strong>
+                    </p>
+                </div>
+            </field>
+            <field name="lang">${object.responsible_id.partner_id.lang}</field>
+            <field name="auto_delete" eval="True"/>
+        </record>
+        
+    </data>
+</odoo>

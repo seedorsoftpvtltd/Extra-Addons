@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+<record id="view_partner_inherit_supplier_statement_form" model="ir.ui.view">
+			<field name="name">res.partner</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_partner_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='supplier_invoice_ids']/tree/field[@name='company_id']" position="after">
+					<field name="currency_id" readonly="True"/>
+
+				</xpath>
+                <xpath expr="//field[@name='supplier_invoice_ids']/tree/field[@name='amount_total']" position="after">
+					<field name="credit_amount_inv" readonly="True" string="INV Payments / Debits"/>
+								<field name="result_inv" readonly="True" string="INV Balance "/>
+								<field name="amount_total_signed" string="Base Invoices / Credits"/>
+				</xpath>
+				<xpath expr="//field[@name='supplier_invoice_ids']/tree/field[@name='amount_total']" position="attributes">
+					<attribute name="string">INV Invoices / Credits</attribute>
+				</xpath>
+				<xpath expr="//field[@name='supplier_invoice_ids']/tree/field[@name='credit_amount']" position="attributes">
+					<attribute name="string">Base Payments / Debits</attribute>
+				</xpath>
+				<xpath expr="//field[@name='supplier_invoice_ids']/tree/field[@name='result']" position="attributes">
+					<attribute name="string">Base Balance</attribute>
+				</xpath>
+
+
+
+
+            </field>
+
+</record>
+		<record id="view_partner_inherit_supplier_statement_form1" model="ir.ui.view">
+			<field name="name">res.partner</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_partner_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='balance_invoice_ids']/tree/field[@name='result']" position="after">
+					<field name="narration" readonly="True" string="Narration"/>
+
+				</xpath>
+			</field>
+		</record>
+		<record id="view_partner_inherit_supplier_statement_form2" model="ir.ui.view">
+			<field name="name">res.partner</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_partner_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='supplier_invoice_ids']/tree/field[@name='result']" position="after">
+					<field name="narration" readonly="True" string="Narration"/>
+				</xpath>
+			</field>
+		</record>
+    </data>
+</odoo>

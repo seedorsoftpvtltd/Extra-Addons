@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_package_form_transport" model="ir.ui.view">
+        <field name="name">stock.picking.form.transport</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[1]" position="after">
+                <group attrs="{'invisible': [('picking_type_code', 'not in', ['outgoing','incoming'])]}">
+                    <group string="Transporter">
+                        <field name="x_deliveryreceivedby"/>
+                        <field name="driver_id"/>
+                        <field name="x_driver1"/>
+                        <field name="x_driver_number"/>
+                        <field name="truck_in_date" attrs="{'invisible': [('picking_type_code', 'not in', ['incoming'])]}"/>
+                        <field name="x_truck_out_date" attrs="{'invisible': [('picking_type_code', 'not in', ['outgoing'])]}"/>
+                        <field name="x_deliverydate"/>
+                    </group>
+                    <group string="Receiver Detail" attrs="{'invisible': [('picking_type_code', 'not in', ['outgoing'])]}">
+                        <field name="x_cargoreceivedby"/>
+                        <field name="x_receiver_name"/>
+                        <field name="x_received_date"/>
+                        <field name="x_sign"/>
+                    </group>
+                </group>
+            </xpath>
+            <xpath expr="//group[1]//group[2]" position="after">
+                <group>
+
+                </group>
+                <group string="Custom Clearance"
+                       attrs="{'invisible': [('picking_type_code', 'not in', ['incoming','outgoing'])]}">
+                    <field name="custom_officer_id"/>
+                    <field name="custom_officer_name" widget='custom_char_widget'/>
+
+                </group>
+            </xpath>
+
+        </field>
+    </record>
+
+
+</odoo>

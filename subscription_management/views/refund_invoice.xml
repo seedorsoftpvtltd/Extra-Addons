@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+        <act_window id="action_account_refund_invoice_payment"
+                    name="Refund Invoice"
+                    res_model="account.move"/>
+
+            <!--act_window id="action_account_refund_invoice_payment"
+                    multi="True"
+                    key2="client_action_multi"
+                    name="Refund Invoice"
+                    res_model="account.move.refund"
+                    src_model="account.move"
+                    view_mode="form"
+                    target="new"
+                    view_type="form"
+                    context="{'default_invoice_ids': [(4, active_id, None)]}"-->
+</odoo>

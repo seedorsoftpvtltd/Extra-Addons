@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="sh_sale_order_form_view_custom" model="ir.ui.view">
+        <field name="name">sh.sale.order.form.view.custom</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <field name="payment_term_id" position="after" >
+                <field name="sh_enable_quantity" invisible="1"/>
+                <field name="sh_enable_quantity_in_report" invisible="1"/>
+            </field>
+
+            <xpath expr="//field[@name='order_line']/tree/field[@name='name']" position="after" >
+                <field name="sh_qty_in_bag"  attrs="{'column_invisible': [('parent.sh_enable_quantity', '=', False )]}" string="Quantity in Bag"/>
+                <field name="sh_bag_qty"  string="Bag Quantity"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

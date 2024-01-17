@@ -1,0 +1,40 @@
+<odoo>
+
+    <!-- Inherited form view of leave type -->
+    <record id="edit_holiday_status_form_cf_inherit" model="ir.ui.view">
+        <field name="name">hr.leave.type.form</field>
+        <field name="model">hr.leave.type</field>
+        <field name="inherit_id" ref="hr_holidays.edit_holiday_status_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="/form/sheet" position="before">
+                <header>
+                    <button name="lapse_leaves" string="Carry Forward" type="object"/>
+                </header>
+            </xpath>
+            <xpath expr="//group[@name='notification']" position="before">
+                <group name="grp_cf" string="Carry Forward" colspan="2">
+                    <field name="carry_fwd"/>
+                    <field name="cf_leaves" class="oe_inline" attrs="{'invisible':[('carry_fwd','=',False)]}"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Inherited Tree view of Leave Request -->
+    <record id="hr_leave_view_tree_cf_inherit" model="ir.ui.view">
+        <field name="name">hr.holidays.view.tree</field>
+        <field name="model">hr.leave</field>
+        <field name="inherit_id" ref="hr_holidays.hr_leave_view_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='date_from']" position="replace">
+                <field name="request_date_from"/>
+            </xpath>
+            <xpath expr="//field[@name='date_to']" position="replace">
+                <field name="request_date_to"/>
+            </xpath>
+        </field>
+    </record>
+
+
+
+</odoo>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="stock_order_form_incoterm" model="ir.ui.view">
+        <field name="name">stock.picking.form.incoterm</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='storage_type']" position="after">
+                <field name="incoterm_id"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

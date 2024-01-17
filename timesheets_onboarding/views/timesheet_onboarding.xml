@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ONBOARDING STEPS -->
+
+    <template id="timesheet_step1">
+        <t t-call="timesheets_onboarding.onboarding_default_step">
+            <t t-set="title">Timesheet</t>
+            <t t-set="description">
+                Enter the work details by adding description as well as hours.
+            </t>
+           <!-- <t t-set="sl">1</t>-->
+            <!--            <t t-set="btn_text">Review</t>-->
+            <!--          <t t-set="cnt_text" t-value="request.env['hr.department'].search_count([])">-->
+            <!--              <t t-esc="cnt_text">Departments</t>-->
+            <!--            </t>-->
+            <!--            <t t-set="cnt_desc">Records</t>-->
+            <!--            <t t-set="method" t-value="'onboarding_step1_action'" />-->
+            <!--            <t t-set="model" t-value="'res.company'" />-->
+            <!--            <t t-set="state" t-value="state.get('onboarding_step1_state')" />-->
+        </t>
+    </template>
+
+    <template id="timesheet_step2">
+        <t t-call="timesheets_onboarding.onboarding_default_step">
+            <t t-set="title">Bulk Timesheets</t>
+            <t t-set="description">
+                Record your bulk timesheets using Import/ Google sync/ Web Timecard.
+            </t>
+           <!-- <t t-set="sl">2</t>-->
+            <!--            <t t-set="btn_text">Define</t>-->
+            <!--      <t t-set="cnt_text" t-value="request.env['hr.job'].search_count([])">-->
+            <!--          <t t-esc="cnt_text">Jobs</t>-->
+            <!--            </t>-->
+            <!--            <t t-set="cnt_desc">Records</t>-->
+            <!--                        <t t-set="done_text">Step 2 Completed!</t>-->
+            <!--            <t t-set="method" t-value="'onboarding_step2_action'" />-->
+            <!--             <t t-set="methodcnt" t-value="'onboarding_step2_count'" />-->
+
+            <!--            <t t-set="model" t-value="'res.company'" />-->
+            <!--            <t t-set="state" t-value="state.get('onboarding_step2_state')" />-->
+        </t>
+    </template>
+
+    <template id="timesheet_step3">
+        <t t-call="timesheets_onboarding.onboarding_default_step">
+            <t t-set="title">Quick timesheet</t>
+            <t t-set="description">
+                Apply a week of work progress in a single form.
+            </t>
+           <!-- <t t-set="sl">3</t>-->
+            <!--            <t t-set="btn_text">Define</t>-->
+            <!--      <t t-set="cnt_text" t-value="request.env['hr.job'].search_count([])">-->
+            <!--          <t t-esc="cnt_text">Jobs</t>-->
+            <!--            </t>-->
+            <!--            <t t-set="cnt_desc">Records</t>-->
+            <!--                        <t t-set="done_text">Step 2 Completed!</t>-->
+            <!--            <t t-set="method" t-value="'onboarding_step2_action'" />-->
+            <!--             <t t-set="methodcnt" t-value="'onboarding_step2_count'" />-->
+
+            <!--            <t t-set="model" t-value="'res.company'" />-->
+            <!--            <t t-set="state" t-value="state.get('onboarding_step2_state')" />-->
+        </t>
+    </template>
+    <template id="timesheet_step4">
+        <t t-call="timesheets_onboarding.onboarding_default_step">
+            <t t-set="title">Realtime</t>
+            <t t-set="description">
+                Click start work button to record real time data.
+            </t>
+           <!-- <t t-set="sl">4</t>-->
+
+
+            <!--            <t t-set="btn_text">Create</t>-->
+            <!--            <t t-set="btn_text1">Import Template</t>-->
+            <!--            <t t-set="btn_text2">Upload</t>-->
+
+            <!--       <t t-set="cnt_text" t-value="request.env['hr.employee'].search_count([])">-->
+            <!--           <t t-esc="cnt_text">Employees</t>-->
+
+
+            <!--            </t>-->
+            <!--            <t style="font-size:2px;" t-set="cnt_desc">Records</t>-->
+            <!--                        <t t-set="done_text">step 3 Completed!</t>-->
+            <!--            <t t-set="method" t-value="'onboarding_step3_action'" />-->
+
+            <!--            <t t-set="method1" t-value="'onboarding_step3_action1'" />-->
+            <!--            <t t-set="method2" t-value="'onboarding_step3_action2'" />-->
+            <!--            <t t-set="model" t-value="'res.company'" />-->
+            <!--            <t t-set="state" t-value="state.get('onboarding_step3_state')" />-->
+        </t>
+    </template>
+    <template id="timesheet_step5">
+        <t t-call="timesheets_onboarding.onboarding_default_step">
+            <t t-set="title">Approval</t>
+            <t t-set="description">
+                Submit to the manager and approve the details or get it approved.
+            </t>
+           <!-- <t t-set="sl">5</t>-->
+            <!--            <t t-set="btn_text">Assign</t>-->
+            <!--            <t t-set="cnt_text" t-value="request.env['hr.contract'].search_count([])">-->
+            <!--                <t t-esc="cnt_text">Contracts</t>-->
+            <!--            </t>-->
+            <!--            <t t-set="cnt_desc">Records</t>-->
+            <!--            <t t-set="done_text">step 4 set.</t>-->
+            <!--            <t t-set="method" t-value="'template_step4_action'" />-->
+            <!--          <t t-set="methodcnt" t-value="'template_step4_count'" />-->
+
+            <!--            <t t-set="model" t-value="'res.company'" />-->
+            <!--            <t t-set="state" t-value="state.get('template_step4_state')" />-->
+        </t>
+    </template>
+    <!--    <template id="template_step5">-->
+    <!--        <t t-call="template_onboarding.onboarding_default_step">-->
+    <!--            <t t-set="title">Confirm Upload</t>-->
+    <!--            <t t-set="description">-->
+    <!--                Cross check and confirm the uploaded data correctness.-->
+    <!--            </t>-->
+    <!--            <t t-set="sl">5</t>-->
+    <!--            <t t-set="btn_text">Allocate</t>-->
+    <!--            <t t-set="cnt_text" t-value="request.env['hr.leave.allocation'].search_count([])">-->
+    <!--                <t t-esc="cnt_text">Leave allocations</t>-->
+    <!--            </t>-->
+    <!--            <t t-set="cnt_desc">Records</t>-->
+    <!--            <t t-set="done_text">step 5 set.</t>-->
+    <!--            <t t-set="method" t-value="'onboarding_step5_action'" />-->
+    <!--            <t t-set="model" t-value="'res.company'" />-->
+    <!--            <t t-set="state" t-value="state.get('onboarding_step5_state')" />-->
+    <!--        </t>-->
+    <!--    </template>-->
+
+    <template id="timesheet_dashboard_onboarding_panel" name="onboarding.dashboard.onboarding.panel">
+        <t t-call="timesheets_onboarding.onboarding_default_container">
+            <t t-set="classes" t-value="'o_onboarding_blue'"/>
+            <t t-set="bg_image" t-value="'/onboarding/static/src/img/employee_dashboard_onboarding_bg.jpg'"/>
+            <!--            <t t-set="close_method" t-value="'action_close_account_dashboard_onboarding'"/>-->
+            <!--            <t t-set="close_model" t-value="'res.company'"/>-->
+            <!--            <t t-set="text_completed">Congratulations! You are all set.</t>-->
+
+            <t t-call="timesheets_onboarding.timesheet_step1" name="timesheet_setup"/>
+	    <t t-call="timesheets_onboarding.timesheet_step2" name="Bulk_setup"/>
+            <t t-call="timesheets_onboarding.timesheet_step3" name="quick_setup"/>
+            <t t-call="timesheets_onboarding.timesheet_step4" name="realtime_setup"/>
+            <t t-call="timesheets_onboarding.timesheet_step5" name="approval_setup"/>
+            <!--            <t t-call="timesheet_onboarding.timesheet_step5" name=""/>-->
+
+        </t>
+    </template>
+    <!-- SAMPLE INVOICE EMAIL -->
+
+</odoo>
