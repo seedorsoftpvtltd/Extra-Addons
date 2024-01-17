@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo >
+    <!-- hr_employee inherited  view-->
+     <record id="view_employee_form_inherit" model="ir.ui.view">
+   	<field name="name">hr.employee.form</field>
+    <field name="model">hr.employee</field>
+    <field name="inherit_id" ref="hr.view_employee_form"/>
+    <field name="arch" type="xml">
+	    <xpath expr="//page[@name='public']" position='after'>		
+			<page string='Employee Details'>
+				 <group>
+					<group string="Labour Card Details">
+						<field name='labour_card_no'/>
+						<field name='expiry_date'/>
+						<field name='passport_no'/>
+						<field name='passport_expiry_date'/>
+						<field name='arrival_date'/>						
+					 </group>
+					 <group string="Designation">
+						<field name='in_visa_id'/>
+						<field name='work_as_id'/>
+					 </group>
+					 
+                    <group>
+						<field name='visa_nos'/>
+						<field name='visa_expiry_date'/>
+						<field name='emirates_id_no'/>
+						<field name='emirates_expiry_date'/>
+						<field name='joining_date'/>
+					 </group>
+                    <group>
+						<field name='document_signed'/>
+						<field name='leaving_date'/>
+					 </group>					 
+				  </group>			   
+			</page>		
+	    </xpath>
+		
+    </field>
+</record>
+
+</odoo>

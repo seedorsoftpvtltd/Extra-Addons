@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="act_hr_timesheet_line" model="ir.actions.act_window">
+        <field name="name">My Timesheets</field>
+        <field name="res_model">account.analytic.line</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('project_id', '!=', False), ('user_id', '=', uid)]</field>
+        <field name="context">{
+                "search_default_week":1,
+        }</field>
+        <field name="search_view_id" ref="hr_timesheet.hr_timesheet_line_search"/>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Record a new activity
+          </p><p>
+            You can register and track your workings hours by project every
+            day. Every time spent on a project will become a cost and can be re-invoiced to
+            customers if required.
+            </p>
+        </field>
+    </record>
+
+    <record id="timesheet_action_all" model="ir.actions.act_window">
+        <field name="name">All Timesheets</field>
+        <field name="res_model">account.analytic.line</field>
+        <field name="search_view_id" ref="hr_timesheet.hr_timesheet_line_search"/>
+        <field name="domain">[('project_id', '!=', False)]</field>
+        <field name="context">{
+                'search_default_week':1,
+                'search_default_groupby_employee':1,
+                'search_default_groupby_project':1,
+                'search_default_groupby_task':1,
+        }</field>
+    </record>
+
+    <menuitem id="menu_sheetcreate" parent="menu_selfservice" sequence="4" name="Employee Timesheets"/>
+
+    <menuitem action="hr_timesheet.timesheet_action_all" id="menu_sheetcreate_manager" parent="menu_sheetcreate" sequence="4" name="All Timesheets" groups="employee_workspace_app.activity_by_manager"/>
+
+    <menuitem action="hr_timesheet.act_hr_timesheet_line" id="menu_sheetcreate_user" parent="menu_sheetcreate" sequence="1" name="My Timesheets"/>
+
+
+</odoo>

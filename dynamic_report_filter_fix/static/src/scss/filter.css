@@ -1,0 +1,7 @@
+.py-filters-menu{
+    overflow: auto;
+    display: none;
+    position: absolute;
+    padding: 5px;
+    z-index:110;
+}

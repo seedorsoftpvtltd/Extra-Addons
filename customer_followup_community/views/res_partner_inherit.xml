@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_followup_partner_form" model="ir.ui.view">
+        <field name="name">res.partner.followup</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='internal_notes']" position="after">
+                <page string="Follow Ups">
+                    <div class="alert alert-warning o_account_reports_followup-no-action"
+                         attrs="{'invisible': [('invoice_list', '!=', [])]}"
+                         id='no-action' role="alert">
+                        <p>
+                            <strong>
+                                <field name="name"/>
+                            </strong>
+                            has no due amount.
+                        </p>
+                    </div>
+                    <div attrs="{'invisible': [('invoice_list', '=', [])]}">
+                        <div class="oe_inline">
+                            <div style="width: min-content; float: right;">
+                                <group>
+                                    <button style="float: right; margin-right: 8px;" name="send_inv"
+                                            class="btn-primary" type="object">SEND MAIL
+                                    </button>
+                                    <button style="float: right; margin-right: 8px;" name="print_followup_letter"
+                                            class="btn-primary" type="object">PRINT LETTER
+                                    </button>
+                                </group>
+                            </div>
+                            <div style="width: 35%;">
+                                <group>
+                                    <field name="customer_followup_done" readonly="0"
+                                           attrs="{'invisible': [('customer_followup_done', '=', False)]}"/>
+                                </group>
+                            </div>
+                            <div attrs="{'invisible': [('customer_followup_to_do', '=', False)]}">
+                                <p>Next Action:
+                                    <field name="customer_followup_to_do" nolabel="1"/>
+                                    on:
+                                    <field name="next_followup_action_date" nolabel="1" style="width: min-content;"/>
+                                </p>
+                            </div>
+                        </div>
+                        <field name="invoice_list" context="{
+                            'tree_view_ref': 'account.invoice_tree_with_onboarding',
+                            'form_view_ref': 'account.invoice_form'
+                            }"/>
+                    </div>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

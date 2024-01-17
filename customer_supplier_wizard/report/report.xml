@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <report
+            id="customer_supplier_report"
+            model="res.partner"
+            string="Customer / Vendor Report"
+            report_type="qweb-pdf"
+            name="customer_supplier_wizard.report_pdf"
+            file="customer_supplier_wizard.report_pdf"
+            attachment_use="False"/>
+
+        <report
+            id="supplier_report"
+            model="res.partner"
+            string="Supplier Statement[opening Ending Balance]"
+            report_type="qweb-pdf"
+            name="customer_supplier_wizard.supplier_report_pdf"
+            file="customer_supplier_wizard.supplier_report_pdf"
+            attachment_use="False"/>
+
+    </data>
+</odoo>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2015 DevIntelle Consulting Service Pvt.Ltd (<http://www.devintellecs.com>).
+
+For Module Support : devintelle@gmail.com  or Skype : devintelle
+ -->
+ 
+<odoo>
+        
+        
+        <record id="hr_expense_alw_test" model="hr.salary.rule">
+            <field name="amount_select">code</field>
+            <field name="sequence" eval="5"/>
+            <field name="condition_select">none</field>
+            <field name="code">Expense</field>
+            <field name="category_id" ref="hr_payroll_community.ALW"/>
+            <field name="name">Provident Fund</field>
+            <!--field name="struct_id" ref="hr_payroll_community.structure_002"/-->
+            <field name="amount_python_compute">result = payslip.hr_expence_alw</field>
+        </record>
+</odoo>
+
+
+
+

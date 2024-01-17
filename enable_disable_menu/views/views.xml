@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+        <record id="menu_form_inherit" model="ir.ui.view">
+			<field name="name">ir.ui.menu</field>
+			<field name="model">ir.ui.menu</field>
+			<field name="inherit_id" ref="base.edit_menu_access"/>
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='parent_id']" position="after">
+                    <field name="category"/>
+				</xpath>
+				<xpath expr="//page[2]" position="after">
+                    <page name="enable_disable" string="Enable/Disable">
+						<button string="Disable Module" name="manual_disable" type="object"/>
+					    <button string="Enable Module" name="manual_enable" type="object"/>
+					</page>
+				</xpath>
+			</field>
+		</record>
+	</data>
+</odoo>

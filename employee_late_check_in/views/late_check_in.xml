@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<odoo>
+  <data>
+     <record id="late_checkin" model="base.automation">
+        <field name="name">Late Checkin</field>
+        <field name="model_id" ref="hr_attendance.model_hr_attendance"/>
+        <field name="state">code</field>
+         <field name="active" eval="True"/>
+         <field name="trigger">on_create</field>
+            <field name="state">code</field>
+            <field name="code">
+if record.late_check_in != 0:
+  env['late.check_in'].create({
+         'attendance_id':record.id,
+         'employee_id':record.employee_id.id,
+         'late_minutes':record.late_check_in,
+         'date': record.check_in
+})
+            </field>
+   </record>
+ </data>
+</odoo>

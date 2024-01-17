@@ -1,0 +1,35 @@
+# -*- coding: utf-8 -*-
+
+{
+    'name' : 'Employee Workspace and Self Service',
+    'author': "Edge Technologies",
+    'version' : '13.0.1.1',
+    'live_test_url':'https://youtu.be/HliyJwxPIXk',
+    "images":['static/description/main_screenshot.png'],
+    'summary' : 'Employee self service on employee self services for employees Workspace on employee HR self service on HR self services for HR Workspace for HR Workspace for employee service details employee project workspace employee task service employee task workspace',
+    'description' : """
+         This apps helps to user can Maintain and View Employee Details, Project, Task & Timesheet, Employee Attendances & Leaves, Employee Expenses, Employee Payslips & Contracts and Maintenance Request.
+    """,
+    'depends' : ['hr','project','hr_timesheet','hr_attendance','hr_holidays','hr_expense',
+                'hr_contract','base'],
+    "license" : "OPL-1",
+    'data': ['security/rule.xml',
+            'security/ir.model.access.csv',
+            'views/employee.xml',
+            'views/project.xml',
+            'views/task.xml',
+            'views/timesheet.xml',
+            'views/attendence.xml',
+            'views/leave.xml',
+            'views/expenses.xml',
+#            'views/maintenance.xml',
+            'views/contracts.xml'],
+    'qweb' : [],
+    'demo' : [],
+    'post_init_hook': 'post_init_hook',
+    'installable' : True,
+    'auto_install' : False,
+    'price': 30,
+    'currency': "EUR",
+    'category' : 'Human Resources',
+}

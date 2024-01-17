@@ -1,0 +1,25 @@
+{
+    'name': 'Custom Reports',
+    'version': '13.0.0.0.0',
+    'category': 'Purchase Sale Invoice',
+    'summary': 'Configuration Report',
+    'sequence': 85,
+    'license': 'AGPL-3',
+    'website': 'https://www.banibro.com',
+    'depends': [
+        'base','account','product','sale','purchase',
+    ],
+    'data': [
+        'report/purchase_invoice_view.xml',
+        'report/purchase_report_template.xml',
+        'report/purchase_order_report_view.xml',
+        'report/invoice_report_template.xml',
+        'report/invoice_report_with_template.xml',
+        'report/invoice_report_without_payment.xml',
+        'report/invoice_order_report_view.xml',
+        'report/proforma_invoice_report_template.xml',
+    ],
+    'installable': True,
+    'auto_install': False,
+    'application': True,
+}

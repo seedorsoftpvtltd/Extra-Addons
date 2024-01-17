@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ONBOARDING STEPS -->
+
+    <template id="expense_step1">
+        <t t-call="expense_onboardin.onboarding_default_step">
+            <t t-set="title">Add Expense</t>
+            <t t-set="description">
+                Add/Upload the  Expense details, add the bill number as reference.
+            </t>
+            <t t-set="sl">1</t>
+            </t>
+    </template>
+
+    <template id="expense_step2">
+        <t t-call="expense_onboardin.onboarding_default_step">
+            <t t-set="title">Bulk Expense</t>
+            <t t-set="description">
+                Add your employees bulk expenses by using the Import.
+            </t>
+            <t t-set="sl">2</t>
+                        <t t-set="btn_text">Import</t>
+                        <t t-set="done_text">step 2 set.</t>
+                        <t t-set="method" t-value="'onboarding_expensing_action'" />
+                        <t t-set="model" t-value="'res.partner'" />
+        </t>
+    </template>
+
+    <template id="expense_step3">
+        <t t-call="expense_onboardin.onboarding_default_step">
+            <t t-set="title">Payslip Date</t>
+            <t t-set="description">
+                Reimburse your expenses and get the default expense added to the following month’s payslip upon approval.
+            </t>
+            <t t-set="sl">3</t>
+        </t>
+    </template>
+
+    <template id="expense_step4">
+        <t t-call="expense_onboardin.onboarding_default_step">
+            <t t-set="title">Document</t>
+            <t t-set="description">
+                Attach the expense reports and documents.
+            </t>
+            <t t-set="sl">4</t>
+        </t>
+    </template>
+
+    <template id="expense_step5">
+        <t t-call="expense_onboardin.onboarding_default_step">
+            <t t-set="title">Auto Approval</t>
+            <t t-set="description">
+                Create your expense report and submit it for the auto approval process.
+            </t>
+            <t t-set="sl">5</t>
+        </t>
+    </template>
+
+
+
+    <template id="expense_dashboard_onboarding_panel" name="onboarding.dashboard.onboarding.panel">
+        <t t-call="expense_onboardin.onboarding_default_container">
+            <t t-set="classes" t-value="'o_onboarding_blue'"/>
+            <t t-set="bg_image" t-value="'/onboarding/static/src/img/employee_dashboard_onboarding_bg.jpg'"/>
+            <!--            <t t-set="close_method" t-value="'action_close_account_dashboard_onboarding'"/>-->
+            <!--            <t t-set="close_model" t-value="'res.company'"/>-->
+            <!--            <t t-set="text_completed">Congratulations! You are all set.</t>-->
+
+            <t t-call="expense_onboardin.expense_step1" name="add_setup"/>
+            <t t-call="expense_onboardin.expense_step2" name="bulk_setup"/>
+            <t t-call="expense_onboardin.expense_step3" name="payslip_setup"/>
+            <t t-call="expense_onboardin.expense_step4" name="document_setup"/>
+            <t t-call="expense_onboardin.expense_step5" name="approval_setup"/>
+
+
+        </t>
+    </template>
+    <!-- SAMPLE INVOICE EMAIL -->
+
+</odoo>

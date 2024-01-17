@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="employee_contract_tab_inherit_view" model="ir.ui.view">
+            <field name="name">hr.contract.form</field>
+            <field name="model">hr.contract</field>
+            <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+            <field name="arch" type="xml">
+
+
+              <xpath expr="//notebook/page[@name='information']" position="after">
+                <page string="Monthly Variables" name="">
+                  <group>
+                       <label for="local_leaves"/>
+                                    <div class="o_row" name="Rate per Hour">
+                                        <field name="local_leaves" nolabel="1"/>
+                                        <span>/ month</span>
+                                    </div>
+                       <label for="sick_leaves"/>
+                                    <div class="o_row" name="Sick Leave">
+                                        <field name="sick_leaves" nolabel="1"/>
+                                        <span>/ month</span>
+                                    </div>
+                       <label for="working_days"/>
+                                    <div class="o_row" name="Working Days">
+                                        <field name="working_days" nolabel="1"/>
+                                        <span>/ month</span>
+                                    </div>
+                       <label for="absent_days"/>
+                                    <div class="o_row" name="Absent Days">
+                                        <field name="absent_days" nolabel="1"/>
+                                        <span>/ month</span>
+                                    </div>
+                      <label for="days_pay"/>
+                                    <div class="o_row" name="Days to Pay">
+                                        <field name="days_pay" nolabel="1"/>
+                                        <span>/ month</span>
+                                    </div>
+                       <label for="bonus"/>
+                                    <div class="o_row" name="Bonus">
+                                        <field name="bonus" nolabel="1"/>
+                                        <span>/ month</span>
+                                    </div>
+                       <label for="ot_worked_hours"/>
+                                    <div class="o_row" name="OT Worked Hours">
+                                        <field name="ot_worked_hours" nolabel="1"/>
+                                        <span>/ month</span>
+                                    </div>
+                       <label for="normal_ot_paid"/>
+                                    <div class="o_row" name="Normal OT Paid">
+                                        <field name="normal_ot_paid" nolabel="1"/>
+                                        <span>/ month</span>
+                                    </div>
+                       <label for="sundays"/>
+                                    <div class="o_row" name="Sundays">
+                                        <field name="sundays" nolabel="1"/>
+                                        <span>/ month</span>
+                                    </div>
+                       <label for="sunday_paid"/>
+                                    <div class="o_row" name="Sunday Paid">
+                                        <field name="sunday_paid" nolabel="1"/>
+                                        <span>/ month</span>
+                                    </div>
+                       <label for="ph_hours"/>
+                                    <div class="o_row" name="PH Hours">
+                                        <field name="ph_hours" nolabel="1"/>
+                                        <span>/ month</span>
+                                    </div>
+                       <label for="ph"/>
+                                    <div class="o_row" name="PH">
+                                        <field name="ph" nolabel="1"/>
+                                        <span>/ month</span>
+                                    </div>
+                      <label for="cyclone_hours"/>
+                                    <div class="o_row" name="Cyclone Hours">
+                                        <field name="cyclone_hours" nolabel="1"/>
+                                        <span>/ month</span>
+                                    </div>
+                       <label for="cyclone"/>
+                                    <div class="o_row" name="Cyclone">
+                                        <field name="cyclone" nolabel="1"/>
+                                        <span>/ month</span>
+                                    </div>
+                       <label for="early_leaving_hours"/>
+                                    <div class="o_row" name="Early Leaving Hours">
+                                        <field name="early_leaving_hours" nolabel="1"/>
+                                        <span>/ month</span>
+                                    </div>
+                       <label for="early_leave_deduction"/>
+                                    <div class="o_row" name="Early Leave Deduction">
+                                        <field name="early_leave_deduction" nolabel="1"/>
+                                        <span>/ month</span>
+                                    </div>
+                      <label for="absence"/>
+                                    <div class="o_row" name="Absence">
+                                        <field name="absence" nolabel="1"/>
+                                        <span>/ month</span>
+                                    </div>
+                       <label for="absence_deduction"/>
+                                    <div class="o_row" name="Absences Deduction">
+                                        <field name="absence_deduction" nolabel="1"/>
+                                        <span>/ month</span>
+                                    </div>
+
+
+
+                  </group>
+                </page>
+            </xpath>
+                 <xpath expr="//group[@name='main_info']/group[@name='salary_and_advantages']" position="inside">
+                      <label for="ctc"/>
+                                    <div class="o_row" name="CTC">
+                                        <field name="ctc" nolabel="1"/>
+<!--                                        <span>/ month</span>-->
+                                    </div>
+                       <label for="rate_per_hour"/>
+                                    <div class="o_row" name="Rate Per Hour">
+                                        <field name="rate_per_hour" nolabel="1"/>
+                                        <span>/ month</span>
+                                    </div>
+                      <label for="rate_per_day"/>
+                                    <div class="o_row" name="Rate per day">
+                                        <field name="rate_per_day" nolabel="1"/>
+                                        <span>/ month</span>
+                                    </div>
+
+
+                </xpath>
+
+                <xpath expr="//group[@name='main_info']/group[@name='allowances']" position="inside">
+                    <label for="uniform_allow"/>
+                                    <div class="o_row" name="TEWF">
+                                        <field name="uniform_allow" nolabel="1"/>
+                                        <span>/ month</span>
+                                    </div>
+                </xpath>
+
+
+
+
+
+            </field>
+        </record>
+    </data>
+</odoo>
+
+
+
+
+
+
+
+
+
+

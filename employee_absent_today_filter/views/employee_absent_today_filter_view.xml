@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_employee_filter" model="ir.ui.view">
+        <field name="name">hr.employee.search</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <!--               how many checking per day-->
+                <!--                  <filter string="how many checking per day" name="last_check_in" domain="[('last_check_in', '&lt;', (context_today() - datetime.timedelta(days=1)).strftime('%Y-%m-%d'))]"/>-->
+
+
+                <!-- This field will show up on the default filters
+                     &lt; is the XML encoding for < and &gt; is the XML encoding for > -->
+                <!--                  <filter string="Today  Checkin" name="last_check_in" domain="[('last_check_in', '!=', False)]"/>-->
+                <!--                (context_today() - datetime.timedelta(days=1)).strftime('%Y-%m-%d'))-->
+<!--                <filter string="Absent Today" name="last_check_out"-->
+<!--                        domain="[('last_check_out', '&lt;', (context_today()).strftime('%Y-%m-%d')), ('last_check_out', '=', False)]"/>-->
+                <filter string="Absent Today" name="last_check_in"
+                        domain="['|',('last_check_in', '=', False),('last_check_in', '&lt;', (context_today()).strftime('%Y-%m-%d'))]"/>
+<!--                  <filter string="Absent Today" name="last_check_in"-->
+<!--                        domain="[('last_check_in', '&gt;=', (context_today()).strftime('%Y-%m-%d')),    ('last_check_in', '&lt;', ((context_today()) +  datetime.timedelta(days=1)).strftime('%Y-%m-%d'))]"/>-->
+
+
+            </xpath>
+        </field>
+    </record>
+
+
+</odoo>

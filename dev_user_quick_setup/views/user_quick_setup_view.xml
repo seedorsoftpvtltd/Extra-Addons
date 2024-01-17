@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2015 DevIntelle Consulting Service Pvt.Ltd (<http://www.devintellecs.com>).
+
+For Module Support : devintelle@gmail.com  or Skype : devintelle
+ -->
+<odoo>
+    <record model="ir.ui.view" id="user_quick_setup_view">
+        <field name="name">user.quick.setup.view</field>
+        <field name="model">user.quick.setup</field>
+        <field name="arch" type="xml">
+            <form string="User Setup">
+                <header>
+                    <button name="action_process" type="object" string="Process" states="draft" class="oe_highlight"/>
+                    <button name="action_confirm" type="object" groups="dev_user_quick_setup.allow_quick_setup_confirm" string="Confirm" states="process" class="oe_highlight"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_user" string="User" type="object" class="oe_stat_button" icon="fa-pencil-square-o" attrs="{'invisible': [('d_user_id', '=', False)]}">
+                            <field name="d_user_id" widget="statinfo" string="User" invisible="1"/>
+                        </button>
+                        <button name="action_view_employee" string="Employee" type="object" class="oe_stat_button" icon="fa-pencil-square-o" attrs="{'invisible': [('d_employee_id', '=', False)]}">
+                            <field name="d_employee_id" widget="statinfo" string="Employee" invisible="1"/>
+                        </button>
+                        <button name="action_view_contract" string="Contract" type="object" class="oe_stat_button" icon="fa-pencil-square-o" attrs="{'invisible': [('d_contract_id', '=', False)]}">
+                            <field name="d_contract_id" widget="statinfo" string="Contract" invisible="1"/>
+                        </button>
+                    </div>
+
+                    <h2>
+                        <field name="name" placeholder="User Name" attrs="{'readonly':[('state','!=','draft')]}" style="width: 75%%"/>
+                    </h2>
+                    <group string="User Information">
+                        <group>
+                            <field name="u_email" attrs="{'readonly':[('state','!=','draft')]}"/>
+                        </group>
+                        <group>
+                            <field name="u_company_id" attrs="{'readonly': [('state','!=','draft')]}"/>
+
+                        </group>
+                    </group>
+                    <group>
+                        <field name="employee_create_flag" attrs="{'readonly':[('state','!=','draft')]}"/>
+                    </group>
+                    <group string="Employee Information" attrs="{'invisible': [('employee_create_flag', '=', False)]}">
+                        <group>
+<!--                            <field name="work_address" attrs="{'invisible':[('state','!=','confirm')]}"/>-->
+                            <field name="work_email" attrs="{'readonly':[('state','!=','draft')]}"/>
+                            <field name="work_mobile" attrs="{'readonly':[('state','!=','draft')]}"/>
+                            <label for="timesheet_cost" string="Timesheet Cost"/>
+                            <div>
+                                <field name="timesheet_cost" attrs="{'readonly':[('state','!=','draft')]}" class="oe_inline"/>
+                                per hour
+                            </div>
+                        </group>
+                        <group>
+                            <field name="department_id" attrs="{'readonly': [('state','!=','draft')]}"/>
+                            <field name="job_id" attrs="{'readonly': [('state','!=','draft')]}"/>
+                            <field name="parent_id" attrs="{'readonly': [('state','!=','draft')]}"/>
+                            <field name="working_hour" attrs="{'readonly': [('state','!=','draft')] , 'required': [('employee_create_flag','=',True)]}"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="contract_create_flag" attrs="{'readonly':[('state','!=','draft')],'invisible': [('employee_create_flag', '=', False)]}"/>
+                    </group>
+                    <group string="Contract Information" attrs="{'invisible': [('contract_create_flag', '=', False)]}">
+                        <group>
+                            <field name="contract_name" attrs="{'readonly':[('state','!=','draft')],'required': [('contract_create_flag','=',True)]}"/>
+<!--                            <field name="contract_type" attrs="{'readonly':[('state','!=','draft')],'required': [('contract_create_flag','=',True)]}"/>-->
+                            <field name="structure_id" attrs="{'readonly':[('state','!=','draft')],'required': [('contract_create_flag','=',True)]}"/>
+                        </group>
+                        <group>
+                            <field name="wage" attrs="{'readonly': [('state','!=','draft')]}"/>
+                            <field name="start_date" attrs="{'readonly':[('state','!=','draft')],'required': [('contract_create_flag','=',True)]}"/>
+                            <field name="end_date" attrs="{'readonly': [('state','!=','draft')]}"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="leave_allocation_flag" attrs="{'readonly':[('state','!=','draft')],'invisible': [('employee_create_flag', '=', False)]}"/>
+                    </group>
+                    <group string="Leave Allocation" attrs="{'invisible': [('leave_allocation_flag', '=', False)]}">
+                        <field name="leave_allocation_line" nolabel="1">
+                            <tree editable="bottom">
+                                <field name="l_name"/>
+                                <field name="type"/>
+                                <field name="duration"/>
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="user_quick_setup_tree">
+        <field name="name">user.quick.setup.tree</field>
+        <field name="model">user.quick.setup</field>
+        <field name="arch" type="xml">
+            <tree string="USer Setup">
+                <field name="name"/>
+                <field name="u_email"/>
+                <field name="u_company_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_user_quick_setup" model="ir.actions.act_window">
+        <field name="name">User Quick Setup</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="context"></field>
+        <field name="domain"></field>
+        <field name="res_model">user.quick.setup</field>
+        <field name="view_id" ref="user_quick_setup_tree"/>
+<!--        <field name="view_type">form</field>-->
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem name="User Quick Setup" id="user_setup_menu_id" parent="base.menu_users" action="action_user_quick_setup"/>
+</odoo>

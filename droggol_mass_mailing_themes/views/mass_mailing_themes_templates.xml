@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Add themes in editor -->
+    <template id="email_designer_snippets" inherit_id="mass_mailing.email_designer_snippets">
+        <xpath expr="//div[@id='email_designer_themes']" position="inside">
+            <div data-name="prime"
+                data-img="/droggol_mass_mailing_themes/static/src/img/prime_thumbs/prime"
+                data-images-info='{"logo": {"format": "png"}, "all": {"module": "droggol_mass_mailing_themes"}}'>
+                <t t-call="droggol_mass_mailing_themes.theme_prime_template"/>
+            </div>
+        </xpath>
+    </template>
+
+    <!-- Theme Prime -->
+    <template id="theme_prime_template">
+        <t t-call="droggol_mass_mailing_themes.d_mail_header_color"/>
+        <t t-call="droggol_mass_mailing_themes.d_mail_banner"/>
+        <t t-call="droggol_mass_mailing_themes.d_mail_counters"/>
+        <t t-call="droggol_mass_mailing_themes.d_grid_footer_color"/>
+    </template>
+
+    <template id="drgl_color_palette" inherit_id="web_editor.colorpicker" name="Theme Prime Palette">
+        <xpath expr="//div[hasclass('o_colorpicker_section')][last()]" position="after">
+            <div class="o_colorpicker_section" data-name="custom" data-display="Custom Colors">
+               <button class="w-100 d-block mt-2 p-2 d_add_custom_color">
+                   <i class="fa fa-plus"></i> Add Custom Color
+               </button>
+           </div>
+        </xpath>
+    </template>
+
+    <template id="drgl_color_option" inherit_id="mass_mailing.snippet_options" name="Theme Prime BG Colors">
+        <xpath expr="//div[@data-js='colorpicker']" position="attributes">
+            <attribute name="data-selector">.note-editable > div:not(.o_layout), .note-editable .oe_structure > div, td, th, .d_bg_color</attribute>
+        </xpath>
+    </template>
+
+    <template id="drgl_border_options" inherit_id="mass_mailing.snippet_options" name="Theme Border Options">
+        <xpath expr="." position="inside">
+            <div data-selector=".d_border_option">
+                <we-collapse-area class="d_color_dropdown">
+                    <we-toggler><i class="fa fa-paint-brush"/> Border Color</we-toggler>
+                    <we-collapse>
+                        <div class="text-muted">Theme Colors</div>
+                        <we-button class="d_dropdown_item d-inline-block bg-alpha" data-select-class="border-primary"></we-button>
+                        <we-button class="d_dropdown_item d-inline-block bg-beta" data-select-class="border-success"></we-button>
+                        <we-button class="d_dropdown_item d-inline-block bg-gamma" data-select-class="border-info"></we-button>
+                        <we-button class="d_dropdown_item d-inline-block bg-delta" data-select-class="border-warning"></we-button>
+                        <we-button class="d_dropdown_item d-inline-block bg-epsilon" data-select-class="border-danger"></we-button>
+                        <we-button class="d_dropdown_item d-inline-block bg-300" data-select-class="d-border-gray"></we-button>
+                    </we-collapse>
+                </we-collapse-area>
+                <we-collapse-area>
+                    <we-toggler><i class="fa fa-sort-amount-asc"/> Border Thickness</we-toggler>
+                    <we-collapse>
+                        <we-button data-select-class="d-border-1px">1px</we-button>
+                        <we-button data-select-class="d-border-2px">2px</we-button>
+                        <we-button data-select-class="d-border-3px">3px</we-button>
+                        <we-button data-select-class="d-border-4px">4px</we-button>
+                        <we-button data-select-class="d-border-5px">5px</we-button>
+                    </we-collapse>
+                </we-collapse-area>
+                <we-collapse-area>
+                    <we-toggler><i class="fa fa-square-o"/> Border Position</we-toggler>
+                    <we-collapse>
+                        <we-button data-select-class="border-0">None</we-button>
+                        <we-button data-select-class="">Full</we-button>
+                        <we-button data-select-class="d-border-top">Top</we-button>
+                        <we-button data-select-class="d-border-bottom">Bottom</we-button>
+                        <we-button data-select-class="d-border-left">Left</we-button>
+                        <we-button data-select-class="d-border-right">Right</we-button>
+                        <we-button data-select-class="d-border-top-bottom">Top-Bottom</we-button>
+                    </we-collapse>
+                </we-collapse-area>
+                <we-collapse-area>
+                    <we-toggler><i class="fa fa-magic"/> Border Style</we-toggler>
+                    <we-collapse>
+                        <we-button data-select-class="d-border-solid">Solid</we-button>
+                        <we-button data-select-class="d-border-dashed">Dashed</we-button>
+                        <we-button data-select-class="d-border-double">Double</we-button>
+                        <we-button data-select-class="d-border-dotted">Dotted</we-button>
+                    </we-collapse>
+                </we-collapse-area>
+            </div>
+        </xpath>
+    </template>
+
+</odoo>

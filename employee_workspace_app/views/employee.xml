@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="open_view_employee_list_my" model="ir.actions.act_window">
+        <field name="name">Employee Details</field>
+        <field name="res_model">hr.employee</field>
+        <field name="binding_view_types">form</field>
+        <field name="view_mode">kanban,tree,form,activity</field>
+        <field name="view_id" eval="False"/>
+        <field name="search_view_id" ref="hr.view_employee_filter"/>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Add a new employee
+          </p><p>
+            With just a quick glance on the Odoo employee screen, you
+            can easily find all the information you need for each person;
+            contact data, job position, availability, etc.
+          </p>
+        </field>
+    </record>
+    <menuitem id='menu_selfservice' name="My Workspace" string='My Workspace' groups="employee_workspace_app.group_allow_workspace"/>
+    <menuitem action="open_view_employee_list_my" id="menu_employeedetails" parent="menu_selfservice" sequence="1" />
+</odoo>

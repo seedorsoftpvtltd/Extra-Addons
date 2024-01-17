@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+	    <report
+            id="action_invoice_margin_without_payment_header"
+            string="Invoices without Payment"
+            model="account.move"
+            report_type="qweb-pdf"
+            file="custom_report.report_invoice_order_without_payment_header"
+            name="custom_report.report_invoice_order_without_payment_header"
+            print_report_name="'Invoice without Payment'"
+            
+        />
+		
+        <report
+            id="action_invoice_margin"
+            string="Invoices without Header"
+            model="account.move"
+            report_type="qweb-pdf"
+            file="custom_report.report_invoice_order"
+            name="custom_report.report_invoice_order"
+            print_report_name="'Invoice Order'"
+            
+        />
+		
+		<report
+            id="action_invoice_margin_with_header"
+            string="Invoices with Header"
+            model="account.move"
+            report_type="qweb-pdf"
+            file="custom_report.report_invoice_order_with_header"
+            name="custom_report.report_invoice_order_with_header"
+            print_report_name="'Invoice Order Report'"
+            
+        />
+		
+		
+        
+		<report
+            id="action_sale_margin"
+            string="PRO-FORMA Invoice"
+            model="sale.order"
+			groups="sale.group_proforma_sales"
+            report_type="qweb-pdf"
+            file="custom_report.report_invoice_order_proforma"
+            name="custom_report.report_invoice_order_proforma"
+            print_report_name="'Performa Invoice'"
+            
+        />
+       
+		
+    </data>
+</odoo>

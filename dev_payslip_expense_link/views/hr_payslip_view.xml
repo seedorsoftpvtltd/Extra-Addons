@@ -1,0 +1,17 @@
+<odoo>
+
+        <record id="hr_pauslip_expe_allowance" model="ir.ui.view">
+            <field name="name">hr.pauslip.expe.allowance</field>
+            <field name="model">hr.payslip</field>
+            <field name="inherit_id" ref="hr_payroll_community.view_hr_payslip_form"/>
+            <field eval="18" name="priority"/>
+            <field name="arch" type="xml">
+                <data>
+                    <field name="name" position="after">
+                        <field name="hr_expence_alw" invisible="1"/>
+                    </field>
+                </data>
+            </field>
+        </record>
+        
+</odoo>

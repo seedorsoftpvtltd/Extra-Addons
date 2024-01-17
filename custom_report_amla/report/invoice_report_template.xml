@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_invoice_document">
+	
+		<t t-call="custom_report_amla.internal_layout_custom_invoice">
+			<t t-set="doc" t-value="doc.with_context(lang=doc.partner_id.lang)"/>
+			<div class="page">
+				<br></br>
+				<br></br>
+				<br></br>
+				<br></br>
+				<br></br>
+				<br></br>
+				<br></br>	
+				<br></br>	
+				<table class="table table-bordered" style="width:95%">
+				   <t>
+				   <tr>
+				   
+					<td  class="text-right"  style="width:55%;font-size:18px;border-left:2px solid;border-bottom:1px solid;border-top:2px solid;padding: 8px;!important ;border-right:8px;">	
+						<b>INVOICE</b></td>
+					<td class="text-right" style="border-right:2px solid;border-bottom:1px solid;border-top:2px solid;!important ;border-left:8px;">
+						<span>ORIGINAL</span> 
+					</td>
+					
+					</tr>
+				</t>	
+				</table>
+				  
+					<table class="table table-bordered" style="margin-top:-17px;width:95%">
+					 <tr>
+					  <t>
+					  <td style="border-left:2px solid;border-top:1px solid;!important ;border-right:8px;">
+						<b><span>CONCERN NAME   :</span></b> <span>   </span> <span t-field="doc.partner_id.name"/>
+						<br/>
+						<b><span>CONTACT PERSON  :</span></b> <span>   </span> <span t-field="doc.partner_id.name"/>
+						<br/>
+						<b><span>ADDRESS   :</span></b> <span/>   <span t-field="doc.partner_id.street"/>,<span t-field="doc.partner_id.street2"/><br/><span t-field="doc.partner_id.city"/><br/><span t-field="doc.partner_id.state_id"/>,<span t-field="doc.partner_id.zip"/>
+						<br/>
+						<b><span>MOBILE NUMBER   :</span></b> <t t-if="doc.partner_id.phone"><span>1)</span> <span t-field="doc.partner_id.phone"/></t> <t t-if="doc.partner_id.mobile"> <span>2)</span> <span/> <span t-field="doc.partner_id.mobile"/></t>
+						<br/>
+						<b><span>GST DETAILS  :</span></b>	<span>     </span> <span t-field="doc.partner_id.vat"/>
+						<br/>
+						<b><span>e-mail  :</span></b> <span/>   <span t-field="doc.partner_id.email"/>
+						<br/>
+						<b><span>DISPATCHED BY  :</span></b>	<span>     </span> 	<span t-field="doc.dispatched"/>		
+					</td>
+					<td class="text-right" style="border-right:2px solid;border-top:1px solid;!important ;border-left:8px;">
+					     <b><span>INVOICE NO :</span></b><span t-field="doc.name"/><br/><b><span> DATE:</span></b>	<span t-field="doc.invoice_date"/>
+					  </td>
+				  </t>
+				</tr>			  									
+				</table>
+				
+				<table class="table table-bordered" style="margin-top:-17px;width:95%">
+				    <thead>
+						<tr>
+							<th style="border-left:2px solid;border-bottom:1px solid;border-top:1px solid;border-right:1px solid;padding: 8px;">S.No</th>
+							<th style="border: 1px solid;padding: 8px;" class="text-center">DESCRIPTION</th>
+							<th style="border: 1px solid;padding: 8px;" class="text-center">HSN CODE</th>
+							<th style="border: 1px solid;padding: 8px;" class="text-center">BATCH NUMBER</th>
+							<th style="border: 1px solid;padding: 8px;" class="text-center">QUANTITY IN BOTTLES</th>
+							<th style="border: 1px solid;padding: 8px;" class="text-center">PRICE PER BOTTLE </th>
+							<th style="border-right:2px solid;border-bottom:1px solid;border-top:1px solid;padding: 8px;" colspan="7" class="text-center">AMOUNT</th>
+						</tr>
+				    </thead>
+				    <tbody>
+					    <t t-set="sno" t-value="1"/>
+				    	<t t-foreach="doc.invoice_line_ids" t-as="line">
+						<tr>
+						    <td style="border-left:2px solid;border-bottom:1px solid;border-right:1px solid;padding: 8px;" class="text-center">  <span t-esc="sno"/></td>
+							<td style="border: 1px solid;padding: 8px;" class="text-center"> <span t-field="line.name"/></td>
+							<td style="border: 1px solid;padding: 8px;" class="text-center"> <span t-field="line.product_id.l10n_in_hsn_code"/> </td>
+							<td style="border: 1px solid;padding: 8px;" class="text-center"> <t t-foreach="line.sale_line_ids" t-as="obj"><span t-esc="obj.lot_ids.name"/></t></td>
+							<td style="border: 1px solid;padding: 8px;" class="text-center"> <span t-esc="'{0:,.0f}'.format(int(line.quantity))"/></td>
+							<td style="border: 1px solid;padding: 8px;" class="text-center"> <span>₹</span><span t-field="line.price_unit"/></td>
+							
+							<td style="border-right:2px solid;border-bottom:1px solid;padding: 8px;" colspan="7" class="text-right">  <span t-field="line.price_subtotal" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: doc.currency_id}"/></td>
+						</tr>						
+						<t>
+							<t t-set="sno" t-value="sno+1"/>
+						</t>
+						</t>
+						
+					 <t t-set="rownum" t-value="0"/>
+
+
+					          
+						    <tr t-foreach="doc.amount_by_group" t-as="amount_by_group" style="">
+											<td t-if="rownum==0" colspan="5" t-att-rowspan="len(doc.amount_by_group)+1" class="text-left" style="border-left:2px solid;border-right:1px solid;border-bottom:1px solid white;border-top:1px solid white;padding: 8px;!important;border-bottom:0px solid#000000;">
+												<b>
+          					   <span style="text-decoration-line: underline;">BANK DETAILS:</span><br/>
+          					   <span>NAME:</span>  <span>MENAKA CARD PRIVATE LIMITED</span> <br/>
+          					   <span>BANK:</span>    <span>HDFC BANK(ASHOK NAGAR BRANCH)</span> <br/>
+          					   <span>ACCOUNT NO:</span>   <span>01362290001034</span> <br/>
+          					   <span>IFSC CODE:</span>   <span>HDFC0000136</span>
+          					  </b>
+											</td> 
+											 <td align="center" class="text-right" style="border-right:1px solid;border-bottom:1px solid;border-top:1px solid;padding: 8px;">
+												<b><span t-esc="amount_by_group[0]"/></b>
+											</td>
+											 <td align="center"  class="text-right" style="border-right:2px solid;border-bottom:1px solid;border-top:1px solid;padding: 8px;">
+												<span>₹</span><span t-esc="amount_by_group[1]"/>
+											</td>
+											    <t t-set="rownum" t-value="rownum+1"/>
+								</tr>	
+								<tr>
+								  <td align="center"  t-if="rownum==len(doc.amount_by_group)" style="border-left:1px solid;border-bottom:1px solid;border-right:1px solid;padding: 8px;border-top:1px solid;" class="text-right"><b>NETT TOTAL</b>							
+      						   </td> 
+      							<td align="center"  t-if="rownum==len(doc.amount_by_group)" class="text-right" style="border-right:2px solid;border-bottom:1px solid;padding: 8px;">
+      						    <span t-esc="'{0:,.0f}'.format(int(doc.amount_total))"/></td>
+								</tr>
+					  <tr style="">
+					   <td colspan="7" style="border-left:2px solid;border-right:2px solid;border-top:1px solid;border-bottom:1px solid;padding: 8px;"> <b><span>Rupees in Words:</span> </b><span t-field="doc.amount_total_words"/><span> </span><span>Only</span>
+						</td>
+						
+					</tr>	
+
+					</tbody>
+				</table>
+				
+				<table class="table table-bordered" style="margin-top:-17px;width:95%">
+				 <t>
+				 <tr>
+				    <td style="height:30px;border-left:2px solid;border-right:1px solid;border-bottom:2px solid;border-top:1px solid;padding: 8px;" colspan="4"><b>Received the above goods in good condition </b><br/><br/><br/><br/><b><span>E &amp; </span><span>O.E</span></b>								
+				    </td>
+					<td class="text-center" colspan="13" style="height:30px;border-top:1px solid;border-right:2px solid;border-bottom:2px solid;padding: 8px;"><b><span>FOR MENAKA CARD PRIVATE LIMITED </span></b> <br/><br/><br/><br/><b><span>AUTHORISED SIGNATORY</span></b></td>														
+					
+				 </tr>			 
+				 </t>	
+				</table>
+			</div>
+			<div style="page-break-after:always;"/>
+			<br/>
+			<div class="page">
+				<br></br>
+				<br></br>
+				<br></br>
+				<br></br>
+				<br></br>	
+				<br></br>
+				<br></br>				
+				<table class="table table-bordered" style="width:95%">
+				<t>
+					<tr>
+				   
+						<td  class="text-right"  style="width:55%;font-size:18px;border-left:2px solid;border-bottom:1px solid;border-top:2px solid;padding: 8px;!important ;border-right:8px;">	
+							<b>INVOICE</b></td>
+						<td class="text-right" style="border-right:2px solid;border-bottom:1px solid;border-top:2px solid;!important ;border-left:8px;">
+							<span>DUPLICATE</span> 
+						</td>
+					
+					</tr>
+				</t>	
+				</table>
+				  
+					<table class="table table-bordered" style="margin-top:-17px;width:95%">
+					 <tr>
+					  <t>
+					  <td style="border-left:2px solid;border-top:1px solid;!important ;border-right:8px;">
+						<b><span>CONCERN NAME   :</span></b> <span>   </span> <span t-field="doc.partner_id.name"/>
+						<br/>
+						<b><span>CONTACT PERSON  :</span></b> <span>   </span> <span t-field="doc.partner_id.name"/>
+						<br/>
+						<b><span>ADDRESS   :</span></b> <span/>   <span t-field="doc.partner_id.street"/>,<span t-field="doc.partner_id.street2"/><br/><span t-field="doc.partner_id.city"/><br/><span t-field="doc.partner_id.state_id"/>,<span t-field="doc.partner_id.zip"/>
+						<br/>
+						<b><span>MOBILE NUMBER   :</span></b> <t t-if="doc.partner_id.phone"><span>1)</span> <span t-field="doc.partner_id.phone"/></t> <t t-if="doc.partner_id.mobile"> <span>2)</span> <span/> <span t-field="doc.partner_id.mobile"/></t>
+						<br/>
+						<b><span>GST DETAILS  :</span></b>	<span>     </span> <span t-field="doc.partner_id.vat"/>
+						<br/>
+						<b><span>e-mail  :</span></b> <span/>   <span t-field="doc.partner_id.email"/>
+						<br/>
+						<b><span>DISPATCHED BY  :</span></b>	<span>     </span> 	<span t-field="doc.dispatched"/>		
+					</td>
+					<td class="text-right" style="border-right:2px solid;border-top:1px solid;!important ;border-left:8px;">
+					     <b><span>INVOICE NO :</span></b><span t-field="doc.name"/><br/><b><span> DATE:</span></b>	<span t-field="doc.invoice_date"/>
+					  </td>
+				  </t>
+				</tr>			  									
+				</table>
+				
+				<table class="table table-bordered" style="margin-top:-17px;width:95%">
+				    <thead>
+						<tr>
+							<th style="border-left:2px solid;border-bottom:1px solid;border-top:1px solid;border-right:1px solid;padding: 8px;">S.No</th>
+							<th style="border: 1px solid;padding: 8px;" class="text-center">DESCRIPTION</th>
+							<th style="border: 1px solid;padding: 8px;" class="text-center">HSN CODE</th>
+							<th style="border: 1px solid;padding: 8px;" class="text-center">BATCH NUMBER</th>
+							<th style="border: 1px solid;padding: 8px;" class="text-center">QUANTITY IN BOTTLES</th>
+							<th style="border: 1px solid;padding: 8px;" class="text-center">PRICE PER BOTTLE </th>
+							<th style="border-right:2px solid;border-bottom:1px solid;border-top:1px solid;padding: 8px;" colspan="7" class="text-center">AMOUNT</th>
+						</tr>
+				    </thead>
+				    <tbody>
+					    <t t-set="sno" t-value="1"/>
+				    	<t t-foreach="doc.invoice_line_ids" t-as="line">
+						<tr>
+						    <td style="border-left:2px solid;border-bottom:1px solid;border-right:1px solid;padding: 8px;" class="text-center">  <span t-esc="sno"/></td>
+							<td style="border: 1px solid;padding: 8px;" class="text-center"> <span t-field="line.name"/></td>
+							<td style="border: 1px solid;padding: 8px;" class="text-center"> <span t-field="line.product_id.l10n_in_hsn_code"/> </td>
+							<td style="border: 1px solid;padding: 8px;" class="text-center"> <t t-foreach="line.sale_line_ids" t-as="obj"><span t-field="obj.lot_ids.name"/></t></td>
+							<td style="border: 1px solid;padding: 8px;" class="text-center"> <span t-esc="'{0:,.0f}'.format(int(line.quantity))"/></td>
+							<td style="border: 1px solid;padding: 8px;" class="text-center"> <span>₹</span><span t-field="line.price_unit"/></td>
+							
+							<td style="border-right:2px solid;border-bottom:1px solid;padding: 8px;" colspan="7" class="text-right">  <span t-field="line.price_subtotal" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: doc.currency_id}"/></td>
+						</tr>						
+						<t>
+							<t t-set="sno" t-value="sno+1"/>
+						</t>
+						</t>
+						<t t-set="rownum" t-value="0"/>
+
+
+					          
+						    <tr t-foreach="doc.amount_by_group" t-as="amount_by_group" style="">
+											<td t-if="rownum==0" colspan="5" t-att-rowspan="len(doc.amount_by_group)+1" class="text-left" style="border-left:2px solid;border-right:1px solid;border-bottom:1px solid white;border-top:1px solid white;padding: 8px;!important;border-bottom:0px solid#000000;">
+												<b>
+          					   <span style="text-decoration-line: underline;">BANK DETAILS:</span><br/>
+          					   <span>NAME:</span>  <span>MENAKA CARD PRIVATE LIMITED</span> <br/>
+          					   <span>BANK:</span>    <span>HDFC BANK(ASHOK NAGAR BRANCH)</span> <br/>
+          					   <span>ACCOUNT NO:</span>   <span>01362290001034</span> <br/>
+          					   <span>IFSC CODE:</span>   <span>HDFC0000136</span>
+          					  </b>
+											</td> 
+											 <td align="center" class="text-right" style="border-right:1px solid;border-bottom:1px solid;border-top:1px solid;padding: 8px;">
+												<b><span t-esc="amount_by_group[0]"/></b>
+											</td>
+											 <td align="center"  class="text-right" style="border-right:2px solid;border-bottom:1px solid;border-top:1px solid;padding: 8px;">
+												<span>₹</span><span t-esc="amount_by_group[1]"/>
+											</td>
+											    <t t-set="rownum" t-value="rownum+1"/>
+								</tr>	
+								<tr>
+								  <td align="center"  t-if="rownum==len(doc.amount_by_group)" style="border-left:1px solid;border-bottom:1px solid;border-right:1px solid;padding: 8px;border-top:1px solid;" class="text-right"><b>NETT TOTAL</b>							
+      						   </td> 
+      							<td align="center"  t-if="rownum==len(doc.amount_by_group)" class="text-right" style="border-right:2px solid;border-bottom:1px solid;padding: 8px;">
+      						    <span t-esc="'{0:,.0f}'.format(int(doc.amount_total))"/></td>
+								</tr>
+					  <tr style="">
+					   <td colspan="7" style="border-left:2px solid;border-right:2px solid;border-top:1px solid;border-bottom:1px solid;padding: 8px;"> <b><span>Rupees in Words:</span> </b> <span t-field="doc.amount_total_words"/><span> </span><span>Only</span>
+						</td>
+						
+					</tr>	
+											
+						
+					</tbody>
+				</table>
+				
+				<table class="table table-bordered" style="margin-top:-17px;width:95%">
+				 <t>
+				 <tr>
+				    <td style="height:30px;border-left:2px solid;border-right:1px solid;border-bottom:2px solid;border-top:1px solid;padding: 8px;" colspan="4"><b>Received the above goods in good condition </b><br/><br/><br/><br/><b><span>E &amp; </span><span>O.E</span></b>								
+				    </td>
+					<td class="text-center" colspan="13" style="height:30px;border-top:1px solid;border-right:2px solid;border-bottom:2px solid;padding: 8px;"><b><span>FOR MENAKA CARD PRIVATE LIMITED </span></b> <br/><br/><br/><br/><b><span>AUTHORISED SIGNATORY</span></b></td>														
+					
+				 </tr>			 
+				 </t>	
+				</table>
+			</div>
+			<div style="page-break-after:always;"/>
+			<br/>
+			<div class="page">
+				<br></br>
+				<br></br>
+				<br></br>
+				<br></br>
+				<br></br>	
+				<br></br>
+				<br></br>				
+				<table class="table table-bordered" style="width:95%">
+				   <t>
+				   <tr>
+						<td  class="text-right"  style="width:55%;font-size:18px;border-left:2px solid;border-bottom:1px solid;border-top:2px solid;padding: 8px;!important ;border-right:8px;">	
+							<b>INVOICE</b></td>
+						<td class="text-right" style="border-right:2px solid;border-bottom:1px solid;border-top:2px solid;!important ;border-left:8px;">
+							<span>TRIPLICATE</span> 
+						</td>
+					
+					</tr>
+				</t>	
+				</table>
+				  
+					<table class="table table-bordered" style="margin-top:-17px;width:95%">
+					 <tr>
+					  <t>
+					  <td style="border-left:2px solid;border-top:1px solid;!important ;border-right:8px;">
+						<b><span>CONCERN NAME   :</span></b> <span>   </span> <span t-field="doc.partner_id.name"/>
+						<br/>
+						<b><span>CONTACT PERSON  :</span></b> <span>   </span> <span t-field="doc.partner_id.name"/>
+						<br/>
+						<b><span>ADDRESS   :</span></b> <span/>   <span t-field="doc.partner_id.street"/>,<span t-field="doc.partner_id.street2"/><br/><span t-field="doc.partner_id.city"/><br/><span t-field="doc.partner_id.state_id"/>,<span t-field="doc.partner_id.zip"/>
+						<br/>
+						<b><span>MOBILE NUMBER   :</span></b> <t t-if="doc.partner_id.phone"><span>1)</span> <span t-field="doc.partner_id.phone"/></t> <t t-if="doc.partner_id.mobile"> <span>2)</span> <span/> <span t-field="doc.partner_id.mobile"/></t>
+						<br/>
+						<b><span>GST DETAILS  :</span></b>	<span>     </span> <span t-field="doc.partner_id.vat"/>
+						<br/>
+						<b><span>e-mail  :</span></b> <span/>   <span t-field="doc.partner_id.email"/>
+						<br/>
+						<b><span>DISPATCHED BY  :</span></b>	<span>     </span> 	<span t-field="doc.dispatched"/>		
+					</td>
+					<td class="text-right" style="border-right:2px solid;border-top:1px solid;!important ;border-left:8px;">
+					     <b><span>INVOICE NO :</span></b><span t-field="doc.name"/><br/><b><span> DATE:</span></b>	<span t-field="doc.invoice_date"/>
+					  </td>
+				  </t>
+				</tr>			  									
+				</table>
+				
+				<table class="table table-bordered" style="margin-top:-17px;width:95%">
+				    <thead>
+						<tr>
+							<th style="border-left:2px solid;border-bottom:1px solid;border-top:1px solid;border-right:1px solid;padding: 8px;">S.No</th>
+							<th style="border: 1px solid;padding: 8px;" class="text-center">DESCRIPTION</th>
+							<th style="border: 1px solid;padding: 8px;" class="text-center">HSN CODE</th>
+							<th style="border: 1px solid;padding: 8px;" class="text-center">BATCH NUMBER</th>
+							<th style="border: 1px solid;padding: 8px;" class="text-center">QUANTITY IN BOTTLES</th>
+							<th style="border: 1px solid;padding: 8px;" class="text-center">PRICE PER BOTTLE </th>
+							<th style="border-right:2px solid;border-bottom:1px solid;border-top:1px solid;padding: 8px;" colspan="7" class="text-center">AMOUNT</th>
+						</tr>
+				    </thead>
+				    <tbody>
+					    <t t-set="sno" t-value="1"/>
+				    	<t t-foreach="doc.invoice_line_ids" t-as="line">
+						<tr>
+						    <td style="border-left:2px solid;border-bottom:1px solid;border-right:1px solid;padding: 8px;" class="text-center">  <span t-esc="sno"/></td>
+							<td style="border: 1px solid;padding: 8px;" class="text-center"> <span t-field="line.name"/></td>
+							<td style="border: 1px solid;padding: 8px;" class="text-center"> <span t-field="line.product_id.l10n_in_hsn_code"/> </td>
+							<td style="border: 1px solid;padding: 8px;" class="text-center"> <t t-foreach="line.sale_line_ids" t-as="obj"><span t-field="obj.lot_ids.name"/></t></td>
+							<td style="border: 1px solid;padding: 8px;" class="text-center"> <span t-esc="'{0:,.0f}'.format(int(line.quantity))"/></td>
+							<td style="border: 1px solid;padding: 8px;" class="text-center"> <span>₹</span><span t-field="line.price_unit"/></td>
+							
+							<td style="border-right:2px solid;border-bottom:1px solid;padding: 8px;" colspan="7" class="text-right">  <span t-field="line.price_subtotal" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: doc.currency_id}"/></td>
+						</tr>						
+						<t>
+							<t t-set="sno" t-value="sno+1"/>
+						</t>
+						</t>
+						<t t-set="rownum" t-value="0"/>
+
+
+					          
+						    <tr t-foreach="doc.amount_by_group" t-as="amount_by_group" style="">
+											<td t-if="rownum==0" colspan="5" t-att-rowspan="len(doc.amount_by_group)+1" class="text-left" style="border-left:2px solid;border-right:1px solid;border-bottom:1px solid white;border-top:1px solid white;padding: 8px;!important;border-bottom:0px solid#000000;">
+												<b>
+          					   <span style="text-decoration-line: underline;">BANK DETAILS:</span><br/>
+          					   <span>NAME:</span>  <span>MENAKA CARD PRIVATE LIMITED</span> <br/>
+          					   <span>BANK:</span>    <span>HDFC BANK(ASHOK NAGAR BRANCH)</span> <br/>
+          					   <span>ACCOUNT NO:</span>   <span>01362290001034</span> <br/>
+          					   <span>IFSC CODE:</span>   <span>HDFC0000136</span>
+          					  </b>
+											</td> 
+											 <td align="center" class="text-right" style="border-right:1px solid;border-bottom:1px solid;border-top:1px solid;padding: 8px;">
+												<b><span t-esc="amount_by_group[0]"/></b>
+											</td>
+											 <td align="center"  class="text-right" style="border-right:2px solid;border-bottom:1px solid;border-top:1px solid;padding: 8px;">
+												<span>₹</span><span t-esc="amount_by_group[1]"/>
+											</td>
+											    <t t-set="rownum" t-value="rownum+1"/>
+								</tr>	
+								<tr>
+								  <td align="center"  t-if="rownum==len(doc.amount_by_group)" style="border-left:1px solid;border-bottom:1px solid;border-right:1px solid;padding: 8px;border-top:1px solid;" class="text-right"><b>NETT TOTAL</b>							
+      						   </td> 
+      							<td align="center"  t-if="rownum==len(doc.amount_by_group)" class="text-right" style="border-right:2px solid;border-bottom:1px solid;padding: 8px;">
+      						    <span t-esc="'{0:,.0f}'.format(int(doc.amount_total))"/></td>
+								</tr>
+					  <tr style="">
+					   <td colspan="7" style="border-left:2px solid;border-right:2px solid;border-top:1px solid;border-bottom:1px solid;padding: 8px;"> <b><span>Rupees in Words:</span> </b> <span t-field="doc.amount_total_words"/><span> </span><span>Only</span>
+						</td>
+						
+					</tr>
+
+						
+					</tbody>
+				</table>
+				<table class="table table-bordered" style="margin-top:-17px;width:95%">
+				 <t>
+				 <tr>
+				    <td style="height:30px;border-left:2px solid;border-right:1px solid;border-bottom:2px solid;border-top:1px solid;padding: 8px;" colspan="4"><b>Received the above goods in good condition </b><br/><br/><br/><br/><b><span>E &amp; </span><span>O.E</span></b>								
+				    </td>
+					<td class="text-center" colspan="13" style="height:30px;border-top:1px solid;border-right:2px solid;border-bottom:2px solid;padding: 8px;"><b><span>FOR MENAKA CARD PRIVATE LIMITED </span></b> <br/><br/><br/><br/><b><span>AUTHORISED SIGNATORY</span></b></td>														
+					
+				 </tr>			 
+				 </t>	
+				</table>
+			</div>
+		</t>
+    </template>
+	<template id="external_layout_footer_invoice">
+			
+		</template>
+    
+    <template id="report_invoice_order">
+		<t t-call="web.html_container">
+		  <t t-foreach="docs" t-as="doc">
+			<t t-call="custom_report_amla.report_invoice_document" />
+	       </t>
+		</t>
+	</template>
+	<template id="internal_layout_custom_invoice">
+			<t t-if="not o" t-set="o" t-value="doc" />
+
+			<t t-if="not company">
+				<!-- Multicompany -->
+				<t t-if="company_id">
+					<t t-set="company" t-value="company_id" />
+				</t>
+				<t t-elif="o and 'company_id' in o">
+					<t t-set="company" t-value="o.company_id.sudo()" />
+				</t>
+				<t t-else="else">
+					<t t-set="company" t-value="res_company" />
+				</t>
+			</t>
+
+			<div class="header">
+			<div class="text-center">								
+					<img t-if="company.logos_2"
+						t-att-src="image_data_uri(company.logos_2)" 
+						alt="Logo"
+						style="width:740px;heigth:10px;" />																																	
+			</div>
+        </div>
+
+			<div class="article">
+				<t t-raw="0" />
+			</div>
+
+		</template>
+</odoo>

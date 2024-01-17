@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="mail_template_data_follow_cust_test" model="mail.template">
+            <field name="name">Email send for customer followup</field>
+            <field name="subject">Customer Followup Mail</field>
+            <field name="email_from">
+                ${(object.user_id.email and '&quot;%s&quot; &lt;%s&gt;' % (object.user_id.name, object.user_id.email) or '')|safe}
+            </field>
+            <field name="email_to">${object.email|safe}</field>
+            <field name="model_id" ref="model_res_partner"/>
+            <field name="auto_delete" eval="False"/>
+            <field name="body_html">
+                <![CDATA[
+                <div>
+                    <div align="right">
+                        ${object.name}<br/>
+                        ${object.street}<br/>
+                        ${object.city}<br/>
+                        <br/>
+                        <br/>
+                    </div>
+                     <p align="justify">Dear Sir/Madam, Our records indicate that some payments on your account are still due.
+                     Please find details below. If the amount has already been paid, please disregard this notice.
+                     Otherwise, please forward us the total amount stated below. If you have any queries regarding your account,
+                     Please contact us. Thank you in advance for your cooperation.
+                     Best Regards, </p>
+                     <br/>
+                     <p>Here is your invoice details</p>
+
+                     <div style="margin-left: 15px;" >
+                         <div class="row">
+                             <div style="border: 2px solid black;" class="col" align="center" ><strong>Invoice Date</strong></div>
+                             <div style="border: 2px solid black;" class="col" align="center" ><strong>Description</strong></div>
+                             <div style="border: 2px solid black;" class="col" align="center" ><strong>Reference</strong></div>
+                             <div style="border: 2px solid black;" class="col" align="center" ><strong>Due Date</strong></div>
+                             <div style="border: 2px solid black;" class="col" align="center" ><strong>Amount</strong></div>
+                         </div>
+                         <newline/>
+                         % for lines in object.invoice_list:
+                         <div class="row">
+                            <div style="border: 2px solid black;" class="col" align="center" >${lines.invoice_date}</div>
+                            <div style="border: 2px solid black;" class="col" align="center" >${lines.name}</div>
+                            <div style="border: 2px solid black;" class="col" align="center" >${lines.invoice_payment_ref}</div>
+                            <div style="border: 2px solid black;" class="col" align="center" >${lines.invoice_date_due}</div>
+                            <div style="border: 2px solid black;" class="col" align="center" >${lines.amount_residual_signed}</div>
+                         </div>
+                         <newline/>
+                         % endfor
+                     </div>
+                </div>
+                ]]>
+            </field>
+        </record>
+    </data>
+</odoo>
+
+
+
+
+

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<template id="report_pdf">
+
+			<t t-call="web.html_container">
+			<t t-call="web.basic_layout">
+        <div class="page">
+          <center><h5>Statement</h5></center>
+					<table class="table table-condensed">
+						<thead>
+							<tr>
+								<th>Date</th>
+								<th>Number</th>
+
+								<th>Account</th>
+								<th>Debit</th>
+								<th>Credit</th>
+								<th>Balance</th>
+								<th>Narration</th>
+
+							</tr>
+						</thead>
+										<t t-set="bal" t-value="0.0"/>
+				<t t-foreach="entry" t-as="line">
+						  <t t-foreach="line.line_ids" t-as="lines">
+						    <t t-if="lines.account_id.user_type_id.type == 'receivable' or lines.account_id.user_type_id.type == 'payable'">
+						              		 <t t-if="record.id ==  lines.partner_id.id">
+						      	<tr>
+						      <td><span t-esc="line.date.strftime('%d-%m-%Y')"/></td>
+    							<td><span t-esc="line.name"/></td>
+    							<td><span t-esc="lines.account_id.name"/></td>
+    							<td><span t-esc="lines.debit" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 2}"/></td>
+    							<td><span t-esc="lines.credit" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 2}"/></td>
+    							<t t-set="bal" t-value="bal+ (lines.debit - lines.credit)"/>
+    							<td><span t-esc="bal" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 2}"/></td>
+    							<t t-if="line.narration">
+    							  	<td><span t-esc="line.narration"/></td>
+    							</t>
+    							<t t-else="">
+    							  <td><span t-esc="lines.name"/></td>
+    							</t>
+
+    						</tr>
+    						</t>
+						    </t>
+						    </t>
+    						</t>
+					</table>
+					</div>
+				    <br/>
+					<br/>
+
+						<div class="col-xs-4 pull-right">
+							<td class="text-right">Ending Balance: <span t-esc="ending_balance" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 2}"/>
+							</td>
+					</div>
+			</t>
+			 </t>
+
+
+
+
+        </template>
+
+
+		<template id="supplier_report_pdf">
+
+			<t t-call="web.html_container">
+			<t t-call="web.basic_layout">
+        <div class="page">
+          <center><h5>Statement</h5></center>
+					<table class="table table-condensed">
+						<thead>
+							<tr>
+								<th>Date</th>
+								<th>Number</th>
+
+								<th>Account</th>
+								<th>Debit</th>
+								<th>Credit</th>
+								<th>Balance</th>
+								<th>Narration</th>
+
+							</tr>
+						</thead>
+						<t t-set="bal" t-value="0.0"/>
+					<t t-foreach="entry" t-as="line">
+						  <t t-foreach="line.line_ids" t-as="lines">
+						    <t t-if="lines.account_id.user_type_id.type == 'payable' or lines.account_id.user_type_id.type == 'receivable'">
+						      	<tr>
+						      <td><span t-esc="line.date"/></td>
+    							<td><span t-esc="line.name"/></td>
+    							<td><span t-esc="lines.account_id.name"/></td>
+    							<td><span t-esc="lines.debit" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 2}"/></td>
+    							<td><span t-esc="lines.credit" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 2}"/></td>
+    							<t t-set="bal" t-value="bal+ (lines.debit - lines.credit)"/>
+    							<td><span t-esc="bal" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 2}"/></td>
+    							<t t-if='line.narration'>
+    							  	<td><span t-esc="line.narration"/></td>
+    							</t>
+    							<t t-else="">
+    							  <td><span t-esc="lines.name"/></td>
+    							</t>
+
+    						</tr>
+						    </t>
+						    </t>
+    						</t>
+
+					</table>
+					</div>
+				    <br/>
+					<br/>
+
+						<div class="col-xs-4 pull-right">
+							<td class="text-right">Ending Balance: <span t-esc="ending_balance" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 2}"/>
+							</td>
+					</div>
+			</t>
+			 </t>
+
+
+
+
+		</template>
+
+
+	</data>
+</openerp>

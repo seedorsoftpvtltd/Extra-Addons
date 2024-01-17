@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+<record id="view_partner_inherit_followup_form" model="ir.ui.view">
+			<field name="name">res.partner</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_partner_form" />
+			<field name="arch" type="xml">
+             <xpath expr="//button[@name='do_button_print_statement']" position="after">
+                 <button name="action_print_xls" string="Print XLS" type="object"/>
+             </xpath>
+				<xpath expr="//button[@name='do_button_print_statement_vendor']" position="after">
+
+                 <button name="action_print_supplier_xls" string="Print XLS" type="object"/>
+             </xpath>
+				<xpath expr="//field[@name='currency']" position="after">
+					<field name="report_type"/>
+                    <button name="action_print_overduereport_xls" string="Print XLS" type="object"/>
+				</xpath>
+			</field>
+		</record>
+	</data>
+</odoo>
