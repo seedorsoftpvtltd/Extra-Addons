@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="onboarding_gratuity_step1">
+        <t t-call="gratuity_onboarding.onboarding_default_steps">
+            <t t-set="title">Settlement Types</t>
+            <t t-set="description">
+                Confirm your organization’s settlement types.
+            </t>
+<!--            <t t-set="sl">1</t>-->
+<!--            <t t-set="btn_text">Check In/Check Out</t>-->
+<!--          <t t-set="cnt_text" t-value="request.env['hr.department'].search_count([])">-->
+<!--              <t t-esc="cnt_text">Departments</t>-->
+<!--            </t>-->
+<!--            <t t-set="cnt_desc">Records</t>+-->
+             <t t-set="sl">1</t>
+<!--            <t t-set="method" t-value="'onboarding_step1_action'" />-->
+<!--            <t t-set="model" t-value="'hr.attendance'" />-->
+<!--            <t t-set="state" t-value="state.get('onboarding_step1_state')" />-->
+        </t>
+    </template>
+    <template id="onboarding_gratuity_step2">
+        <t t-call="gratuity_onboarding.onboarding_default_steps">
+            <t t-set="title">Gratuity Calculation</t>
+            <t t-set="description">
+                Select the Employee and the settlement type.
+            </t>
+<!--            <t t-set="sl">2</t>-->
+<!--            <t t-set="btn_text1">Regularization</t>-->
+<!--          <t t-set="cnt_text" t-value="request.env['hr.department'].search_count([])">-->
+<!--              <t t-esc="cnt_text">Departments</t>-->
+<!--            </t>-->
+<!--            <t t-set="cnt_desc">Records</t>+-->
+             <t t-set="sl">2</t>
+<!--            <t t-set="method" t-value="'onboarding_step2_action'" />-->
+<!--            <t t-set="model" t-value="'hr.attendance'" />-->
+<!--            <t t-set="state" t-value="state.get('onboarding_step1_state')" />-->
+        </t>
+    </template>
+    <template id="onboarding_gratuity_step3">
+        <t t-call="gratuity_onboarding.onboarding_default_steps">
+            <t t-set="title">Gratuity Guideline</t>
+            <t t-set="description">
+                Seedor calculates the employees settlement after clicking the Gratuity Calculation. Refer the Gratuity guideline for the slab details.
+            </t>
+
+<!--            <t t-set="btn_text2">Import</t>-->
+<!--&lt;!&ndash;            <t t-set="btn_text1">Import Template</t>&ndash;&gt;-->
+<!--            <t t-set="btn_text3">Google Sync</t>-->
+            <t t-set="sl">3</t>
+<!--            <t t-set="method1" t-value="'onboarding_step3_action'" />-->
+<!--            <t t-set="model" t-value="'hr.attendance'" />-->
+<!--            <t t-set="method2" t-value="'onboarding_step4_action'" />-->
+<!--            <t t-set="model" t-value="'hr.attendance'" />-->
+
+
+        </t>
+    </template>
+    <template id="onboarding_gratuity_step4">
+        <t t-call="gratuity_onboarding.onboarding_default_steps">
+            <t t-set="title">Employee Settlement</t>
+            <t t-set="description">
+                Encash the balance leaves, and then Final Gratuity Calculation will be  done.
+            </t>
+
+<!--            <t t-set="btn_text">Review</t>-->
+<!--          <t t-set="cnt_text" t-value="request.env['hr.department'].search_count([])">-->
+<!--              <t t-esc="cnt_text">Departments</t>-->
+<!--            </t>-->
+<!--            <t t-set="cnt_desc">Records</t>+-->
+             <t t-set="sl">4</t>
+<!--            <t t-set="method" t-value="'onboarding_step1_action'" />-->
+<!--            <t t-set="model" t-value="'res.company'" />-->
+<!--            <t t-set="state" t-value="state.get('onboarding_step1_state')" />-->
+        </t>
+    </template>
+
+
+
+
+
+
+
+    <template id="gratuity_dashboard_onboarding_panel" name="onboarding.gratuity.onboarding.panel">
+        <t t-call="gratuity_onboarding.onboarding_default_container">
+            <t t-set="classes" t-value="'o_onboarding_blue'"/>
+<!--            <t t-set="bg_image" t-value="'/onboarding/static/src/img/attendance_dashboard_onboarding_bg.jpg'"/>-->
+<!--            <t t-set="close_method" t-value="'action_close_account_dashboard_onboarding'"/>-->
+<!--            <t t-set="close_model" t-value="'res.company'"/>-->
+<!--            <t t-set="text_completed">Congratulations! You are all set.</t>-->
+
+            <t t-call="gratuity_onboarding.onboarding_gratuity_step1" name="settlement_type" />
+            <t t-call="gratuity_onboarding.onboarding_gratuity_step2" name="gratuity_calculation" />
+            <t t-call="gratuity_onboarding.onboarding_gratuity_step3" name="gratuity_guideline" />
+            <t t-call="gratuity_onboarding.onboarding_gratuity_step4" name="employee_settlement" />
+
+
+        </t>
+    </template>
+</odoo>

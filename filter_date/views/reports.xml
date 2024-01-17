@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<!-- followup of customers views -->
+
+
+		<report
+            id="report_filter_print"
+            string="Overdue Report"
+            model="res.partner"
+            report_type="qweb-pdf"
+            file="filter_date.report_filter_print1"
+            name="filter_date.report_filter_print1"
+            attachment="(object.name + '_Overdue Report.pdf')"
+        />
+		<report
+            id="report_filter_print_customer"
+            string="Customer Report"
+            model="res.partner"
+            report_type="qweb-pdf"
+            file="filter_date.report_filter_print1_customer"
+            name="filter_date.report_filter_print1_customer"
+            attachment="(object.name + '_Customer Statement Report.pdf')"
+        />
+		<report
+            id="report_filter_print_vendor"
+            string="Vendor Report"
+            model="res.partner"
+            report_type="qweb-pdf"
+            file="filter_date.report_filter_print1_vendor"
+            name="filter_date.report_filter_print1_vendor"
+            attachment="(object.name + '_Vendor Report.pdf')"
+        />
+
+
+
+    </data>
+</odoo>

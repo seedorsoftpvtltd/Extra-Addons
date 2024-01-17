@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+     <record model="ir.ui.view" id="view_gio_order_line_secondary_unit">
+            <field name="name">goods.issue.order.form.sec</field>
+            <field name="model">goods.issue.order</field>
+            <field name="inherit_id" ref="gio_custom_view.gio_view_form_custom_view"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='order_line']/tree/field[@name='product_uom']" position="after">
+                    <field name="sh_sec_qty"/>
+                    <field name="sh_sec_uom"/>
+                </xpath>
+
+            </field>
+        </record>
+
+</odoo>

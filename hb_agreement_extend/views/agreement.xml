@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <record id="view_pickingform" model="ir.ui.view">
+		<field name="name">agreement.view</field>
+		<field name="model">agreement</field>
+		<field name="inherit_id" ref="agreement.agreement_form"/>
+		<field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="replace">
+                                    <field name="type"/>
+                <field name="partner_id" required="0" attrs="{'invisible': [('type','=','cfs')]}"/>
+            </xpath>
+                 <xpath expr="//field[@name='domain']" position="replace">
+                <field name="domain" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='signature_date']" position="replace">
+                <field name="signature_date" invisible="1"/>
+            </xpath>
+
+                    <xpath expr='//sheet' position="inside">
+
+                 <group>
+                          <field name="charge_lines" string="Service Charges" delete="0" mode="tree" readonly="0" attrs="{'invisible': [('type','!=','warehouse')]}">
+                              <field name="charge_liness"/>
+                            <tree editable="1">
+                             <field name="charge_type" readonly="1"/>
+                     <field name="storage_uom" attrs="{'readonly': [('charge_type','!=','storage')]}"/>
+
+                                <field name="charge_unit_type"/>
+                                 <field name="uom_id" attrs="{'invisible': [('charge_unit_type','!=','custom')]}"/>
+                                  <field name="product_id" domain="[('type','=','service')]"/>
+
+<!--                              <field name="qty"/>-->
+<!--                                <field name="uom_id"/>-->
+                                 <field name="list_price" digits="[5,3]"/>
+                                <field name="tax_id"/>
+                               <field name="container" invisible="1"/>
+                                <field name="storage_type"/>
+                                <field name="added_service" invisible="1"/>
+
+<!--                              <field name="cost_price" />-->
+<!--                                <field name="sale_total" />-->
+                                <field name="currency_id" invisible="1" />
+
+                              <field name="agreement_id" invisible="1"/>
+                            </tree>
+
+                          </field>
+
+                 </group>
+
+                        <group>
+                          <field name="charge_lines_new" string="Service Charges" delete="0" mode="tree" readonly="0" attrs="{'invisible': [('type','!=','cfs')]}">
+                              <field name="charge_lines_new"/>
+                            <tree editable="1">
+                              <field name="product_id" domain="[('type','=','service')]"/>
+                                 <field name="list_price" digits="[5,3]"/>
+                                <field name="charge_type"/>
+                                <field name="fromm"/>
+                                <field name="to"/>
+                                <field name="duration" invisible="1"/>
+                                <field name="charge_unit_type" string="UOM"/>
+                                <field name="storage_type"/>
+                                <field name="currency_id" invisible="1" />
+
+                              <field name="agree_id" invisible="1"/>
+                            </tree>
+
+                          </field>
+
+                 </group>
+
+            </xpath>
+        </field>
+        </record>
+
+</odoo>
+

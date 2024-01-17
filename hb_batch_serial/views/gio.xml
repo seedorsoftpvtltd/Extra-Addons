@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="view_gio_form_inherit_serial" model="ir.ui.view">
+            <field name="name">goods.issue.order.form</field>
+            <field name="model">goods.issue.order</field>
+            <field name="inherit_id" ref="gio.views_order_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="after">
+                               <field name="serialno" widget="many2many_tags" domain="[('product_id.free_qty', '&gt;', 0)]"/>
+                    <field name="batchno" widget="many2many_tags" domain="[('product_id.free_qty', '&gt;', 0)]"/>
+
+                           </xpath>
+            </field>
+        </record>
+
+</odoo>

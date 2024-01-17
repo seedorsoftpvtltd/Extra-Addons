@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="onboarding_googlesheet_step1">
+        <t t-call="google_sheet_import_onboarding.onboarding_default_steps">
+            <t t-set="title">Bulk\Single Import</t>
+            <t t-set="description">
+                Select single or bulk google sheet upload card of required type.
+            </t>
+            <t t-set="sl">1</t>
+<!--            <t t-set="btn_text">Review</t>-->
+<!--          <t t-set="cnt_text" t-value="request.env['hr.department'].search_count([])">-->
+<!--              <t t-esc="cnt_text">Departments</t>-->
+<!--            </t>-->
+<!--            <t t-set="cnt_desc">Records</t>+-->
+<!--             <t t-set="sl">1</t>-->
+<!--            <t t-set="method" t-value="'onboarding_step1_action'" />-->
+<!--            <t t-set="model" t-value="'res.company'" />-->
+<!--            <t t-set="state" t-value="state.get('onboarding_step1_state')" />-->
+        </t>
+    </template>
+    <template id="onboarding_googlesheet_step2">
+        <t t-call="google_sheet_import_onboarding.onboarding_default_steps">
+            <t t-set="title">Reference Sheet</t>
+            <t t-set="description">
+                Explore &#38; familiarize the sample google sheet with the guidelines given under the selected card.
+            </t>
+            <t t-set="sl">2</t>
+<!--            <t t-set="btn_text">Review</t>-->
+<!--          <t t-set="cnt_text" t-value="request.env['hr.department'].search_count([])">-->
+<!--              <t t-esc="cnt_text">Departments</t>-->
+<!--            </t>-->
+<!--            <t t-set="cnt_desc">Records</t>+-->
+<!--             <t t-set="sl">1</t>-->
+<!--            <t t-set="method" t-value="'onboarding_step1_action'" />-->
+<!--            <t t-set="model" t-value="'res.company'" />-->
+<!--            <t t-set="state" t-value="state.get('onboarding_step1_state')" />-->
+        </t>
+    </template>
+    <template id="onboarding_googlesheet_step3">
+        <t t-call="google_sheet_import_onboarding.onboarding_default_steps">
+            <t t-set="title">Add google Sheet</t>
+            <t t-set="description">
+                Create a google sheet and add the link in 'URL' by editing the card.
+            </t>
+            <t t-set="sl">3</t>
+            <t t-set="btn_text">Login</t>
+            <t t-set="method" t-value="'onboarding_login_action'" />
+            <t t-set="model" t-value="'google.spreadsheet.import'" />
+
+        </t>
+    </template>
+    <template id="onboarding_googlesheet_step4">
+        <t t-call="google_sheet_import_onboarding.onboarding_default_steps">
+            <t t-set="title">Share the Sheet</t>
+            <t t-set="description">
+                Share the sheet with your employees for filling the sheet with data.
+            </t>
+            <t t-set="sl">4</t>
+<!--            <t t-set="btn_text">Review</t>-->
+<!--          <t t-set="cnt_text" t-value="request.env['hr.department'].search_count([])">-->
+<!--              <t t-esc="cnt_text">Departments</t>-->
+<!--            </t>-->
+<!--            <t t-set="cnt_desc">Records</t>+-->
+<!--             <t t-set="sl">1</t>-->
+<!--            <t t-set="method" t-value="'onboarding_step1_action'" />-->
+<!--            <t t-set="model" t-value="'res.company'" />-->
+<!--            <t t-set="state" t-value="state.get('onboarding_step1_state')" />-->
+        </t>
+    </template>
+    <template id="onboarding_googlesheet_step5">
+        <t t-call="google_sheet_import_onboarding.onboarding_default_steps">
+            <t t-set="title">Sync Data</t>
+            <t t-set="description">
+                Complete data fill, click 'sync data' to import details in the system.
+            </t>
+            <t t-set="sl">5</t>
+<!--            <t t-set="btn_text">Review</t>-->
+<!--          <t t-set="cnt_text" t-value="request.env['hr.department'].search_count([])">-->
+<!--              <t t-esc="cnt_text">Departments</t>-->
+<!--            </t>-->
+<!--            <t t-set="cnt_desc">Records</t>+-->
+<!--             <t t-set="sl">1</t>-->
+<!--            <t t-set="method" t-value="'onboarding_step1_action'" />-->
+<!--            <t t-set="model" t-value="'res.company'" />-->
+<!--            <t t-set="state" t-value="state.get('onboarding_step1_state')" />-->
+        </t>
+    </template>
+
+
+
+
+
+
+    <template id="googlesheet_dashboard_onboarding_panel" name="onboarding.googlesheet.onboarding.panel">
+        <t t-call="google_sheet_import_onboarding.onboarding_default_container">
+            <t t-set="classes" t-value="'o_onboarding_blue'"/>
+            <!--t t-set="bg_image" t-value="'/onboarding/static/src/img/employee_dashboard_onboarding_bg.jpg'"/-->
+<!--            <t t-set="close_method" t-value="'action_close_account_dashboard_onboarding'"/>-->
+<!--            <t t-set="close_model" t-value="'res.company'"/>-->
+<!--            <t t-set="text_completed">Congratulations! You are all set.</t>-->
+
+            <t t-call="google_sheet_import_onboarding.onboarding_googlesheet_step1" name="bulk_import" />
+            <t t-call="google_sheet_import_onboarding.onboarding_googlesheet_step2" name="ref_sheet" />
+            <t t-call="google_sheet_import_onboarding.onboarding_googlesheet_step3" name="google_sheet" />
+            <t t-call="google_sheet_import_onboarding.onboarding_googlesheet_step4" name="share_sheet" />
+            <t t-call="google_sheet_import_onboarding.onboarding_googlesheet_step5" name="sync_data" />
+
+        </t>
+    </template>
+</odoo>

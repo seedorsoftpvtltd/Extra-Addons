@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="tax_slab_configuration_view_list_view" model="ir.ui.view">
+            <field name="name">Tax Slab</field>
+            <field name="model">tax.configuration</field>
+            <field name="arch" type="xml">
+                <tree string="Tax Slab">
+                    <field name="income_range"/>
+                    <field name="tax"/>
+                    <field name="range_from"/>
+                    <field name="range_to"/>
+                </tree>
+            </field>
+        </record>
+        <record id="tax_slab_configuration_view_form_view" model="ir.ui.view">
+            <field name="name">tax.configuration.form</field>
+            <field name="model">tax.configuration</field>
+            <field name="arch" type="xml">
+                <form string="Tax Configuration">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="income_range"/>
+                                <field name="tax"/>
+                            </group>
+                            <group>
+                                <field name="range_from"/>
+                                <field name="range_to"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="tax_slab_configuration_action" model="ir.actions.act_window">
+            <field name="name">Tax Slab Configuration</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">tax.configuration</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a New Tax Slab
+                </p>
+            </field>
+        </record>
+        <menuitem
+                id="menu_tax_slab_configuration"
+                action="tax_slab_configuration_action"
+                name="Tax Slab"
+                parent="hr.menu_human_resources_configuration"
+                sequence="0"/>
+    </data>
+</odoo>

@@ -1,0 +1,6 @@
+access_account_period_manager,account.period,model_account_period,account.group_account_manager,1,1,1,1
+access_account_period_user,account.period,model_account_period,account.group_account_user,1,0,1,0
+access_account_period_invoice,account.period invoice,model_account_period,account.group_account_invoice,1,0,0,0
+access_account_fiscalyear,account.fiscalyear,model_account_fiscalyear,account.group_account_manager,1,1,1,1
+access_account_fiscalyear_user,account.fiscalyear,model_account_fiscalyear,account.group_account_user,1,0,1,0
+access_account_fiscalyear_invoice,account.fiscalyear.invoice,model_account_fiscalyear,account.group_account_invoice,1,0,0,0

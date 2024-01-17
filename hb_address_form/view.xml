@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<template id="address_inh" name="Address Management" inherit_id="website_sale.address">
+		<xpath expr="//div[label[@for='company_name']]" position="after">
+                 <div t-attf-class="form-group #{error.get('comp_email') and 'o_has_error' or ''} col-lg-6" id="div_comp_email">
+                    <label class="col-form-label" for="comp_email">Company Email</label>
+                    <input type="text" name="comp_email" t-attf-class="form-control #{error.get('comp_email') and 'is-invalid' or ''}" t-att-value="'comp_email' in checkout and checkout['comp_email']" />
+                </div>
+
+             <div t-attf-class="form-group #{error.get('comp_mobile') and 'o_has_error' or ''} col-lg-6" id="div_comp_mobile">
+                    <label class="col-form-label" for="comp_mobile">Company Mobile</label>
+                    <input type="text" name="comp_mobile" t-attf-class="form-control #{error.get('comp_mobile') and 'is-invalid' or ''}" t-att-value="'comp_mobile' in checkout and checkout['comp_mobile']" />
+               </div>
+
+             <div t-attf-class="form-group #{error.get('comp_website') and 'o_has_error' or ''} col-lg-6" id="div_comp_website">
+                    <label class="col-form-label" for="comp_website">Company Website</label>
+                    <input type="text" name="comp_website" t-attf-class="form-control #{error.get('comp_website') and 'is-invalid' or ''}" t-att-value="'comp_website' in checkout and checkout['comp_website']" />
+                </div>
+
+      </xpath>
+           <xpath expr="//div[label[@for='company_name']]" position="replace">
+            <div t-attf-class="form-group #{error.get('company_name') and 'o_has_error' or ''} col-lg-6" id="div_company_name">
+               <!-- <div class="form-group row form-field o_website_form_required_custom">-->
+                    <label class="col-form-label" for="company_name">Company Name</label>
+                 <input type="text" name="company_name" t-attf-class="form-control #{error.get('company_name') and 'is-invalid' or ''}" t-att-value="'company_name' in checkout and checkout['company_name']" />
+            </div>
+             <input type="hidden" name="field_required" t-att-value="'company_name,comp_email,comp_mobile,comp_website,phone,street2,zip'" />
+        </xpath>
+
+         <!--xpath expr="//div[label[@for='vat']]" position="replace">
+            <div t-attf-class="form-group #{error.get('comp_vat') and 'o_has_error' or ''} col-lg-6" id="div_comp_vat"-->
+               <!-- <div class="form-group row form-field o_website_form_required_custom">-->
+                    <!--label class="col-form-label" for="comp_vat">VAT/GSTIN</label>
+                 <input type="text" name="comp_vat" t-attf-class="form-control #{error.get('comp_vat') and 'is-invalid' or ''}" t-att-value="'company_name' in checkout and checkout['comp_vat']" />
+            </div>
+
+        </xpath-->
+
+    	</template>
+
+ <data>
+<!--         <record id="sale.model_sale_order" model="ir.model">-->
+<!--            <field name="website_form_access" eval="True"/>-->
+<!--            <field name="website_form_label">Sales Order</field>-->
+<!--        </record>-->
+<!--        <function model="ir.model.fields" name="formbuilder_whitelist">-->
+<!--            <value>sale.order</value>-->
+<!--            <value eval="[-->
+<!--                'comp_email',-->
+<!--                'x_comp_email',-->
+<!--            ]"/>-->
+<!--        </function>-->
+         <record id="base.model_res_partner" model="ir.model">
+            <field name="website_form_key">create_customer</field>
+            <field name="website_form_access">True</field>
+            <field name="website_form_label">Create a Customer</field>
+        </record>
+        <function model="ir.model.fields" name="formbuilder_whitelist">
+            <value>res.partner</value>
+            <value eval="[
+                'comp_email',
+                'comp_mobile',
+                'comp_website',
+                'company_name',
+            ]"/>
+        </function>
+ </data>
+
+  <record id="view_partner_inh" model="ir.ui.view">
+		<field name="model">res.partner</field>
+		<field name="inherit_id" ref="base.view_partner_form"/>
+		<field name="arch" type="xml">
+			<xpath expr="//field[@name='type']" position="after">
+				<field name="comp_email" />
+                <field name="comp_mobile" />
+                <field name="comp_website" />
+                <!--field name="comp_vat"/-->
+			</xpath>
+		</field>
+	</record>
+
+</odoo>

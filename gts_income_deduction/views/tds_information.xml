@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+<!--    <record id="employee_tds_information_view_form" model="ir.ui.view">-->
+<!--        <field name="name">employee.tds.information.view.form.inherit</field>-->
+<!--        <field name="model">hr.contract</field>-->
+<!--        <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            &lt;!&ndash;            <xpath expr="//page[@name='information']" position="after">&ndash;&gt;-->
+<!--            &lt;!&ndash;                <field name="annual_salary"/>&ndash;&gt;-->
+<!--            &lt;!&ndash;                <field name="other_income"/>&ndash;&gt;-->
+<!--            &lt;!&ndash;            </xpath>&ndash;&gt;-->
+
+<!--            <xpath expr="//notebook" position="inside">-->
+<!--                <page string="TDS Information">-->
+<!--                    <field name="deduction_ids">-->
+<!--                        <tree editable="top">-->
+<!--                            <field name="annual_salary"/>-->
+<!--                            <field name="other_income"/>-->
+<!--                        </tree>-->
+<!--                    </field>-->
+<!--                </page>-->
+<!--            </xpath>-->
+<!--        </field>-->
+<!--    </record>-->
+
+</odoo>
+
+

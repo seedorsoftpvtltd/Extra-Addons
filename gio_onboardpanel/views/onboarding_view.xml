@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="onboard_step1">
+        <t t-call="gio_onboardpanel.onboarding_default_step">
+            <t t-set="title">Orders</t>
+            <t t-set="description">Create and Manage the goods to be issued.</t>
+            <t t-set="sl">1</t>
+            <t t-set="btn_text">Create</t>
+            <t t-set="method" t-value="'onboard_create_gio'"/>
+            <t t-set="model" t-value="'goods.issue.order'"/>
+        </t>
+    </template>
+
+    <template id="onboard_step2">
+        <t t-call="gio_onboardpanel.onboarding_default_step">
+            <t t-set="title">Pick</t>
+            <t t-set="description">
+                Check Product Availability and Confirm Pick
+            </t>
+            <t t-set="sl">2</t>
+<!--            <t t-set="btn_text">Confirm</t>-->
+            <!--            <t t-set="method" t-value="'onboardings_jobcfs_action'"/>-->
+            <!--            <t t-set="model" t-value="'res.company'"/>-->
+        </t>
+    </template>
+
+    <template id="onboard_step3">
+        <t t-call="gio_onboardpanel.onboarding_default_step">
+            <t t-set="title">Delivery</t>
+            <t t-set="description">
+                Provide Delivery Info and Validate the Delivery Order
+            </t>
+            <t t-set="sl">3</t>
+        </t>
+    </template>
+    <template id="kanban_onboarding_panel" name="onboarding.dashboard.onboarding.panel">
+        <t t-call="gio_onboardpanel.onboarding_default_container">
+            <t t-set="classes" t-value="'o_onboarding_blue'"/>
+            <t t-set="bg_image" t-value="'/onboarding/static/src/img/employee_dashboard_onboarding_bg.jpg'"/>
+
+            <t t-call="gio_onboardpanel.onboard_step1" name="create_order"/>
+            <t t-call="gio_onboardpanel.onboard_step2" name="confirm_pick"/>
+            <t t-call="gio_onboardpanel.onboard_step3" name="delivery_info"/>
+
+        </t>
+    </template>
+</odoo>

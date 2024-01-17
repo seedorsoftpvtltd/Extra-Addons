@@ -1,0 +1,584 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+		<template id="report_filter_date_print">
+			<t t-call="web.external_layout">
+				<t t-set="doc" t-value="doc.with_context({'lang':doc.lang})" />
+				<t t-set="company" t-value="res_company"/>
+
+				<div class="text-right" style="margin-right: 15em;">
+					<p><span t-esc="doc.name" /><br/>
+						<span t-esc="doc.street" /><br/>
+						<span t-esc="doc.street2" /><br/>
+						<span t-esc="doc.city" />
+						<span t-esc="doc.state_id.name" />
+						<span t-esc="doc.zip" /><br/>
+						<span t-esc="doc.country_id.name" />
+					</p>
+
+					<br/>
+				</div>
+                <div class="page">
+						<div class="text-left">
+							<span>Customer account statement</span><br/>
+							<span>Date : </span><span t-esc="doc.today_date" /><br/>
+							<br/>
+							<span>Dear Sir/Madam,</span><br/>
+							<br/>
+							<span>Some payments on your account are still due. Please find details below.</span><br/>
+							<br/>
+
+						</div>
+						<t t-if="doc.balance_invoice_over_ids.ids">
+                    <table class="table table-condensed" >
+                        <thead>
+                            <tr>
+                                <th>Reference number</th>
+                                <th class="text-center">Date</th>
+                                <th class="text-center">Due Date</th>
+                                <th class="text-right">Total</th>
+                                <th class="text-right">Due</th>
+                                <th class="text-right">Paid</th>
+                            </tr>
+                        </thead>
+                        <t t-set="due_total" t-value="0"/>
+                        <t t-set="paid_total" t-value="0"/>
+                        <t t-set="total" t-value="0"/>
+                        <tr t-foreach="doc.balance_invoice_over_ids" t-as="line">
+                            <t t-if="line.state !='paid'">
+							<t t-if="line.invoice_date &gt;= doc.filter_start_date">
+				            <t t-if="line.invoice_date &lt;= doc.filter_end_date">
+                            <t t-if="not doc.currency">
+		                    <td>
+		                        <span t-esc="line.name"/>
+
+		                    </td>
+		                    <td>
+		                        <span t-esc="line.invoice_date"/>
+		                    </td>
+		                    <td>
+		                        <span t-esc="line.invoice_date_due" />
+		                    </td>
+		                    <td class="text-right">
+		                        <span t-esc="line.amount_total" t-options="{'widget': 'monetary', 'display_currency': line.currency_id}"/>
+		                    </td>
+		                    <td class="text-right">
+		                        <span t-esc="line.credit_amount_over" t-options="{'widget': 'monetary', 'display_currency': line.currency_id}"/>
+		                    </td>
+		                    <td class="text-right">
+		                            <span t-esc="line.result_over" t-options="{'widget': 'monetary', 'display_currency': line.currency_id}"/>
+		                    </td>
+		                    <t t-set="due_total" t-value="due_total + line.amount_total"/>
+	                            <t t-set="paid_total" t-value="paid_total + line.result_over"/>
+	                            <t t-set="total" t-value="total + line.credit_amount_over"/>
+							</t>
+
+								<t t-elif="doc.currency == line.currency_id">
+
+		                    <td>
+		                        <span t-esc="line.name"/>
+
+		                    </td>
+		                    <td>
+		                        <span t-esc="line.invoice_date"/>
+		                    </td>
+		                    <td>
+		                        <span t-esc="line.invoice_date_due" />
+		                    </td>
+		                    <td class="text-right">
+		                        <span t-esc="line.amount_total" t-options="{'widget': 'monetary', 'display_currency': line.currency_id}"/>
+		                    </td>
+		                    <td class="text-right">
+		                        <span t-esc="line.credit_amount_over" t-options="{'widget': 'monetary', 'display_currency': line.currency_id}"/>
+		                    </td>
+		                    <td class="text-right">
+		                            <span t-esc="line.result_over" t-options="{'widget': 'monetary', 'display_currency': line.currency_id}"/>
+		                    </td>
+		                    <t t-set="due_total" t-value="due_total + line.amount_total"/>
+	                            <t t-set="paid_total" t-value="paid_total + line.result_over"/>
+	                            <t t-set="total" t-value="total + line.credit_amount_over"/>
+                                </t>
+
+							</t>
+							</t>
+							</t>
+                        </tr>
+                        <tr>
+			    <td></td>
+			    <td></td>
+                            <td class="text-right" ><strong>Sub-Total :</strong></td>
+                            <td class="text-right"><span t-esc="due_total" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/></td>
+                            <td class="text-right"><span t-esc="total" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/></td>
+                            <td class="text-right"><span t-esc="paid_total" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/></td>
+
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td class="text-right" ><strong>Balance :</strong></td>
+							<td class="text-right"><span t-esc="due_total" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/></td>
+                            <td class="text-right"><span t-esc="total" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/></td>
+                            <td class="text-right"><span t-esc="paid_total" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/></td>
+								</tr>
+
+                        </table>
+                </t>
+                	<span>Thank you.</span><br/>
+			<span>Best Regards.</span><br/>
+					</div>
+			</t>
+
+		</template>
+		<template id="report_filter_date_print_customer">
+			<t t-call="web.external_layout">
+				<t t-set="doc" t-value="doc.with_context({'lang':doc.lang})" />
+				<t t-set="company" t-value="res_company"/>
+
+				<div class="text-right" style="margin-right: 15em;">
+					<p><span t-esc="doc.name" /><br/>
+						<span t-esc="doc.street" /><br/>
+						<span t-esc="doc.street2" /><br/>
+						<span t-esc="doc.city" />
+						<span t-esc="doc.state_id.name" />
+						<span t-esc="doc.zip" /><br/>
+						<span t-esc="doc.country_id.name" />
+					</p>
+
+					<br/>
+				</div>
+				<div class="page">
+					<center><th>Customer Statement</th></center>
+					<t t-set="i" t-value="0.0" />
+					<t t-set="j" t-value="0.0" />
+					<t t-set="k" t-value="0.0" />
+					<t t-foreach="doc.balance_invoice_ids" t-as="line">
+						<t t-if="line.invoice_date &gt;= doc.filter_start_date_customer">
+				      <t t-if="line.invoice_date &lt;= doc.filter_end_date_customer">
+								<t t-if="not doc.currency_customer">
+						<t t-set="i" t-value="i+ line.amount_total_signed"/>
+						<t t-set="j" t-value="j+line.credit_amount"/>
+						<t t-set="k" t-value="k+line.result"/>
+						</t>
+							<t t-elif="doc.currency_customer == line.currency_id">
+						<t t-set="i" t-value="i+ line.amount_total_signed"/>
+						<t t-set="j" t-value="j+line.credit_amount"/>
+						<t t-set="k" t-value="k+line.result"/>
+						</t>
+						</t>
+						</t>
+					</t>
+					<table class="table table-condensed">
+						<thead>
+							<tr class="text-center">
+								<th>Date</th>
+								<th>Invoice Number</th>
+								<th>Account</th>
+								<th>Ref</th>
+								<th>INV Invoices/Debit </th>
+								<th>INV Payments/Credit </th>
+								<th>INV Balance </th>
+								<th>Base Invoices/Debit</th>
+								<th>Base Payments/Credit</th>
+								<th>Base Balance</th>
+								<th>Balance</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td></td>
+								<td>
+									<b>Initial Balance</b>
+								</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td class="text-right">
+									<b><span t-esc="0.0" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/></b>
+								</td>
+							</tr>
+   							<t t-set="grand_total" t-value="0.0" />
+							<t t-set="bal" t-value="0.0" />
+							<t t-set="sub_total" t-value="0.0" />
+							<tr t-foreach="doc.balance_invoice_ids.sorted(key=lambda r: r.name)" t-as="line">
+								<t t-if="line.invoice_date &gt;= doc.filter_start_date_customer">
+				                <t t-if="line.invoice_date &lt;= doc.filter_end_date_customer">
+									<t t-if="not doc.currency_customer">
+								<t t-set="bal" t-value="bal +sub_total "/>
+									<td>
+										<span t-esc="line.invoice_date" />
+									</td>
+									<td>
+										<span t-esc="line.name" />
+									</td>
+									<td>
+										<span t-esc="line.partner_id.property_account_receivable_id.code" />
+									</td>
+									<td>
+										<span t-esc="line.name" />
+									</td>
+								    <td class="text-right">
+											<span t-esc="line.amount_total"
+										t-options="{'widget': 'monetary', 'display_currency': line.currency_id}" />
+									</td>
+
+								    <td class="text-right">
+											<span t-esc="line.credit_amount_inv"
+										t-options="{'widget': 'monetary', 'display_currency': line.currency_id}" />
+									</td>
+								    <td class="text-right">
+											<span t-esc="line.result_inv"
+										t-options="{'widget': 'monetary', 'display_currency': line.currency_id}" />
+									</td>
+									<td class="text-right">
+										<span t-esc="line.amount_total_signed"
+											t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}" />
+									</td>
+									<td class="text-right">
+										<span t-esc="line.credit_amount"
+											t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}" />
+									</td>
+								    <td class="text-right">
+										<span t-esc="line.result"
+											t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}" />
+									</td>
+									<td class="text-right">
+										 <t t-set="sub_total" t-value="line.amount_total_signed-line.credit_amount" />
+										 <t t-set="grand_total" t-value="sub_total + bal"/>
+										<span t-esc="sub_total + bal"
+											t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}" />
+									</td>
+								</t>
+									<t t-elif="doc.currency_customer == line.currency_id">
+								<t t-set="bal" t-value="bal +sub_total "/>
+									<td>
+										<span t-esc="line.invoice_date" />
+									</td>
+									<td>
+										<span t-esc="line.name" />
+									</td>
+									<td>
+										<span t-esc="line.partner_id.property_account_receivable_id.code" />
+									</td>
+									<td>
+										<span t-esc="line.name" />
+									</td>
+								    <td class="text-right">
+											<span t-esc="line.amount_total"
+										t-options="{'widget': 'monetary', 'display_currency': line.currency_id}" />
+									</td>
+
+								    <td class="text-right">
+											<span t-esc="line.credit_amount_inv"
+										t-options="{'widget': 'monetary', 'display_currency': line.currency_id}" />
+									</td>
+								    <td class="text-right">
+											<span t-esc="line.result_inv"
+										t-options="{'widget': 'monetary', 'display_currency': line.currency_id}" />
+									</td>
+									<td class="text-right">
+										<span t-esc="line.amount_total_signed"
+											t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}" />
+									</td>
+									<td class="text-right">
+										<span t-esc="line.credit_amount"
+											t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}" />
+									</td>
+								    <td class="text-right">
+										<span t-esc="line.result"
+											t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}" />
+									</td>
+									<td class="text-right">
+										 <t t-set="sub_total" t-value="line.amount_total_signed-line.credit_amount" />
+										 <t t-set="grand_total" t-value="sub_total + bal"/>
+										<span t-esc="sub_total + bal"
+											t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}" />
+									</td>
+									</t>
+								</t>
+								</t>
+							</tr>
+							<tr>
+								<td></td>
+								<div class="pull-right">
+							    <table class="table table-condensed">
+							    <tr>
+								<td>
+									<b>Ending Balance</b>
+								</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td class="text-right">
+									<b><span t-esc="grand_total" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/></b>
+								</td>
+							</tr>
+							<tr>
+								<td class="text-right"></td>
+								<div class="col-xs-4 pull-right">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td class="text-right"><span t-esc="i" t-options='{"widget": "monetary", "display_currency": res_company.currency_id}' /></td>
+								<td class="text-right"><span t-esc="j" t-options='{"widget": "monetary", "display_currency": res_company.currency_id}' /></td>
+								<td class="text-right"><span t-esc="k" t-options='{"widget": "monetary", "display_currency": res_company.currency_id}' /></td>
+								</div>
+							</tr>
+							</table>
+								</div>
+							</tr>
+
+
+						</tbody>
+					</table>
+
+<!--					<div class="col-xs-4 pull-right">-->
+<!--						<table class="table table-condensed">-->
+<!--							<tr class="border-black">-->
+<!--								<td>-->
+<!--									<strong>Total Amount OverDue :</strong>-->
+<!--								</td>-->
+<!--								<td class="text-right">-->
+<!--									<strong>-->
+<!--										<span t-field="doc.payment_amount_overdue_amt"-->
+<!--											t-options='{"widget": "monetary", "display_currency": res_company.currency_id}' />-->
+<!--									</strong>-->
+<!--								</td>-->
+<!--							</tr>-->
+<!--							<tr class="border-black">-->
+<!--								<td>-->
+<!--									<strong>Balance Due :</strong>-->
+<!--								</td>-->
+<!--								<td class="text-right">-->
+<!--									<strong>-->
+<!--										<span t-field="doc.payment_amount_due_amt"-->
+<!--											t-options='{"widget": "monetary", "display_currency": res_company.currency_id}' />-->
+<!--									</strong>-->
+<!--								</td>-->
+<!--							</tr>-->
+<!--						</table>-->
+<!--					</div>-->
+<!--					<br/>-->
+<!--					<br/>-->
+<!--					<br/>-->
+
+<!--					<table t-attf-class="table table-sm" name="days_table">-->
+<!--						<thead>-->
+<!--							<tr >-->
+<!--								<th></th>-->
+<!--								<th>0-30</th>-->
+<!--								<th>30-60</th>-->
+<!--								<th>60-90</th>-->
+<!--								<th>90+</th>-->
+<!--								<th>Total</th>-->
+<!--							</tr>-->
+<!--						</thead>-->
+<!--						<tr>-->
+<!--							<td></td>-->
+<!--							<td><span t-esc="doc.first_thirty_day" /></td>-->
+<!--							<td><span t-esc="doc.thirty_sixty_days" /></td>-->
+<!--							<td><span t-esc="doc.sixty_ninty_days" /></td>-->
+<!--							<td><span t-esc="doc.ninty_plus_days" /></td>-->
+<!--							<td><span t-esc="doc.total" /></td>-->
+<!--						</tr>-->
+<!--					</table>-->
+<!--					<br/>-->
+<!--					<br/>-->
+<!--					<br/>-->
+
+
+				</div>
+			</t>
+		</template>
+		<template id="report_filter_date_print_vendor">
+			<t t-call="web.external_layout">
+				<t t-set="doc" t-value="doc.with_context({'lang':doc.lang})" />
+				<t t-set="company" t-value="res_company"/>
+				<div class="text-right" style="margin-right: 15em;">
+					<p><span t-esc="doc.name" /><br/>
+						<span t-esc="doc.street" /><br/>
+						<span t-esc="doc.street2" /><br/>
+						<span t-esc="doc.city" />
+						<span t-esc="doc.state_id.name" />
+						<span t-esc="doc.zip" /><br/>
+						<span t-esc="doc.country_id.name" />
+					</p>
+					<br/>
+				</div>
+				<div class="page">
+					<t t-set="i" t-value="0.0" />
+					<t t-set="j" t-value="0.0" />
+					<t t-set="k" t-value="0.0" />
+					<t t-foreach="doc.supplier_invoice_ids" t-as="line">
+						<t t-if="line.invoice_date &gt;= doc.filter_start_date_vendor">
+				      <t t-if="line.invoice_date &lt;= doc.filter_end_date_vendor">
+								<t t-if="not doc.currency_vendor">
+						<t t-set="i" t-value="i+ line.amount_total_signed"/>
+						<t t-set="j" t-value="j+line.credit_amount"/>
+						<t t-set="k" t-value="k+line.result"/>
+						</t>
+							<t t-elif="doc.currency_vendor == line.currency_id">
+						<t t-set="i" t-value="i+ line.amount_total_signed"/>
+						<t t-set="j" t-value="j+line.credit_amount"/>
+						<t t-set="k" t-value="k+line.result"/>
+						</t>
+						</t>
+						</t>
+					</t>
+					<table class="table table-condensed">
+						<thead>
+							<tr class="text-center">
+								<th>Date</th>
+								<th>Invoice Number</th>
+								<th>Account</th>
+								<th>Ref</th>
+								<th>Invoices/Credit</th>
+								<th>Payments/Debit</th>
+								<th>Balance</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td></td>
+								<td><b>Initial Balance</b></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td class="text-right">
+									<b><span t-esc="0.0" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/></b>
+								</td>
+							</tr>
+								<t t-set="grand_total" t-value="0.0" />
+						  	<t t-set="bal" t-value="0.0" />
+						   	<t t-set="sub_total" t-value="0.0" />
+							<tr t-foreach="doc.supplier_invoice_ids.sorted(key=lambda r: r.name)" t-as="line">
+								<!-- <t t-set="bal" t-value="bal +sub_total "/> -->
+								<t t-if="line.invoice_date &gt;= doc.filter_start_date_vendor">
+				                <t t-if="line.invoice_date &lt;= doc.filter_end_date_vendor">
+									<t t-if="not doc.currency_vendor">
+								<td><span t-esc="line.invoice_date" /></td>
+								<td><span t-esc="line.name" /></td>
+								<td>
+									<span t-esc="line.partner_id.property_account_payable_id.code" />
+								</td>
+								<td><span t-esc="line.name" /></td>
+								<td class="text-right">
+									<span t-esc="line.amount_total_signed"
+										t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}" />
+								</td>
+								<td class="text-right">
+									<span t-esc="line.credit_amount"
+										t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}" />
+								</td>
+								<td class="text-right">
+									<t t-set="sub_total" t-value="line.amount_total_signed-line.credit_amount" />
+									<t t-set="grand_total" t-value="sub_total + bal"/>
+									<span t-esc="sub_total + bal"
+										t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}" />
+								</td>
+									</t>
+									<t t-elif="doc.currency_vendor == line.currency_id">
+								<td><span t-esc="line.invoice_date" /></td>
+								<td><span t-esc="line.name" /></td>
+								<td>
+									<span t-esc="line.partner_id.property_account_payable_id.code" />
+								</td>
+								<td><span t-esc="line.name" /></td>
+								<td class="text-right">
+									<span t-esc="line.amount_total_signed"
+										t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}" />
+								</td>
+								<td class="text-right">
+									<span t-esc="line.credit_amount"
+										t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}" />
+								</td>
+								<td class="text-right">
+									<t t-set="sub_total" t-value="line.amount_total_signed-line.credit_amount" />
+									<t t-set="grand_total" t-value="sub_total + bal"/>
+									<span t-esc="sub_total + bal"
+										t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}" />
+								</td>
+									</t>
+								</t>
+								</t>
+							</tr>
+							<tr>
+								<td></td>
+								<td><b>Ending Balance</b></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td class="text-right">
+									<b><span t-esc="grand_total" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/></b>
+								</td>
+							</tr>
+							<tr>
+								<td class="text-right"></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td class="text-right"><span t-esc="i" /></td>
+								<td class="text-right"><span t-esc="j" /></td>
+								<td class="text-right"><span t-esc="k" /></td>
+							</tr>
+						</tbody>
+					</table>
+<!--					<div class="col-xs-4 pull-right">-->
+<!--						<table class="table table-condensed">-->
+<!--							<tr class="border-black">-->
+<!--								<td>-->
+<!--									<strong>Total Amount OverDue :</strong>-->
+<!--								</td>-->
+<!--								<td class="text-right">-->
+<!--									<strong>-->
+<!--									<span t-field="doc.payment_amount_overdue_amt_supplier"-->
+<!--										t-options='{"widget": "monetary", "display_currency": res_company.currency_id}' />-->
+<!--									</strong>-->
+<!--								</td>-->
+<!--							</tr>-->
+<!--							<tr class="border-black">-->
+<!--								<td>-->
+<!--									<strong>Balance Due :</strong>-->
+<!--								</td>-->
+<!--								<td class="text-right">-->
+<!--									<strong>-->
+<!--									<span t-field="doc.payment_amount_due_amt_supplier"-->
+<!--										t-options='{"widget": "monetary", "display_currency": res_company.currency_id}' />-->
+<!--									</strong>-->
+<!--								</td>-->
+<!--							</tr>-->
+<!--						</table>-->
+<!--					</div>-->
+				</div>
+			</t>
+		</template>
+
+		<template id="report_filter_print1">
+			<t t-call="web.html_container">
+				<t t-foreach="docs" t-as="doc">
+					<t t-call="filter_date.report_filter_date_print" t-lang="doc.lang" />
+				</t>
+			</t>
+		</template>
+
+		<template id="report_filter_print1_customer">
+			<t t-call="web.html_container">
+				<t t-foreach="docs" t-as="doc">
+					<t t-call="filter_date.report_filter_date_print_customer" t-lang="doc.lang" />
+				</t>
+			</t>
+		</template>
+
+		<template id="report_filter_print1_vendor">
+			<t t-call="web.html_container">
+				<t t-foreach="docs" t-as="doc">
+					<t t-call="filter_date.report_filter_date_print_vendor" t-lang="doc.lang" />
+				</t>
+			</t>
+		</template>
+    </data>
+</odoo>

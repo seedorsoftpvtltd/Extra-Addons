@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="company_form_ext" model="ir.ui.view">
+        <field name="name">res.company.form.vat.ext</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='vat']" position="after">
+                <field name="company_code"/>
+            </xpath>
+        </field>
+    </record>
+     <record id="sequence_so_log" model="ir.sequence">
+            <field name="name">SO Logistics sequence</field>
+            <field name="code">so.log.seq</field>
+            <field name="prefix">0</field>
+            <field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+            <field name="padding">3</field>
+        </record>
+      <record id="sequence_job_log" model="ir.sequence">
+            <field name="name">Job Logistics sequence</field>
+            <field name="code">job.log.seq</field>
+            <field name="prefix">0</field>
+            <field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+            <field name="padding">3</field>
+        </record>
+</odoo>

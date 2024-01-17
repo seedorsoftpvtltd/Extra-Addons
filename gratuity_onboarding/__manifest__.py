@@ -1,0 +1,20 @@
+{
+    'name' : 'Gratuity Onboarding',
+    'version' : '1.1',
+    'summary': '',
+    'sequence': 15,
+    'description': """======================""",
+    'category': 'Hr',
+    'website': ' ',
+    'images' : ['images/accounts.jpeg','images/bank_statement.jpeg','images/cash_register.jpeg','images/chart_of_accounts.jpeg','images/customer_invoice.jpeg','images/journal_entries.jpeg'],
+    'depends' : ['hr_gratuity_settlement'],
+    'data': [
+       'views/gratuity_onboarding.xml',
+       'views/gratuity_onboarding_template.xml',
+       'views/gratuity_onboarding_default_template.xml',
+    ],
+    'installable': True,
+    'application': True,
+    'auto_install': False,
+    # 'post_init_hook': '_auto_install_l10n',
+}

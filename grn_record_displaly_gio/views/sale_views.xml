@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_goods_order_ready_state" model="ir.ui.view">
+        <field name="name">goods.issue.order.ready.list.state</field>
+        <field name="model">goods.issue.order</field>
+        <field name="inherit_id" ref="gio.views_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook//page[@name='order_lines']" position="after">
+                <page string="Pending GRN">
+                    <field name="stock_move_ids">
+                        <tree create="false" delete="false">
+                            <field name="company_id" invisible="1"/>
+                            <field name="date" readonly="1"/>
+                            <field name="name" readonly="1"/>
+                            <field name="product_id" readonly="1"/>
+                            <field name="gio_pend_qty" readonly="1"/>
+                            <field name="state" readonly="1"/>
+                        </tree>
+                    </field>
+
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

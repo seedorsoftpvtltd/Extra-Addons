@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="onboarding_googlesheets_step1">
+        <t t-call="google_sheet_export_onboarding.onboarding_default_steps">
+            <t t-set="title">Export Card</t>
+            <t t-set="description">
+                Select the google sheet export card of required type.
+            </t>
+            <t t-set="sl">1</t>
+<!--            <t t-set="btn_text">Review</t>-->
+<!--          <t t-set="cnt_text" t-value="request.env['hr.department'].search_count([])">-->
+<!--              <t t-esc="cnt_text">Departments</t>-->
+<!--            </t>-->
+<!--            <t t-set="cnt_desc">Records</t>+-->
+<!--             <t t-set="sl">1</t>-->
+<!--            <t t-set="method" t-value="'onboarding_step1_action'" />-->
+<!--            <t t-set="model" t-value="'res.company'" />-->
+<!--            <t t-set="state" t-value="state.get('onboarding_step1_state')" />-->
+        </t>
+    </template>
+<!--    <template id="onboarding_googlesheet_step2">-->
+<!--        <t t-call="google_sheet_import_onboarding.onboarding_default_steps">-->
+<!--            <t t-set="title">Add Sheet</t>-->
+<!--            <t t-set="description">-->
+<!--                Explore &#38; familiarize the sample google sheet given under the selected card.-->
+<!--            </t>-->
+<!--            <t t-set="sl">2</t>-->
+<!--&lt;!&ndash;            <t t-set="btn_text">Review</t>&ndash;&gt;-->
+<!--&lt;!&ndash;          <t t-set="cnt_text" t-value="request.env['hr.department'].search_count([])">&ndash;&gt;-->
+<!--&lt;!&ndash;              <t t-esc="cnt_text">Departments</t>&ndash;&gt;-->
+<!--&lt;!&ndash;            </t>&ndash;&gt;-->
+<!--&lt;!&ndash;            <t t-set="cnt_desc">Records</t>+&ndash;&gt;-->
+<!--&lt;!&ndash;             <t t-set="sl">1</t>&ndash;&gt;-->
+<!--&lt;!&ndash;            <t t-set="method" t-value="'onboarding_step1_action'" />&ndash;&gt;-->
+<!--&lt;!&ndash;            <t t-set="model" t-value="'res.company'" />&ndash;&gt;-->
+<!--&lt;!&ndash;            <t t-set="state" t-value="state.get('onboarding_step1_state')" />&ndash;&gt;-->
+<!--        </t>-->
+<!--    </template>-->
+    <template id="onboarding_googlesheets_step2">
+        <t t-call="google_sheet_export_onboarding.onboarding_default_steps">
+            <t t-set="title">Add Sheet</t>
+            <t t-set="description">
+                Add the google sheet information with the worksheet name and add the link in 'URL'.
+            </t>
+            <t t-set="sl">2</t>
+            <t t-set="btn_text">Login</t>
+            <t t-set="method" t-value="'onboarding_login_action'" />
+            <t t-set="model" t-value="'res.company'" />
+
+        </t>
+    </template>
+    <template id="onboarding_googlesheets_step3">
+        <t t-call="google_sheet_export_onboarding.onboarding_default_steps">
+            <t t-set="title">Data Selection</t>
+            <t t-set="description">
+                Explore &#38; familiarize the fields to be exported.
+            </t>
+            <t t-set="sl">3</t>
+<!--            <t t-set="btn_text">Review</t>-->
+<!--          <t t-set="cnt_text" t-value="request.env['hr.department'].search_count([])">-->
+<!--              <t t-esc="cnt_text">Departments</t>-->
+<!--            </t>-->
+<!--            <t t-set="cnt_desc">Records</t>+-->
+<!--             <t t-set="sl">1</t>-->
+<!--            <t t-set="method" t-value="'onboarding_step1_action'" />-->
+<!--            <t t-set="model" t-value="'res.company'" />-->
+<!--            <t t-set="state" t-value="state.get('onboarding_step1_state')" />-->
+        </t>
+    </template>
+    <template id="onboarding_googlesheets_step4">
+        <t t-call="google_sheet_export_onboarding.onboarding_default_steps">
+            <t t-set="title">Export Data</t>
+            <t t-set="description">
+                Click 'export data' to export details in your  google worksheet.
+            </t>
+            <t t-set="sl">4</t>
+<!--            <t t-set="btn_text">Review</t>-->
+<!--          <t t-set="cnt_text" t-value="request.env['hr.department'].search_count([])">-->
+<!--              <t t-esc="cnt_text">Departments</t>-->
+<!--            </t>-->
+<!--            <t t-set="cnt_desc">Records</t>+-->
+<!--             <t t-set="sl">1</t>-->
+<!--            <t t-set="method" t-value="'onboarding_step1_action'" />-->
+<!--            <t t-set="model" t-value="'res.company'" />-->
+<!--            <t t-set="state" t-value="state.get('onboarding_step1_state')" />-->
+        </t>
+    </template>
+
+
+
+
+
+
+    <template id="googlesheets_dashboard_onboarding_panel" name="onboarding.googlesheets.onboarding.panel">
+        <t t-call="google_sheet_export_onboarding.onboarding_default_container">
+            <t t-set="classes" t-value="'o_onboarding_blue'"/>
+<!--            <t t-set="bg_image" t-value="'/onboarding/static/src/img/attendance_dashboard_onboarding_bg.jpg'"/>-->
+<!--            <t t-set="close_method" t-value="'action_close_account_dashboard_onboarding'"/>-->
+<!--            <t t-set="close_model" t-value="'res.company'"/>-->
+<!--            <t t-set="text_completed">Congratulations! You are all set.</t>-->
+
+            <t t-call="google_sheet_export_onboarding.onboarding_googlesheets_step1" name="export" />
+            <t t-call="google_sheet_export_onboarding.onboarding_googlesheets_step2" name="add_sheet" />
+            <t t-call="google_sheet_export_onboarding.onboarding_googlesheets_step3" name="data_selection" />
+            <t t-call="google_sheet_export_onboarding.onboarding_googlesheets_step4" name="export_data" />
+<!--            <t t-call="google_sheet_export_onboarding.onboarding_googlesheets_step5" name="sync_data" />-->
+
+        </t>
+    </template>
+</odoo>

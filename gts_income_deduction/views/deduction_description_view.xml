@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="deduction_description_configuration_list_view" model="ir.ui.view">
+            <field name="name">Deduction Description</field>
+            <field name="model">deduction.description</field>
+            <field name="arch" type="xml">
+                <tree string="Deductiodescription_deductionn Description">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        <record id="deduction_description_configuration_view_form_view" model="ir.ui.view">
+            <field name="name">deduction.description.form</field>
+            <field name="model">deduction.description</field>
+            <field name="arch" type="xml">
+                <form string="Deduction Description">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="deduction_description_configuration_action" model="ir.actions.act_window">
+            <field name="name">Deduction Description Configuration</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">deduction.description</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a New Tax Deduction Description
+                </p>
+            </field>
+        </record>
+        <menuitem
+                id="menu_deduction_description_configuration"
+                action="deduction_description_configuration_action"
+                name="Deduction Description"
+                parent="hr.menu_human_resources_configuration"
+                sequence="1"/>
+    </data>
+</odoo>

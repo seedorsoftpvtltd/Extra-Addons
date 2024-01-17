@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<record id="hb_stock_move_line_custom_form_view" model="ir.ui.view">
+			<field name="name">hb.stock.move.line.custom.form.view</field>
+			<field name="model">stock.move.line</field>
+			<field name="inherit_id" ref="stock.view_move_line_form"/>
+			<field name="arch" type="xml">
+				<xpath expr="//sheet//field[@name='lot_id']" position="before">
+
+                       <field name="serialno" />
+                       <field name="batchno" />
+
+				</xpath>
+			</field>
+		</record>
+		 <record id="view_move_line_form_hb_inh" model="ir.ui.view">
+		<field name="model">stock.move.line</field>
+		<field name="inherit_id" ref="stock.view_stock_move_line_detailed_operation_tree"/>
+		<field name="arch" type="xml">
+			<xpath expr="//field[@name='lot_id']" position="before">
+
+                       <field name="serialno" />
+                       <field name="batchno" />
+
+				</xpath>
+		</field>
+	</record>
+
+	<record id="view_tracking_form" model="ir.ui.view">
+        <field name="model">stock.production.lot</field>
+       <field name="inherit_id" ref="stock.view_production_lot_form"/>
+		<field name="arch" type="xml">
+			<xpath expr="//field[@name='company_id']" position="before">
+
+                       <field name="serialno" />
+                       <field name="batchno" />
+
+				</xpath>
+		</field>
+    </record>
+
+</odoo>
