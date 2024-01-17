@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<template id="report_back_payroll_advice">
+    <t t-call="web.html_container">
+        <t t-call="web.external_layout">
+            <t t-foreach="docs" t-as="o">
+                <div class="page">
+                    <table class="table" BORDER="0">
+                        <tr style="border-top: hidden;">
+                            <td>
+                            </td>
+                        </tr>
+                         <tr style="border-top: hidden;">
+                            <td>
+                            </td>
+                        </tr>
+                        <tr style="border-top: hidden;">
+                            <td>
+                            </td>
+                        </tr>
+                         <tr style="border-top: hidden;">
+                            <td>
+                            </td>
+                        </tr>
+                        <tr style="border-top: hidden;">
+                            <td><p class="text-right">Date : <span t-esc="advice_date"/></p></td>
+                        </tr>
+                        <tr style="border-top: hidden;">
+                            <td>
+                                <strong><span>The Manager</span></strong><br/>
+                                <span t-esc="o.partner_bank_id.bank_id.name" /> Bank<br/>
+                                <span t-esc="o.partner_bank_id.bank_id.street" /><br/>
+                                <span t-esc="o.partner_bank_id.bank_id.street2" /><br/>
+                                <span t-esc="o.partner_bank_id.bank_id.city" /> <span t-esc="o.partner_bank_id.bank_id.state.name" /> <span t-esc="o.partner_bank_id.bank_id.zip" /><br/>
+                                <span t-esc="o.partner_bank_id.bank_id.country.name" />
+                            </td> 
+                        </tr>
+                        <tr style="border-top: hidden;">
+                            <td><p><span>Dear Sir/Madam,</span></p></td>
+                        </tr>
+                        <tr style="border-top: hidden;">
+                            <td>
+                                <p class="text-center">
+                                    <strong>Advice from <span t-esc="o.name"/> A/C no. <span t-esc="account_number"/> form period  <!--span t-esc="get_month['from_name']"/> to <span t-esc="get_month['to_name']"/--></strong>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr style="border-top: hidden;">
+                            <td><p>Please make the payroll transfer from above account number to the below mentioned account numbers towards employee salaries:</p></td>
+                        </tr>
+                    </table>
+
+                    <table class="table table-condensed table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Sr No.</th>
+                                <th>Name of Employee</th>
+                                <th>Bank Name</th>
+                                <th>Bank Account No.</th>
+                                <th>IFSC Code</th>
+                                <th>By Salary</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="get_detail" t-as="l">
+                                <td>
+                                    <span t-esc="l_index+1">.</span>
+                                </td> 
+                                <td>
+                                  <span t-esc="l['name']"/>
+                                </td>
+                                <td>
+                                  <span t-esc="l['employee_bank']"/>
+                                </td>
+                                <td>
+                                     <span t-esc="l['acc_no']"/>
+                                </td>
+                                <td>  
+                                    <span t-esc="l['ifsc_code']"/>
+                                </td>
+                                <td>
+                                    <span t-esc="l['bysal']" t-options="{'widget': 'monetary', 'display_currency': o.company_id.currency_id}"/>
+                                </td>
+                            </tr>
+                            <tr class="border-black" style="border-bottom: 1px solid black">
+                                <td colspan="4"/>
+                                <td colspan="1">
+                                    <strong >Total :</strong>
+                                </td>
+                                <td colspan="2">
+                                    <strong><!--span t-esc="get_bysal_total()" t-options="{'widget': 'monetary', 'display_currency': o.company_id.currency_id}"/--></strong>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p>Yours Sincerely</p>
+                    <p>For <span t-esc="o.company_id.name"/></p>
+                    <p class="mt32">Authorized Signature</p>
+                </div>
+            </t>
+        </t>
+    </t>
+</template>
+</odoo>

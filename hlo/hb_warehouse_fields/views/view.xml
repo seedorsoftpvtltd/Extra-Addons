@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+	<record id="view_quant_package_form_inh" model="ir.ui.view">
+		<field name="model">stock.quant.package</field>
+		<field name="inherit_id" ref="stock.view_quant_package_form"/>
+		<field name="arch" type="xml">
+			<xpath expr="//field[@name='name']" position="replace">
+				<field name="new_name"/>
+			</xpath>
+			<xpath expr="//field[@name='owner_id']" position="after">
+				<field name="barcode"/>
+<!--				<field name="ref"/>-->
+			</xpath>
+		</field>
+	</record>
+
+
+    <record id="view_stock_quant_package" model="ir.sequence">
+            <field name="name">Sequence Order</field>
+            <field name="code">stock.quant.package</field>
+          <field name="number_next_actual">1</field>
+            <field name="prefix">PACK</field>
+            <field name="padding">6</field>
+        </record>
+
+		<record id="view_quant_package_kanban_inh" model="ir.ui.view">
+		<field name="model">stock.quant.package</field>
+		<field name="inherit_id" ref="stock.view_quant_package_kanban"/>
+		<field name="arch" type="xml">
+			<xpath expr="//t/div/div/strong/field[@name='name']" position="replace">
+				<field name="new_name"/>
+			</xpath>
+
+		</field>
+	</record>
+
+		<record id="view_quant_package_tree_inh" model="ir.ui.view">
+		<field name="model">stock.quant.package</field>
+		<field name="inherit_id" ref="stock.view_quant_package_tree"/>
+		<field name="arch" type="xml">
+			<xpath expr="//field[@name='display_name']" position="replace">
+				<field name="new_name"/>
+			</xpath>
+
+		</field>
+	</record>
+
+		<record id="view_move_line_form_inh" model="ir.ui.view">
+		<field name="model">stock.move.line</field>
+		<field name="inherit_id" ref="stock.view_stock_move_line_detailed_operation_tree"/>
+		<field name="arch" type="xml">
+			<xpath expr="//field[@name='result_package_id']" position="after">
+				<field name="pack"/>
+			</xpath>
+		</field>
+	</record>
+
+
+       <record id="stock_picking_form_inh" model="ir.ui.view">
+        <field name="name">stock.picking.form.view</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='scheduled_date']" position="before">
+                <field name="date"/>
+			<field name="noofdays"/>
+			</xpath>
+		</field>
+    </record>
+
+<record id="view_product_ware_form" model="ir.ui.view">
+            <field name="name">product.template.ware</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="account.product_template_form_view"/>
+            <field name="arch" type="xml">
+                 <xpath expr="//div[@name='pricing']" position="after">
+                    <field name="ware_tax_id" widget="many2many_tags" context="{'default_type_tax_use':'none'}"/>
+                </xpath>
+            </field>
+        </record>
+
+
+<record id="view_stock_return_picking_form_inher" model="ir.ui.view">
+            <field name="name">stock.return.picking.stock.form</field>
+            <field name="inherit_id" ref="stock.view_stock_return_picking_form"/>
+            <field name="model">stock.return.picking</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='product_return_moves']/tree" position="inside">
+                    <field name="sh_sec_qty" />
+                                        <field name="sh_sec_uom" />
+                    <field name="sh_is_secondary_unit" />
+                                        <field name="sh_sec_done_qty" />
+
+                </xpath>
+            </field>
+        </record>
+
+	</data>
+</odoo>

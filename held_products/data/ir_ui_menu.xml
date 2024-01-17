@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+  <record id="held_products.m__held_products" model="ir.ui.menu" context="{'studio': True}">
+    <field name="action" ref="held_products.wa__held_products"/>
+    <field name="active" eval="True"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="name">Held Products</field>
+    <field name="parent_id" ref="stock.menu_warehouse_report"/>
+    <field name="sequence">10</field>
+    <field name="web_icon" eval="False"/>
+  </record>
+</odoo>

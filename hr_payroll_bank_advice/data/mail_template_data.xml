@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!--Email template -->
+        <record id="email_template_bank_payroll_send" model="mail.template">
+            <field name="name">Bank Payroll - Send by Email</field>
+            <field name="model_id" ref="hr_payroll_bank_advice.model_custom_hr_bank_payroll_advice"/>
+            <field name="email_from">${object.company_id.email} </field>
+            <field name="partner_to"></field>
+            <field name="subject">Payroll Advice (${object.number}) - ${object.company_id.name}</field>
+            <field name="auto_delete" eval="True"/>
+            <field name="report_template" ref="payroll_advice"/>
+            <field name="report_name">${object.number}</field>
+            <field name="body_html"><![CDATA[
+<p>Dear Sir/Madam,</p>
+<p>
+    <center>
+        <p>
+            <strong>
+                Sub: Payment Advice of ${object.name} A/C no. ${object.custom_partner_bank_id.acc_number} form period ${object.get_advice_month(object.date)['from_name']} to ${object.get_advice_month(object.date)['to_name']}.
+            </strong>
+        </p>
+    </center>
+</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Please find attached payment advice for above mentioned period and process for further payment process of our employee salary.</p><br/>
+<p>Yours Sincerely</p>
+<p>For ${object.company_id.name}</p>
+            ]]>
+            </field>
+        </record>
+
+    </data>
+</odoo>

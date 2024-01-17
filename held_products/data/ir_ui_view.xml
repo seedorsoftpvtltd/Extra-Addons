@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+  <record id="held_products.stock_quant_package__custom_ray_odoo__form" model="ir.ui.view" context="{'studio': True}">
+    <field name="active" eval="True"/>
+    <field name="arch" type="xml">
+      <data>
+        <field name="owner_id" position="after">
+          <field name="x_partner_id"/>
+        </field>
+      </data>
+    </field>
+    <field name="field_parent" eval="False"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="inherit_id" ref="stock.view_quant_package_form"/>
+    <field name="key" eval="False"/>
+    <field name="mode">extension</field>
+    <field name="model">stock.quant.package</field>
+    <field name="name">custom_ray_odoo</field>
+    <field name="priority">16</field>
+    <field name="type">form</field>
+  </record>
+  <record id="held_products.stock_quant__custom_ray_odoo__tree" model="ir.ui.view" context="{'studio': True}">
+    <field name="active" eval="True"/>
+    <field name="arch" type="xml">
+      <data>
+        <field name="owner_id">
+          <field name="x_partner_id"/>
+        </field>
+      </data>
+    </field>
+    <field name="field_parent" eval="False"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="inherit_id" ref="stock.view_stock_quant_tree"/>
+    <field name="key" eval="False"/>
+    <field name="mode">extension</field>
+    <field name="model">stock.quant</field>
+    <field name="name">custom_ray_odoo</field>
+    <field name="priority">16</field>
+    <field name="type">tree</field>
+  </record>
+  <record id="held_products.res_partner__custom_odoo_ray__form" model="ir.ui.view" context="{'studio': True}">
+    <field name="active" eval="True"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//form[1]/sheet[1]/div[@name='button_box']/contactsync[1]" position="after">
+          <button class="oe_stat_button" icon="fa-cube" type="action" name="%(held_products.act_window__held_products)d">
+            <field name="x_x_partner_id__stock_quant_count" string="Held Products" widget="statinfo"/>
+          </button>
+        </xpath>
+      </data>
+    </field>
+    <field name="field_parent" eval="False"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="inherit_id" ref="base.view_partner_form"/>
+    <field name="key" eval="False"/>
+    <field name="mode">extension</field>
+    <field name="model">res.partner</field>
+    <field name="name">custom_ray_odoo</field>
+    <field name="priority">99</field>
+    <field name="type">form</field>
+  </record>
+  <record id="held_products.sale_order__custom_ray_odoo__form" model="ir.ui.view" context="{'studio': True}">
+    <field name="active" eval="True"/>
+    <field name="arch" type="xml">
+      <data>
+        <header position="after">
+          <field name="x_held" invisible="1"/>
+          <div class="alert alert-warning" role="alert" style="margin-bottom:0px;" attrs="{'invisible': [('x_held','=',0)]}">
+    This Customer has held items! <bold><button class="alert-link" type="action" name="%(held_products.wa__held_products)d" role="button" string="Check them" context="{'search_default_x_partner_id': partner_id,}" style="padding: 0;vertical-align: baseline;"/></bold> 
+  </div>
+        </header>
+      </data>
+    </field>
+    <field name="field_parent" eval="False"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="inherit_id" ref="sale.view_order_form"/>
+    <field name="key" eval="False"/>
+    <field name="mode">extension</field>
+    <field name="model">sale.order</field>
+    <field name="name">custom_ray_odoo</field>
+    <field name="priority">16</field>
+    <field name="type">form</field>
+  </record>
+  <record id="held_products.stock_quant__custom_ray_odoo__search" model="ir.ui.view" context="{'studio': True}">
+    <field name="active" eval="True"/>
+    <field name="arch" type="xml">
+      <data>
+        <field name="owner_id" position="after">
+          <field name="x_partner_id"/>
+        </field>
+      </data>
+    </field>
+    <field name="field_parent" eval="False"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="inherit_id" ref="stock.quant_search_view"/>
+    <field name="key" eval="False"/>
+    <field name="mode">extension</field>
+    <field name="model">stock.quant</field>
+    <field name="name">custom_ray_odoo</field>
+    <field name="priority">16</field>
+    <field name="type">search</field>
+  </record>
+</odoo>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2016-2017 LasLabs Inc.
+     License AGPL-3 or later (http://www.gnu.org/licenses/agpl.html).-->
+<odoo>
+    <record id="sale.model_sale_order" model="ir.model">
+        <field name="website_form_recaptcha">True</field>
+    </record>
+    <template
+        id="address"
+        inherit_id="website_sale.address"
+        name="checkout Form Captcha"
+    >
+<!--        <xpath expr="//div[hasclass('form-field')][last()]" position="after">-->
+         <xpath expr="//div[label[@for='state_id']]" position="after">
+            <div class="form-group row form-field o_website_form_required_custom">
+                <label
+                    class="col-lg-3 col-md-4 col-form-label"
+                    for="g-recaptcha-response"
+                >Human?</label>
+                <div class="col-lg-7 col-md-8">
+                    <span class="o_website_form_recaptcha" required="" />
+                </div>
+                  <input type="hidden" name="field_required" t-att-value="'g-recaptcha-response'" />
+            </div>
+        </xpath>
+    </template>
+</odoo>

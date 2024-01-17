@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<odoo>
+
+	<data>
+	<record id="attendance_checkin_send_mail" model="ir.cron">
+        <field name="name">Check In Attendance Status [For Web]</field>
+        <field name="model_id" ref="model_hr_attendance"/>
+        <field name="state">code</field>
+        <field name="code">model.action_checkin_status()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False"/>
+
+    </record>
+        <record id="attendance_checkout_send_mail" model="ir.cron">
+        <field name="name">Check Out Attendance Status [For Web]</field>
+        <field name="model_id" ref="model_hr_attendance"/>
+        <field name="state">code</field>
+        <field name="code">model.action_checkout_status()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False"/>
+
+    </record>
+
+		<record id="group_attend_status" model="res.groups">
+	        <field name="name">Allow to send Attendance Status</field>
+    	</record>
+        </data>
+
+
+
+<!--    <record id="attend_status" model="mail.template">-->
+<!--		<field name="name">Attendance Status</field>-->
+<!--		<field name="model_id" ref="hb_geofencing_team.model_hr_attendance"/>-->
+<!--		<field name="email_from">${user.email}</field>-->
+<!--		<field name="email_to">${object.employee_id.parent_id.email}</field>-->
+<!--		&lt;!&ndash; <field name="partner_to">${object.member_detail.email}</field> &ndash;&gt;-->
+<!--		<field name="subject">Attendance Status Report </field>-->
+<!--		<field name="body_html">-->
+<!--			<![CDATA[-->
+<!--                <p>Hi,</p>-->
+<!--                <p>Today's -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; list added  below.</p>-->
+<!--            <table width="771" cellspacing="1" cellpadding="4" border="1" height="73">-->
+<!--            <tbody>-->
+<!--            <tr>-->
+<!--                <th>Employee Name</th>-->
+
+<!--            </tr>-->
+<!--                % for values in object.get_attend_ids()-->
+<!--                <tr>-->
+<!--                  <td>${values['emp_name']}</td>-->
+
+<!--                </tr>-->
+<!--                % endfor-->
+<!--                </tbody></table>-->
+<!--                <br/>-->
+<!--                 ]]>-->
+<!--		</field>-->
+<!--&lt;!&ndash;		<field name="lang">${object.name.lang}</field>&ndash;&gt;-->
+<!--		<field name="user_signature" eval="False"/>-->
+<!--		<field name="auto_delete" eval="True"/>-->
+<!--	</record>-->
+</odoo>
+

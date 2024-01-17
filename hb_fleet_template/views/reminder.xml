@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<odoo>
+	<record id="fleet_expiry_reminder_cron" model="ir.cron">
+        <field name="name">Fleet Expiry</field>
+        <field name="model_id" ref="model_employee_fleet"/>
+        <field name="state">code</field>
+        <field name="code">model.action_rem()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False"/>
+    </record>
+
+        <data>
+        <record id="res_config_settings_view_formm" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.hr.fleett</field>
+            <field name="model">res.config.settings</field>
+            <field name="priority" eval="90"/>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('settings')]" position="inside">
+                    <div class="app_settings_block" data-string="Fleet" id="fleet" string="Fleet" data-key="fleet" groups="fleet.fleet_group_manager">
+                        <h2>Fleet Management</h2>
+                        <div class="row mt16 o_settings_container">
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <div class="o_setting_left_pane"/>
+                                <div class="o_setting_right_pane">
+                                    <span class="o_form_label">Reminder Settings</span>
+                                    <div class="text-muted content-group mt16">
+                                        <span>Send an alert before </span>
+                                        <field name="alert_rem" class="text-center oe_inline" />
+                                        <span> days</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+        </data>
+
+    <record id="emp_fleet_due_template" model="mail.template">
+		<field name="name">Vehicle Due</field>
+		<field name="model_id" ref="hb_fleet_template.model_employee_fleet"/>
+		<field name="email_from">${user.email}</field>
+		<field name="email_to">${object.employee.work_email}</field>
+		<!-- <field name="partner_to">${object.member_detail.email}</field> -->
+		<field name="subject">Due Date Reminder </field>
+		<field name="body_html" type="html">
+			<div style="margin: 0px; padding: 0px;">
+				<p style="margin: 0px; padding: 0px; font-size: 13px;">
+					Dear ${object.employee.name},<br/><br/>
+					We understand that you might have a busy schedule and we would like to kindly set a reminder for you.
+				</p>
+				<p style="margin: 0px; padding: 0px; font-size: 13px;">
+					We have would like to remind you that your vehicle falls due on ${object.date_to}.
+					<br/>
+					Thank you.
+				</p>
+			</div>
+		</field>
+		<field name="lang">${object.name.lang}</field>
+		<field name="user_signature" eval="False"/>
+		<field name="auto_delete" eval="True"/>
+	</record>
+
+</odoo>
+

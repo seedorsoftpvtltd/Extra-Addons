@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<odoo>
+
+      <record id="view_prod_history_inh_form" model="ir.ui.view">
+            <field name="name">product.history.inherit</field>
+            <field name="model">product.history</field>
+            <field name="inherit_id" ref="hb_wms_invoice.view_supp_sheet_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='product_id']" position="before">
+
+						<field name="charge_unit_type" options="{'no_create': True, 'no_open': True}"/>
+
+				</xpath>
+			</field>
+		</record>
+
+    <record id="view_prod_history_inh_tree" model="ir.ui.view">
+            <field name="name">product.history.inherit</field>
+            <field name="model">product.history</field>
+            <field name="inherit_id" ref="hb_wms_invoice.view_supp_sheet_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='product_id']" position="before">
+
+						<field name="charge_unit_type" options="{'no_create': True, 'no_open': True}"/>
+
+				</xpath>
+			</field>
+		</record>
+
+     <record id="view_prod_summary_inh_form" model="ir.ui.view">
+            <field name="name">product.summary.inherit</field>
+            <field name="model">product.summary</field>
+            <field name="inherit_id" ref="hb_wms_invoice.view_supp_summ_sheet_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='product_id']" position="before">
+
+						<field name="charge_unit_type" options="{'no_create': True, 'no_open': True}"/>
+
+				</xpath>
+			</field>
+		</record>
+
+    <record id="view_prod_summary_inh_tree" model="ir.ui.view">
+            <field name="name">product.summary.inherit</field>
+            <field name="model">product.summary</field>
+            <field name="inherit_id" ref="hb_wms_invoice.view_supp_summ_sheet_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='product_id']" position="before">
+
+						<field name="charge_unit_type" options="{'no_create': True, 'no_open': True}"/>
+
+				</xpath>
+			</field>
+		</record>
+
+    <record id="view_summ_sheet_form_inh" model="ir.ui.view">
+            <field name="name">summary.sheet.lines.inherit</field>
+            <field name="model">summary.sheet.lines</field>
+            <field name="inherit_id" ref="hb_wms_invoice.view_summ_sheet_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='product_id']" position="before">
+
+						<field name="charge_unit_type" options="{'no_create': True, 'no_open': True}"/>
+
+				</xpath>
+			</field>
+		</record>
+
+    <record id="view_summ_sheet_tree_inh" model="ir.ui.view">
+            <field name="name">summary.sheet.lines.inherit</field>
+            <field name="model">summary.sheet.lines</field>
+            <field name="inherit_id" ref="hb_wms_invoice.view_summ_sheet_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='product_id']" position="before">
+
+						<field name="charge_unit_type" options="{'no_create': True, 'no_open': True}"/>
+
+				</xpath>
+			</field>
+		</record>
+
+
+</odoo>

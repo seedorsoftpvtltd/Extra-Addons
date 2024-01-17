@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="stock_picking_form_view_inherited_for_invoice" model="ir.ui.view">
+            <field name="name">stock.picking.form.view.inherited</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                 <xpath expr="//button[@name='action_toggle_is_locked']" position="after">
+                     <field name="invoice_count" invisible="1"/>
+                     <field name="operation_code" invisible="1"/>
+                    <button name="create_invoice_in" class="oe_highlight"
+                            string="Create Invoice" type="object"
+                            attrs="{'invisible': ['|','|','|',('invoice_count','!=', 0),('state','!=','done'),('operation_code','!=','incoming')]}"/>
+                    <button name="create_invoice_out" class="oe_highlight"
+                            string="Create Invoice" type="object"
+                            attrs="{'invisible': ['|','|','|',('invoice_count','!=', 0),('state','!=','done'),('operation_code','!=','outgoing')]}"/>
+                 </xpath>
+            </field>
+        </record>
+
+        <record id="view_picking_form_transfer_service_inh" model="ir.ui.view">
+        <field name="name">stock.picking.form</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="hb_wms_invoice.view_picking_form_transfer_service"/>
+        <field name="arch" type="xml">
+
+                  <xpath expr="//field[@name='service_id']/tree/field[@name='product_uom']" position="replace">
+                      <field name="product_uom" invisible="1"/>
+                  </xpath>
+        </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="assets_backend_inherit_saleinh" inherit_id="gio.assets_backend_inherit_sale" name="Sale backend assets">
+
+            <xpath expr="script[@src='/sale/static/src/js/sale.js']" position="replace">
+<!--                <script type="text/javascript" src="/gio/static/src/js/sale.js"></script>-->
+            </xpath>
+            <xpath expr="script[@src='/sale/static/src/js/tours/sale.js']" position="replace">
+<!--                <script type="text/javascript" src="/gio/static/src/js/tours/sale.js"></script>-->
+            </xpath>
+            <xpath expr="script[@src='/sale/static/src/js/account_reconciliation.js']" position="replace">
+<!--                <script type="text/javascript" src="/gio/static/src/js/account_reconciliation.js"></script>-->
+            </xpath>
+            <xpath expr="script[@src='/sale/static/src/js/product_configurator_widget.js']" position="replace">
+<!--                <script type="text/javascript" src="/gio/static/src/js/product_configurator_widget.js"></script>-->
+            </xpath>
+        </template>
+    </data>
+</odoo>

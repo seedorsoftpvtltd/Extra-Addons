@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+  <record id="view_item_master_form" model="ir.ui.view">
+        <field name="name">Item Master</field>
+        <field name="model">item.master</field>
+        <field name="arch" type="xml">
+            <form string="Item Master">
+				<sheet>
+					<group>
+								<field name="name"/>
+                        <field name="sku_no"/>
+                        <field name="description"/>
+                        <field name="product_id"/>
+                        <field name="partner_id"/>
+                    </group>
+                    <group>
+                          <field name="weight"/>
+                        <field name="length" />
+                        <field name="height"/>
+                        <field name="width"/>
+					</group>
+				</sheet>
+
+			 </form>
+        </field>
+    </record>
+    
+    
+     <record id="view_sku_action" model="ir.actions.act_window">
+    <field name="name">Item Master</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">item.master</field>
+    <field name="view_mode">kanban,tree,form</field>
+</record>
+    
+     <menuitem
+		id="menu_sku_sub"
+		name="Item Master"
+        parent="warehouse.menu_warehouse_products"
+        action="view_sku_action"/>
+</odoo>

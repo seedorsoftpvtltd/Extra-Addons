@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="generate_invoice_inh" model="ir.ui.view">
+            <field name="name">generate.invoice.form.view.ccin</field>
+            <field name="model">generate.invoice</field>
+            <field name="inherit_id" ref="hb_wms_invoice_v1.generate_invoice"/>
+            <field name="arch" type="xml">
+                 <xpath expr="//field[@name='partner_id']" position="replace">
+                     <field name="partner_id" domain="[('company_id','=', company_id)]" options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                     <field name="gen_seperate_inv" />
+                     <field name="partner_ids" widget="many2many_tags" options="{'no_create_edit': True, 'no_quick_create': True}"
+                            domain="['|',('id','=',partner_id),('parent_id','=',partner_id)]" attrs="{'invisible': [('gen_seperate_inv','=', False)]}"/>
+                 </xpath>
+                <xpath expr="//button[@name='generate_invoice']" position="replace">
+                      <button name="generate_invoice" string="Generate Invoice" type="object" class="oe_highlight"
+                              attrs="{'invisible': [('gen_seperate_inv','=', True)]}"/>
+                        <button name="generate_invoice_ccinv" string="Generate Invoice" type="object" class="oe_highlight"
+                              attrs="{'invisible': [('gen_seperate_inv','=', False)]}"/>
+                 </xpath>
+
+            </field>
+        </record>
+    </data>
+</odoo>

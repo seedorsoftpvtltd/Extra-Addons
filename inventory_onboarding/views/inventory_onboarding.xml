@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ONBOARDING STEPS -->
+
+    <template id="inventory_step1">
+        <t t-call="inventory_onboarding.onboarding_default_step">
+            <t t-set="title">Locations</t>
+            <t t-set="description">
+                Define your Locations in Warehouse
+            </t>
+            <t t-set="sl">1</t>
+                        <t t-set="btn_text">Specify</t>
+                        <t t-set="method" t-value="'onboardings_step_inventory_action'" />
+                        <t t-set="model" t-value="'res.company'" />
+        </t>
+    </template>
+
+    <template id="inventory_step2">
+        <t t-call="inventory_onboarding.onboarding_default_step">
+            <t t-set="title">H.S Codes</t>
+            <t t-set="description">
+                Create / Import the H.S Codes
+            </t>
+            <t t-set="sl">2</t>
+                    <t t-set="btn_text">Manage</t>
+                    <t t-set="method" t-value="'onboardings_Allocation1_inventory_action'" />
+                    <t t-set="model" t-value="'res.company'" />
+
+        </t>
+    </template>
+
+    <template id="inventory_step3">
+        <t t-call="inventory_onboarding.onboarding_default_step">
+            <t t-set="title">UOM</t>
+            <t t-set="description">
+                 Review  &amp; specify the UOMs
+            </t>
+            <t t-set="sl">3</t>
+                        <t t-set="btn_text1">Review</t>
+                        <t t-set="method1" t-value="'onboarding_step2_action_inventory'" />
+                        <t t-set="model" t-value="'res.company'" />
+        </t>
+    </template>
+
+    <template id="inventory_step4">
+        <t t-call="inventory_onboarding.onboarding_default_step">
+            <t t-set="title">Products</t>
+            <t t-set="description">
+              Create / Import the required Products
+            </t>
+            <t t-set="sl">4</t>
+                        <t t-set="btn_text1">Manage</t> <t t-set="btn_text3">Import</t>
+                        <t t-set="method1" t-value="'onboarding_approve2_action_inventory'" />
+                        <t t-set="method2" t-value="'onboarding_approve5_action_inventory'" />
+                        <t t-set="model" t-value="'res.company'" />
+        </t>
+    </template>
+    <template id="inventory_step5">
+        <t t-call="inventory_onboarding.onboarding_default_step">
+            <t t-set="title">Services</t>
+            <t t-set="description">
+              Add / Import the essential Services
+
+            </t>
+            <t t-set="sl">5</t>
+                        <t t-set="btn_text1">Add</t> <t t-set="btn_text3">Import</t>
+                        <t t-set="method1" t-value="'onboarding_approve3_action_inventory'" />
+            <t t-set="method2" t-value="'onboarding_approve4_action_inventory'" />
+                        <t t-set="model" t-value="'res.company'" />
+        </t>
+    </template>
+
+
+
+    <template id="inventory_onboarding_onboarding_panel" name="inventory.onboarding.dashboard.panel">
+        <t t-call="inventory_onboarding.onboarding_default_container">
+            <t t-set="classes" t-value="'o_onboarding_blue'"/>
+            <t t-set="bg_image" t-value="'/onboarding/static/src/img/employee_dashboard_onboarding_bg.jpg'"/>
+            <!--            <t t-set="close_method" t-value="'action_close_account_dashboard_onboarding'"/>-->
+            <!--            <t t-set="close_model" t-value="'res.company'"/>-->
+            <!--            <t t-set="text_completed">Congratulations! You are all set.</t>-->
+
+            <t t-call="inventory_onboarding.inventory_step1" name="gen_setup"/>
+            <t t-call="inventory_onboarding.inventory_step2" name="create_setup"/>
+            <t t-call="inventory_onboarding.inventory_step3" name="review_setup"/>
+            <t t-call="inventory_onboarding.inventory_step4" name="product_setup"/>
+              <t t-call="inventory_onboarding.inventory_step5" name="imp_setup"/>
+
+        </t>
+    </template>
+    <!-- SAMPLE INVOICE EMAIL -->
+
+</odoo>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_job_estimate_product_from" model="ir.ui.view">
+        <field name="name">sale.estimate.job.form</field>
+        <field name="model">sale.estimate.job</field>
+        <field name="inherit_id" ref="job_cost_estimate_customer.view_sale_estimate_form_job"/>
+        <field name="arch" type="xml">
+
+              <xpath expr="//field[@name='company_id']" position="after">
+                    <field name="x_survey_vol"/>
+                    <field name="survey_area"/>
+                    <field name="x_approx_wt"/>
+                </xpath>
+            <notebook position="inside">
+                <page string="Product Estimation" name="product">
+                    <!--                       attrs="{'invisible': [('picking_type_code', 'not in', ('incoming', 'outgoing'))]}"-->
+
+                    <!--                      attrs="{'invisible': [('picking_type_code', '!=', 'incoming')]}">-->
+                    <field name="job_estimate_product_id">
+                        <tree editable="bottom">
+                            <field name="product_name_job"/>
+                            <field name="product_description"/>
+
+                            <field name="product_quantity"/>
+                            <field name="uom"/>
+
+                            <field name="product_length"/>
+                            <field name="product_width"/>
+                            <field name="product_height"/>
+                            <field name="product_weight"/>
+
+                            <field name="product_volume"/>
+                            <field name="product_area"/>
+                            <field name="total_volume" sum="Total"/>
+                            <field name="total_area" sum="Total"/>
+                            <field name="total_weight" sum="Total"/>
+
+                            <!--                            <field name="product_width" widget="monetary"/>-->
+
+                        </tree>
+                    </field>
+
+                </page>
+            </notebook>
+
+
+        </field>
+    </record>
+</odoo>

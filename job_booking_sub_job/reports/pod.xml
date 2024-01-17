@@ -1,0 +1,1487 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <report
+            id="pod_pdf"
+            string="Proof of Delivery"
+            model="sub.job"
+            report_type="qweb-pdf"
+            name="job_booking_sub_job.report_pod"
+            file="job_booking_sub_job.report_pod"
+    />
+    <template id="report_pod">
+        <t t-call="web.report_layout">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="job_booking_sub_job.report_delivey_pod"
+                   t-lang="o.partner_id.lang"/>
+            </t>
+        </t>
+    </template>
+    <template t-name="report_delivey_pod">
+        <t t-call="web.basic_layout">
+            <!--<t t-set="is_pro_forma" t-value="True"/>-->
+            <t t-foreach="docs" t-as="doc">
+                <!--<t t-set="doc" t-value="doc.with_context({'lang':doc.partner_id.lang})"/>-->
+                <!--<t t-set="style" t-value="doc.style or res_company.df_style or user.env.ref('professional_templates.df_style_for_all_reports')"/>-->
+                <!--<t t-if="style.template_so.key == 'professional_templates.SO_1_document'" t-call="professional_templates.SO_1_document" t-lang="doc.partner_id.lang"/>-->
+                <!--<t t-if="style.template_so.key == 'professional_templates.SO_2_document'" t-call="professional_templates.SO_2_document" t-lang="doc.partner_id.lang"/>-->
+                <!--<t t-if="style.template_so.key == 'professional_templates.SO_3_document'" t-call="professional_templates.SO_3_document" t-lang="doc.partner_id.lang"/>-->
+                <!--<t t-if="style.template_so.key == 'professional_templates.SO_4_document'" t-call="professional_templates.SO_4_document" t-lang="doc.partner_id.lang"/>-->
+                <!--<t t-if="style.template_so.key == 'professional_templates.SO_5_document'" t-call="professional_templates.SO_5_document" t-lang="doc.partner_id.lang"/>-->
+                <!--<t t-if="style.template_so.key == 'professional_templates.SO_6_document'" t-call="professional_templates.SO_6_document" t-lang="doc.partner_id.lang"/>-->
+                <!--<t t-if="style.template_so.key == 'professional_templates.SO_7_document'" t-call="professional_templates.SO_7_document" t-lang="doc.partner_id.lang"/>-->
+                <!--<t t-if="style.template_so.key == 'professional_templates.SO_8_document'" t-call="professional_templates.SO_8_document" t-lang="doc.partner_id.lang"/>-->
+                <!--<t t-if="style.template_so.key == 'professional_templates.SO_9_document'" t-call="professional_templates.SO_9_document" t-lang="doc.partner_id.lang"/>-->
+                <!--<t t-if="style.template_so.key == 'professional_templates.SO_10_document'" t-call="professional_templates.SO_10_document" t-lang="doc.partner_id.lang"/>-->
+                <!--<t t-if="style.template_so.key == 'professional_templates.SO_11_document'" t-call="professional_templates.SO_11_document" t-lang="doc.partner_id.lang"/>-->
+                <!--<t t-if="style.template_so.key == 'professional_templates.SO_13_document'" t-call="professional_templates.SO_13_document" t-lang="doc.partner_id.lang"/>-->
+                <!--<t t-if="style.template_so.key == 'professional_templates.SO_14_document'" t-call="professional_templates.SO_14_document" t-lang="doc.partner_id.lang"/>-->
+                <!--<t t-if="not style" t-call="sale.report_saleorder_document" t-lang="doc.partner_id.lang"/>-->
+                <!--<t t-if="o and 'company_id' in o">-->
+                <!--      <t t-set="company" t-value="o.company_id"/>-->
+                <!--</t>-->
+                <!--  <t t-if="not o or not 'company_id' in o">-->
+                <!--      <t t-set="company" t-value="res_company"/>-->
+                <!--  </t>-->
+                <!--  <div t-attf-style="padding-bottom:0mm; padding-left:0mm; padding-right:0mm; color:{{style.text_color}} !important;font-size:{{int(style.header_font)}}px !important;font-family:{{style.font_family}} !important;" class="header col-12">-->
+                <!--      <t t-if="style.header">-->
+                <!--        <div style=" border:2px solid black; width:101.5%;height:160px;">-->
+                <!--          <div class="col-7 float-left" style="padding-left:5px;padding-top:10px;width:200px;height:150px;">-->
+                <!--              <span t-if="style.logo">-->
+                <!--                  <span itemprop="image" t-field="style.logo" t-options="{&quot;widget&quot;: &quot;image&quot;}"/>-->
+                <!--              </span>-->
+                <!--              <span t-if="not style.logo and company.logo">-->
+                <!--                  <span itemprop="image" t-field="company.logo" t-options="{&quot;widget&quot;: &quot;image&quot;}"/>-->
+                <!--              </span>-->
+                <!--              <span t-if="not style.logo and not company.logo">-->
+                <!--                  <span itemprop="image" t-field="company.logo" t-options="{&quot;widget&quot;: &quot;image&quot;}"/>-->
+                <!--              </span>-->
+                <!--              <div t-if="company.twitter or company.facebook or company.youtube" t-attf-style="background-color:{{style.theme_color}};width:auto;padding-left:4mm; color:{{style.theme_txt_color}}; padding-right:4mm; padding-top:4mm; padding-bottom:0.6mm;" class="float-left">-->
+                <!--                  <span t-if="company.twitter" style="padding-left:0mm;" class="fa fa-twitter-square "/> <span t-field="company.twitter"/>-->
+                <!--                  <span t-if="company.facebook" style="padding-left:3.45mm;" class="fa fa-facebook-square "/> <span t-field="company.facebook"/>-->
+                <!--                  <span t-if="company.youtube" style="padding-left:3.45mm;" class="fa fa-youtube-square "/> <span t-field="company.youtube"/>-->
+                <!--              </div>-->
+                <!--          </div>-->
+                <!--          <div class="col-5 mb8 float-right" style="padding-bottom:0.6mm;padding-right:0mm;padding-top:10px">-->
+                <!--              <div class="float-right" style="width:auto;padding-left:4mm;">-->
+                <!--                  <t t-call="professional_templates.company_address"/>-->
+                <!--              </div>-->
+                <!--          </div>-->
+                <!--          </div>-->
+                <!--      </t>-->
+                <!--      </div>-->
+
+                <!-- <div class="col-12" t-attf-style="white-space:pre-line;color:#{style.wm_color};left:#{style.leftpadding}mm; top:#{style.toppadding}mm;font-size:#{style.fontsize}px; opacity:#{style.opacity};z-index:-99; -webkit-transform:rotate(-#{style.rotate}deg);position:fixed;"><t t-esc="style.wm_eval(o, time, user, res_company)"/></div>   -->
+                <!--<div class="col-12 mt16 float-left" style="padding-left:0mm; padding-right:0mm;">-->
+                <!--start of wrapper -->
+
+
+                <div class="header" style="border: 1px solid black;height:157px;">
+                    <div style="width:100%">
+                        <div style="float:left; width:50%;">
+
+
+                            <div style="width:100%;">
+                                <div style="float:left;width:40%;padding-left:20px;padding-top:15px;width:250px;">
+                                    <!--<img src="/web/binary/company_logo" style="width:300px;"  />-->
+                                    <span itemprop="image" t-field="res_company.logo"
+                                          t-options="{&quot;widget&quot;: &quot;image&quot;, &quot;style&quot;: &quot;float:center;&quot;}"/>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div style="width:100%">
+                        <div style="float:right; width:50%;">
+
+
+                            <div style="width:100%;text-align:right;margin-top:8px;">
+                                <div style="float:right;padding-top:0.3px;padding-right:3px">
+                                    <!--<img src="/web/binary/company_logo" style="height: 100px;width:100px;"  />-->
+                                    <div>
+                                        <b>
+                                            <span style="font-size:22px;padding-right:0px;text-align:center"
+                                                  t-field="res_company.name"/>
+                                        </b>
+                                    </div>
+
+                                    <div style="margin-top:-8px;text-align:center">
+                                        <span style="font-size:14px;text-align:center"
+                                              t-field="res_company.street_name"/>
+                                    </div>
+                                    <!--<br/><span style="font-size:12px;" t-field="res_company.street_number"/><br/>-->
+                                    <div style="margin-top:-5px;padding-right:-2px;text-align:center">
+                                        <span style="font-size:14px;text-align:center"
+                                              t-field="res_company.street_number"/>
+                                    </div>
+                                    <!--<span style="font-size:16px;" t-field="res_company.street_number"/><br/>-->
+                                    <!--<span style="font-size:14px;" t-field="res_company.street_number2"/><br/>-->
+                                    <div style="margin-top:-5px;text-align:center">
+                                        <span style="font-size:14px;text-align:center" t-field="res_company.street2"/>
+                                    </div>
+                                    <!--<span style="font-size:10px;" t-field="res_company.country_id"/><br/>-->
+                                    <div style="margin-top:-5px;text-align:center">
+                                        <span style="font-size:14px;text-align:center">TAX CARD#:
+                                            <span t-field="res_company.youtube"/>
+                                        </span>
+                                    </div>
+                                    <div style="margin-top:-5px;text-align:center">
+                                        <span style="font-size:14px;text-align:center">VATIN:
+                                            <span t-field="res_company.vat"/>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="page">
+                    <table>
+                        <tr>
+                            <t>
+
+                                <td style="border:1px solid black;border-top:0px;width:40%;">
+                                    <div class="text-center"
+                                         style="width:100%;height:5%;border-bottom:1px solid black;font-size:medium;color:black;  background-color:#E8E8E8;">
+                                        <b>PROOF OF DELIVERY-
+                                            <span t-field="doc.name"/>
+
+                                        </b>
+                                    </div>
+                                    <br/>
+
+                                    <div style="width:100%;margin-top:-22px;padding:1px;">
+                                        <div style="width:100%;">
+                                            <div style="float:left; width:50%;">
+
+
+                                                <div style="width:100%;">
+                                                    <div style="float:left;width:40%;">
+                                                        <div style="width:100%;">
+                                                            <div style="float:left;width:98%;">
+                                                                <span style="font-size: 10.5px;">
+                                                                    <b>Client</b>
+                                                                </span>
+                                                                <br/>
+
+                                                            </div>
+                                                            <div style="float:right;width:2%;">
+                                                                <span style="font-size: 10.5px;">
+                                                                    <b>:</b>
+                                                                </span>
+                                                                <br/>
+
+                                                            </div>
+                                                            <div style="clear:both"/>
+                                                        </div>
+                                                    </div>
+                                                    <div style="float:right;width:60%;">
+                                                        <span style="font-size: 10.5px;">&amp;nbsp;
+                                                            <span t-field="doc.partner_id"/>
+                                                            <br/>
+                                                        </span>
+                                                    </div>
+                                                    <div style="clear:both"/>
+                                                </div>
+                                            </div>
+                                            <div style="float:right; width:50%;">
+
+
+                                                <div style="width:100%;">
+                                                    <div style="float:left;width:40%;">
+                                                        <div style="width:100%;">
+                                                            <div style="float:left;width:98%;">
+                                                                <span style="font-size: 10.5px;">
+                                                                    <b>&amp;nbsp;Notify</b>
+                                                                </span>
+                                                                <br/>
+
+                                                            </div>
+                                                            <div style="float:right;width:2%;">
+                                                                <span style="font-size: 10.5px;">
+                                                                    <b>:</b>
+                                                                </span>
+                                                                <br/>
+
+                                                            </div>
+                                                            <div style="clear:both"/>
+                                                        </div>
+                                                    </div>
+                                                    <div style="float:right;width:60%;">
+                                                        <span style="font-size: 10.5px;">&amp;nbsp;
+                                                            <span t-field="doc.notify_party"/>
+                                                            <br/>
+                                                        </span>
+                                                    </div>
+                                                    <div style="clear:both"/>
+                                                </div>
+                                            </div>
+                                            <div style="clear:both"/>
+                                        </div>
+                                        <div style="width:100%;">
+                                            <div style="float:left; width:50%;">
+
+
+                                                <div style="width:100%;">
+                                                    <div style="float:left;width:40%;">
+                                                        <div style="width:100%;">
+                                                            <div style="float:left;width:98%;">
+                                                                <span style="font-size: 10.5px;">
+                                                                    <b>Consignee</b>
+                                                                </span>
+                                                                <br/>
+
+                                                            </div>
+                                                            <div style="float:right;width:2%;">
+                                                                <span style="font-size: 10.5px;">
+                                                                    <b>:</b>
+                                                                </span>
+                                                                <br/>
+
+                                                            </div>
+                                                            <div style="clear:both"/>
+                                                        </div>
+                                                    </div>
+                                                    <div style="float:right;width:60%;">
+                                                        <span style="font-size: 10.5px;">&amp;nbsp;
+                                                            <span t-field="doc.consignee_id"/>
+                                                            <br/>
+                                                        </span>
+                                                    </div>
+                                                    <div style="clear:both"/>
+                                                </div>
+                                            </div>
+                                            <div style="float:right; width:50%;">
+                                                <div style="width:100%;">
+                                                    <div style="float:left;width:40%;">
+                                                        <div style="width:100%;">
+                                                            <div style="float:left;width:98%;">
+                                                                <span style="font-size: 10.5px;">
+                                                                    <b>&amp;nbsp;Shipper</b>
+                                                                </span>
+                                                                <br/>
+
+                                                            </div>
+                                                            <div style="float:right;width:2%;">
+                                                                <span style="font-size: 10.5px;">
+                                                                    <b>:</b>
+                                                                </span>
+                                                                <br/>
+
+                                                            </div>
+                                                            <div style="clear:both"/>
+                                                        </div>
+                                                    </div>
+                                                    <div style="float:right;width:60%;">
+                                                        <span style="font-size: 10.5px;">&amp;nbsp;
+
+                                                            <span t-field="doc.shipper"/>
+                                                            <br/>
+                                                        </span>
+                                                    </div>
+                                                    <div style="clear:both"/>
+                                                </div>
+                                            </div>
+                                            <div style="clear:both"/>
+                                        </div>
+                                        <div style="width:100%;">
+                                            <div style="float:left; width:50%;">
+                                                <div style="width:100%;">
+                                                    <div style="float:left;width:40%;">
+                                                        <div style="width:100%;">
+                                                            <div style="float:left;width:98%;">
+                                                                <span style="font-size: 10.5px;">
+                                                                    <b>Deliver To</b>
+                                                                </span>
+                                                                <br/>
+
+                                                            </div>
+                                                            <div style="float:right;width:2%;">
+                                                                <span style="font-size: 10.5px;">
+                                                                    <b>:</b>
+                                                                </span>
+                                                                <br/>
+
+                                                            </div>
+                                                            <div style="clear:both"/>
+                                                        </div>
+                                                    </div>
+                                                    <div style="float:right;width:60%;">
+                                                        <span style="font-size: 10.5px;">&amp;nbsp;
+                                                           <span t-field="doc.shipment_no"/>
+                                                            <br/>
+                                                        </span>
+                                                    </div>
+                                                    <div style="clear:both"/>
+                                                </div>
+                                            </div>
+                                            <div style="float:right; width:50%;">
+
+                                                <div style="width:100%;">
+                                                    <div style="float:left;width:40%;">
+                                                        <div style="width:100%;">
+                                                            <div style="float:left;width:98%;">
+                                                                <span style="font-size: 10.5px;">
+                                                                    <b>&amp;nbsp;B/E No</b>
+                                                                </span>
+                                                                <br/>
+
+                                                            </div>
+                                                            <div style="float:right;width:2%;">
+                                                                <span style="font-size: 10.5px;">
+                                                                    <b>:</b>
+                                                                </span>
+                                                                <br/>
+
+                                                            </div>
+                                                            <div style="clear:both"/>
+                                                        </div>
+                                                    </div>
+                                                    <div style="float:right;width:60%;">
+                                                        <span style="font-size: 10.5px;">&amp;nbsp;
+                                                            <span t-field="doc.billno"/>
+                                                            <br/>
+                                                        </span>
+                                                    </div>
+                                                    <div style="clear:both"/>
+                                                </div>
+                                            </div>
+                                            <div style="clear:both"/>
+                                        </div>
+                                        <div style="width:100%;">
+                                            <div style="float:left; width:50%;">
+                                                <div style="width:100%;">
+                                                    <div style="float:left;width:40%;">
+                                                        <div style="width:100%;">
+                                                            <div style="float:left;width:98%;">
+                                                                <span style="font-size: 10.5px;">
+                                                                    <b>Job Ref.</b>
+                                                                </span>
+                                                                <br/>
+
+                                                            </div>
+                                                            <div style="float:right;width:2%;">
+                                                                <span style="font-size: 10.5px;">
+                                                                    <b>:</b>
+                                                                </span>
+                                                                <br/>
+
+                                                            </div>
+                                                            <div style="clear:both"/>
+                                                        </div>
+                                                    </div>
+                                                    <div style="float:right;width:60%;">
+                                                        <span style="font-size: 10.5px;">&amp;nbsp;
+                                                            <span t-field="doc.job_id.name"/>
+                                                            <br/>
+                                                        </span>
+                                                    </div>
+                                                    <div style="clear:both"/>
+                                                </div>
+                                            </div>
+                                            <div style="float:right; width:50%;">
+
+                                                <div style="width:100%;">
+                                                    <div style="float:left;width:40%;">
+                                                        <div style="width:100%;">
+                                                            <div style="float:left;width:98%;">
+                                                                <span style="font-size: 10.5px;">
+                                                                    <b>&amp;nbsp;Shipment Ref.</b>
+                                                                </span>
+                                                                <br/>
+
+                                                            </div>
+                                                            <div style="float:right;width:2%;">
+                                                                <span style="font-size: 10.5px;">
+                                                                    <b>:</b>
+                                                                </span>
+                                                                <br/>
+
+                                                            </div>
+                                                            <div style="clear:both"/>
+                                                        </div>
+                                                    </div>
+                                                    <div style="float:right;width:60%;">
+                                                        <span style="font-size: 10.5px;">&amp;nbsp;
+                                                            <span t-field="doc.job_id.name"/>
+                                                            <br/>
+                                                        </span>
+                                                    </div>
+                                                    <div style="clear:both"/>
+                                                </div>
+                                            </div>
+                                            <div style="clear:both"/>
+                                        </div>
+
+                                        <!--   <div style="width:100%;">-->
+                                        <!--   <div style="float:left; width:50%;">-->
+                                        <!--  	 <div style="width:100%;">-->
+                                        <!--  <div style="float:left;width:40%;">-->
+                                        <!--      <span style="font-size: 10.5px;"><b>Job Ref.</b></span><br/>-->
+
+                                        <!--          </div>-->
+                                        <!--   <div style="float:right;width:60%;">-->
+                                        <!--     <span style="font-size: 10.5px;">:&amp;nbsp;<span t-field="doc.job_id.name"/>-->
+                                        <!--     <br/></span>-->
+                                        <!--           </div>-->
+                                        <!--  <div style="clear:both"/>-->
+                                        <!--</div>-->
+                                        <!--	</div>-->
+                                        <!--	 <div style="float:right; width:50%;">-->
+
+                                        <!--	  <div style="width:100%;">-->
+                                        <!--  <div style="float:left;width:40%;">-->
+
+
+                                        <!--          </div>-->
+                                        <!--   <div style="float:right;width:60%;">-->
+                                        <!--     <span style="font-size: 10.5px;">&amp;nbsp;	-->
+
+                                        <!--     <br/></span>-->
+                                        <!--           </div>-->
+                                        <!--  <div style="clear:both"/>-->
+                                        <!--  </div></div> <div style="clear:both"/></div>-->
+                                        <div style="width:100%;">
+                                            <div style="float:left; width:50%;">
+                                                <div style="width:100%;">
+                                                    <div style="float:left;width:40%;">
+                                                        <div style="width:100%;">
+                                                            <div style="float:left;width:98%;">
+                                                                <span style="font-size: 10.5px;">
+                                                                    <b>HBL No</b>
+                                                                </span>
+                                                                <br/>
+
+                                                            </div>
+                                                            <div style="float:right;width:2%;">
+                                                                <span style="font-size: 10.5px;">
+                                                                    <b>:</b>
+                                                                </span>
+                                                                <br/>
+
+                                                            </div>
+                                                            <div style="clear:both"/>
+                                                        </div>
+                                                    </div>
+                                                    <div style="float:right;width:60%;">
+
+                                                        <span style="font-size: 10.5px;">&amp;nbsp;
+                                                            <span t-field="doc.hbl_no"/>
+                                                            <br/>
+                                                        </span>
+                                                        <br/>
+                                                    </div>
+                                                    <div style="clear:both"/>
+                                                </div>
+                                            </div>
+                                            <div style="float:right; width:50%;">
+
+                                                <div style="width:100%;">
+                                                    <div style="float:left;width:40%;">
+                                                        <div style="width:100%;">
+                                                            <div style="float:left;width:98%;">
+                                                                <span style="font-size: 10.5px;">
+                                                                    <b>&amp;nbsp;MBL No</b>
+                                                                </span>
+                                                                <br/>
+
+                                                            </div>
+                                                            <div style="float:right;width:2%;">
+                                                                <span style="font-size: 10.5px;">
+                                                                    <b>:</b>
+                                                                </span>
+                                                                <br/>
+
+                                                            </div>
+                                                            <div style="clear:both"/>
+                                                        </div>
+                                                    </div>
+                                                    <div style="float:right;width:60%;">
+                                                        <span style="font-size: 10.5px;">&amp;nbsp;
+                                                            <span t-field="doc.mbl_no"/>
+                                                            <br/>
+                                                        </span>
+                                                    </div>
+                                                    <div style="clear:both"/>
+                                                </div>
+                                            </div>
+                                            <div style="clear:both"/>
+                                        </div>
+                                        <div style="width:100%;">
+                                            <div style="float:left; width:50%;">
+                                                <div style="width:100%;">
+                                                    <div style="float:left;width:40%;">
+                                                        <div style="width:100%;">
+                                                            <div style="float:left;width:98%;">
+                                                                <span style="font-size: 10.5px;">
+                                                                    <b>ETA</b>
+                                                                </span>
+                                                                <br/>
+
+                                                            </div>
+                                                            <div style="float:right;width:2%;">
+                                                                <span style="font-size: 10.5px;">
+                                                                    <b>:</b>
+                                                                </span>
+                                                                <br/>
+
+                                                            </div>
+                                                            <div style="clear:both"/>
+                                                        </div>
+                                                    </div>
+                                                    <div style="float:right;width:60%;">
+                                                        <span style="font-size: 10.5px;">&amp;nbsp;
+                                                            <span t-field="doc.eta"/>
+                                                            <br/>
+                                                        </span>
+                                                    </div>
+                                                    <div style="clear:both"/>
+                                                </div>
+                                            </div>
+                                            <div style="float:right; width:50%;">
+
+                                                <div style="width:100%;">
+                                                    <div style="float:left;width:40%;">
+                                                        <div style="width:100%;">
+                                                            <div style="float:left;width:98%;">
+                                                                <span style="font-size: 10.5px;">
+                                                                    <b>&amp;nbsp;ETD</b>
+                                                                </span>
+                                                                <br/>
+
+                                                            </div>
+                                                            <div style="float:right;width:2%;">
+                                                                <span style="font-size: 10.5px;">
+                                                                    <b>:</b>
+                                                                </span>
+                                                                <br/>
+
+                                                            </div>
+                                                            <div style="clear:both"/>
+                                                        </div>
+                                                    </div>
+                                                    <div style="float:right;width:60%;">
+                                                        <span style="font-size: 10.5px;">&amp;nbsp;
+                                                            <span t-field="doc.etd"/>
+                                                            <br/>
+                                                        </span>
+                                                    </div>
+                                                    <div style="clear:both"/>
+                                                </div>
+                                            </div>
+                                            <div style="clear:both"/>
+                                        </div>
+                                        <div style="width:100%;">
+                                            <div style="float:left; width:50%;">
+                                                <div style="width:100%;">
+                                                    <div style="float:left;width:40%;">
+                                                        <div style="width:100%;">
+                                                            <div style="float:left;width:98%;">
+                                                                <span style="font-size: 10.5px;">
+                                                                    <b>Vessel</b>
+                                                                </span>
+                                                                <br/>
+
+                                                            </div>
+                                                            <div style="float:right;width:2%;">
+                                                                <span style="font-size: 10.5px;">
+                                                                    <b>:</b>
+                                                                </span>
+                                                                <br/>
+
+                                                            </div>
+                                                            <div style="clear:both"/>
+                                                        </div>
+                                                    </div>
+                                                    <div style="float:right;width:60%;">
+                                                        <span style="font-size: 10.5px;">&amp;nbsp;
+                                                            <span t-field="doc.flight"/>
+                                                            <br/>
+                                                        </span>
+                                                    </div>
+                                                    <div style="clear:both"/>
+                                                </div>
+                                            </div>
+                                            <div style="float:right; width:50%;">
+
+                                                <div style="width:100%;">
+                                                    <div style="float:left;width:40%;">
+                                                        <div style="width:100%;">
+                                                            <div style="float:left;width:98%;">
+                                                                <span style="font-size: 10.5px;">
+                                                                    <b>&amp;nbsp;Carrier</b>
+                                                                </span>
+                                                                <br/>
+
+                                                            </div>
+                                                            <div style="float:right;width:2%;">
+                                                                <span style="font-size: 10.5px;">
+                                                                    <b>:</b>
+                                                                </span>
+                                                                <br/>
+
+                                                            </div>
+                                                            <div style="clear:both"/>
+                                                        </div>
+                                                    </div>
+                                                    <div style="float:right;width:60%;">
+                                                        <span style="font-size: 10.5px;">&amp;nbsp;
+                                                            <span t-field="doc.job_id.x_carrier"/>
+                                                            <br/>
+                                                        </span>
+                                                    </div>
+                                                    <div style="clear:both"/>
+                                                </div>
+                                            </div>
+                                            <div style="clear:both"/>
+                                        </div>
+                                        <div style="width:100%;">
+                                            <div style="float:left; width:50%;">
+                                                <div style="width:100%;">
+                                                    <div style="float:left;width:40%;">
+                                                        <div style="width:100%;">
+                                                            <div style="float:left;width:98%;">
+                                                                <span style="font-size: 10.5px;">
+                                                                    <b>Voyage</b>
+                                                                </span>
+                                                                <br/>
+
+                                                            </div>
+                                                            <div style="float:right;width:2%;">
+                                                                <span style="font-size: 10.5px;">
+                                                                    <b>:</b>
+                                                                </span>
+                                                                <br/>
+
+                                                            </div>
+                                                            <div style="clear:both"/>
+                                                        </div>
+                                                    </div>
+                                                    <div style="float:right;width:60%;">
+                                                        <span style="font-size: 10.5px;">&amp;nbsp;
+                                                            <span t-field="doc.job_id.voyage_no"/>
+                                                            <br/>
+                                                        </span>
+                                                    </div>
+                                                    <div style="clear:both"/>
+                                                </div>
+                                            </div>
+                                            <div style="float:right; width:50%;padding-left:3px;">
+
+                                                <div style="width:100%;">
+                                                    <div style="float:left;width:40%;">
+                                                        <div style="width:100%;">
+                                                            <div style="float:left;width:98%;">
+                                                                <span style="font-size: 10.5px;">
+                                                                    <b>Place of Delivery</b>
+                                                                </span>
+                                                                <br/>
+
+                                                            </div>
+                                                            <div style="float:right;width:2%;">
+                                                                <span style="font-size: 10.5px;">
+                                                                    <b>:</b>
+                                                                </span>
+                                                                <br/>
+
+                                                            </div>
+                                                            <div style="clear:both"/>
+                                                        </div>
+                                                    </div>
+                                                    <div style="float:right;width:60%;">
+                                                        <span style="font-size: 10.5px;">&amp;nbsp;
+                                                            <span t-field="doc.place_of_delivery"/>
+                                                            <br/>
+                                                        </span>
+                                                    </div>
+                                                    <div style="clear:both"/>
+                                                </div>
+                                            </div>
+                                            <div style="clear:both"/>
+                                        </div>
+                                        <div style="width:100%;">
+                                            <div style="float:left; width:50%;">
+                                                <div style="width:100%;">
+                                                    <div style="float:left;width:40%;">
+                                                        <div style="width:100%;">
+                                                            <div style="float:left;width:98%;">
+                                                                <span style="font-size: 10.5px;">
+                                                                    <b>Port of Loading</b>
+                                                                </span>
+                                                                <br/>
+
+                                                            </div>
+                                                            <div style="float:right;width:2%;">
+                                                                <span style="font-size: 10.5px;">
+                                                                    <b>:</b>
+                                                                </span>
+                                                                <br/>
+
+                                                            </div>
+                                                            <div style="clear:both"/>
+                                                        </div>
+                                                    </div>
+                                                    <div style="float:right;width:60%;">
+                                                        <span style="font-size: 10.5px;">&amp;nbsp;
+                                                            <span t-field="doc.port_of_origin"/>
+                                                            <br/>
+                                                        </span>
+                                                    </div>
+                                                    <div style="clear:both"/>
+                                                </div>
+                                            </div>
+                                            <div style="float:right; width:50%;">
+
+                                                <div style="width:100%;">
+                                                    <div style="float:left;width:40%;">
+                                                        <div style="width:100%;">
+                                                            <div style="float:left;width:98%;">
+                                                                <span style="font-size: 10.5px;">
+                                                                    <b>&amp;nbsp;Port of Discharge</b>
+                                                                </span>
+                                                                <br/>
+
+                                                            </div>
+                                                            <div style="float:right;width:2%;">
+                                                                <span style="font-size: 10.5px;">
+                                                                    <b>:</b>
+                                                                </span>
+                                                                <br/>
+
+                                                            </div>
+                                                            <div style="clear:both"/>
+                                                        </div>
+                                                    </div>
+                                                    <div style="float:right;width:60%;">
+                                                        <span style="font-size: 10.5px;">&amp;nbsp;
+                                                            <span t-field="doc.job_id.discharg_port_id"/>
+                                                            <br/>
+                                                        </span>
+                                                    </div>
+                                                    <div style="clear:both"/>
+                                                </div>
+                                            </div>
+                                            <div style="clear:both"/>
+                                        </div>
+                                        <div style="width:100%;">
+                                            <div style="float:left; width:50%;">
+                                                <div style="width:100%;">
+                                                    <div style="float:left;width:40%;">
+                                                        <div style="width:100%;">
+                                                            <div style="float:left;width:98%;">
+                                                                <span style="font-size: 10.5px;">
+                                                                    <b>Place of Final Destination</b>
+                                                                </span>
+                                                                <br/>
+
+                                                            </div>
+                                                            <div style="float:right;width:2%;">
+                                                                <span style="font-size: 10.5px;">
+                                                                    <b>:</b>
+                                                                </span>
+                                                                <br/>
+
+                                                            </div>
+                                                            <div style="clear:both"/>
+                                                        </div>
+                                                    </div>
+                                                    <div style="float:right;width:60%;">
+                                                        <span style="font-size: 10.5px;">&amp;nbsp;
+                                                            <span t-field="doc.port_final_destination"/>
+                                                            <br/>
+                                                        </span>
+                                                    </div>
+                                                    <div style="clear:both"/>
+                                                </div>
+                                            </div>
+                                            <div style="float:right; width:50%;">
+
+                                                <div style="width:100%;">
+                                                    <div style="float:left;width:40%;">
+                                                        <div style="width:100%;">
+                                                            <div style="float:left;width:98%;">
+                                                                <span style="font-size: 10.5px;">
+                                                                    <b>&amp;nbsp;</b>
+                                                                </span>
+                                                                <br/>
+
+                                                            </div>
+                                                            <div style="float:right;width:2%;">
+                                                                <span style="font-size: 10.5px;">
+                                                                    <b></b>
+                                                                </span>
+                                                                <br/>
+
+                                                            </div>
+                                                            <div style="clear:both"/>
+                                                        </div>
+                                                    </div>
+                                                    <div style="float:right;width:60%;">
+                                                        <span style="font-size: 10.5px;">&amp;nbsp;
+                                                            <!--<span t-field="doc.job_id.x_cof_dest_port"/>-->
+                                                            <br/>
+                                                        </span>
+                                                    </div>
+                                                    <div style="clear:both"/>
+                                                </div>
+                                            </div>
+                                            <div style="clear:both"/>
+                                        </div>
+
+
+                                    </div>
+
+                                    <br/>
+                                    <br/>
+
+                                    <table style="width:100%;margin-top:-17px;">
+
+
+                                        <tr style="border-top: 0.1px solid; border-bottom: 0.5px solid;height:1px;">
+
+
+                                            <th style="width:20%;color:black; font-size: 10.5px; text-align: center;background-color:#E8E8E8; border: 0.1px solid black;">
+                                                Container
+                                            </th>
+
+                                            <th style="width:10%;color:black; font-size: 10.5px; text-align: center;background-color:#E8E8E8; border: 0.1px solid black; ">
+                                                Type
+                                            </th>
+                                            <th style="width:5%; color:black;font-size: 10.5px; text-align: center;background-color:#E8E8E8; border: 0.1px solid black;">
+                                                Pkgs
+                                            </th>
+
+                                            <th style="width:5%;color:black; font-size: 10.5px;text-align:center;background-color:#E8E8E8; border:0.1px solid black;">
+                                                Volume
+                                            </th>
+                                            <!--<th style="width:10%;color:black; font-size: 10.5px;text-align: center;background-color:#E8E8E8; border: 0.1px solid black;">Net Weight</th>-->
+
+
+                                            <th style="width:10%;color:black; font-size: 10.5px;text-align: center;background-color:#E8E8E8; border: 0.1px solid black;">
+                                                Gross Weight
+                                            </th>
+                                            <!--<th style="width:10%;color:black; font-size: 10.5px;text-align: center;background-color:#E8E8E8; border: 0.1px solid black;">Volume Weight</th>-->
+                                            <th style="width:20%;color:black; font-size: 10.5px;text-align: center;background-color:#E8E8E8; border: 0.1px solid black;">
+                                                Description
+                                            </th>
+                                            <th style="width:10%;color:black; font-size: 10.5px;text-align: center;background-color:#E8E8E8; border: 0.1px solid black;">
+                                                Remarks
+                                            </th>
+
+
+                                        </tr>
+
+
+                                        <t t-foreach="doc.subjob_line_ids" t-as="l">
+
+                                            <tr>
+
+
+                                                <td style="width:20%; font-size: 10.5px; text-align: left; border: 0.1px solid black;">
+                                                    <span t-field="doc.job_id.x_container_no"/>
+                                                </td>
+
+
+                                                <td style="width:10%; font-size: 10.5px; text-align: left; border: 0.1px solid black;">
+                                                    <!--<span t-field="l.job_id.container_id.x_con_type"/>-->
+                                                    <span t-field="doc.job_id.x_container_type"/>
+                                                </td>
+
+
+                                                <td style="width:5%; font-size: 10.5px; text-align: right; border: 0.1px solid black;">
+                                                    <span t-field="doc.subjob_line_ids.product_qty"/>
+                                                </td>
+                                                <td style="width:5%; font-size: 10.5px; text-align: right; border: 0.1px solid black;">
+                                                    <span t-field="doc.volume"/>
+                                                </td>
+
+
+                                                <!--<td style="width:10%; font-size: 10.5px; text-align: right; border:0.1px solid black;">-->
+                                                <!-- <span t-field="doc.job_id.x_wt"/>-->
+                                                <!--  </td>-->
+
+
+                                                <td style="width:10%; font-size: 10.5px; text-align: right; border: 0.1px solid black;">
+
+                                                    <span t-field="doc.weight"/>
+                                                </td>
+                                                <!--		<td style="width:10%; font-size: 10.5px; text-align: right; border: 0.1px solid black;">-->
+
+                                                <!--<span t-field="doc.job_id.x_wt"/>-->
+                                                <!--		  </td>-->
+                                                <td style="width:20%; font-size: 10.5px; text-align: left; border: 0.1px solid black;">
+                                                    <span t-field="l.product_id"/>
+                                                </td>
+                                                <td style="width:10%; font-size: 10.5px; text-align: left; border: 0.1px solid black;">
+                                                    <span t-field="doc.remarks"/>
+                                                </td>
+
+
+                                            </tr>
+
+                                        </t>
+
+
+                                    </table>
+                                    <br/>
+                                    <br/>
+
+
+                                    <div style="width:100%;padding:2px;">
+                                        <div style="float:left; width:50%;">
+                                            <div style="width:100%;">
+                                                <div style="float:left;width:40%;">
+                                                    <div style="width:100%;">
+                                                        <div style="float:left;width:98%;">
+                                                            <span style="font-size: 10.5px;">
+                                                                <b>Remarks</b>
+                                                            </span>
+                                                            <br/>
+
+                                                        </div>
+                                                        <div style="float:right;width:2%;">
+                                                            <span style="font-size: 10.5px;">
+                                                                <b>:</b>
+                                                            </span>
+                                                            <br/>
+
+                                                        </div>
+                                                        <div style="clear:both"/>
+                                                    </div>
+                                                </div>
+                                                <div style="float:right;width:60%;">
+                                                    <span style="font-size: 10.5px;">&amp;nbsp;
+                                                        <span t-field="doc.remarks"/>
+                                                        <br/>
+                                                    </span>
+                                                </div>
+                                                <div style="clear:both"/>
+                                            </div>
+                                        </div>
+                                        <div style="float:right; width:50%;">
+
+                                            <div style="width:100%;">
+                                                <div style="float:left;width:40%;">
+                                                    <div style="width:100%;">
+                                                        <div style="float:left;width:98%;">
+                                                            <span style="font-size: 10.5px;">
+                                                                <b>&amp;nbsp;</b>
+                                                            </span>
+                                                            <br/>
+
+                                                        </div>
+                                                        <div style="float:right;width:2%;">
+                                                            <span style="font-size: 10.5px;">
+                                                                <b></b>
+                                                            </span>
+                                                            <br/>
+
+                                                        </div>
+                                                        <div style="clear:both"/>
+                                                    </div>
+                                                </div>
+                                                <div style="float:right;width:60%;">
+                                                    <span style="font-size: 10.5px;">&amp;nbsp;
+                                                        <!--<span t-field="doc.job_id.main_id.discharg_port_id"/>-->
+                                                        <br/>
+                                                    </span>
+                                                </div>
+                                                <div style="clear:both"/>
+                                            </div>
+                                        </div>
+                                        <div style="clear:both"/>
+                                    </div>
+                                    <br/>
+                                    <div style="width:100%;padding:2px;">
+                                        <div style="float:left; width:50%;">
+
+                                        </div>
+
+                                        <div style="float:right; width:50%;">
+
+
+                                            <span style="font-size: 10.5px;">
+                                                <b>Received the above goods in good condition</b>
+                                            </span>
+                                            <br/>
+
+                                        </div>
+
+
+                                        <div style="clear:both"/>
+                                    </div>
+                                    <br/>
+                                    <div style="width:100%;padding:2px;">
+                                        <div style="float:left; width:50%;">
+                                            <div style="width:100%;">
+                                                <div style="float:left;width:40%;">
+                                                    <div style="width:100%;">
+                                                        <div style="float:left;width:98%;">
+                                                            <span style="font-size: 10.5px;">
+                                                                <b>Delivery Received By</b>
+                                                            </span>
+                                                            <br/>
+
+                                                        </div>
+                                                        <div style="float:right;width:2%;">
+                                                            <span style="font-size: 10.5px;">
+                                                                <b>:</b>
+                                                            </span>
+                                                            <br/>
+
+                                                        </div>
+                                                        <div style="clear:both"/>
+                                                    </div>
+                                                </div>
+                                                <div style="float:right;width:60%;">
+                                                    <span style="font-size: 10.5px;">&amp;nbsp;
+                                                        <span t-field="doc.delivery_received_by"/>
+                                                        <br/>
+                                                    </span>
+                                                </div>
+                                                <div style="clear:both"/>
+                                            </div>
+                                        </div>
+                                        <div style="float:right; width:50%;">
+
+                                            <div style="width:100%;padding:2px;">
+                                                <div style="float:left;width:40%;">
+                                                    <div style="width:100%;">
+                                                        <div style="float:left;width:98%;">
+                                                            <span style="font-size: 10.5px;">
+                                                                <b>&amp;nbsp;Cargo Received By</b>
+                                                            </span>
+                                                            <br/>
+
+                                                        </div>
+                                                        <div style="float:right;width:2%;">
+                                                            <span style="font-size: 10.5px;">
+                                                                <b>:</b>
+                                                            </span>
+                                                            <br/>
+
+                                                        </div>
+                                                        <div style="clear:both"/>
+                                                    </div>
+                                                </div>
+                                                <div style="float:right;width:60%;">
+                                                    <span style="font-size: 10.5px;">&amp;nbsp;
+                                                        <span t-field="doc.cargo_received_by"/>
+                                                        <br/>
+                                                    </span>
+                                                </div>
+                                                <div style="clear:both"/>
+                                            </div>
+                                        </div>
+                                        <div style="clear:both"/>
+                                    </div>
+
+                                    <div style="width:100%;padding:2px;">
+                                        <div style="float:left; width:50%;">
+                                            <div style="width:100%;">
+                                                <div style="float:left;width:40%;">
+                                                    <div style="width:100%;">
+                                                        <div style="float:left;width:98%;">
+                                                            <span style="font-size: 10.5px;">
+                                                                <b>Truck No</b>
+                                                            </span>
+                                                            <br/>
+
+                                                        </div>
+                                                        <div style="float:right;width:2%;">
+                                                            <span style="font-size: 10.5px;">
+                                                                <b>:</b>
+                                                            </span>
+                                                            <br/>
+
+                                                        </div>
+                                                        <div style="clear:both"/>
+                                                    </div>
+                                                </div>
+                                                <div style="float:right;width:60%;">
+                                                    <span style="font-size: 10.5px;">&amp;nbsp;
+                                                        <span t-field="doc.truck_no"/>
+                                                        <br/>
+                                                    </span>
+                                                </div>
+                                                <div style="clear:both"/>
+                                            </div>
+                                        </div>
+                                        <div style="float:right; width:50%;">
+
+                                            <div style="width:100%;">
+                                                <div style="float:left;width:40%;">
+                                                    <div style="width:100%;">
+                                                        <div style="float:left;width:98%;">
+                                                            <span style="font-size: 10.5px;">
+                                                                <b>&amp;nbsp;Name</b>
+                                                            </span>
+                                                            <br/>
+
+                                                        </div>
+                                                        <div style="float:right;width:2%;">
+                                                            <span style="font-size: 10.5px;">
+                                                                <b>:</b>
+                                                            </span>
+                                                            <br/>
+
+                                                        </div>
+                                                        <div style="clear:both"/>
+                                                    </div>
+                                                </div>
+                                                <div style="float:right;width:60%;">
+                                                    <span style="font-size: 10.5px;">&amp;nbsp;
+                                                        <span t-field="doc.receiver_name"/>
+                                                        <br/>
+                                                    </span>
+                                                </div>
+                                                <div style="clear:both"/>
+                                            </div>
+                                        </div>
+                                        <div style="clear:both"/>
+                                    </div>
+
+                                    <div style="width:100%;">
+                                        <div style="float:left; width:50%;">
+                                            <div style="width:100%;padding:2px;">
+                                                <div style="float:left;width:40%;">
+                                                    <div style="width:100%;">
+                                                        <div style="float:left;width:98%;">
+                                                            <span style="font-size: 10.5px;">
+                                                                <b>Driver Name</b>
+                                                            </span>
+                                                            <br/>
+
+                                                        </div>
+                                                        <div style="float:right;width:2%;">
+                                                            <span style="font-size: 10.5px;">
+                                                                <b>:</b>
+                                                            </span>
+                                                            <br/>
+
+                                                        </div>
+                                                        <div style="clear:both"/>
+                                                    </div>
+                                                </div>
+                                                <div style="float:right;width:60%;">
+                                                    <span style="font-size: 10.5px;">&amp;nbsp;
+                                                        <span t-field="doc.driver"/>
+                                                        <br/>
+                                                    </span>
+                                                </div>
+                                                <div style="clear:both"/>
+                                            </div>
+                                        </div>
+                                        <div style="float:right; width:50%;">
+
+                                            <div style="width:100%;">
+                                                <div style="float:left;width:40%;">
+                                                    <div style="width:100%;">
+                                                        <div style="float:left;width:98%;">
+                                                            <span style="font-size: 10.5px;">
+                                                                <b>&amp;nbsp;Sign and Seal</b>
+                                                            </span>
+                                                            <br/>
+
+                                                        </div>
+                                                        <div style="float:right;width:2%;">
+                                                            <span style="font-size: 10.5px;">
+                                                                <b>:</b>
+                                                            </span>
+                                                            <br/>
+
+                                                        </div>
+                                                        <div style="clear:both"/>
+                                                    </div>
+                                                </div>
+                                                <div style="float:right;width:60%;">
+                                                    <span style="font-size: 10.5px;">&amp;nbsp;
+<!--                                                        <span t-field="doc.sign"/>-->
+                                                        <br/>
+                                                    </span>
+                                                </div>
+                                                <div style="clear:both"/>
+                                            </div>
+                                        </div>
+                                        <div style="clear:both"/>
+                                    </div>
+
+
+                                    <div style="width:100%;padding:2px;">
+                                        <div style="float:left; width:50%;">
+                                            <div style="width:100%;">
+                                                <div style="float:left;width:40%;">
+                                                    <div style="width:100%;">
+                                                        <div style="float:left;width:98%;">
+                                                            <span style="font-size: 10.5px;">
+                                                                <b>Truck Out Date</b>
+                                                            </span>
+                                                            <br/>
+
+                                                        </div>
+                                                        <div style="float:right;width:2%;">
+                                                            <span style="font-size: 10.5px;">
+                                                                <b>:</b>
+                                                            </span>
+                                                            <br/>
+
+                                                        </div>
+                                                        <div style="clear:both"/>
+                                                    </div>
+                                                </div>
+                                                <div style="float:right;width:60%;">
+                                                    <span style="font-size: 10.5px;">&amp;nbsp;
+                                                        <span t-field="doc.truck_out_date"/>
+                                                        <br/>
+                                                    </span>
+                                                </div>
+                                                <div style="clear:both"/>
+                                            </div>
+                                        </div>
+                                        <div style="float:right; width:50%;">
+
+                                            <div style="width:100%;">
+                                                <div style="float:left;width:40%;">
+                                                    <div style="width:100%;">
+                                                        <div style="float:left;width:98%;">
+                                                            <span style="font-size: 10.5px;">
+                                                                <b>&amp;nbsp;Mobile No</b>
+                                                            </span>
+                                                            <br/>
+
+                                                        </div>
+                                                        <div style="float:right;width:2%;">
+                                                            <span style="font-size: 10.5px;">
+                                                                <b>:</b>
+                                                            </span>
+                                                            <br/>
+
+                                                        </div>
+                                                        <div style="clear:both"/>
+                                                    </div>
+                                                </div>
+                                                <div style="float:right;width:60%;">
+                                                    <span style="font-size: 10.5px;">&amp;nbsp;
+                                                        <span t-field="doc.receiver_name.mobile"/>
+                                                        <br/>
+                                                    </span>
+                                                </div>
+                                                <div style="clear:both"/>
+                                            </div>
+                                        </div>
+                                        <div style="clear:both"/>
+                                    </div>
+
+
+                                    <div style="width:100%;padding:2px;">
+                                        <div style="float:left; width:50%;">
+                                            <div style="width:100%;">
+                                                <div style="float:left;width:40%;">
+                                                    <div style="width:100%;">
+                                                        <div style="float:left;width:98%;">
+                                                            <span style="font-size: 10.5px;">
+                                                                <b>Delivery Date</b>
+                                                            </span>
+                                                            <br/>
+
+                                                        </div>
+                                                        <div style="float:right;width:2%;">
+                                                            <span style="font-size: 10.5px;">
+                                                                <b>:</b>
+                                                            </span>
+                                                            <br/>
+
+                                                        </div>
+                                                        <div style="clear:both"/>
+                                                    </div>
+                                                </div>
+                                                <div style="float:right;width:60%;">
+                                                    <span style="font-size: 10.5px;">&amp;nbsp;
+                                                        <span t-field="doc.delivery_date"/>
+                                                        <br/>
+                                                    </span>
+                                                </div>
+                                                <div style="clear:both"/>
+                                            </div>
+                                        </div>
+                                        <div style="float:right; width:50%;">
+
+                                            <div style="width:100%;">
+                                                <div style="float:left;width:40%;">
+                                                    <div style="width:100%;">
+                                                        <div style="float:left;width:98%;">
+                                                            <span style="font-size: 10.5px;">
+                                                                <b>&amp;nbsp;Date</b>
+                                                            </span>
+                                                            <br/>
+
+                                                        </div>
+                                                        <div style="float:right;width:2%;">
+                                                            <span style="font-size: 10.5px;">
+                                                                <b>:</b>
+                                                            </span>
+                                                            <br/>
+
+                                                        </div>
+                                                        <div style="clear:both"/>
+                                                    </div>
+                                                </div>
+                                                <div style="float:right;width:60%;">
+
+                                                    <span style="font-size: 10.5px;">&amp;nbsp;
+                                                        <span t-field="doc.received_date"/>
+                                                        <br/>
+                                                    </span>
+                                                </div>
+                                                <div style="clear:both"/>
+                                            </div>
+                                        </div>
+                                        <div style="clear:both"/>
+                                    </div>
+
+
+                                    <!--			         <div style="width:100%;">-->
+                                    <!--			  <div style="float:left;width:50%;">-->
+                                    <!--			   <div style="width:100%;">-->
+                                    <!--			  <div style="float:left;width:50%;">-->
+                                    <!--			      <span style="font-size: 10.5px;"><b>Delivery Received By</b></span><br/>-->
+
+                                    <!--             </div>-->
+                                    <!--			   <div style="float:right;width:50%;">-->
+                                    <!--			     <span style="font-size: 10.5px;">:&amp;nbsp;<span t-field="doc.x_deliveryreceivedby"/><br/></span>-->
+                                    <!--			           </div>-->
+                                    <!--			  <div style="clear:both"/>-->
+                                    <!--			  </div>   -->
+
+
+                                    <!--			         <div style="width:100%;">-->
+                                    <!--			  <div style="float:left;width:50%;">-->
+                                    <!--			      <span style="font-size: 10.5px;"><b>Truck No</b></span><br/>-->
+
+                                    <!--             </div>-->
+                                    <!--			   <div style="float:right;width:50%;">-->
+                                    <!--			     <span style="font-size: 10.5px;">:&amp;nbsp;<span t-field="doc.x_truck_no"/><br/></span>-->
+                                    <!--			           </div>-->
+                                    <!--			  <div style="clear:both"/>-->
+                                    <!--			  </div>   -->
+
+
+                                    <!--			         <div style="width:100%;">-->
+                                    <!--			  <div style="float:left;width:50%;">-->
+                                    <!--			      <span style="font-size: 10.5px;"><b>Driver Name</b></span><br/>-->
+
+                                    <!--             </div>-->
+                                    <!--			   <div style="float:right;width:50%;">-->
+                                    <!--			     <span style="font-size: 10.5px;">:&amp;nbsp;<span t-field="doc.vehicle_driver"/><br/></span>-->
+                                    <!--			           </div>-->
+                                    <!--			  <div style="clear:both"/>-->
+                                    <!--			  </div>  -->
+
+                                    <!--			         <div style="width:100%;">-->
+                                    <!--			  <div style="float:left;width:50%;">-->
+                                    <!--			      <span style="font-size: 10.5px;"><b>Truck Out Date</b></span><br/>-->
+
+                                    <!--             </div>-->
+                                    <!--			   <div style="float:right;width:50%;">-->
+                                    <!--			     <span style="font-size: 10.5px;">:&amp;nbsp;<span t-field="doc.x_truck_out_date"/><br/></span>-->
+                                    <!--			           </div>-->
+                                    <!--			  <div style="clear:both"/>-->
+                                    <!--			  </div>   -->
+
+                                    <!--			         <div style="width:100%;">-->
+                                    <!--			  <div style="float:left;width:50%;">-->
+                                    <!--			      <span style="font-size: 10.5px;"><b>Delivery Date</b></span><br/>-->
+
+                                    <!--             </div>-->
+                                    <!--			   <div style="float:right;width:50%;">-->
+                                    <!--			     <span style="font-size: 10.5px;">:&amp;nbsp;<span t-field="doc.x_deliverydate"/><br/></span>-->
+                                    <!--			           </div>-->
+                                    <!--			  <div style="clear:both"/>-->
+                                    <!--			  </div>   -->
+                                    <!--			    </div>-->
+
+                                    <!--<div style="float:right;width:50%;">-->
+                                    <!--			      <div style="width:100%;">-->
+                                    <!--			  <div style="float:left;width:50%;">-->
+                                    <!--			      <span style="font-size: 10.5px;"><b>Cargo Received By</b></span><br/>-->
+
+                                    <!--             </div>-->
+                                    <!--			   <div style="float:right;width:50%;">-->
+                                    <!--<span style="font-size: 10.5px;">&amp;nbsp;<br/></span>-->
+                                    <!--			           </div>-->
+                                    <!--			  <div style="clear:both"/>-->
+                                    <!--			  </div>   -->
+                                    <!--			   <div style="width:100%;">-->
+                                    <!--			  <div style="float:left;width:50%;">-->
+                                    <!--			      <span style="font-size: 10.5px;"><b>Name</b></span><br/>-->
+
+                                    <!--             </div>-->
+                                    <!--			   <div style="float:right;width:50%;">-->
+                                    <!--			     <span style="font-size: 10.5px;">:&amp;nbsp;<span t-field="doc.x_receiver_name"/><br/></span>-->
+                                    <!--			           </div>-->
+                                    <!--			  <div style="clear:both"/>-->
+                                    <!--			  </div>  -->
+                                    <!--			   <div style="width:100%;">-->
+                                    <!--			  <div style="float:left;width:50%;">-->
+                                    <!--			      <span style="font-size: 10.5px;"><b>Sign and Seal</b></span><br/>-->
+
+                                    <!--             </div>-->
+                                    <!--			   <div style="float:right;width:50%;">-->
+                                    <!--			     <span style="font-size: 10.5px;">:&amp;nbsp;<span t-field="doc.x_sign"/><br/></span>-->
+                                    <!--			           </div>-->
+                                    <!--			  <div style="clear:both"/>-->
+                                    <!--			  </div>  -->
+                                    <!--			   <div style="width:100%;">-->
+                                    <!--			  <div style="float:left;width:50%;">-->
+                                    <!--			      <span style="font-size: 10.5px;"><b>Mobile No </b></span><br/>-->
+
+                                    <!--             </div>-->
+                                    <!--			   <div style="float:right;width:50%;">-->
+                                    <!--			     <span style="font-size: 10.5px;">:&amp;nbsp;<span t-field="doc.x_receiver_name.mobile"/><br/></span>-->
+                                    <!--			           </div>-->
+                                    <!--			  <div style="clear:both"/>-->
+                                    <!--			  </div>  -->
+                                    <!--			   <div style="width:100%;">-->
+                                    <!--			  <div style="float:left;width:50%;">-->
+                                    <!--			      <span style="font-size: 10.5px;"><b>Date</b></span><br/>-->
+
+                                    <!--             </div>-->
+                                    <!--			   <div style="float:right;width:50%;">-->
+                                    <!--			     <span style="font-size: 10.5px;">:&amp;nbsp;<span t-field="doc.x_received_date"/><br/></span>-->
+                                    <!--			           </div>-->
+                                    <!--			  <div style="clear:both"/>-->
+                                    <!--			  </div>  -->
+                                    <!--			  </div>-->
+                                    <!--             <div style="clear:both"/> </div>-->
+
+
+                                </td>
+                            </t>
+                        </tr>
+                    </table>
+
+
+                </div>
+                <div class="footer" style="width:100%;">
+                    <div style="float:left;width:40%;">
+                        <span style="font-size:10.5px;"><b>User</b>:&amp;nbsp;
+                            <span t-field="doc.write_uid"/>
+                        </span>
+                        <br/>
+
+                    </div>
+                    <div style="float:right;width:60%;">
+                        <span style="font-size:10.5px;">
+                            <b>Date</b>
+                            :&amp;nbsp;<span t-field="doc.write_date"/>Asia/Muscat
+                            <br/>
+                        </span>
+                    </div>
+                    <div style="clear:both"/>
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>

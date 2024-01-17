@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <data>
+
+        <record model="ir.ui.view" id="product_product_view_inh">
+        <field name="name">product_product_view</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='description']" position="replace">
+                   <field name="description" invisible="1"/>
+                  <field name="product_description" options="{'no_open': True, 'no_create_edit': True}" />
+
+           </xpath>
+
+        </field>
+        </record>
+        <record model="ir.ui.view" id="product_prod_view_inh">
+        <field name="name">product_prod_view</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+
+             <xpath expr="//field[@name='description']" position="replace">
+                   <field name="description" invisible="1"/>
+                  <field name="product_description" options="{'no_open': True, 'no_create_edit': True}" />
+
+           </xpath>
+        </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_product_description_form">
+            <field name="name">Product Description</field>
+            <field name="model">product.description</field>
+            <field name="arch" type="xml">
+                <form string="Product descriptions">
+                    <sheet>
+                        <group>
+                            <field name="name" />
+                        </group>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_product_description_tree">
+            <field name="name">Product Description</field>
+            <field name="model">product.description</field>
+            <field name="arch" type="xml">
+                <tree string="Product descriptions">
+                    <field name="name" />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_product_description_form">
+            <field name="name">Product Description</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.description</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Add a new product description
+              </p>
+            </field>
+        </record>
+
+            <menuitem id="menu_wms_product_description" parent="stock.menu_product_in_config_stock"
+                      action="action_product_description_form"/>
+
+
+    </data>
+</odoo>

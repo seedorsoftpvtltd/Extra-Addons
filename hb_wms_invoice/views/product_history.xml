@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_supp_sheet_form" model="ir.ui.view">
+        <field name="name">Product History</field>
+        <field name="model">product.history</field>
+        <field name="arch" type="xml">
+            <form string="Product History">
+				<sheet>
+					<group>
+<!--						<field name="name"/>-->
+                        <field name="product_id" />
+                        <field name="quantity"/>
+                        <field name="in_date"/>
+                        <field name="out_date"/>
+                        <field name="location_id"/>
+                        <field name="lot_id"/>
+                        <field name="pallet_id"/>
+                        <field name="uom_id"/>
+                    </group>
+                </sheet>
+			 </form>
+        </field>
+    </record>
+
+
+    <record id="view_supp_sheet_tree" model="ir.ui.view">
+        <field name="name">Product History</field>
+        <field name="model">product.history</field>
+        <field name="arch" type="xml">
+            <tree string="Product History" editable="bottom">
+<!--						<field name="name"/>-->
+                <field name="product_id" />
+                <field name="quantity"/>
+                <field name="in_date"/>
+                <field name="out_date"/>
+                <field name="location_id"/>
+                <field name="lot_id"/>
+                <field name="pallet_id"/>
+                <field name="uom_id"/>
+
+			 </tree>
+        </field>
+    </record>
+
+      <record id="view_supp_sheet_action" model="ir.actions.act_window">
+    <field name="name">Product History</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">product.history</field>
+    <field name="view_mode">tree,kanban,form</field>
+</record>
+
+     <menuitem
+		id="menu_supp_sheet"
+		name="Product History"
+        action="view_supp_sheet_action" groups="base.group_no_one" parent="stock.menu_stock_root" />
+
+    <record id="view_supp_summ_sheet_form" model="ir.ui.view">
+        <field name="name">Product Summary</field>
+        <field name="model">product.summary</field>
+        <field name="arch" type="xml">
+            <form string="Product Summary">
+				<sheet>
+					<group>
+<!--						<field name="name"/>-->
+                        <field name="product_id" />
+                        <field name="quantity"/>
+                        <field name="in_qty"/>
+                        <field name="out_qty"/>
+                        <field name="in_date"/>
+                        <field name="out_date"/>
+                        <field name="location_id"/>
+                        <field name="lot_id"/>
+                        <field name="pallet_id"/>
+                        <field name="duration"/>
+                        <field name="uom_id"/>
+                        <field name="storage_product"/>
+                    </group>
+                </sheet>
+			 </form>
+        </field>
+    </record>
+
+
+    <record id="view_supp_summ_sheet_tree" model="ir.ui.view">
+        <field name="name">Product Summary</field>
+        <field name="model">product.summary</field>
+        <field name="arch" type="xml">
+            <tree string="Product Summary" editable="bottom">
+<!--						<field name="name"/>-->
+                <field name="product_id" />
+                <field name="quantity"/>
+                <field name="in_qty"/>
+                <field name="out_qty"/>
+                <field name="in_date"/>
+                <field name="out_date"/>
+                <field name="location_id"/>
+                <field name="lot_id"/>
+                <field name="pallet_id"/>
+                <field name="duration"/>
+                <field name="uom_id"/>
+                <field name="storage_product"/>
+
+			 </tree>
+        </field>
+    </record>
+
+      <record id="view_supp_summ_sheet_action" model="ir.actions.act_window">
+    <field name="name">Product Summary</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">product.summary</field>
+    <field name="view_mode">tree,kanban,form</field>
+</record>
+
+     <menuitem
+		id="menu_supp_summ_sheet"
+		name="Product Summary"
+        action="view_supp_summ_sheet_action" groups="base.group_no_one" parent="stock.menu_stock_root" />
+    
+    
+     <record id="view_summ_sheet_form" model="ir.ui.view">
+        <field name="name">Summary Sheet Lines</field>
+        <field name="model">summary.sheet.lines</field>
+        <field name="arch" type="xml">
+            <form string="Summary Sheet Lines">
+				<sheet>
+					<group>
+<!--						<field name="name"/>-->
+                         <field name="product_id" />
+                <field name="quantity"/>
+<!--                <field name="in_qty"/>-->
+<!--                <field name="out_qty"/>-->
+                <field name="start_date"/>
+                <field name="end_date"/>
+<!--                <field name="location_id"/>-->
+<!--                <field name="lot_id"/>-->
+<!--                <field name="pallet_id"/>-->
+                <field name="duration"/>
+<!--                <field name="storage_product"/>-->
+                <field name="cbm" invisibe="1"/>
+                <field name="sqm" invisibe="1"/>
+                <field name="weight" invisibe="1"/>
+                <field name="pallet" invisibe="1"/>
+                        <field name="amount"/>
+                        <field name="container_type"/>
+                        <field name="ref_no"/>
+<!--                        <field name="in_ref_no"/>-->
+<!--                        <field name="out_ref_no"/>-->
+<!--                        <field name="added_service"/>-->
+                        <field name="charge_type"/>
+                    </group>
+                </sheet>
+			 </form>
+        </field>
+    </record>
+
+
+    <record id="view_summ_sheet_tree" model="ir.ui.view">
+        <field name="name">Summary Sheet Lines</field>
+        <field name="model">summary.sheet.lines</field>
+        <field name="arch" type="xml">
+            <tree string="Summary Sheet Lines" editable="bottom">
+<!--						<field name="name"/>-->
+                <field name="product_id" />
+                <field name="quantity"/>
+<!--                <field name="in_qty"/>-->
+<!--                <field name="out_qty"/>-->
+                <field name="start_date"/>
+                <field name="end_date"/>
+<!--                <field name="location_id"/>-->
+<!--                <field name="lot_id"/>-->
+<!--                <field name="pallet_id"/>-->
+                <field name="duration"/>
+<!--                <field name="storage_product"/>-->
+                 <field name="cbm" invisible="1"/>
+                <field name="sqm" invisible="1"/>
+                <field name="weight" invisible="1"/>
+                <field name="pallet" invisible="1"/>
+                        <field name="amount"/>
+                 <field name="container_type"/>
+                       <field name="ref_no"/>
+<!--                        <field name="in_ref_no"/>-->
+<!--                        <field name="out_ref_no"/>-->
+<!--                        <field name="added_service"/>-->
+                <field name="charge_type"/>
+
+			 </tree>
+        </field>
+    </record>
+
+      <record id="view_summ_sheet_action" model="ir.actions.act_window">
+    <field name="name">Summary Sheet Lines</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">summary.sheet.lines</field>
+    <field name="view_mode">tree,kanban,form</field>
+</record>
+
+     <menuitem
+		id="menu_summ_sheet"
+		name="Summary Sheet Lines"
+        action="view_summ_sheet_action" groups="base.group_no_one" parent="stock.menu_stock_root" />
+
+
+
+      <record id="view_summ_sheet_parent_form" model="ir.ui.view">
+        <field name="name">Summary Sheet </field>
+        <field name="model">summary.sheet</field>
+        <field name="arch" type="xml">
+            <form string="Summary Sheet">
+				<sheet>
+					<group>
+                        <field name="name"/>
+                        <field name="partner_id"/>
+                        <field name="invoice_id"/>
+                    </group>
+                    <group>
+                        <field name="lines"/>
+                    </group>
+                </sheet>
+			 </form>
+        </field>
+    </record>
+
+
+    <record id="view_summ_sheet_parent_tree" model="ir.ui.view">
+        <field name="name">Summary Sheet </field>
+        <field name="model">summary.sheet</field>
+        <field name="arch" type="xml">
+            <tree string="Summary Sheet Lines" >
+                 <field name="name"/>
+                        <field name="partner_id"/>
+
+			 </tree>
+        </field>
+    </record>
+
+      <record id="view_summ_sheet_parent_action" model="ir.actions.act_window">
+    <field name="name">Summary Sheet </field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">summary.sheet</field>
+    <field name="view_mode">tree,kanban,form</field>
+</record>
+
+     <menuitem
+		id="menu_summ_sheet_parent"
+		name="Summary Sheet "
+        action="view_summ_sheet_parent_action" parent="stock.menu_stock_root" groups="base.group_no_one"/>
+
+    <record id="account_move_form_view_inher" model="ir.ui.view">
+            <field name="name">account.move.form.view.inherited</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='invoice_user_id']" position="before">
+                    <field name="supp_id" field="Summary Sheet"/>
+                </xpath>
+            </field>
+        </record>
+</odoo>

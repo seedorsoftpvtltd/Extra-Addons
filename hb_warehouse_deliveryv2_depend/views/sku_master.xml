@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="product_product_viewext">
+        <field name="name">product_product_view</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='categ_id']" position="before">
+<!--                <field name="is_serial"/>-->
+<!--                 <field name="product_date"/>-->
+<!--                        <field name="expiry_date"/>-->
+            </xpath>
+        </field>
+    </record>
+
+  <record id="view_item_master_form" model="ir.ui.view">
+        <field name="name">Item Master</field>
+        <field name="model">item.master</field>
+        <field name="arch" type="xml">
+            <form string="Item Master">
+				<sheet>
+					<group>
+								<field name="name"/>
+                        <field name="sku_no"/>
+                        <field name="description"/>
+                        <field name="product_id" readonly="1"/>
+                        <field name="partner_id"/>
+                        <field name="availability" invisible="1"/>
+                    </group>
+                    <group>
+                          <field name="weight"/>
+                        <field name="length" />
+                        <field name="height"/>
+                        <field name="width"/>
+<!--                        <field name="product_date"/>-->
+<!--                        <field name="expiry_date"/>-->
+					</group>
+				</sheet>
+
+			 </form>
+        </field>
+    </record>
+
+
+     <record id="product_item_search_view" model="ir.ui.view">
+        <field name="name">item.master.search</field>
+        <field name="model">item.master</field>
+        <field name="arch" type="xml">
+            <search string="Product">
+
+                <field name="name"/>
+                <field name="sku_no"/>
+                <field name="partner_id"/>
+            </search>
+        </field>
+     </record>
+    
+     <record id="view_sku_action" model="ir.actions.act_window">
+    <field name="name">Item Master</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">item.master</field>
+    <field name="view_mode">kanban,tree,form</field>
+</record>
+    
+     <menuitem
+		id="menu_sku_sub"
+		name="Item Master"
+        parent="warehouse.menu_warehouse_products"
+        action="view_sku_action"/>
+
+     <record id="view_order_form_warehouse_sl" model="ir.ui.view">
+            <field name="name">warehouse.order.inh.form</field>
+            <field name="model">warehouse.order</field>
+            <field name="inherit_id" ref="warehouse.warehouse_order_form"/>
+            <field name="arch" type="xml">
+
+                           <xpath expr="//field[@name='order_line']/tree/field[@name='product_uom']" position="after">
+<!--                               <field name="expiry_date"/>-->
+<!--                               <field name="production_date"/>-->
+<!--                               <field name="container_qty"/>-->
+<!--                               <field name="container"/>-->
+<!--                               <field name="container_no"/>-->
+
+
+                           </xpath>
+
+
+            </field>
+        </record>
+</odoo>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+
+    	<record id="group_secondary_unit_warehouse" model="res.groups">
+	        <field name="name">Secondary Unit On Warehouse</field>
+    	</record>
+
+	</data>
+</odoo>

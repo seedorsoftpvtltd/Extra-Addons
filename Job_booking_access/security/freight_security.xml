@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data noupdate="1">
+        <record id="scs_freight.action_freight_operation" model="ir.actions.act_window">
+            <field name="name">Direct Shipping</field>
+            <field name="res_model">freight.operation</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="domain">[]</field>
+            <field name="domain">['|','|','|','|','|',('create_uid','=',uid),('create_uid.employee_id.parent_id.user_id','=',uid),('create_uid.employee_id.parent_id.parent_id.user_id','=',uid),('create_uid.employee_id.parent_id.parent_id.parent_id.user_id','=',uid),('create_uid.employee_id.parent_id.parent_id.parent_id.parent_id.user_id','=',uid),('create_uid.employee_id.parent_id.parent_id.parent_id.parent_id.parent_id.user_id','=',uid)]</field>
+            <field name="view_id" eval="False"/>
+            <field name="search_view_id" ref="scs_freight.view_freight_operation_search"/>
+        </record>
+        <!--record id="sale.action_quotations_with_onboarding" model="ir.actions.act_window">
+            <field name="name">Quotations</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="domain">[]</field>
+            <field name="domain">['|','|',('state', 'in', ('draft', 'sent', 'waiting','sale','done')),('create_uid','=',uid),('create_uid.employee_id.parent_id.user_id','=',uid)]</field>
+            <field name="view_id" eval="False"/>
+            <field name="context">{'search_default_my_quotation': 1}</field>
+            <field name="search_view_id" ref="sale.sale_order_view_search_inherit_quotation"/>
+        </record>
+         <record id="sale.action_orders" model="ir.actions.act_window">
+            <field name="name">Sales Order</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="domain">[]</field>
+            <field name="domain">['|','|',('state', 'not in', ('draft', 'sent', 'cancel')),('create_uid','=',uid),('create_uid.employee_id.parent_id.user_id','=',uid)]</field>
+            <field name="view_id" eval="False"/>
+            <field name="search_view_id" ref="sale.sale_order_view_search_inherit_sale"/>
+        </record-->
+    </data>
+</odoo>

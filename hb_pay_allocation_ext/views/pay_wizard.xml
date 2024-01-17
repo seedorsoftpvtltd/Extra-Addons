@@ -1,0 +1,27 @@
+<odoo>
+<record id="view_account_payment_alloc_forms" model="ir.ui.view">
+        <field name="name">sh.payment.wizard.inh</field>
+        <field name="model">sh.payment.wizard</field>
+        <field name="inherit_id" ref="sh_multi_outstanding_payment.view_sh_payment_wizard_form"/>
+        <field name="arch" type="xml">
+             <xpath expr="//field[@name='sh_account_move_ids']" position="replace">
+                <field name="sh_account_move_ids" nolabel="1" readonly="0">
+                    <tree editable="bottom">
+                        <field name="name"/>
+                        <field name="invoice_origin"/>
+                        <field name="company_id"/>
+                        <field name="invoice_date_due"/>
+                        <field name="amount_untaxed_signed"/>
+                        <field name="amount_total_signed"/>
+                        <field name="amount_residual_signed" readonly="0"/>
+                        <field name="state"/>
+                        <field name="pay_inv" widget="toggle"/>
+                    </tree>
+                </field>
+             </xpath>
+             <xpath expr="//button[@name='add_payment_wizard']" position="replace">
+                  <button string="Make Payment" name="add_payment_wizardd" type="object" class="oe_highlight" icon="fa-money"/>
+             </xpath>
+        </field>
+</record>
+</odoo>

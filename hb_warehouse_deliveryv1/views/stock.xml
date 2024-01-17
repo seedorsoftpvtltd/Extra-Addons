@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+     <record id="sequence_stock_keep" model="ir.sequence">
+            <field name="name">Stock Keep sequence</field>
+            <field name="code">stock.keep.seq</field>
+            <field name="prefix">0</field>
+            <field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+            <field name="padding">4</field>
+        </record>
+   
+   <record id="sequence_stock_lot" model="ir.sequence">
+        <field name="name">Stock Production Lot</field>
+        <field name="code">stock.production.lot.seq.cust</field>
+        <field name="prefix">0</field>
+        <field eval="1" name="number_next"/>
+        <field eval="1" name="number_increment"/>
+        <field name="padding">4</field>
+    </record>
+
+    <record id="view_move_line_form_sku_inh" model="ir.ui.view">
+		<field name="model">stock.move.line</field>
+		<field name="inherit_id" ref="stock.view_stock_move_line_detailed_operation_tree"/>
+		<field name="arch" type="xml">
+			<xpath expr="//field[@name='result_package_id']" position="after">
+                <field name="move_id" invisible="1"/>
+				<field name="x_sku_id"/>
+                <field name="location_ref_id" invisible="1"/>
+
+			</xpath>
+		</field>
+	</record>
+
+        <record id="view_pickingform" model="ir.ui.view">
+		<field name="name">stock.picking.line</field>
+		<field name="model">stock.picking</field>
+		<field name="inherit_id" ref="stock.view_picking_form"/>
+		<field name="arch" type="xml">
+             <xpath expr="//button[@name='action_cancel']" position="after">
+                 <button name="del_orders" type="object" string="Create Delivery" attrs="{'invisible': [('picking_type_code', '!=', 'incoming')]}"/>
+                 <button name="bin_alloc" type="object" string="Bin Allocation" attrs="{'invisible': [('picking_type_code', '!=', 'incoming')]}"/>
+             </xpath>
+            <xpath expr="//field[@name='owner_id']" position="after">
+                    <field name="returnpick" invisible="1"/>
+                </xpath>
+                <xpath expr="//notebook/page[@name='note']" position="after">
+<!--					 <page string="Custom Moves">-->
+<!--                         <button name="select_del" type="object" string="select"/>-->
+<!--                          <field name="cust_del_moves" string="del moves" delete="0" mode="tree" readonly="0">-->
+<!--                            <tree editable="1">-->
+<!--                              <field name="name"/>-->
+<!--                              <field name="select"/>-->
+<!--                            </tree>-->
+<!--                          </field>-->
+<!--                        </page>-->
+                     <page string="Moves to Deliver" attrs="{'invisible': [('picking_type_code', '!=', 'outgoing')]}">
+                        <button name="keep_select" type="object" string="Select to Move"/>
+                          <field name="keep_ids" string="K moves" delete="0" mode="tree" readonly="0">
+                            <tree editable="1">
+                              <field name="name"/>
+                              <field name="qty_adjust"/>
+                              <field name="qty_avail" readonly="1"/>
+                              <field name="create_move" readonly="0"/>
+                            </tree>
+
+                          </field>
+
+                        </page>
+<!--                    <page string="Service Charges" attrs="{'invisible': [('picking_type_code', '!=', 'outgoing')]}">-->
+<!--&lt;!&ndash;                        <button name="keep_select" type="object" string="Select to Move"/>&ndash;&gt;-->
+<!--                          <field name="charge_lines" string="Service Charges" delete="0" mode="tree" readonly="0">-->
+<!--                            <tree editable="1">-->
+<!--                              <field name="product_id"/>-->
+<!--                              <field name="qty"/>-->
+<!--&lt;!&ndash;                                <field name="uom_id"/>&ndash;&gt;-->
+<!--                                <field name="list_price"/>-->
+
+<!--&lt;!&ndash;                              <field name="cost_price" />&ndash;&gt;-->
+<!--                                <field name="sale_total" />-->
+<!--                                <field name="currency_id" />-->
+
+<!--                              <field name="delivery_idd" />-->
+<!--                            </tree>-->
+
+<!--                          </field>-->
+
+<!--                        </page>-->
+
+            </xpath>
+            <xpath expr="//field[@name='move_ids_without_package']/tree/field[@name='product_id']" position="before">
+                    <field name="sku" invisible="1"/>
+                <field name="x_sku_id"/>
+                </xpath>
+        </field>
+        </record>
+    <record id="view_order_form_inherit_sku" model="ir.ui.view">
+            <field name="name">sale.order.inh.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                           <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="after">
+                               <field name="medium_id" invisible="1"/>
+                               <field name="medium" invisible="1"/>
+                               <field name="sku" invisible="1"/>
+                               <field name="order_id" invisible="1"/>
+                               <field name="x_sku_id" attrs="{'invisible':[('medium','=',True)]}"/>
+                               <field name="x_height" />
+                               <field name="x_length" />
+                               <field name="x_weight" />
+                               <field name="x_breadth" />
+                           </xpath>
+
+            </field>
+        </record>
+     <record id="view_order_form_warehouse_sku" model="ir.ui.view">
+            <field name="name">warehouse.order.inh.form</field>
+            <field name="model">warehouse.order</field>
+            <field name="inherit_id" ref="warehouse.warehouse_order_form"/>
+            <field name="arch" type="xml">
+                   <xpath expr="//field[@name='transporter_id']" position="after">
+                    <field name="agreement_id"/>
+                </xpath>
+                           <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="after">
+                               <field name="sku" invisible="1"/>
+                               <field name="x_sku_id" readonly="0"/>
+                               <field name="x_height" readonly="0"/>
+                               <field name="x_length" readonly="0"/>
+                               <field name="x_weight" readonly="0"/>
+                               <field name="x_breadth" readonly="0"/>
+                           </xpath>
+
+
+            </field>
+        </record>
+</odoo>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+
+    <record model='ir.ui.view' id='fleet_vehicle_model_form_extendedinh'>
+        <field name="name">fleet.vehicle.model.form.extendedinh</field>
+        <field name="model">fleet.vehicle</field>
+        <field name="inherit_id" ref="fleet_operations.fleet_vehicle_model_form_extended" />
+        <field name="arch" type="xml">
+        <xpath expr="//header/field[@name='state']" position="replace">
+
+            <field name="state" widget="statusbar"
+                    statusbar_visible="new,inspection,in_progress,complete,custody" />
+        </xpath>
+        </field>
+    </record>
+
+<!--    <record model='ir.ui.view' id='fleet_kanban_extended_viewinh'>-->
+<!--        <field name="name">fleet.vehicle.model.kanban.extendedinh</field>-->
+<!--        <field name="model">fleet.vehicle</field>-->
+<!--        <field name="inherit_id" ref="fleet.fleet_vehicle_view_kanban"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <xpath expr="//kanban[@default_group_by='state_id']"-->
+<!--                    position="replace">-->
+<!--                <attribute name="default_group_by">state</attribute>-->
+<!--                <attribute name="edit">false</attribute>-->
+<!--                <attribute name="quick_create">false</attribute>-->
+<!--                &lt;!&ndash; <attribute name="create">false</attribute> &ndash;&gt;-->
+<!--            </xpath>-->
+<!--        </field>-->
+<!--    </record>-->
+
+
+
+
+        <record model='ir.ui.view' id='fleet_kanban_extended_viewinh'>
+        <field name="name">fleet.vehicle.model.kanban.extendedinh</field>
+        <field name="model">fleet.vehicle</field>
+        <field name="inherit_id" ref="fleet.fleet_vehicle_view_kanban"/>
+        <field name="arch" type="xml">
+            <xpath expr="//kanban"
+                    position="attributes">
+                <attribute name="default_group_by">state</attribute>
+
+            </xpath>
+        </field>
+    </record>
+
+
+
+
+    <report id="report_print_inspection"
+                model="fleet.vehicle.log.services"
+                string="Inspection Report"
+                report_type="qweb-pdf"
+                name="hb_fleet_template.report_inspection"
+                file="hb_fleet_template.report_inspection"
+                print_report_name="'Inspection - %s' % (object.name)"/>
+
+    <template id="report_inspection">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.internal_layout">
+                    <div class="page">
+                        <h>Checklist</h>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+
+</odoo>

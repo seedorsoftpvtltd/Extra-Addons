@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-extend="Menu.sections">
+        <t t-jquery="t[t-esc='second_level_menu.name']" t-operation="before">
+            <t t-if="second_level_menu.web_icon_data">
+                <t t-set="web_icon_str" t-value="'data:image/png;base64' + ',' + second_level_menu.web_icon_data"/>
+                <img t-att-src="web_icon_str" width="15px" height="15px" class="mr-1"/>
+            </t>
+        </t>
+    </t>
+
+    <t t-extend="Menu.link">
+        <t t-jquery="t[t-esc='menu.name']" t-operation="before">
+            <t t-if="menu.web_icon_data">
+                <t t-set="web_icon_str" t-value="'data:image/png;base64' + ',' + menu.web_icon_data"/>
+                <img t-att-src="web_icon_str" width="15px" height="15px" class="mr-1"/>
+            </t>
+        </t>
+    </t>
+
+</templates>

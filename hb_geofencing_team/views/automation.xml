@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<odoo>
+  <data>
+     <record id="add_face" model="base.automation">
+        <field name="name">Add Face [For Mobile App]</field>
+        <field name="model_id" ref="team_attendance_face_recognition.model_hr_employee_faces"/>
+        <field name="state">code</field>
+         <field name="active" eval="True"/>
+         <field name="trigger">on_create_or_write</field>
+<!--         <field name="trigger_field_ids" eval="[(4,ref('team_attendance_face_recognition.team_field_attendance_face_recognition_image'))]"/>-->
+            <field name="state">code</field>
+            <field name="code">
+action = record.add_employee_face()
+            </field>
+   </record>
+
+ </data>
+</odoo>

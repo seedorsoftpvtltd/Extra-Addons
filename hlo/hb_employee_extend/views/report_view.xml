@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+     <report id="report_print_checklist_maint"
+                model="hr.employee"
+                string="Employee Report"
+                report_type="qweb-pdf"
+                name="hb_employee_extend.report_emp"
+                file="hb_employee_extend.report_emp"
+                print_report_name="'Employee - %s' % (object.name)"/>
+
+    <template id="report_emp">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.internal_layout">
+                    <div class="page">
+                        <h3 style="align:center;">Report</h3>
+
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

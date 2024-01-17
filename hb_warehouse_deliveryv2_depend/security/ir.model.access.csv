@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_model_stock_keep,access.stock.keep,model_stock_keep,base.group_user,1,1,1,1
+access_model_item_master,access.item.master,model_item_master,base.group_user,1,1,1,1
+access_model_service_charges,access.service.charges,model_service_charges,base.group_user,1,1,1,1
+
+

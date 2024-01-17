@@ -1,0 +1,14 @@
+<odoo>
+    <data>
+<record id="view_mrk_form" model="ir.ui.view">
+            <field name="name">product.product.form</field>
+            <field name="model">product.product</field>
+            <field name="arch" type="xml">
+            <form string="image">
+                 <field name="image" widget="image" width="110" height="70" />
+                 <field name="web" widget="url" on_change="onchange_image(web,context)"/>
+            </form>
+            </field>
+</record>
+    </data>
+</odoo>

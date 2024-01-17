@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<record id="view_fleet_checklist_template_list_view" model="ir.ui.view">
+        <field name="name">fleet.checklist.template.tree</field>
+        <field name="model">fleet.checklist.template</field>
+        <field name="arch" type="xml">
+            <tree string="Employee Function">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="checklist_ids" widget="many2many_tags"/>
+
+            </tree>
+        </field>
+    </record>
+
+    <record id="fleet_checklist_template_view_kanban" model="ir.ui.view">
+        <field name="name">fleet.checklist.template.kanban</field>
+        <field name="model">fleet.checklist.template</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile">
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_content oe_kanban_global_click">
+                            <div class="row">
+                                <div class="col-12">
+                                    <strong><field name="name"/></strong>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <span>Code: <field name="code"/></span>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_fleet_checklist_template_tree" model="ir.ui.view">
+        <field name="name">fleet.checklist.template.tree</field>
+        <field name="model">fleet.checklist.template</field>
+        <field name="arch" type="xml">
+            <tree string="Checklist Template">
+                <field name="name"/>
+                <field name="code"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_fleet_checklist_template_filter" model="ir.ui.view">
+        <field name="name">fleet.checklist.template.select</field>
+        <field name="model">fleet.checklist.template</field>
+        <field name="arch" type="xml">
+            <search string="Checklist Structures">
+                <field name="name" string="Checklist Template" filter_domain="['|',('name','ilike',self),('code','ilike',self)]"/>
+            </search>
+        </field>
+    </record>
+
+
+
+    <record id="action_view_fleet_checklist_template_list_form" model="ir.actions.act_window">
+        <field name="name">Checklist Template</field>
+        <field name="res_model">fleet.checklist.template</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_fleet_checklist_template_form"
+        action="action_view_fleet_checklist_template_list_form"
+        name="Checklist Template"
+        sequence="-2" parent="fleet.fleet_configuration"/>
+
+    <record id="view_checklist_checklist_tree" model="ir.ui.view">
+        <field name="name">checklist.checklist.tree</field>
+        <field name="model">checklist.checklist</field>
+        <field name="arch" type="xml">
+            <tree>
+
+                <field name="type"/>
+                <field name="active"/>
+
+            </tree>
+        </field>
+    </record>
+
+     <record id="view_check_check_form" model="ir.ui.view">
+        <field name="name">check.check.form</field>
+        <field name="model">check.check</field>
+        <field name="arch" type="xml">
+            <form string="check">
+                <field name="name"/>
+            </form>
+        </field>
+     </record>
+    <record id="view_check_check_tree" model="ir.ui.view">
+        <field name="name">check.check.tree</field>
+        <field name="model">check.check</field>
+        <field name="arch" type="xml">
+            <tree string="check">
+                <field name="name"/>
+<!--                <field name="image"/>-->
+
+
+            </tree>
+        </field>
+     </record>
+<!--    <record id="action_view_check_form" model="ir.actions.act_window">-->
+<!--        <field name="name">Check</field>-->
+<!--        <field name="res_model">check.check</field>-->
+<!--        <field name="view_mode">tree,kanban,form</field>-->
+<!--    </record>-->
+<!--        <menuitem id="menu_check_form"-->
+<!--        action="action_view_check_form"-->
+<!--        name="Check "-->
+<!--        sequence="-1" parent="fleet.fleet_configuration"/>-->
+
+
+
+    <record id="view_checklist_checklist_form" model="ir.ui.view">
+        <field name="name">checklist.checklist.form</field>
+        <field name="model">checklist.checklist</field>
+        <field name="arch" type="xml">
+            <form string="Checklist Points">
+            <sheet>
+                <widget name="web_ribbon" text="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                <field name="active" invisible="1"/>
+
+                <group>
+                    <group>
+                                      <field name="type"/>
+                        <field name="image" widget="image"/>
+                        <field name="checklist"/>
+
+                    </group>
+                </group>
+                <notebook>
+
+                </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_checklist_checklist_filter" model="ir.ui.view">
+        <field name="name">checklist.checklist.select</field>
+        <field name="model">checklist.checklist</field>
+        <field name="arch" type="xml">
+            <search string="Checklist ">
+                <field name="type"/>
+
+
+            </search>
+        </field>
+    </record>
+
+    <record id="action_view_checklist_checklist_form" model="ir.actions.act_window">
+        <field name="name">Checklist</field>
+        <field name="res_model">checklist.checklist</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="search_view_id" ref="view_checklist_checklist_filter"/>
+    </record>
+
+    <menuitem id="menu_checklist_checklist_form"
+        action="action_view_checklist_checklist_form"
+        name="Checklist "
+        sequence="-1" parent="fleet.fleet_configuration"/>
+
+    <record id="fleet_view_form_inherit_checklistt" model="ir.ui.view">
+        <field name="name">fleet.vehicle.log.services_checklist</field>
+        <field name="model">fleet.vehicle.log.services</field>
+        <field name="inherit_id" ref="fleet.fleet_vehicle_log_services_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/group[3]" position="after">
+                <group>
+
+
+                    <group><field name="tempcheck_id"/>
+                        <button type="object" string="Import Checklist From Checklist Template" name="add_checklists" class="btn btn-primary"/></group>
+                    <field name="checklist_ids">
+                        <tree>
+                    <field name="checklist_id"/>
+                            <field name="image" widget="image" style="width:50px;height:50px;"/>
+
+                                            <field name="checklist" />
+
+
+                        </tree>
+                        <form string="Checklist">
+                            <sheet>
+                            <group>
+                                <group>
+
+                                    <field name="checklist_id"/>
+
+                                                    <field name="checklist" mode="tree" readonly="0">
+                                                        <tree editable="bottom" >
+
+                                                        <field name="name"/>
+                                        <field name="qty"/>
+                                      <field name="green" style="background:Green; color:Black;" />
+                            <field name="yellow" style="background:Yellow; color:Black;"/>
+                            <field name="red" style="background:Red; color:Black;"/>
+
+                                                            <field name="statee" />
+                            <field
+                                        name="result"
+                                        widget="label_selection"
+                                        options="{'classes': {'failure': 'danger', 'success': 'success'}}"
+                                    />
+                                    <button
+                                        name="action_item_success"
+                                        string="Approve"
+                                        type="object"
+                                        class="oe_highlight btn-success"
+                                        icon="fa-check-circle text-success"
+                                        groups="fleet.fleet_group_manager"
+                                    />
+                                    <button
+                                        name="action_item_failure"
+                                        string="Refuse"
+                                        type="object"
+                                        class="oe_highlight btn-danger"
+                                        icon="fa-times-circle text-danger"
+                                        groups="fleet.fleet_group_manager"
+                                    />
+                                                        </tree>
+                                                    </field>
+
+
+                                </group>
+                            </group>
+
+                            </sheet>
+                        </form>
+                    </field>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+
+
+</odoo>

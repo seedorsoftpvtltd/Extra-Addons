@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<odoo>
+
+      <record id="view_prod_history_inh_form_ccinv" model="ir.ui.view">
+            <field name="name">product.history.inherit</field>
+            <field name="model">product.history</field>
+            <field name="inherit_id" ref="hb_wms_invoice_v1.view_prod_history_inh_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='charge_unit_type']" position="before">
+
+						<field name="gen_seperate_inv" />
+                        <field name="consignee" />
+
+				</xpath>
+			</field>
+		</record>
+
+    <record id="view_prod_history_inh_tree_ccinv" model="ir.ui.view">
+            <field name="name">product.history.inherit</field>
+            <field name="model">product.history</field>
+            <field name="inherit_id" ref="hb_wms_invoice_v1.view_prod_history_inh_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='charge_unit_type']" position="before">
+
+						<field name="gen_seperate_inv" />
+                        <field name="consignee" />
+
+				</xpath>
+			</field>
+		</record>
+
+     <record id="view_prod_summary_inh_form_ccinv" model="ir.ui.view">
+            <field name="name">product.summary.inherit</field>
+            <field name="model">product.summary</field>
+            <field name="inherit_id" ref="hb_wms_invoice_v1.view_prod_summary_inh_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='charge_unit_type']" position="before">
+
+						<field name="gen_seperate_inv" />
+                        <field name="consignee" />
+
+				</xpath>
+			</field>
+		</record>
+
+    <record id="view_prod_summary_inh_tree_ccinv" model="ir.ui.view">
+            <field name="name">product.summary.inherit</field>
+            <field name="model">product.summary</field>
+            <field name="inherit_id" ref="hb_wms_invoice_v1.view_prod_summary_inh_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='charge_unit_type']" position="before">
+
+						<field name="gen_seperate_inv" />
+                        <field name="consignee" />
+
+				</xpath>
+			</field>
+		</record>
+
+    <record id="view_summ_sheet_form_inh_ccinv" model="ir.ui.view">
+            <field name="name">summary.sheet.lines.inherit</field>
+            <field name="model">summary.sheet.lines</field>
+            <field name="inherit_id" ref="hb_wms_invoice_v1.view_summ_sheet_form_inh"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='charge_unit_type']" position="before">
+
+						<field name="gen_seperate_inv" />
+                        <field name="consignee" />
+
+				</xpath>
+			</field>
+		</record>
+
+    <record id="view_summ_sheet_tree_inh_ccinv" model="ir.ui.view">
+            <field name="name">summary.sheet.lines.inherit</field>
+            <field name="model">summary.sheet.lines</field>
+            <field name="inherit_id" ref="hb_wms_invoice_v1.view_summ_sheet_tree_inh"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='charge_unit_type']" position="before">
+
+						<field name="gen_seperate_inv" />
+                        <field name="consignee" />
+                    
+
+				</xpath>
+			</field>
+		</record>
+
+
+</odoo>

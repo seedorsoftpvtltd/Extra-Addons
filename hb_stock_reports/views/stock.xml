@@ -1,0 +1,18 @@
+<odoo>
+    <data>
+               <menuitem id="menu_stock_reports"
+                         name="Reporting"
+                         parent="warehouse.menu_warehouse_root"
+               />
+
+                <menuitem action="hb_stock_validation.action_report_wizard"
+                          id="hb_stock_validation.report_wizard_menu"
+                          parent="menu_stock_reports"
+                />
+
+                <menuitem action="stock_balance.action_report_wizard_quant"
+                          id="stock_balance.report_wizard_menu_quant"
+                          parent="menu_stock_reports" />
+
+    </data>
+</odoo>

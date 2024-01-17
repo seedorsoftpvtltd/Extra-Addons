@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+   <record id="hs_code_form_view" model="ir.ui.view">
+        <field name="name">hs_code.form</field>
+        <field name="model">hs.code</field>
+        <field name="inherit_id" ref="product_harmonized_system.hs_code_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='description']" position="after">
+            <field name="uom_id"/>
+            <field name="tax_id" widget="many2many_tags"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

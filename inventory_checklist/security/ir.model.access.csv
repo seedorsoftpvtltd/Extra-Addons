@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_checklist_points_stock_user,checklist.points.stock.user,model_checklist_points,base.group_user,1,1,1,1
+access_inventory_checklist_user,inventory.checklist.user,model_inventory_checklist,base.group_user,1,1,1,1
+access_inventory_checklist_template_user,inventory.checklist.template.user,model_inventory_checklist_template,base.group_user,1,1,1,1

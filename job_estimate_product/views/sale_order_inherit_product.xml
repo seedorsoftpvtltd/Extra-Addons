@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- Inherit the sale order view -->
+        <record id="sale_order_view_inherit_product" model="ir.ui.view">
+            <field name="name">sale.order.view.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+
+
+            <xpath expr="//page/field[@name='sale_order_option_ids']/.." position="after">
+                <page string="Product Estimation" name="job_estimate_products">
+                    <field name="job_estimate_product_ids">
+                         <tree editable="bottom">
+                            <field name="product_name_job"/>
+                            <field name="product_description"/>
+                            <field name="product_quantity"/>
+
+                            <field name="product_length"/>
+                            <field name="product_width"/>
+                            <field name="product_height"/>
+                            <field name="product_weight"/>
+                            <field name="uom"/>
+                            <field name="product_volume"/>
+                            <field name="product_area"/>
+                            <field name="total_volume" sum="Total"/>
+                            <field name="total_area" sum="Total"/>
+
+                            <!--                            <field name="product_width" widget="monetary"/>-->
+
+                        </tree>
+
+                    </field>
+                </page>
+            </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
+
+<!--        &lt;!&ndash;                        <field name="job_estimate_product_ids">-->
+<!--                            <field name="job_estimate_product_ids"></field>-->
+<!--                        </xpath>-->
+
+        <!--                <notebook position="inside">-->
+        <!--                    <page string="Job Estimate Products" name="job_estimate_products">-->
+        <!--                        <field name="job_estimate_product_ids">-->
+        <!--                            <tree editable="bottom">-->
+        <!--                                <field name="product_name_job"/>-->
+        <!--                                <field name="product_description"/>-->
+        <!--                                &lt;!&ndash; Add more fields from the job.estimate.product model &ndash;&gt;-->
+        <!--                                &lt;!&ndash; such as product_quantity, product_length, product_width, etc. &ndash;&gt;-->
+        <!--                            </tree>-->
+        <!--                        </field>-->
+        <!--                    </page>-->
+        <!--                </notebook>-->
+
+
+
+
+
+
+
+

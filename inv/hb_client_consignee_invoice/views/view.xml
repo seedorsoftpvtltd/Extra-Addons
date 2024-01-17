@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_gio_form_inherit_skulat" model="ir.ui.view">
+            <field name="name">goods.issue.order.form</field>
+            <field name="model">goods.issue.order</field>
+            <field name="inherit_id" ref="hb_warehouse_deliveryv2_depend.view_gio_form_inherit_sku"/>
+            <field name="arch" type="xml">
+               <xpath expr="//field[@name='partner_id']" position="after">
+                   <field name="consignee" domain="[('company_id','=',company_id)]"/>
+               </xpath>
+                <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="replace">
+                               <field name="product_id" domain="[('customer_id','in',[parent.partner_id,parent.consignee]),('free_qty', '&gt;', 0)]"/>
+
+                           </xpath>
+            </field>
+        </record>
+</odoo>

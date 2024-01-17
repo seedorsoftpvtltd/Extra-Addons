@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+    <record id="open_view_employee_list_my_all" model="ir.actions.act_window">
+<field name="name">All Employees</field>
+<field name="res_model">hr.employee</field>
+<field name="view_mode">kanban,tree,form</field>
+<field name="context">{}</field>
+<field name="view_id" eval="False"/>
+<field name="search_view_id" ref="hr.view_employee_filter"/>
+
+</record>
+
+
+
+<record id="hr.open_view_employee_list_my" model="ir.actions.act_window">
+<field name="name">Employees</field>
+<field name="res_model">hr.employee</field>
+<field name="view_mode">kanban,tree,form</field>
+<field name="domain">[]</field>
+<!--field name="domain">['|',('user_id', '=', uid),('parent_id.user_id', '=', uid)]</field-->
+<field name="domain">['|','|','|','|','|',('user_id', '=', uid), ('parent_id.user_id', '=', uid),('parent_id.parent_id.user_id', '=', uid),('parent_id.parent_id.parent_id.user_id', '=', uid), ('parent_id.parent_id.parent_id.parent_id.user_id', '=', uid),('parent_id.parent_id.parent_id.parent_id.parent_id.user_id', '=', uid)]</field>
+<field name="context">{'chat_icon': False}</field>
+<field name="view_id" eval="False"/>
+<field name="search_view_id" ref="hr.view_employee_filter"/>
+
+</record>
+
+
+
+<menuitem id="menu_open_view_employee_list_my_inherit" action="open_view_employee_list_my_all" parent="hr.menu_hr_employee_payroll" sequence="1" groups="hr.group_hr_manager"/>
+
+
+
+<record id="ohrms_overtime.hr_overtime_action" model="ir.actions.act_window">
+<field name="name">Overtime</field>
+<field name="res_model">hr.overtime</field>
+<field name="view_mode">tree,kanban,form</field>
+<field name="domain">[]</field>
+<!--field name="domain">['|',('user_id', '=', uid),('employee_id.parent_id.user_id', '=', uid)]</field-->
+<field name="domain">['|','|','|','|','|',('user_id', '=', uid), ('employee_id.parent_id.user_id', '=', uid),('employee_id.parent_id.parent_id.user_id', '=', uid),('employee_id.parent_id.parent_id.parent_id.user_id', '=', uid), ('employee_id.parent_id.parent_id.parent_id.parent_id.user_id', '=', uid),('employee_id.parent_id.parent_id.parent_id.parent_id.parent_id.user_id', '=', uid)]</field>
+<field name="context">{'chat_icon': False}</field>
+<field name="view_id" eval="False"/>
+
+</record>
+
+        <record id="hr_overtime_action_all" model="ir.actions.act_window">
+<field name="name">Overtime</field>
+<field name="res_model">hr.overtime</field>
+<field name="view_mode">tree,kanban,form</field>
+<field name="domain">[]</field>
+<field name="context">{'chat_icon': False}</field>
+<field name="view_id" eval="False"/>
+
+</record>
+
+<menuitem id="ohrms_overtime.overtimeall" name="All Overtime"
+                  parent="ohrms_overtime.overtime"
+                  action="hr_overtime_action_all"
+                  groups="hr.group_hr_manager"/>
+
+        <menuitem action="ohrms_overtime.hr_overtime_action"
+                  name="Employee Overtime"
+                  id="menu_open_view_overtime"
+                  parent="employee_workspace_app.menu_selfservice"  />
+
+<record id="employee_workspace_app.open_view_employee_list_my" model="ir.actions.act_window">
+        <field name="name">Employee Details</field>
+        <field name="res_model">hr.employee</field>
+        <field name="binding_view_types">form</field>
+        <field name="view_mode">kanban,tree,form,activity</field>
+	 <!--field name="domain">['|',('user_id', '=', uid),('parent_id.user_id', '=', uid)]</field-->
+<field name="domain">['|','|','|','|','|',('user_id', '=', uid), ('parent_id.user_id', '=', uid),('parent_id.parent_id.user_id', '=', uid),('parent_id.parent_id.parent_id.user_id', '=', uid), ('parent_id.parent_id.parent_id.parent_id.user_id', '=', uid),('parent_id.parent_id.parent_id.parent_id.parent_id.user_id', '=', uid)]</field>
+        <field name="view_id" eval="False"/>
+        <field name="search_view_id" ref="hr.view_employee_filter"/>
+
+    </record>
+
+</data>
+
+
+ <record id="view_overtime_inh" model="ir.ui.view">
+		<field name="model">hr.overtime</field>
+		<field name="inherit_id" ref="ohrms_overtime.hr_overtime_form_view"/>
+		<field name="arch" type="xml">
+			<xpath expr="//field[@name='employee_id']" position="replace">
+                                <!--field name="employee_id" domain="[('parent_id.user_id', '=', uid)]" options="{'no_quick_create': True, 'no_create_edit' : True}" attrs="{'readonly': [('state', '!=', 'draft')]}"/-->
+	 <field name="employee_id" domain="['|','|','|','|','|',('user_id', '=', uid), ('parent_id.user_id', '=', uid),('parent_id.parent_id.user_id', '=', uid),('parent_id.parent_id.parent_id.user_id', '=', uid), ('parent_id.parent_id.parent_id.parent_id.user_id', '=', uid),('parent_id.parent_id.parent_id.parent_id.parent_id.user_id', '=', uid)]" options="{'no_quick_create': True, 'no_create_edit' : True}" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+			</xpath>
+
+		</field>
+	</record>
+
+
+<record id="hr_attendance.hr_attendance_action" model="ir.actions.act_window">
+<field name="name">Attendances</field>
+<field name="res_model">hr.attendance</field>
+<field name="view_mode">tree,form</field>
+<field name="domain">[]</field>
+<field name="domain">['|','|','|','|','|',('user_id', '=', uid), ('employee_id.parent_id.user_id', '=', uid),('employee_id.parent_id.parent_id.user_id', '=', uid),('employee_id.parent_id.parent_id.parent_id.user_id', '=', uid), ('employee_id.parent_id.parent_id.parent_id.parent_id.user_id', '=', uid),('employee_id.parent_id.parent_id.parent_id.parent_id.parent_id.user_id', '=', uid)]</field>
+<field name="context">{'chat_icon': False}</field>
+<field name="view_id" eval="False"/>
+
+</record>
+
+</odoo>

@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_custom_global_tabs,access_custom_global_tabs,import_product_variants.model_ir_global_tabs,,1,1,1,1
+access_ir_model_tabs,access_ir_model_tabs,import_product_variants.model_ir_model_tabs,,1,1,1,1
+access_ir_models_fields_custom,access_ir_models_fields_custom,import_product_variants.model_ir_models_fields_custom,,1,1,1,1
+
+access_ir_model_fields_selection_product,access_ir_model_fields_selection_product,import_product_variants.model_ir_model_fields_selection_product,,1,1,1,1

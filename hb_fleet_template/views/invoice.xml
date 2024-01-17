@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record model='ir.ui.view' id='fleet_vehicle_log_services_view_inhtinv'>
+        <field name="name">fleet.vehicle.log.services_view</field>
+        <field name="model">fleet.vehicle.log.services</field>
+        <field name="inherit_id" ref="fleet_operations.fleet_vehicle_log_services_view_inherit" />
+        <field name="arch" type="xml">
+             <xpath expr="//button[@name='action_create_invoice']" position="replace">
+                    <button name="action_create_invoicee" string="Create Invoice" class="oe_highlight" type="object" attrs="{'invisible': [('state', '=', 'draft')]}" groups="fleet.fleet_group_manager"/>
+            </xpath>
+            <xpath expr="//button[@name='action_done']" position="replace">
+                <button name="action_donee" string="Done"
+                            type="object" states="confirm"
+                            class="oe_highlight"
+                            groups="base.group_system,base.group_erp_manager,fleet.fleet_group_manager"/>
+            </xpath>
+        </field>
+        </record>
+
+    </data>
+</odoo>

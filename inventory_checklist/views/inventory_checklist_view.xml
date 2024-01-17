@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_inventory_checklist_template_list_view" model="ir.ui.view">
+        <field name="name">inventory.checklist.template.tree</field>
+        <field name="model">inventory.checklist.template</field>
+        <field name="arch" type="xml">
+            <tree string="Employee Function">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="checklist_ids" widget="many2many_tags"/>
+                <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="inventory_checklist_template_view_kanban" model="ir.ui.view">
+        <field name="name">inventory.checklist.template.kanban</field>
+        <field name="model">inventory.checklist.template</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile">
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_content oe_kanban_global_click">
+                            <div class="row">
+                                <div class="col-12">
+                                    <strong><field name="name"/></strong>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <span>Code: <field name="code"/></span>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_inventory_checklist_template_tree" model="ir.ui.view">
+        <field name="name">inventory.checklist.template.tree</field>
+        <field name="model">inventory.checklist.template</field>
+        <field name="arch" type="xml">
+            <tree string="Checklist Template">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_inventory_checklist_template_filter" model="ir.ui.view">
+        <field name="name">inventory.checklist.template.select</field>
+        <field name="model">inventory.checklist.template</field>
+        <field name="arch" type="xml">
+            <search string="Checklist Structures">
+                <field name="name" string="Checklist Template" filter_domain="['|',('name','ilike',self),('code','ilike',self)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_hr_employee_grade_form" model="ir.ui.view">
+        <field name="name">inventory.checklist.template.form</field>
+        <field name="model">inventory.checklist.template</field>
+        <field name="arch" type="xml">
+            <form string="Employee Function">
+                <sheet>
+                    <group col="4">
+                        <field name="name"/>
+                        <field name="code"/>
+                        <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
+                    </group>
+                    <notebook>
+                         <page string="Checklists">
+                           <field name="checklist_ids" widget="one2many_list">
+                             <tree>
+                                <field name="name"/>
+                                <field name="description"/>
+                             </tree>
+                          </field>
+                         </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_view_inventory_checklist_template_list_form" model="ir.actions.act_window">
+        <field name="name">Checklist Template</field>
+        <field name="res_model">inventory.checklist.template</field>
+        <field name="view_mode">tree,form</field>
+    </record>    
+
+    <menuitem id="menu_inventory_checklist_template_form"
+        action="action_view_inventory_checklist_template_list_form"
+        name="Checklist Template" parent="stock.menu_stock_config_settings" sequence="15"/>
+
+    <record id="view_checklist_points_tree" model="ir.ui.view">
+        <field name="name">checklist.points.tree</field>
+        <field name="model">checklist.points</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="description"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_checklist_points_form" model="ir.ui.view">
+        <field name="name">checklist.points.form</field>
+        <field name="model">checklist.points</field>
+        <field name="arch" type="xml">
+            <form string="Checklist Points">
+            <sheet>
+                <widget name="web_ribbon" text="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                <field name="active" invisible="1"/>
+                <div class="oe_title">
+                    <label for="name" class="oe_edit_only"/>
+                    <h1><field name="name" placeholder="Is Local Customer"/></h1>
+                </div>
+                <group>
+                    <group>
+                        <field name="description"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Instructions">
+                        <field name="instruction" nolabel="1"/>
+                    </page>
+                </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_checklist_points_filter" model="ir.ui.view">
+        <field name="name">checklist.points.select</field>
+        <field name="model">checklist.points</field>
+        <field name="arch" type="xml">
+            <search string="Checklist Points">
+                <field name="name"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_view_checklist_points_form" model="ir.actions.act_window">
+        <field name="name">Checklist Points</field>
+        <field name="res_model">checklist.points</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="search_view_id" ref="view_checklist_points_filter"/>
+    </record>
+
+    <menuitem id="menu_checklist_points_form"
+        action="action_view_checklist_points_form"
+        name="Checklist Points"
+        parent="stock.menu_stock_config_settings" sequence="16"/>
+
+    <record id="view_picking_checklist_out_form" model="ir.ui.view">
+        <field name="name">delivery.stock.checklist.form.view</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <page name="extra" position="before">
+                <page string="Checklists">
+                    <group col="6">
+                        <field name="total_checklist" widget="gauge" nolabel="1" options="{'max_field': 'total_checklist', 'style': 'width:160px; height: 120px;'}"/>
+                        <field name="completed_checklist" widget="gauge" nolabel="1"  options="{'max_field': 'total_checklist', 'style': 'width:160px; height: 120px;'}"/>
+                        <field name="inprogress_checklist" widget="gauge" nolabel="1"  options="{'max_field': 'total_checklist', 'style': 'width:160px; height: 120px;'}"/>
+                        <field name="onhold_checklist" widget="gauge" nolabel="1"  options="{'max_field': 'total_checklist', 'style': 'width:160px; height: 120px;'}"/>
+                    </group>
+                    <group><field name="template_id"/>
+                        <button type="object" string="Import Checklist From Checklist Template" name="add_checklists" class="btn btn-primary"/></group>
+                    <field name="checklist_ids">
+                        <tree>
+                            <field name="checklist_id"/>
+                            <field name="description"/>
+                            <field name="reason"/>
+                            <field name="state" widget="label_selection" options="{'classes': {'new': 'default', 'done': 'success','process': 'default', 'block': 'danger'}}"/>
+                            <button name="confirm_checklist" string="Start" states="new" type="object" icon="fa-check text-success"/>
+                            <button name="mark_as_done" string="Mark as Pass" states="process" type="object"  icon="fa-level-down text-success"/>
+                            <button name="mark_as_hold" string="Mark as Fail" states="process" type="object"  icon="fa-level-down text-danger"/>
+                            <button name="confirm_checklist" string="Start" states="block,done" type="object" icon="fa-check text-success"/>
+                        </tree>
+                        <form string="Checklist">
+                            <sheet>
+                            <group>
+                                <group>
+                                    <field name="checklist_id"/>
+                                    <field name="name"/>
+                                    <field name="state" invisible="1"/>
+                                </group>
+                                <group>
+                                    <field name="description"/>
+                                    <field name="reason"/>
+                                </group>
+                            </group>
+                            <notebook>
+                                <page string="Instructions">
+                                    <field name="instruction" nolabel="1"/>
+                                </page>
+                            </notebook>
+                            </sheet>
+                        </form>
+                    </field>
+                </page>
+            </page>
+        </field>
+    </record>
+
+     <report id="report_print_checklist_inventory"
+                model="stock.picking"
+                string="Checklist"
+                report_type="qweb-pdf"
+                name="inventory_checklist.report_inventory_checklist_id"
+                file="inventory_checklist.report_inventory_checklist_id"
+                print_report_name="'Checklist - %s' % (object.name)"/>
+
+</odoo>

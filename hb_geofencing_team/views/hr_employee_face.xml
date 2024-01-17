@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="view_employee_face_form" model="ir.ui.view">
+            <field name="name">hr.employee.face.inherit</field>
+            <field name="model">hr.employee.faces</field>
+            <field name="inherit_id" ref="team_attendance_face_recognition.view_hr_employee_faces_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <group>
+                        <button
+                                string="Add face to Mobile"
+                                name="add_employee_face"
+                                type="object"/>
+
+                            <field name="user"/>
+                    </group>
+               </xpath>
+            </field>
+        </record>
+</odoo>

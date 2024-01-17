@@ -1,0 +1,55 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record model="ir.ui.view" id="product_normal_form_view_ext">
+        <field name="name">product_normal_form_view</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_width']" position="after">
+                <field name="prod_volume" invisible="1"/>
+                <field name="prod_sqm" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="product_template_ext_form_view">
+        <field name="name">product_template_form_view</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_width']" position="after">
+               <field name="prod_volume" invisible="1"/>
+                <field name="prod_sqm" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+<!--    <record id="view_partner_inh_formm" model="ir.ui.view">-->
+<!--            <field name="name">res.partner.inherit</field>-->
+<!--            <field name="model">res.partner</field>-->
+<!--            <field name="inherit_id" ref="base.view_partner_form"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <xpath expr="//button[@name='create_invoice_from_pickinggg1']" position="replace">-->
+<!--              				<button name="create_inv_invoice" type="object" string="Create Invoice"/>-->
+<!--                            <button string="View Invoices" type="object" name="view_wms_invoices"/>-->
+<!--                        </xpath>-->
+
+<!--			</field>-->
+<!--		</record>-->
+    <record id="view_partner_inh_form" model="ir.ui.view">
+            <field name="name">res.partner.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook[last()]" position="inside">
+                    <page string="Invoice">
+						<group>
+						<field name="last_inv_date" invisible="1"/>
+						<field name="inv_end_date" invisible="1"/>
+<!--						<field name="final_inv_date"/>-->
+						<button name="create_inv_invoice_core" type="object" string="Create Invoice"/>
+                            <button string="View Invoices" type="object" name="view_wms_invoices"/>
+						</group>
+					</page>
+				</xpath>
+			</field>
+		</record>
+</odoo>

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model='ir.ui.view' id='fright_view_form_subjob_btn'>
+        <field name="name">freight.operation.form.sub.btn</field>
+        <field name="model">freight.operation</field>
+        <field name="inherit_id" ref="jobbooking_custom_view.freight_operation_view_form_custom_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_create_sub_job" string="Create Sub Job" class="oe_highlight"
+                        type="object" attrs="{'invisible': [('x_job_type', '!=', 16)]}"
+                        groups="job_booking_sub_job.group_subjob"/>
+            </xpath>
+            <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                <button icon="fa-pencil-square-o" name="action_sub_job" class="oe_stat_button" type="object">
+                    <field name="po_count" string="Sub Job" widget="statinfo"/>
+                </button>
+            </xpath>
+            <xpath expr="//field[@name='customer_id']" position="after">
+                <field name="billno" attrs="{'invisible': [('x_job_type', '!=', 16)]}"/>
+
+            </xpath>
+            <xpath expr="//notebook//page[1]//field[@name='operation_line_ids']//tree//field[@name='x_remark']"
+                   position="after">
+                <field name="subjob_id" invisible="1"/>
+                <button name="unlink"
+                        string="Unlink"
+                        type="object"
+                        class="btn-secondary"
+                        attrs="{'invisible': [('subjob_id', '!=',False)]}"
+                        icon="fa-trash-o"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="job_booking_view_tree" model="ir.ui.view">
+        <field name="name">sub job Tree</field>
+        <field name="model">sub.job</field>
+        <field name="groups_id" eval="[(4,ref('job_booking_sub_job.group_subjob'))]"/>
+        <field name="arch" type="xml">
+            <tree delete="0">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="consignee_id"/>
+                <field name="state" invisible="1"/>
+                <field name="create_uid"/>
+                <field name="create_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="job_booking_view_form" model="ir.ui.view">
+        <field name="name">sub job form</field>
+        <field name="model">sub.job</field>
+        <field name="arch" type="xml">
+            <form delete="0">
+                <header>
+                    <button name="action_create_grn" string="Create GRN" class="btn-primary" type="object"
+                            attrs="{'invisible': ['|','|',('po_count', '=', 1),('state', '=', 'cancel'),('inv_count', '=', 1)]}"/>
+                    <button name="action_delivery_goods" string="Delivery Goods" class="btn-primary" type="object"
+                            attrs="{'invisible': ['|','|','|',('do_count', '=', 1),('state', '=', 'cancel'),('po_count', '=', 0),('inv_count', '=', 1)]}"/>
+                    <button name="create_cfsinvoice" string="Create Invoice" class="btn-primary" type="object"
+                            attrs="{'invisible': ['|',('state', '=', 'cancel'),('inv_count', '=', 1)]}"/>
+                    <button name="action_cancel" string="Cancel" class="btn-primary" type="object"
+                            attrs="{'invisible': ['|','|',('state', '=', 'cancel'),('po_count', '=', 1),('inv_count', '=', 1)]}"/>
+                    <field name="state" widget="statusbar" nolabel="1" invisible="1"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button icon="fa-pencil-square-o" name="action_grn" class="oe_stat_button" type="object">
+                            <field name="po_count" string="GRN" widget="statinfo"/>
+                        </button>
+                        <button icon="fa-pencil-square-o" name="action_do" class="oe_stat_button" type="object">
+                            <field name="do_count" string="DO" widget="statinfo"/>
+                        </button>
+                        <button icon="fa-pencil-square-o" name="action_inv" class="oe_stat_button" type="object">
+                            <field name="inv_count" string="Invoice" widget="statinfo"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="company_id" invisible="1"/>
+                            <field name="job_type" invisible="1"/>
+                            <field name="partner_id"/>
+                            <field name="client_no"/>
+                            <field name="client_ref"/>
+                            <field name="consignee_id"/>
+                            <field name="received_qty"/>
+                            <field name="manifest_qty"/>
+                            <field name="weight"/>
+                            <field name="volume"/>
+                            <field name="port_of_origin"/>
+                            <field name="port_final_destination"/>
+                            <field name="remarks"/>
+                        </group>
+                        <group>
+                            <field name="flight"/>
+                            <field name="shipper"/>
+                            <field name="billno"/>
+                            <field name="mbl_no"/>
+                            <field name="hbl_no"/>
+                            <field name="transport"/>
+                            <field name="stock_warehouse_id"/>
+                            <field name="storage_type"/>
+                            <field name="eta"/>
+                            <field name="etd"/>
+                            <field name="place_of_delivery"/>
+                            <field name="origin"/>
+                        </group>
+                        <group string="Container Details">
+                            <field name="container_type"/>
+                            <field name="container_no"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Goods">
+                            <field name="subjob_line_ids">
+                                <tree delete="0" create="0" editable="bottom">
+                                    <!--                                    <field name="line_no"/>-->
+                                    <field name="product_id"/>
+                                    <field name="product_description"/>
+                                    <field name="product_qty"/>
+                                    <field name="uom_id"/>
+                                    <field name="subjob_id" invisible="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Delivery Details">
+                            <group>
+                                <group>
+                                    <field name="shipment_no"/>
+                                    <field name="notify_party"/>
+                                </group>
+                                <group>
+
+                                </group>
+
+                                <group string="Transporter Details">
+                                    <field name="delivery_received_by"/>
+                                    <field name="driver_id"/>
+                                    <field name="driver"/>
+                                    <field name="driver_number"/>
+                                    <field name="truck_no"/>
+                                    <field name="truck_in_date"/>
+                                    <field name="truck_out_date"/>
+                                    <field name="delivery_date"/>
+                                </group>
+                                <group string="Receiver Details">
+                                    <field name="cargo_received_by"/>
+                                    <field name="receiver_name"/>
+                                    <field name="received_date"/>
+                                    <!--                                    <field name="sign"/>-->
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="create_job_action" model="ir.actions.act_window">
+        <field name="name">Sub Jobs</field>
+        <field name="res_model">sub.job</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create your first Job Booking Record
+            </p>
+        </field>
+    </record>
+    <menuitem
+            id="freight_subjob_menu"
+            name="Sub Job"
+            parent="scs_freight.root_menu_freight"
+            action="create_job_action"
+            groups="job_booking_sub_job.group_subjob"
+            sequence="1"
+    />
+
+</odoo>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_users_form_ext" model="ir.ui.view">
+            <field name="name">res.users.form</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='login']" position="after">
+                    <group>
+                    <field name="usertype"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+<!--        <record id="base_limit_view_form_ext" model="ir.ui.view">-->
+<!--            <field name="name">base.limit.records.number.form</field>-->
+<!--            <field name="model">base.limit.records_number</field>-->
+<!--            <field name="inherit_id" ref="access_limit_records_number.base_limit_view_form"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <xpath expr="//field[@name='domain']" position="after">-->
+<!--                    <field name="usertype"/>-->
+<!--                </xpath>-->
+<!--            </field>-->
+<!--        </record>-->
+<!--        <record id="base_limit_view_tree_ext" model="ir.ui.view">-->
+<!--            <field name="name">base.limit.records.number.tree</field>-->
+<!--            <field name="model">base.limit.records_number</field>-->
+<!--            <field name="inherit_id" ref="access_limit_records_number.base_limit_view_tree"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <xpath expr="//field[@name='domain']" position="after">-->
+<!--                    <field name="usertype"/>-->
+<!--                </xpath>-->
+<!--            </field>-->
+<!--        </record>-->
+
+        <record id="model_hr_employee_action_grant_access" model="ir.actions.server">
+            <field name="name">Grant Access to Employees</field>
+            <field name="model_id" ref="hr.model_hr_employee"/>
+            <field name="binding_model_id" ref="hr.model_hr_employee"/>
+            <field name="binding_view_types">form,list</field>
+            <field name="state">code</field>
+            <field name="code">action = records.grant_access()</field>
+        </record>
+        <record id="view_emp_form_ext" model="ir.ui.view">
+            <field name="name">hr.employee.form</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='image_1920']" position="before">
+                    <field name="user_id" invisible="1"/>
+                    <button name="grant_access" string="Grant Access" class="oe_highlight" type="object" attrs="{'invisible': [('user_id','!=',False)] }"/>
+                </xpath>
+                <xpath expr="//field[@name='work_email']" position="after">
+                    <field name="usertype" invisible="0"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_emp_tree_ext" model="ir.ui.view">
+            <field name="name">hr.employee.tree</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='parent_id']" position="after">
+                    <field name="user_id" invisible="1"/>
+                    <button name="grant_access" string="Grant Access" class="oe_highlight" type="object" attrs="{'invisible': [('user_id','!=',False)] }"/>
+                </xpath>
+            </field>
+        </record>
+
+
+
+        </data>
+</odoo>

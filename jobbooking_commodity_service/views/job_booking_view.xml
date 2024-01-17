@@ -1,0 +1,23 @@
+<odoo>
+    <record id="job_consignment_view" model="ir.ui.view">
+        <field name="name">consignment description view</field>
+        <field name="model">freight.operation</field>
+        <field name="inherit_id" ref="jobbooking_custom_view.freight_operation_view_form_custom_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook//page[1]//field[@name='operation_line_ids']//form//group//field[@name='product_id']" position="after">
+                <field name="description"/>
+            </xpath>
+            <xpath expr="//notebook//page[1]//field[@name='operation_line_ids']//form//group//field[@name='product_id']" position="replace">
+               <field name="product_id" required="1" width="600" domain="[('type','=', 'product')]" string="Commodity"
+               attrs="{'invisible':[('parent.x_job_type','!=',16)]}"/>
+            </xpath>
+            <xpath expr="//notebook//page[1]//field[@name='operation_line_ids']//tree//field[@name='product_id']" position="after">
+                <field name="description"/>
+            </xpath>
+            <xpath expr="//notebook//page[1]//field[@name='operation_line_ids']//tree//field[@name='product_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+
+    </record>
+</odoo>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_inventory_checklist_id">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.internal_layout">
+                    <div class="page">
+                        <h3>Checklist</h3>
+                        <h4><p t-field="o.name"/></h4>
+                        <table class="table table-sm table-bordered">
+                            <tr>
+                                <td><strong>Vendor Name</strong></td>
+                                <td><span t-field="o.partner_id.name"/></td>
+                                <td><strong>Country</strong></td>
+                                <td><span t-field="o.partner_id.country_id.name"/></td>
+                            </tr>
+                            <tr>
+                                <td><strong>PO Number</strong></td>
+                                <td><span t-field="o.name"/></td>
+                                <td><strong>Sales Person</strong></td>
+                                <td><span t-field="o.user_id.name"/></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Address</strong></td>
+                                <td><span t-field="o.partner_id.street"/></td>
+                                <td><strong>City</strong></td>
+                                <td><span t-field="o.partner_id.city"/></td>
+                            </tr>
+                            <tr>
+                                <td><strong>State</strong></td>
+                                <td><span t-field="o.partner_id.state_id.name"/></td>
+                                <td><strong>Zip</strong></td>
+                                <td><span t-field="o.partner_id.zip"/></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Phone</strong></td>
+                                <td><span t-field="o.partner_id.phone"/></td>
+                                <td><strong>Mobile</strong></td>
+                                <td><span t-field="o.partner_id.mobile"/></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Email</strong></td>
+                                <td><span t-field="o.partner_id.email"/></td>
+                                <td><strong>Website</strong></td>
+                                <td><span t-field="o.partner_id.website"/></td>
+                            </tr>
+                        </table>
+
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                    <th>User Description</th>
+                                    <th>State</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="o.checklist_ids" t-as="line">
+                                    <td><span t-field="line.name"/></td>
+                                    <td><span t-field="line.description"/></td>
+                                    <td><span t-field="line.reason"/></td>
+                                    <td><span t-field="line.state" t-options="{'classes': {'new': 'default', 'done': 'success','process': 'default', 'block': 'danger'}}"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>report_inventory_checklist_id
+    </template>
+</odoo>

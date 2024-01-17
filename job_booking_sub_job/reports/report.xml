@@ -1,0 +1,1721 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--    GRN report-->
+    <!--    <report-->
+    <!--            id="grn_pdf"-->
+    <!--            string="GRN"-->
+    <!--            model="sub.job"-->
+    <!--            report_type="qweb-pdf"-->
+    <!--            name="stock.report_id"-->
+    <!--            file="stock.report_id"-->
+    <!--    />-->
+
+    <!--    &lt;!&ndash;    DO report &ndash;&gt;-->
+    <!--    <report-->
+    <!--            id="do_pdf"-->
+    <!--            string="Delivery Order"-->
+    <!--            model="sub.job"-->
+    <!--            report_type="qweb-pdf"-->
+    <!--            name="stock.report_id"-->
+    <!--            file="stock.report_id"-->
+    <!--    />-->
+
+    <!--    Invoice report -->
+    <report
+            id="invoice_pdf"
+            string="Invoice"
+            model="sub.job"
+            report_type="qweb-pdf"
+            name="job_booking_sub_job.report_invoice"
+            file="job_booking_sub_job.report_invoice"
+    />
+
+    <template id="report_invoice">
+        <t t-call="web.report_layout">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="style" t-value="o.style or res_company.df_style or user.env.ref('professional_templates.df_style_for_all_reports')"/>
+                <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+                <t t-if="o.accountmove_id.x_grn_inv_type.name == 'CFS'"
+                   t-call="job_booking_sub_job.INVOICE_14_document"
+                   t-lang="o.accountmove_id.partner_id.lang"/>
+                <t t-if="o.accountmove_id.x_freight_type.name == 'CFS'"
+                   t-call="job_booking_sub_job.INVOICE_14_document"
+                   t-lang="o.accountmove_id.partner_id.lang"/>
+            </t>
+        </t>
+    </template>
+    <template name="Modern Template" t-name="job_booking_sub_job.INVOICE_14_document">
+        <!-- Multicompany -->
+        <!--end of Header-->
+        <div class="col-2 mt16 float-left" style="padding-right:0px;padding-left:0px;">
+            <h4 class="text-center mt4">
+                <span t-if="o.accountmove_id.type == 'out_invoice'">INVOICE</span>
+                <span t-if="o.accountmove_id.type == 'in_invoice'">VENDOR BILL</span>
+            </h4>
+
+
+            <t t-if="o.accountmove_id.type == 'out_invoice'">
+                <div>
+                    <div class="header" style="border: 1px solid black;width:882px;height:157px;">
+                        <div style="width:100%">
+                            <div style="float:left; width:50%;">
+
+
+                                <div style="width:100%;">
+                                    <div style="float:left;width:40%;padding-left:20px;padding-top:15px;width:250px;">
+                                        <!--<img src="/web/binary/company_logo" style="width:300px;"  />-->
+                                        <span itemprop="image" t-field="res_company.logo"
+                                              t-options="{&quot;widget&quot;: &quot;image&quot;, &quot;style&quot;: &quot;float:center;&quot;}"/>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div style="width:100%">
+                            <div style="float:right; width:50%;">
+
+
+                                <div style="width:100%;text-align:right;margin-top:8px;">
+                                    <div style="float:right;padding-top:0.3px;padding-right:3px">
+                                        <!--<img src="/web/binary/company_logo" style="height: 100px;width:100px;"  />-->
+                                        <div>
+                                            <b>
+                                                <span style="font-size:22px;padding-right:0px;text-align:center"
+                                                      t-field="res_company.name"/>
+                                            </b>
+                                        </div>
+
+                                        <div style="margin-top:-8px;text-align:center">
+                                            <span style="font-size:14px;text-align:center"
+                                                  t-field="res_company.street_name"/>
+                                        </div>
+                                        <!--<br/><span style="font-size:12px;" t-field="res_company.street_number"/><br/>-->
+                                        <div style="margin-top:-5px;padding-right:-2px;text-align:center">
+                                            <span style="font-size:14px;text-align:center"
+                                                  t-field="res_company.street_number"/>
+                                        </div>
+                                        <!--<span style="font-size:16px;" t-field="res_company.street_number"/><br/>-->
+                                        <!--<span style="font-size:14px;" t-field="res_company.street_number2"/><br/>-->
+                                        <div style="margin-top:-5px;text-align:center">
+                                            <span style="font-size:14px;text-align:center"
+                                                  t-field="res_company.street2"/>
+                                        </div>
+                                        <!--<span style="font-size:10px;" t-field="res_company.country_id"/><br/>-->
+                                        <div style="margin-top:-5px;text-align:center">
+                                            <span style="font-size:14px;text-align:center">TAX CARD#:
+                                                <span t-field="res_company.youtube"/>
+                                            </span>
+                                        </div>
+                                        <div style="margin-top:-5px;text-align:center">
+                                            <span style="font-size:14px;text-align:center">VATIN:
+                                                <span t-field="res_company.vat"/>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- START OF PAGE -->
+                    <div class="article page" t-attf-data-oe-model="account.move" t-attf-data-oe-id="{{o.accountmove_id.id}}"
+                         t-attf-style="color:{{style.text_color}} !important;font-size:{{int(style.body_font)}}px !important;font-family:{{style.font_family}} !important;">
+                        <div class="col-12"
+                             t-attf-style="white-space:pre-line;color:#{style.wm_color};left:#{style.leftpadding}mm; top:#{style.toppadding}mm;font-size:#{style.fontsize}px; opacity:#{style.opacity};z-index:-99; -webkit-transform:rotate(-#{style.rotate}deg);position:fixed;">
+                            <t t-esc="style.wm_eval(o, time, user, res_company)"/>
+                        </div>
+
+                        <div class="col-12 mt16 float-left"
+                             style="padding-left:0mm; padding-right:0mm;"><!--start of wrapper -->
+                            <table class="table table-bordered" style="margin-top:-25px;">
+                                <tr>
+
+                                    <td class="text-center"
+                                        style="width:55%;background-color:#E8E8E8;font-size:18px;border-left:1px solid;border-bottom:0px solid;border-top:1px solid;border-right:1px solid;padding-top:2px;padding: 8px;!important ;">
+                                        <b>TAX INVOICE</b>
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <t>
+                                        <td class="text-left"
+                                            style="width:50%;font-size:10px;padding-left:5px;padding-top:0px;padding-bottom:0px;border-left:1px solid;border-top:1px solid;border-bottom:1px solid;border-right:1px solid;!important ;">
+
+
+                                            <div style="width:100%">
+                                                <div style="float:left; width:50%;">
+
+
+                                                    <div style="width:100%;">
+                                                        <div style="float:left;width:30%;">
+                                                            <span style="font-size: 10.5px;">
+                                                                <b>Client</b>
+                                                            </span>
+                                                            <br/>
+
+                                                        </div>
+                                                        <div style="float:right;width:70%;">
+                                                            <span style="font-size: 10.5px;">:&amp;nbsp;
+                                                                <span t-field="o.accountmove_id.partner_id.name"/>
+                                                                <br/>
+                                                            </span>
+                                                        </div>
+                                                        <div style="clear:both"/>
+                                                    </div>
+                                                    <div style="width:100%;">
+                                                        <div style="float:left;width:30%;">
+                                                            <span style="font-size: 10.5px;">
+                                                                <b>Shipper</b>
+                                                            </span>
+                                                            <br/>
+
+                                                        </div>
+                                                        <div style="float:right;width:70%;">
+                                                            <span style="font-size: 10.5px;">:&amp;nbsp;
+                                                                <span t-field="o.accountmove_id.x_shipper1"/>
+                                                                <br/>
+                                                            </span>
+                                                        </div>
+                                                        <div style="clear:both"/>
+                                                    </div>
+                                                    <div style="width:100%;">
+                                                        <div style="float:left;width:30%;">
+                                                            <span style="font-size: 10.5px;">
+                                                                <b>Consignee</b>
+                                                            </span>
+                                                            <br/>
+
+                                                        </div>
+                                                        <div style="float:right;width:70%;">
+                                                            <span style="font-size: 10.5px;">:&amp;nbsp;
+                                                                <span t-field="o.accountmove_id.x_consignee1"/>
+                                                                <br/>
+                                                            </span>
+                                                        </div>
+                                                        <div style="clear:both"/>
+                                                    </div>
+                                                    <div style="width:100%;">
+                                                        <div style="float:left;width:30%;">
+                                                            <span style="font-size: 10.5px;">
+                                                                <b>Port Of Origin</b>
+                                                            </span>
+                                                            <br/>
+                                                        </div>
+                                                        <div style="float:right;width:70%;">
+                                                            <span style="font-size: 10.5px;">:&amp;nbsp;
+                                                                <span t-field="o.accountmove_id.x_port"/>
+                                                                <br/>
+                                                            </span>
+
+                                                        </div>
+                                                        <div style="clear:both"/>
+                                                    </div>
+                                                    <div style="width:100%;">
+                                                        <div style="float:left;width:30%;">
+                                                            <span style="font-size: 10.5px;">
+                                                                <b>Final</b>
+                                                            </span>
+                                                            <br/>
+
+                                                        </div>
+                                                        <div style="float:right;width:70%;">
+                                                            <span style="font-size: 10.5px;">:&amp;nbsp;
+                                                                <span t-field="o.accountmove_id.x_final"/>
+                                                                <br/>
+                                                            </span>
+                                                        </div>
+                                                        <div style="clear:both"/>
+                                                    </div>
+
+                                                    <div style="width:100%;">
+                                                        <div style="float:left;width:30%;">
+                                                            <span style="font-size: 10.5px;">
+                                                                <b>Vsl/Flight/Truck</b>
+                                                            </span>
+                                                            <br/>
+
+                                                        </div>
+                                                        <div style="float:right;width:70%;">
+                                                            <span style="font-size: 10.5px;">:&amp;nbsp;
+                                                                <span t-field="o.accountmove_id.x_vessel"/>
+                                                                <br/>
+                                                            </span>
+                                                        </div>
+                                                        <div style="clear:both"/>
+                                                    </div>
+
+                                                    <div style="width:100%;">
+                                                        <div style="float:left;width:30%;">
+                                                            <span style="font-size: 10.5px;">
+                                                                <b>Voyage/Flight No</b>
+                                                            </span>
+                                                            <br/>
+
+                                                        </div>
+                                                        <div style="float:right;width:70%;">
+                                                            <span style="font-size: 10.5px;">:&amp;nbsp;
+                                                                <span t-field="o.accountmove_id.x_voyage"/>
+                                                                <br/>
+                                                            </span>
+                                                        </div>
+                                                        <div style="clear:both"/>
+                                                    </div>
+
+                                                    <div style="width:100%;">
+                                                        <div style="float:left;width:30%;">
+                                                            <span style="font-size: 10.5px;">
+                                                                <b>ETD</b>
+                                                            </span>
+                                                            <br/>
+
+                                                        </div>
+                                                        <div style="float:right;width:70%;">
+                                                            <span style="font-size: 10.5px;">:&amp;nbsp;
+                                                                <span t-field="o.accountmove_id.x_etd"/>
+                                                                <br/>
+                                                            </span>
+                                                        </div>
+                                                        <div style="clear:both"/>
+                                                    </div>
+
+                                                    <div style="width:100%;">
+                                                        <div style="float:left;width:30%;">
+                                                            <span style="font-size: 10.5px;">
+                                                                <b>ETA</b>
+                                                            </span>
+                                                            <br/>
+
+                                                        </div>
+                                                        <div style="float:right;width:70%;">
+                                                            <span style="font-size: 10.5px;">:&amp;nbsp;
+                                                                <span t-field="o.accountmove_id.x_eta"/>
+                                                                <br/>
+                                                            </span>
+                                                        </div>
+                                                        <div style="clear:both"/>
+                                                    </div>
+
+                                                    <div style="width:100%;">
+                                                        <div style="float:left;width:30%;">
+                                                            <span style="font-size: 10.5px;">
+                                                                <b>Shipper Ref. No</b>
+                                                            </span>
+                                                            <br/>
+
+                                                        </div>
+                                                        <div style="float:right;width:70%;">
+                                                            <span style="font-size: 10.5px;">:&amp;nbsp;
+                                                                <span t-field="o.accountmove_id.x_shipper_ref_no"/>
+                                                                <br/>
+                                                            </span>
+                                                        </div>
+                                                        <div style="clear:both"/>
+                                                    </div>
+
+                                                    <div style="width:100%;">
+                                                        <div style="float:left;width:30%;">
+                                                            <span style="font-size: 10.5px;">
+                                                                <b>LPO No</b>
+                                                            </span>
+                                                            <br/>
+
+                                                        </div>
+                                                        <div style="float:right;width:70%;">
+                                                            <span style="font-size: 10.5px;">:&amp;nbsp;
+                                                                <span t-field="o.accountmove_id.x_clientrefno"/>
+                                                                <br/>
+                                                            </span>
+                                                        </div>
+                                                        <div style="clear:both"/>
+                                                    </div>
+
+                                                    <div style="width:100%;">
+                                                        <div style="float:left;width:30%;">
+                                                            <span style="font-size: 10.5px;">
+                                                                <b>Bayan No</b>
+                                                            </span>
+                                                            <br/>
+
+                                                        </div>
+                                                        <div style="float:right;width:70%;">
+                                                            <span style="font-size: 10.5px;">:&amp;nbsp;
+                                                                <span t-field="o.accountmove_id.x_bayan_no"/>
+                                                                <br/>
+                                                            </span>
+                                                        </div>
+                                                        <div style="clear:both"/>
+                                                    </div>
+
+                                                </div>
+
+                                                <div style="float:right; width:50%;">
+
+
+                                                    <!--	  <div style="width:100%;">-->
+                                                    <!--  <div style="float:left;width:40%;">-->
+                                                    <!--      <span style="font-size: 10.5px;"><b>VAT Number</b></span><br/>-->
+
+                                                    <!--          </div>-->
+                                                    <!--   <div style="float:right;width:60%;">-->
+                                                    <!--     <span style="font-size: 10.5px;">:&amp;nbsp;<span t-field="o.company_id.vat"/><br/></span>-->
+                                                    <!--           </div>-->
+                                                    <!--  <div style="clear:both"/>-->
+                                                    <!--</div>-->
+                                                    <div style="width:100%;">
+                                                        <div style="float:left;width:40%;">
+                                                            <span style="font-size: 10.5px;">
+                                                                <b>Customer VAT No.</b>
+                                                            </span>
+                                                            <br/>
+
+                                                        </div>
+                                                        <div style="float:right;width:60%;">
+                                                            <span style="font-size: 10.5px;">:&amp;nbsp;
+                                                                <span t-field="o.accountmove_id.partner_id.vatt"/>
+                                                                <br/>
+                                                            </span>
+                                                        </div>
+                                                        <div style="clear:both"/>
+                                                    </div>
+                                                    <div style="width:100%;">
+                                                        <div style="float:left;width:40%;">
+                                                            <span style="font-size: 10.5px;">
+                                                                <b>Invoice Number</b>
+                                                            </span>
+                                                            <br/>
+
+                                                        </div>
+                                                        <div style="float:right;width:60%;">
+                                                            <span style="font-size: 10.5px;">:&amp;nbsp;
+                                                                <span t-field="o.accountmove_id.name"/>
+                                                                <br/>
+                                                            </span>
+                                                        </div>
+                                                        <div style="clear:both"/>
+                                                    </div>
+                                                    <div style="width:100%;">
+                                                        <div style="float:left;width:40%;">
+                                                            <span style="font-size: 10.5px;">
+                                                                <b>Date</b>
+                                                            </span>
+                                                            <br/>
+
+                                                        </div>
+                                                        <div style="float:right;width:60%;">
+                                                            <span style="font-size: 10.5px;">:&amp;nbsp;
+                                                                <span t-field="o.accountmove_id.invoice_date"/>
+                                                                <br/>
+                                                            </span>
+                                                        </div>
+                                                        <div style="clear:both"/>
+                                                    </div>
+                                                    <div style="width:100%;">
+                                                        <div style="float:left;width:40%;">
+                                                            <span style="font-size: 10.5px;">
+                                                                <b>Payment Due Date</b>
+                                                            </span>
+                                                            <br/>
+
+                                                        </div>
+                                                        <div style="float:right;width:60%;">
+                                                            <span style="font-size: 10.5px;">:&amp;nbsp;<span
+                                                                    t-field="o.accountmove_id.invoice_payment_term_id"/>&amp;nbsp;
+                                                                <span t-field="o.accountmove_id.invoice_date_due"/>
+                                                                <br/>
+                                                            </span>
+                                                        </div>
+                                                        <div style="clear:both"/>
+                                                    </div>
+
+                                                    <div style="width:100%;">
+                                                        <div style="float:left;width:40%;">
+                                                            <span style="font-size: 10.5px;">
+                                                                <b>Job Number</b>
+                                                            </span>
+                                                            <br/>
+
+                                                        </div>
+                                                        <div style="float:right;width:60%;">
+                                                            <span style="font-size: 10.5px;">:&amp;nbsp;
+                                                                <span t-field="o.accountmove_id.x_job"/>
+                                                                <br/>
+                                                            </span>
+                                                        </div>
+                                                        <div style="clear:both"/>
+                                                    </div>
+
+
+                                                    <div style="width:100%;">
+                                                        <div style="float:left;width:40%;">
+                                                            <span style="font-size: 10.5px;">
+                                                                <b>Master Number</b>
+                                                            </span>
+                                                            <br/>
+
+                                                        </div>
+                                                        <div style="float:right;width:60%;">
+                                                            <span style="font-size: 10.5px;">:&amp;nbsp;
+                                                                <span t-field="o.accountmove_id.x_master"/>
+                                                                <br/>
+                                                            </span>
+                                                        </div>
+                                                        <div style="clear:both"/>
+                                                    </div>
+
+                                                    <div style="width:100%;">
+                                                        <div style="float:left;width:40%;">
+                                                            <span style="font-size: 10.5px;">
+                                                                <b>House Number</b>
+                                                            </span>
+                                                            <br/>
+
+                                                        </div>
+                                                        <div style="float:right;width:60%;">
+                                                            <span style="font-size: 10.5px;">:&amp;nbsp;
+                                                                <span t-field="o.accountmove_id.x_hn"/>
+                                                                <br/>
+                                                            </span>
+                                                        </div>
+                                                        <div style="clear:both"/>
+                                                    </div>
+
+                                                    <div style="width:100%;">
+                                                        <div style="float:left;width:40%;">
+                                                            <span style="font-size: 10.5px;">
+                                                                <b>Number of Packs</b>
+                                                            </span>
+                                                            <br/>
+
+                                                        </div>
+                                                        <div style="float:right;width:60%;">
+                                                            <span style="font-size: 10.5px;">:&amp;nbsp;
+                                                                <span t-field="o.accountmove_id.x_no_of_packs"/>
+                                                                <br/>
+                                                            </span>
+                                                        </div>
+                                                        <div style="clear:both"/>
+                                                    </div>
+
+
+                                                    <div style="width:100%;">
+                                                        <div style="float:left;width:40%;">
+                                                            <span style="font-size: 10.5px;">
+                                                                <b>Weight (Kgs.)</b>
+                                                            </span>
+                                                            <br/>
+
+                                                        </div>
+                                                        <div style="float:right;width:60%;">
+                                                            <span style="font-size: 10.5px;">:&amp;nbsp;
+                                                                <span t-field="o.accountmove_id.x_weight"/>
+                                                                <br/>
+                                                            </span>
+                                                        </div>
+                                                        <div style="clear:both"/>
+                                                    </div>
+
+                                                    <div style="width:100%;">
+                                                        <div style="float:left;width:40%;">
+                                                            <span style="font-size: 10.5px;">
+                                                                <b>Volume (CBM)</b>
+                                                            </span>
+                                                            <br/>
+
+                                                        </div>
+                                                        <div style="float:right;width:60%;">
+                                                            <span style="font-size: 10.5px;">:&amp;nbsp;
+                                                                <span t-field="o.accountmove_id.x_volume"/>
+                                                                <br/>
+                                                            </span>
+                                                        </div>
+                                                        <div style="clear:both"/>
+                                                    </div>
+                                                    <div style="width:100%;">
+                                                        <div style="float:left;width:40%;">
+                                                            <span style="font-size: 10.5px;">
+                                                                <b>Note</b>
+                                                            </span>
+                                                            <br/>
+
+                                                        </div>
+                                                        <div style="float:right;width:60%;">
+                                                            <span style="font-size: 10.5px;">:&amp;nbsp;
+                                                                <span t-field="o.accountmove_id.x_note"/>
+                                                                <br/>
+                                                            </span>
+                                                        </div>
+                                                        <div style="clear:both"/>
+                                                    </div>
+
+
+                                                </div>
+                                                <!--         <div style="class:both"/>-->
+                                                <!--</div>-->
+                                            </div>
+                                        </td>
+                                    </t>
+                                </tr>
+
+                                <style>
+                                    hr
+                                    {
+                                    border: 1px solid black;
+                                    }
+                                    hr:last-child
+                                    {
+                                    border: none;
+                                    }
+                                </style>
+
+
+                                <table style="width:100%;margin-top:-17px;height:150px;border-right:1px solid black;border-left:1px solid black;">
+
+
+                                    <tr style="border-top: 1px solid black;background-color:#E8E8E8; border-bottom: 0.5px solid black;height:1px;">
+                                        <th style="width:5%;color:black; font-size: 10.5px; text-align: center; border: 0.1px solid black;">
+                                            No
+                                        </th>
+                                        <th style="width:30%;color:black; font-size: 10.5px; text-align: center; border: 0.1px solid black; ">
+                                            Charge Details
+                                        </th>
+                                        <th style="width:8%; color:black;font-size: 10.5px; text-align: center; border: 0.1px solid black;">
+                                            Curr.
+                                        </th>
+                                        <th style="width:10%;color:black; font-size: 10.5px;text-align: center; border: 0.1px solid black;">
+                                            Rate/Unit
+                                        </th>
+                                        <th style="width:10%;color:black; font-size: 10.5px;text-align:center; border: 0.1px solid black;">
+                                            Unit
+                                        </th>
+                                        <th style="width:5%;color:black; font-size: 10.5px;text-align:  center; border: 0.1px solid black;">
+                                            Curr.Amt:
+                                        </th>
+                                        <th style="width:5%;color:black; font-size: 10.5px;text-align: center; border: 0.1px solid black;">
+                                            Ex.Rate
+                                        </th>
+                                        <!--<th style="width:10%;color:black; font-size: 10.5px;text-align: center; border: 1px solid black;">Taxable Amt</th>-->
+                                        <th style="width:10%;color:black; font-size: 10.5px;text-align: center; border: 0.1px solid black;">
+                                            Non Taxable
+                                        </th>
+                                        <!--<th style="width:5%;color:black; font-size: 10.5px;text-align: center; border: 1px solid black;">VAT Amt</th>-->
+                                        <th style="width:5%;color:black; font-size: 10.5px;text-align: center; border: 0.1px solid black;">
+                                            Tax
+                                        </th>
+
+
+                                    </tr>
+
+
+                                    <!--t t-if="l.display_type == 'line_note' ">
+                                      <tr style="background-color:	#D3D3D3;width:100px;text-size-adjust: auto; font-size: 10.5px; text-align: left; border: 1px solid black;">
+                                                                      <div style="width:100%;"><td colspan="7" >
+
+                                                                    <div style="float:left;width:95%;">
+
+
+
+
+                    <span t-field="l.name" style="text-size-adjust: auto;margin-right:0px;"/>
+                    </div></td>
+                     <div style="float:left;width:5%;">
+
+                      </div>
+                   <div style="clear:both"/>
+                 </div>
+                     </tr>
+                                      </t-->
+                                    <!--t t-if="l.display_type == 'line_section' ">
+                                       <tr style="background-color:	#D3D3D3;width:100px;text-size-adjust: auto; font-size: 10.5px; text-align: left; border: 1px solid black;">
+                                                                    <div style="width:100%;"><td colspan="7" >
+
+                                                                  <div style="float:left;width:95%;">
+
+
+
+
+                  <span t-field="l.name" style="text-size-adjust: auto;margin-right:0px;"/>
+                  </div></td>
+                   <div style="float:left;width:5%;">
+
+                    </div>
+                 <div style="clear:both"/>
+               </div>
+                   </tr>
+                                    </t-->
+                                    <!--t t-if="l.display_type != 'line_note' ">
+                                       <t t-if="l.display_type != 'line_section' ">
+
+                                            </t></t-->
+                                    <t t-set="sno" t-value="1"/>
+                                    <t t-foreach="o.accountmove_id.invoice_line_ids" t-as="l">
+                                        <tr>
+
+
+                                            <td style="width:5%; font-size: 10.5px; text-align: center; border: 0.1px solid black;color:black;">
+                                                <span t-esc="sno"/>
+                                            </td>
+                                            <td style=" width:30%; font-size: 10.5px; text-align:  center; border: 0.1px solid black;color:black;">
+                                                <span t-field="l.name"/>
+                                            </td>
+                                            <td style="width:8%; font-size: 10.5px; text-align:  center; border: 0.1px solid black;color:black;">
+                                                &amp;nbsp;
+                                                <span t-field="l.company_currency_id"/>
+                                            </td>
+                                            <!--<td style="width:10%;font-size: 10.5px; text-align: center; border: 1px solid black;color:black;">&amp;nbsp;<span t-field="l.price_unit"/></td>-->
+
+                                            <td style="width:5%; font-size: 10.5px; text-align: right; border: 0.1px solid black;color:black;">
+                                                <span t-field="l.price_unit"
+                                                      t-options='{"widget": "float", "precision": 2}'/><!--span t-field="l.price_unit"/-->
+                                            </td>
+                                            <td style="width:10%; font-size: 10.5px; text-align: right; border: 0.1px solid black;color:black;">
+                                                <span t-field="l.quantity"
+                                                      t-options='{"widget": "float", "precision": 3}'/>
+                                            </td>
+                                            <td style="width:5%; font-size: 10.5px; text-align: right; border: 0.1px solid black;color:black;">
+                                                <span t-field="l.price_unit"
+                                                      t-options='{"widget": "float", "precision": 2}'/><!--span t-field="l.price_unit"/-->
+                                            </td>
+
+                                            <td style="width:5%; font-size: 10.5px; text-align: right; border: 0.1px solid black;color:black;">
+                                                <span t-field="o.accountmove_id.manual_currency_exchange_rate"
+                                                      t-options='{"widget": "float", "precision": 3}'/>
+                                            </td>
+
+
+                                            <td style="width:10%; font-size: 10.5px; text-align: right; border: 0.1px solid black;color:black;">
+                                                <span t-field="l.price_subtotal"
+                                                      t-options='{"widget": "float", "precision": 3}'/>
+                                            </td>
+                                            <td style="width:10%; font-size: 10.5px; text-align: right; border: 0.1px solid black;color:black;">
+                                                <span t-field="l.tax_ids.name"/>
+                                            </td>
+                                            <!--<td style="width:5%; font-size: 10.5px; text-align: right; border: 1px solid black;"><span t-field="l.price_subtotal"/></td>-->
+                                            <!--<td style="width:5%; font-size: 10.5px; text-align: right; border: 1px solid black;"><span t-field="l.price_subtotal"/></td>-->
+
+                                        </tr>
+                                        <t>
+                                            <t t-set="sno" t-value="sno+1"/>
+
+                                        </t>
+
+                                    </t>
+                                    <tr style="border-top: 1px solid black; border-bottom: 0.5px solid black;height:1px;">
+                                        <td style="width:5%;color:black; font-size: 10.5px; text-align: center; border-left: 0.1px solid black;border-right:none;border-top: 0.1px solid black;border-bottom: 0.1px solid black;"></td>
+                                        <td style="width:30%;color:black; font-size: 10.5px; text-align: center; border-right:none;border-top: 0.1px solid black;border-bottom: 0.1px solid black; "></td>
+                                        <td style="width:8%; color:black;font-size: 10.5px; text-align: center;border-right:none;border-top: 0.1px solid black;border-bottom: 0.1px solid black;"></td>
+                                        <td style="width:10%;color:black; font-size: 10.5px;text-align: center; border-right:none;border-top: 0.1px solid black;border-bottom: 0.1px solid black;"></td>
+                                        <td style="width:10%;color:black; font-size: 10.5px;text-align:right;border-right:none;border-top: 0.1px solid black;border-bottom: 0.1px solid black;"></td>
+                                        <td style="width:5%;color:black; font-size: 10.5px;text-align: right; border-right:none;border-top: 0.1px solid black;border-bottom: 0.1px solid black;">
+                                            <span t-field="o.accountmove_id.x_unit_total"
+                                                  t-options='{"widget": "float", "precision": 3}'/>
+                                        </td>
+                                        <td style="width:5%;color:black; font-size: 10.5px;text-align: right; border-right:none;border-top: 0.1px solid black;border-bottom: 0.1px solid black;"></td>
+                                        <!--<th style="width:10%;color:black; font-size: 10.5px;text-align: center; border: 1px solid black;">Taxable Amt</th>-->
+                                        <td style="width:10%;color:black; font-size: 10.5px;text-align: right; border-right:none;border-top: 0.1px solid black;border-bottom: 0.1px solid black;">
+                                            <span t-field="o.accountmove_id.amount_untaxed"
+                                                  t-options='{"widget": "float", "precision": 3}'/>
+                                        </td>
+                                        <!--<th style="width:5%;color:black; font-size: 10.5px;text-align: center; border: 1px solid black;">VAT Amt</th>-->
+                                        <td style="width:5%;color:black; font-size: 10.5px;text-align: center; border-right:0.1px solid black;border-top: 0.1px solid black;border-bottom: 0.1px solid black;"></td>
+
+
+                                    </tr>
+
+
+                                </table>
+                                <table class="table  table-bordered">
+
+                                    <tr>
+
+
+                                        <td class="text-left"
+                                            style="width:100%;font-size:10px;border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;!important ;">
+
+
+                                            <div style="width:100%;">
+
+                                                <div style="float:left;width:40%;">
+
+                                                    <span style="font-size: 10.5px;">
+                                                        <b>Total in
+                                                            <span t-field="o.accountmove_id.currency_id.name"/>
+                                                        </b>
+                                                    </span>
+                                                    <br/>
+                                                    <span style="font-size: 10.5px;">
+                                                        <b>Vat Amount in
+                                                            <span t-field="o.accountmove_id.currency_id.name"/>
+                                                        </b>
+                                                    </span>
+                                                    <br/>
+                                                    <span style="font-size: 10.5px;">
+                                                        <b>Net Total in
+                                                            <span t-field="o.accountmove_id.currency_id.name"/>
+                                                        </b>
+                                                    </span>
+                                                    <br/>
+
+                                                </div>
+                                                <div style="float:right;width:60%;text-align:left">
+                                                    <div style="width:100%;">
+                                                        <div style="float:left;width:5%;">
+                                                            <span style="font-size: 10.5px;">:
+                                                                <br/>
+                                                            </span>
+                                                            <span style="font-size: 10.5px;">:
+                                                                <br/>
+                                                            </span>
+                                                            <span style="font-size: 10.5px;">:
+                                                                <br/>
+                                                            </span>
+
+                                                        </div>
+
+                                                        <div style="float:left;width:95%;text-align:left;">
+                                                            <span style="font-size: 10.5px;">&amp;nbsp;
+                                                                <span t-field="o.accountmove_id.amount_untaxed"
+                                                                      t-options='{"widget": "float", "precision": 3}'/>
+                                                                <br/>
+                                                            </span>
+                                                            <span style="font-size: 10.5px;">&amp;nbsp;
+                                                                <span t-field="o.accountmove_id.amount_tax"
+                                                                      t-options='{"widget": "float", "precision": 3}'/>
+                                                                <br/>
+                                                            </span>
+                                                            <span style="font-size: 10.5px;">&amp;nbsp;
+                                                                <span t-field="o.accountmove_id.amount_total"
+                                                                      t-options='{"widget": "float", "precision": 3}'/>
+                                                                <br/>
+                                                            </span>
+                                                        </div>
+                                                        <div style="clear:both"/>
+                                                    </div>
+                                                </div>
+                                                <div style="clear:both"/>
+                                            </div>
+
+                                        </td>
+                                    </tr>
+                                </table>
+                                <table class="table  table-bordered" style="margin-top:-17px;">
+                                    <td class="text-left"
+                                        style="width:100%;font-size: 10.5px;border-left:1px solid;border-top:1px solid;border-bottom:1px solid;border-right:1px solid;padding: 8px;!important ;">
+                                        <div>
+                                            <span style="font-size: 10.5px;text-transform:capitalize;">
+                                                <b>Amount in words:</b>
+                                                <b>
+                                                    <span t-field="o.accountmove_id.amount_words"
+                                                          style="font-size: 10.5px;text-transform:capitalize;"/>
+                                                </b>
+                                            </span>
+                                            <br/>
+                                            <!--span style="font-size: 10.5px;"><b>Container No, Type and Vehicle No</b></span><br/-->
+                                            <!--<span style="font-size: 10.5px;"><b>Container No, Type and Vehicle No</b></span><br/>-->
+                                            <br/>
+                                            <!--A/C No (EUR) : 0316 04516980 0036<br/>-->
+                                            <!--Swift Code : QNBAQAQAXXX<br/><br/>-->
+
+                                        </div>
+                                        <div style="width:100%; padding-bottom:0px;">
+                                            <div style="float:left;width: 30%;margin-top:0px;">
+                                                <br/>
+                                                <br/>
+                                                <br/>
+                                                <br/>
+                                                <br/>
+                                                <h1 style="text-align: left; font-size: 10.5px;">
+                                                    <b>E.and O.E</b>
+                                                </h1>
+                                            </div>
+
+                                            <div style="float:right; width: 50%;color:#000000;">
+<!--                                                <img t-attf-src="data:image/jpg;base64,{{res_company.x_logisticstamp}}"-->
+<!--                                                     style="text-align:right;margin-left:295px;width:110px;height:100px;"/>-->
+                                                <br/>
+                                                <h1 style="text-align: right; font-size: 10.5px;padding-right:27px;">
+                                                    <b>For SEEDORSOFT</b>
+                                                </h1>
+                                            </div>
+                                            <div style="clear:both"/>
+                                            <h1 style="text-align: center; font-size: 10.5px;">
+                                                <b>This is a computer generated document and does not require a
+                                                    signature
+                                                </b>
+                                            </h1>
+                                        </div>
+                                    </td>
+                                </table>
+                            </table>
+                        </div> <!--end of wrapper2-->
+                        <!-- DATA-->
+                        <!--t t-call="professional_templates.invoice_lines"/-->
+                        <!--/DATA-->
+                    </div><!--End of PAGE-->
+                    <!--FOOTER -->
+                    <!--<div class="footer" t-attf-style="font-size:{{style.footer_font}}px !important;font-family:{{style.font_family}} !important;">-->
+                    <!--    <t t-call="professional_templates.company_footer"/>-->
+                    <!--</div>-->
+                    <!--/FOOTER-->
+                </div>
+            </t>
+            <t t-if="o.accountmove_id.type == 'in_invoice'">
+                <div>
+                    <div class="header" style="border: 1px solid black;width:882px;height:157px;">
+                        <div style="width:100%">
+                            <div style="float:left; width:50%;">
+
+
+                                <div style="width:100%;">
+                                    <div style="float:left;width:40%;padding-left:20px;padding-top:15px;width:250px;">
+                                        <!--<img src="/web/binary/company_logo" style="width:300px;"  />-->
+                                        <span itemprop="image" t-field="res_company.logo"
+                                              t-options="{&quot;widget&quot;: &quot;image&quot;, &quot;style&quot;: &quot;float:center;&quot;}"/>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div style="width:100%">
+                            <div style="float:right; width:50%;">
+
+
+                                <div style="width:100%;text-align:right;margin-top:8px;">
+                                    <div style="float:right;padding-top:0.3px;padding-right:3px">
+                                        <!--<img src="/web/binary/company_logo" style="height: 100px;width:100px;"  />-->
+                                        <div>
+                                            <b>
+                                                <span style="font-size:22px;padding-right:0px;text-align:center"
+                                                      t-field="res_company.name"/>
+                                            </b>
+                                        </div>
+
+                                        <div style="margin-top:-8px;text-align:center">
+                                            <span style="font-size:14px;text-align:center"
+                                                  t-field="res_company.street_name"/>
+                                        </div>
+                                        <!--<br/><span style="font-size:12px;" t-field="res_company.street_number"/><br/>-->
+                                        <div style="margin-top:-5px;padding-right:-2px;text-align:center">
+                                            <span style="font-size:14px;text-align:center"
+                                                  t-field="res_company.street_number"/>
+                                        </div>
+                                        <!--<span style="font-size:16px;" t-field="res_company.street_number"/><br/>-->
+                                        <!--<span style="font-size:14px;" t-field="res_company.street_number2"/><br/>-->
+                                        <div style="margin-top:-5px;text-align:center">
+                                            <span style="font-size:14px;text-align:center"
+                                                  t-field="res_company.street2"/>
+                                        </div>
+                                        <!--<span style="font-size:10px;" t-field="res_company.country_id"/><br/>-->
+                                        <div style="margin-top:-5px;text-align:center">
+                                            <span style="font-size:14px;text-align:center">TAX CARD#:
+                                                <span t-field="res_company.youtube"/>
+                                            </span>
+                                        </div>
+                                        <div style="margin-top:-5px;text-align:center">
+                                            <span style="font-size:14px;text-align:center">VATIN:
+                                                <span t-field="res_company.vat"/>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- START OF PAGE -->
+                    <div class="article page" t-attf-data-oe-model="account.move" t-attf-data-oe-id="{{o.accountmove_id.id}}"
+                         t-attf-style="color:{{style.text_color}} !important;font-size:{{int(style.body_font)}}px !important;font-family:{{style.font_family}} !important;">
+                        <div class="col-12"
+                             t-attf-style="white-space:pre-line;color:#{style.wm_color};left:#{style.leftpadding}mm; top:#{style.toppadding}mm;font-size:#{style.fontsize}px; opacity:#{style.opacity};z-index:-99; -webkit-transform:rotate(-#{style.rotate}deg);position:fixed;">
+                            <t t-esc="style.wm_eval(o, time, user, res_company)"/>
+                        </div>
+
+                        <div class="col-12 mt16 float-left"
+                             style="padding-left:0mm; padding-right:0mm;"><!--start of wrapper -->
+                            <!--div class="col-7 float-left mt8" style="padding-left:18mm">
+                                <div t-if="o.partner_id" t-attf-style="color:{{style.cust_color}}; margin-top:1.3mm; margin-bottom:0mm; margin-left:0mm;font-size:{{int(style.body_font)+2}}px;">
+                                    <span t-field="o.partner_id.display_name"/>
+                                </div>
+                                     <div t-if="o.x_cus_dec" t-attf-style="color:{{style.cust_color}}; margin-top:1.3mm; margin-bottom:0mm; margin-left:0mm;font-size:{{int(style.body_font)+2}}px;">
+                                    <span>Customs Declaration No:</span>
+                                    <span t-field="o.x_cus_dec"/>
+                                </div>
+                                <div style="white-space:nowrap;">
+                                    <address t-field="o.partner_id" style="margin-bottom:0px;" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;:[&quot;address&quot;,&quot;phone&quot;,&quot;email&quot;,&quot;website&quot;],&quot;no_marker&quot;: true}"/>
+                                    <span t-if="o.partner_id.vat">VAT: <span t-field="o.partner_id.vat"/></span>
+
+                                </div>
+                            </div-->
+                            <table class="table table-bordered" style="margin-top:-25px;">
+                                <tr>
+
+                                    <td class="text-center"
+                                        style="width:55%;background-color:#E8E8E8;font-size:18px;border-left:1px solid;border-bottom:0px solid;border-top:1px solid;border-right:1px solid;padding-top:2px;padding: 8px;!important ;">
+                                        <b>VENDOR INVOICE</b>
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <t>
+                                        <!--<t t-if="o and 'company_id' in o">-->
+                                        <!--         <t t-set="company" t-value="o.company_id"/>-->
+                                        <!--     </t>-->
+                                        <!--     <t t-if="not o or not 'company_id' in o">-->
+                                        <!--         <t t-set="company" t-value="res_company"/>-->
+                                        <!--     </t>-->
+                                        <!--     <div t-attf-style="padding-bottom:0mm; padding-left:0mm; padding-right:0mm; color:{{style.text_color}} !important;font-size:{{int(style.header_font)}}px !important;font-family:{{style.font_family}} !important;" class="header col-12">-->
+                                        <!--         <t t-if="style.header">-->
+                                        <!--             <div class="col-7 float-left" style="padding-left:0mm;">-->
+                                        <!--                 <span t-if="style.logo">-->
+                                        <!--                     <span itemprop="image" t-field="style.logo" t-options="{&quot;widget&quot;: &quot;image&quot;}"/>-->
+                                        <!--                 </span>-->
+                                        <!--                 <span t-if="not style.logo and company.logo">-->
+                                        <!--                     <span itemprop="image" t-field="company.logo" t-options="{&quot;widget&quot;: &quot;image&quot;}"/>-->
+                                        <!--                 </span>-->
+                                        <!--                 <span t-if="not style.logo and not company.logo">-->
+                                        <!--                     <span itemprop="image" t-field="company.logo" t-options="{&quot;widget&quot;: &quot;image&quot;}"/>-->
+                                        <!--                 </span>-->
+                                        <!--                 <div t-if="company.twitter or company.facebook or company.youtube" t-attf-style="background-color:{{style.theme_color}};width:auto;padding-left:4mm; color:{{style.theme_txt_color}}; padding-right:4mm; padding-top:4mm; padding-bottom:0.6mm;" class="float-left">-->
+                                        <!--                     <span t-if="company.twitter" style="padding-left:0mm;" class="fa fa-twitter-square "/> <span t-field="company.twitter"/>-->
+                                        <!--                     <span t-if="company.facebook" style="padding-left:3.45mm;" class="fa fa-facebook-square "/> <span t-field="company.facebook"/>-->
+                                        <!--                     <span t-if="company.youtube" style="padding-left:3.45mm;" class="fa fa-youtube-square "/> <span t-field="company.youtube"/>-->
+                                        <!--                 </div>-->
+                                        <!--             </div>-->
+                                        <!--             <div class="col-5 mb8 float-right" style="padding-bottom:0.6mm;padding-right:0mm;">-->
+                                        <!--                 <div class="float-right" style="width:auto;padding-left:4mm;">-->
+                                        <!--                     <t t-call="professional_templates.company_address"/>-->
+                                        <!--                 </div>-->
+                                        <!--             </div>-->
+                                        <!--         </t>-->
+                                        <!--     </div> -->
+
+
+                                        <td class="text-left"
+                                            style="width:50%;font-size:10px;padding-left:5px;padding-top:0px;padding-bottom:0px;border-left:1px solid;border-top:1px solid;border-bottom:1px solid;border-right:1px solid;!important ;">
+
+
+                                            <div style="width:100%">
+                                                <div style="float:left; width:50%;">
+
+
+                                                    <div style="width:100%;">
+                                                        <div style="float:left;width:30%;">
+                                                            <span style="font-size: 10.5px;">
+                                                                <b>Vendor</b>
+                                                            </span>
+                                                            <br/>
+
+                                                        </div>
+                                                        <div style="float:right;width:70%;">
+                                                            <span style="font-size: 10.5px;">:&amp;nbsp;
+                                                                <span t-field="o.accountmove_id.partner_id.name"/>
+                                                                <br/>
+                                                            </span>
+                                                        </div>
+                                                        <div style="clear:both"/>
+                                                    </div>
+                                                    <div style="width:100%;">
+                                                        <div style="float:left;width:30%;">
+                                                            <span style="font-size: 10.5px;">
+                                                                <b>Address</b>
+                                                            </span>
+                                                            <br/>
+
+                                                        </div>
+                                                        <div style="float:right;width:70%;">
+                                                            <span style="font-size: 10.5px;">:&amp;nbsp;
+                                                                <span t-field="o.accountmove_id.partner_id.street_name"/>
+                                                                <br/>
+                                                                <span style="padding-left:8px;"
+                                                                      t-field="o.accountmove_id.partner_id.street2"/>
+                                                            </span>
+                                                        </div>
+                                                        <div style="clear:both"/>
+                                                    </div>
+                                                    <div style="width:100%;">
+                                                        <div style="float:left;width:30%;">
+                                                            <span style="font-size: 10.5px;">
+                                                                <b>Contact</b>
+                                                            </span>
+                                                            <br/>
+
+                                                        </div>
+                                                        <div style="float:right;width:70%;">
+                                                            <span style="font-size: 10.5px;">:&amp;nbsp;
+                                                                <span t-field="o.accountmove_id.partner_id.mobile"/>
+                                                                <br/>
+                                                            </span>
+                                                        </div>
+                                                        <div style="clear:both"/>
+                                                    </div>
+                                                    <div style="width:100%;">
+                                                        <div style="float:left;width:30%;">
+                                                            <span style="font-size: 10.5px;">
+                                                                <b>Email</b>
+                                                            </span>
+                                                            <br/>
+
+                                                        </div>
+                                                        <div style="float:right;width:70%;">
+                                                            <span style="font-size: 10.5px;">:&amp;nbsp;
+                                                                <span t-field="o.partner_id.email"/>
+                                                                <br/>
+                                                            </span>
+                                                        </div>
+                                                        <div style="clear:both"/>
+                                                    </div>
+
+                                                    <!--		  <div style="width:100%;">-->
+                                                    <!--  <div style="float:left;width:30%;">-->
+                                                    <!--      <span style="font-size: 10.5px;"><b>Shipper</b></span><br/>-->
+
+                                                    <!--          </div>-->
+                                                    <!--   <div style="float:right;width:70%;">-->
+                                                    <!--     <span style="font-size: 10.5px;">:&amp;nbsp;<span t-field="o.x_shipper"/><br/></span>-->
+                                                    <!--           </div>-->
+                                                    <!--  <div style="clear:both"/>-->
+                                                    <!--</div>-->
+                                                    <!-- <div style="width:100%;">-->
+                                                    <!--  <div style="float:left;width:30%;">-->
+                                                    <!--      <span style="font-size: 10.5px;"><b>Consignee</b></span><br/>-->
+
+                                                    <!--          </div>-->
+                                                    <!--   <div style="float:right;width:70%;">-->
+                                                    <!--     <span style="font-size: 10.5px;">:&amp;nbsp;<span t-field="o.x_consignee"/><br/></span>-->
+                                                    <!--           </div>-->
+                                                    <!--  <div style="clear:both"/>-->
+                                                    <!--</div>-->
+                                                    <!--		  <div style="width:100%;">-->
+                                                    <!--  <div style="float:left;width:30%;">-->
+                                                    <!--      <span style="font-size: 10.5px;"><b>Port Of Origin</b></span><br/>-->
+
+                                                    <!--          </div>-->
+                                                    <!--   <div style="float:right;width:70%;">-->
+                                                    <!--    <span style="font-size: 10.5px;">:&amp;nbsp;<span t-field="o.x_port"/><br/></span>-->
+                                                    <!--   <div style="width:100%;">-->
+                                                    <!--  <div style="float:left;width:30%;">-->
+                                                    <!--      <span style="font-size: 10.5px;"><b>ETD</b></span><br/>-->
+
+                                                    <!--          </div>-->
+                                                    <!--   <div style="float:right;width:70%;">-->
+                                                    <!--     <span style="font-size: 10.5px;">:&amp;nbsp;<span t-field="o.partner_id.vat"/><br/></span>-->
+                                                    <!--           </div>-->
+                                                    <!--  <div style="clear:both"/>-->
+                                                    <!--</div>-->
+                                                    <!--           </div>-->
+                                                    <!--  <div style="clear:both"/>-->
+                                                    <!--</div>-->
+                                                    <!--<div style="width:100%;">-->
+                                                    <!--  <div style="float:left;width:30%;">-->
+                                                    <!--      <span style="font-size: 10.5px;"><b>Final</b></span><br/>-->
+
+                                                    <!--          </div>-->
+                                                    <!--   <div style="float:right;width:70%;">-->
+                                                    <!--     <span style="font-size: 10.5px;">:&amp;nbsp;<span t-field="o.x_final"/><br/></span>-->
+                                                    <!--	   <div style="width:100%;">-->
+                                                    <!--  <div style="float:left;width:30%;">-->
+                                                    <!--      <span style="font-size: 10.5px;"><b>ETA</b></span><br/>-->
+
+                                                    <!--          </div>-->
+                                                    <!--   <div style="float:right;width:70%;">-->
+                                                    <!--     <span style="font-size: 10.5px;">:&amp;nbsp;<span t-field="o.partner_id.vat"/><br/></span>-->
+                                                    <!--           </div>-->
+                                                    <!--  <div style="clear:both"/>-->
+                                                    <!--</div>-->
+                                                    <!--           </div>-->
+                                                    <!--  <div style="clear:both"/>-->
+                                                    <!--</div>-->
+                                                    <!--<div style="width:100%;">-->
+                                                    <!--  <div style="float:left;width:30%;">-->
+                                                    <!--      <span style="font-size: 10.5px;"><b>Vessel</b></span><br/>-->
+
+                                                    <!--          </div>-->
+                                                    <!--   <div style="float:right;width:70%;">-->
+                                                    <!--     <span style="font-size: 10.5px;">:&amp;nbsp;<span t-field="o.x_vessel"/><br/></span>-->
+                                                    <!--           </div>-->
+                                                    <!--  <div style="clear:both"/>-->
+                                                    <!--</div>-->
+                                                    <!--<div style="width:100%;">-->
+                                                    <!--  <div style="float:left;width:30%;">-->
+                                                    <!--      <span style="font-size: 10.5px;"><b>Voyage No</b></span><br/>-->
+
+                                                    <!--          </div>-->
+                                                    <!--   <div style="float:right;width:70%;">-->
+                                                    <!--     <span style="font-size: 10.5px;">:&amp;nbsp;<span t-field="o.x_voyage"/><br/></span>-->
+                                                    <!--           </div>-->
+                                                    <!--  <div style="clear:both"/>-->
+                                                    <!--</div>-->
+                                                    <!--<div style="width:100%;">-->
+                                                    <!--  <div style="float:left;width:30%;">-->
+                                                    <!--      <span style="font-size: 10.5px;"><b>Shipper Ref. No.</b></span><br/>-->
+
+                                                    <!--          </div>-->
+                                                    <!--   <div style="float:right;width:70%;">-->
+                                                    <!--     <span style="font-size: 10.5px;">:&amp;nbsp;<span t-field="o.partner_id.vat"/><br/></span>-->
+                                                    <!--           </div>-->
+                                                    <!--  <div style="clear:both"/>-->
+                                                    <!--</div>-->
+                                                    <!--<div style="width:100%;">-->
+                                                    <!--  <div style="float:left;width:30%;">-->
+                                                    <!--      <span style="font-size: 10.5px;"><b>Cust P/O No.</b></span><br/>-->
+
+                                                    <!--          </div>-->
+                                                    <!--   <div style="float:right;width:70%;">-->
+                                                    <!--     <span style="font-size: 10.5px;">:&amp;nbsp;<span t-field="o.partner_id.vat"/><br/></span>-->
+                                                    <!--           </div>-->
+                                                    <!--  <div style="clear:both"/>-->
+                                                    <!--</div>-->
+                                                    <!--<div style="width:100%;">-->
+                                                    <!--  <div style="float:left;width:30%;">-->
+                                                    <!--      <span style="font-size: 10.5px;"><b>Note</b></span><br/>-->
+
+                                                    <!--          </div>-->
+                                                    <!--   <div style="float:right;width:70%;">-->
+                                                    <!--     <span style="font-size: 10.5px;">:&amp;nbsp;<span t-field="o.partner_id.vat"/><br/></span>-->
+                                                    <!--           </div>-->
+                                                    <!--  <div style="clear:both"/>-->
+                                                    <!--</div>	 -->
+
+                                                </div>
+
+                                                <div style="float:right; width:50%;">
+
+
+                                                    <!--	  <div style="width:100%;">-->
+                                                    <!--  <div style="float:left;width:30%;">-->
+                                                    <!--      <span style="font-size: 10.5px;"><b>VAT Number</b></span><br/>-->
+
+                                                    <!--          </div>-->
+                                                    <!--   <div style="float:right;width:70%;">-->
+                                                    <!--     <span style="font-size: 10.5px;">:&amp;nbsp;<span t-field="o.partner_id.email"/><br/></span>-->
+                                                    <!--           </div>-->
+                                                    <!--  <div style="clear:both"/>-->
+                                                    <!--</div>-->
+                                                    <div style="width:100%;">
+                                                        <div style="float:left;width:30%;">
+                                                            <span style="font-size: 10.5px;">
+                                                                <b>Vendor VAT No.</b>
+                                                            </span>
+                                                            <br/>
+
+                                                        </div>
+                                                        <div style="float:right;width:70%;">
+                                                            <span style="font-size: 10.5px;">:&amp;nbsp;
+                                                                <span t-field="o.accountmove_id.partner_id.vatt"/>
+                                                                <br/>
+                                                            </span>
+                                                        </div>
+                                                        <div style="clear:both"/>
+                                                    </div>
+                                                    <div style="width:100%;">
+                                                        <div style="float:left;width:30%;">
+                                                            <span style="font-size: 10.5px;">
+                                                                <b>Vendor Invoice No</b>
+                                                            </span>
+                                                            <br/>
+
+                                                        </div>
+                                                        <div style="float:right;width:70%;">
+                                                            <span style="font-size: 10.5px;">:&amp;nbsp;
+                                                                <span t-field="o.accountmove_id.name"/>
+                                                                <br/>
+                                                            </span>
+                                                        </div>
+                                                        <div style="clear:both"/>
+                                                    </div>
+                                                    <div style="width:100%;">
+                                                        <div style="float:left;width:30%;">
+                                                            <span style="font-size: 10.5px;">
+                                                                <b>Date</b>
+                                                            </span>
+                                                            <br/>
+
+                                                        </div>
+                                                        <div style="float:right;width:70%;">
+                                                            <span style="font-size: 10.5px;">:&amp;nbsp;
+                                                                <span t-field="o.accountmove_id.invoice_date"/>
+                                                                <br/>
+                                                            </span>
+                                                        </div>
+                                                        <div style="clear:both"/>
+                                                    </div>
+                                                    <div style="width:100%;">
+                                                        <div style="float:left;width:30%;">
+                                                            <span style="font-size: 10.5px;">
+                                                                <b>Payment Due Date</b>
+                                                            </span>
+                                                            <br/>
+
+                                                        </div>
+                                                        <div style="float:right;width:70%;">
+                                                            <span style="font-size: 10.5px;">:&amp;nbsp;
+                                                                <span t-field="o.accountmove_id.invoice_payment_term_id"/>
+                                                                <br/>
+                                                            </span>
+                                                        </div>
+                                                        <div style="clear:both"/>
+                                                    </div>
+                                                    <!--<div style="width:100%;">-->
+                                                    <!--  <div style="float:left;width:30%;">-->
+                                                    <!--      <span style="font-size: 10.5px;"><b>Job Number</b></span><br/>-->
+
+                                                    <!--          </div>-->
+                                                    <!--   <div style="float:right;width:70%;">-->
+                                                    <!--     <span style="font-size: 10.5px;">:&amp;nbsp;-->
+                                                    <!--     span t-field="o.partner_id.phone"/-->
+                                                    <!--     <br/></span>-->
+                                                    <!--           </div>-->
+                                                    <!--  <div style="clear:both"/>-->
+                                                    <!--</div>-->
+                                                    <!--<div style="width:100%;">-->
+                                                    <!--  <div style="float:left;width:30%;">-->
+                                                    <!--      <span style="font-size: 10.5px;"><b>Job Date</b></span><br/>-->
+
+                                                    <!--          </div>-->
+                                                    <!--   <div style="float:right;width:70%;">-->
+                                                    <!--     <span style="font-size: 10.5px;">:&amp;nbsp;-->
+                                                    <!--     span t-field="o.partner_id.phone"/-->
+                                                    <!--     <br/></span>-->
+                                                    <!--           </div>-->
+                                                    <!--  <div style="clear:both"/>-->
+                                                    <!--</div>-->
+                                                    <!--          <div style="width:100%;">-->
+                                                    <!--  <div style="float:left;width:30%;">-->
+                                                    <!--      <span style="font-size: 10.5px;"><b>Master Number</b></span><br/>-->
+
+                                                    <!--          </div>-->
+                                                    <!--   <div style="float:right;width:70%;">-->
+                                                    <!--     <span style="font-size: 10.5px;">:&amp;nbsp;<span t-field="o.x_master"/><br/></span>-->
+                                                    <!--           </div>-->
+                                                    <!--  <div style="clear:both"/>-->
+                                                    <!--</div>-->
+                                                    <!-- <div style="width:100%;">-->
+                                                    <!--  <div style="float:left;width:30%;">-->
+                                                    <!--      <span style="font-size: 10.5px;"><b>House Number</b></span><br/>-->
+
+                                                    <!--          </div>-->
+                                                    <!--   <div style="float:right;width:70%;">-->
+                                                    <!--     <span style="font-size: 10.5px;">:&amp;nbsp;<span t-field="o.x_hn"/><br/></span>-->
+                                                    <!--           </div>-->
+                                                    <!--		   </div>-->
+                                                    <!--    <div style="width:100%;">-->
+                                                    <!--<div style="float:left;width:30%;">-->
+                                                    <!--    <span style="font-size: 10.5px;"><b>Number of packs</b></span><br/>-->
+
+                                                    <!--        </div>-->
+                                                    <!-- <div style="float:right;width:70%;">-->
+                                                    <!--   <span style="font-size: 10.5px;">:&amp;nbsp;<span t-field="o.partner_id.phone"/><br/></span>-->
+                                                    <!--         </div>-->
+                                                    <!--		    <div style="width:100%;">-->
+                                                    <!--  <div style="float:left;width:30%;">-->
+                                                    <!--      <span style="font-size: 10.5px;"><b>Weight (Kgs.)</b></span><br/>-->
+
+                                                    <!--          </div>-->
+                                                    <!--   <div style="float:right;width:70%;">-->
+                                                    <!--     <span style="font-size: 10.5px;">:&amp;nbsp;<span t-field="o.x_weight"/><br/></span>-->
+                                                    <!--           </div>-->
+                                                    <!--  <div style="clear:both"/>-->
+                                                    <!--</div>-->
+                                                    <!-- <div style="width:100%;">-->
+                                                    <!--  <div style="float:left;width:30%;">-->
+                                                    <!--      <span style="font-size: 10.5px;"><b>Volume (CBM)</b></span><br/>-->
+
+                                                    <!--          </div>-->
+                                                    <!--   <div style="float:right;width:70%;">-->
+                                                    <!--     <span style="font-size: 10.5px;">:&amp;nbsp;<span t-field="o.x_volume"/><br/></span>-->
+                                                    <!--           </div>-->
+                                                    <!--  <div style="clear:both"/>-->
+                                                    <!--</div>-->
+
+                                                </div>
+                                                <!--         <div style="class:both"/>-->
+                                                <!--</div>-->
+                                            </div>
+                                        </td>
+                                    </t>
+                                </tr>
+
+                                <style>
+                                    hr
+                                    {
+                                    border: 1px solid black;
+                                    }
+                                    hr:last-child
+                                    {
+                                    border: none;
+                                    }
+                                </style>
+
+
+                                <table style="width:100%;margin-top:-17px;height:150px;border-right:1px solid black;border-left:1px solid black;">
+
+
+                                    <tr style="border-top: 0.1px solid black;background-color:#E8E8E8; border-bottom: 0.5px solid black;height:1px;">
+                                        <th style="width:5%;color:black; font-size: 10.5px; text-align: center; border: 0.1px solid black;">
+                                            No
+                                        </th>
+                                        <th style="width:30%;color:black; font-size: 10.5px; text-align: center; border: 0.1px solid black; ">
+                                            Charge Details
+                                        </th>
+                                        <th style="width:8%; color:black;font-size: 10.5px; text-align: center; border: 0.1px solid black;">
+                                            Curr.
+                                        </th>
+                                        <th style="width:10%;color:black; font-size: 10.5px;text-align: center; border: 0.1px solid black;">
+                                            Rate/Unit
+                                        </th>
+                                        <th style="width:10%;color:black; font-size: 10.5px;text-align:center; border: 0.1px solid black;">
+                                            Unit
+                                        </th>
+                                        <th style="width:5%;color:black; font-size: 10.5px;text-align: center; border: 0.1px solid black;">
+                                            Curr.Amt:
+                                        </th>
+
+                                        <th style="width:10%;color:black; font-size: 10.5px;text-align: center; border: 0.1px solid black;">
+                                            Non Taxable
+                                        </th>
+                                        <!--<th style="width:5%;color:black; font-size: 10.5px;text-align: center; border: 0.1px solid black;">VAT Amt</th>-->
+                                        <th style="width:5%;color:black; font-size: 10.5px;text-align: center; border: 0.1px solid black;">
+                                            Tax
+                                        </th>
+
+
+                                    </tr>
+
+
+                                    <!--t t-if="l.display_type == 'line_note' ">
+                                      <tr style="background-color:	#D3D3D3;width:100px;text-size-adjust: auto; font-size: 10.5px; text-align: left; border: 0.1px solid black;">
+                                                                      <div style="width:100%;"><td colspan="7" >
+
+                                                                    <div style="float:left;width:95%;">
+
+
+
+
+                    <span t-field="l.name" style="text-size-adjust: auto;margin-right:0px;"/>
+                    </div></td>
+                     <div style="float:left;width:5%;">
+
+                      </div>
+                   <div style="clear:both"/>
+                 </div>
+                     </tr>
+                                      </t-->
+                                    <!--t t-if="l.display_type == 'line_section' ">
+                                       <tr style="background-color:	#D3D3D3;width:100px;text-size-adjust: auto; font-size: 10.5px; text-align: left; border: 1px solid black;">
+                                                                    <div style="width:100%;"><td colspan="7" >
+
+                                                                  <div style="float:left;width:95%;">
+
+
+
+
+                  <span t-field="l.name" style="text-size-adjust: auto;margin-right:0px;"/>
+                  </div></td>
+                   <div style="float:left;width:5%;">
+
+                    </div>
+                 <div style="clear:both"/>
+               </div>
+                   </tr>
+                                    </t-->
+                                    <!--t t-if="l.display_type != 'line_note' ">
+                                       <t t-if="l.display_type != 'line_section' ">
+
+                                            </t></t-->
+                                    <t t-set="sno" t-value="1"/>
+                                    <t t-foreach="o.accountmove_id.invoice_line_ids" t-as="l">
+                                        <tr>
+
+
+                                            <td style="width:5%; font-size: 10.5px; text-align: center; border: 0.1px solid black;color:black;">
+                                                <span t-esc="sno"/>
+                                            </td>
+                                            <td style=" width:30%; font-size: 10.5px; text-align: center; border: 0.1px solid black;color:black;">
+                                                <span t-field="l.name"/>
+                                            </td>
+                                            <td style="width:8%; font-size: 10.5px; text-align: center; border: 0.1px solid black;color:black;">
+                                                &amp;nbsp;
+                                                <span t-field="l.company_currency_id"/>
+                                            </td>
+                                            <!--<td style="width:10%;font-size: 10.5px; text-align: center; border: 0.1px solid black;color:black;">&amp;nbsp;<span t-field="l.product_uom_id"/></td>-->
+
+                                            <td style="width:5%; font-size: 10.5px; text-align: right; border: 0.1px solid black;color:black;padding-right:2px;">
+                                                <span t-esc="l.price_unit"
+                                                      t-options='{"widget": "float", "precision": 2}'/><!--span t-field="l.price_unit"/-->
+                                            </td>
+                                            <td style="width:10%; font-size: 10.5px; text-align: right; border: 0.1px solid black;color:black;padding-right:2px;">
+                                                <span t-field="l.quantity"/>
+                                            </td>
+
+
+                                            <td style="width:10%; font-size: 10.5px; text-align: right; border: 0.1px solid black;color:black;padding-right:2px;">
+                                                <span t-field="l.price_unit"
+                                                      t-options='{"widget": "float", "precision": 3}'/>
+                                            </td>
+                                            <td style="width:10%; font-size: 10.5px; text-align: right; border: 0.1px solid black;color:black;padding-right:2px;">
+                                                <span t-field="l.price_subtotal"
+                                                      t-options='{"widget": "float", "precision": 3}'/>
+                                            </td>
+                                            <td style="width:10%; font-size: 10.5px; text-align: right; border: 0.1px solid black;color:black;">
+                                                <span t-field="l.tax_ids"/>
+                                            </td>
+                                            <!--<td style="width:5%; font-size: 10.5px; text-align: right; border: 0.1px solid black;"><span t-field="l.price_subtotal"/></td>-->
+                                            <!--<td style="width:5%; font-size: 10.5px; text-align: right; border: 0.1px solid black;"><span t-field="l.price_subtotal"/></td>-->
+
+                                        </tr>
+                                        <t>
+                                            <t t-set="sno" t-value="sno+1"/>
+
+                                        </t>
+
+                                    </t>
+
+                                    <!--<tr style="border-top: 1px solid; border-bottom: 0.5px solid;height:1px;">-->
+
+                                    <!--     <t t-foreach="o.invoice_line_ids" t-as="l">	  -->
+                                    <!--<td style="width:5%; font-size: 10.5px; text-align: center; border-left: 0.1px solid black;color:black;">-->
+
+
+                                    <!--  </td>-->
+                                    <!-- <td style=" width:30%; font-size: 10.5px; text-align: left; border: 0.1px solid white;color:black;">-->
+
+                                    <!-- </td>-->
+                                    <!--<td style="width:8%; font-size: 10.5px; text-align: left; border: 0.1px solid white;color:black;">&amp;nbsp;-->
+
+                                    <!--</td>-->
+                                    <!--<td style="width:10%;font-size: 10.5px; text-align: left; border: 0.1px solid white;color:black;">&amp;nbsp;-->
+
+                                    <!--</td>-->
+
+                                    <!--<td style="width:5%; font-size: 10.5px; text-align: right; border: 0.1px solid white;color:black;"></td>-->
+                                    <!--<td style="width:10%; font-size: 10.5px; text-align: right; border: 0.1px solid white;color:black;">-->
+
+                                    <!--</td>-->
+
+
+                                    <!-- </t>-->
+                                    <!--</tr>-->
+
+
+                                    <!--tr>
+                                    <td style="width:10%; font-size: 10.5px; text-align: left; border: none;"></td>
+                                  <td style=" width:20%; font-size: 10.5px; text-align: left; border: none;"></td>
+                                    <td style="width:10%; font-size: 10.5px; text-align: right;border: none;"><span style="font-size: 10.5px;"><b>Volume (CBM)</b></span></td>
+                                    <td style="width:10%;font-size: 10.5px; text-align: center; border: none;"><span t-field="l.product_uom_id"/></td>
+
+                                    <td style="width:5%; font-size: 10.5px; text-align: right; border: none;"></td>
+                                    <td style="width:5%; font-size: 10.5px; text-align: left; border: none;"></td>
+                                    <td style="width:5%; font-size: 10.5px; text-align: left; border: none;"><span t-field="l.price_subtotal"/></td>
+
+                                    <td style="width:10%; font-size: 10.5px; text-align: right; border: none;"><span t-field="l.tax_ids"/></td>
+
+
+                                    <td style="width:10%; font-size: 10.5px; text-align: right; border: none;"></td>
+                                    <td style="width:5%; font-size: 10.5px; text-align: right; border: none;"><span t-field="l.price_subtotal"/></td>
+                                    <td style="width:5%; font-size: 10.5px; text-align: right;border: none;"></td>
+                                    </tr-->
+
+
+                                    <tr style="border-top: 0.1px solid black; border-bottom: 0.5px solid black;height:1px;">
+                                        <td style="width:10%; font-size: 10.5px; text-align: left; border: none;"></td>
+                                        <td style=" width:20%; font-size: 10.5px; text-align: left; border: none;"></td>
+                                        <td style="width:10%; font-size: 10.5px; text-align: right;border: none;"></td>
+                                        <td style="width:10%;font-size: 10.5px; text-align: center; border: none;"></td>
+
+
+                                        <td style="width:5%; font-size: 10.5px; text-align: left; border: none;"></td>
+
+                                        <td style="width:10%; font-size: 10.5px; text-align: right; border: none;color:black;">
+                                            <span t-field="o.accountmove_id.x_unit_total"
+                                                  t-options='{"widget": "float", "precision": 3}'/>
+
+                                        </td>
+
+
+                                        <td style="width:10%; font-size: 10.5px; text-align: right; border: none;color:black">
+                                            <span t-field="o.accountmove_id.amount_total"
+                                                  t-options='{"widget": "float", "precision": 3}'/>
+                                        </td>
+                                        <td style="width:5%; font-size: 10.5px; text-align: right; border: none;"></td>
+
+                                    </tr>
+
+
+                                    <!--<table>-->
+                                    <!--  	<tr style="border-left:1px;border-right:1px;" >-->
+
+                                    <!--  	  	<td colspan="5" style="width:5%;color:black; font-size: 10.5px; text-align: left; "></td>-->
+                                    <!--  	  	<td colspan="9" style="width:5%;color:black; font-size: 10.5px; text-align: left; "></td>-->
+                                    <!--</tr>-->
+
+                                    <!--</table>-->
+
+
+                                </table>
+                                <table class="table  table-bordered">
+
+                                    <tr>
+
+
+                                        <td class="text-left"
+                                            style="width:100%;font-size:10px;border-bottom:1px solid;border-left:1px solid;border-top:1px solid;border-right:1px solid;!important ;">
+                                            <div style="width:100%">
+                                                <div style="float:left; width:50%;">
+
+                                                    <div style="width:100%;">
+
+                                                        <div style="float:left;width:40%;">
+
+                                                            <span style="font-size: 10.5px;">
+                                                                <b>Total in
+                                                                    <span t-field="o.accountmove_id.currency_id.name"/>
+                                                                </b>
+                                                            </span>
+                                                            <br/>
+                                                            <span style="font-size: 10.5px;">
+                                                                <b>Vat Amount in
+                                                                    <span t-field="o.accountmove_id.currency_id.name"/>
+                                                                </b>
+                                                            </span>
+                                                            <br/>
+                                                            <span style="font-size: 10.5px;">
+                                                                <b>Net Total in
+                                                                    <span t-field="o.accountmove_id.currency_id.name"/>
+                                                                </b>
+                                                            </span>
+                                                            <br/>
+
+                                                        </div>
+                                                        <div style="float:right;width:40%;text-align:left">
+                                                            <div style="width:100%;">
+                                                                <div style="float:left;width:5%;">
+                                                                    <span style="font-size: 10.5px;">:
+                                                                        <br/>
+                                                                    </span>
+                                                                    <span style="font-size: 10.5px;">:
+                                                                        <br/>
+                                                                    </span>
+                                                                    <span style="font-size: 10.5px;">:
+                                                                        <br/>
+                                                                    </span>
+
+                                                                </div>
+
+                                                                <div style="float:left;width:95%;text-align:left;">
+                                                                    <span style="font-size: 10.5px;">&amp;nbsp;
+                                                                        <span t-field="o.accountmove_id.amount_untaxed"
+                                                                              t-options='{"widget": "float", "precision": 3}'/>
+                                                                        <br/>
+                                                                    </span>
+                                                                    <span style="font-size: 10.5px;">&amp;nbsp;
+                                                                        <span t-field="o.accountmove_id.amount_tax"
+                                                                              t-options='{"widget": "float", "precision": 3}'/>
+                                                                        <br/>
+                                                                    </span>
+                                                                    <span style="font-size: 10.5px;">&amp;nbsp;
+                                                                        <span t-field="o.accountmove_id.amount_total"
+                                                                              t-options='{"widget": "float", "precision": 3}'/>
+                                                                        <br/>
+                                                                    </span>
+                                                                </div>
+                                                                <div style="clear:both"/>
+                                                            </div>
+                                                        </div>
+                                                        <div style="clear:both"/>
+                                                    </div>
+
+                                                </div>
+                                                <!--div style="float:right; width:50%;">
+                                                        <div style="width:100%;">
+
+                                                <div style="float:left;width:50%;">
+                                                 <span style="font-size: 10.5px;"><b>Total in USD</b></span><br/>
+                                                   <span style="font-size: 10.5px;"><b>Vat Amount in USD</b></span><br/>
+                                                   <span style="font-size: 10.5px;"><b>Net Total in USD</b></span><br/>
+
+                                                </div>
+                                                 <div style="float:right;width:50%;text-align:left">
+                                                 <div style="width:100%;">
+                                                 <div style="float:left;width:5%;">
+                                                  <span style="font-size: 10.5px;">:<br/></span>
+                                                   <span style="font-size: 10.5px;">:<br/></span>
+                                                    <span style="font-size: 10.5px;">:<br/></span>
+
+                                                    </div>
+                                                     <div style="float:left;width:95%;text-align:right;">
+                                                      <span style="font-size: 10.5px;">&amp;nbsp;<span t-field="o.amount_untaxed"/><br/></span>
+                                                    <span style="font-size: 10.5px;">&amp;nbsp;<span t-field="o.amount_untaxed"/><br/></span>
+                                                    <span style="font-size: 10.5px;">&amp;nbsp;<span t-field="o.amount_total"/><br/></span>
+                                                    </div>
+                                                     <div style="clear:both"/>
+                                              </div>
+
+                                                </div>
+                                                <div style="clear:both"/>
+                                              </div>
+                                                </div-->
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <table class="table  table-bordered" style="margin-top:-17px;">
+                                    <td class="text-left"
+                                        style="width:100%;font-size: 10.5px;border-left:1px solid;border-top:1px solid;border-bottom:1px solid;border-right:1px solid;padding: 8px;!important ;">
+                                        <div>
+                                            <span style="font-size: 10.5px;text-transform:capitalize;">
+                                                <b>Amount in words:</b>
+                                                <b>
+                                                    <span t-field="o.accountmove_id.amount_words"
+                                                          style="font-size: 10.5px;text-transform:capitalize;"/>
+                                                </b>
+                                            </span>
+                                            <br/>
+
+
+                                        </div>
+                                        <div style="width:100%; padding-bottom:0px;">
+                                            <div style="float:left;width: 30%;margin-top:0px;">
+                                                <br/>
+                                                <br/>
+                                                <br/>
+                                                <br/>
+                                                <br/>
+                                                <br/>
+                                                <h1 style="text-align: left; font-size: 10.5px;">
+                                                    <b>E.and O.E</b>
+                                                </h1>
+                                            </div>
+
+                                            <div style="float:right; width: 50%;color:#000000;">
+                                                <img t-attf-src="data:image/jpg;base64,{{res_company.x_logisticstamp}}"
+                                                     style="text-align:right;margin-left:295px;width:110px;height:100px;"/>
+                                                <br/>
+                                                <h1 style="text-align: right; font-size: 10.5px;padding-right:25px;">
+                                                    <b>For SEEDORSOFT</b>
+                                                </h1>
+                                            </div>
+                                            <div style="clear:both"/>
+                                            <h1 style="text-align: center; font-size: 10.5px;">
+                                                <b>This is a computer generated document and does not require a
+                                                    signature
+                                                </b>
+                                            </h1>
+                                        </div>
+                                    </td>
+                                </table>
+                            </table>
+                        </div> <!--end of wrapper2-->
+                        <!-- DATA-->
+                        <!--t t-call="professional_templates.invoice_lines"/-->
+                        <!--/DATA-->
+                    </div>
+                </div>
+            </t>
+        </div>
+    </template>
+
+
+</odoo>

@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<odoo>
+  <data>
+     <record id="announcement_attachment" model="base.automation">
+        <field name="name">Announcement Public Attachment</field>
+        <field name="model_id" ref="base.model_ir_attachment"/>
+        <field name="state">code</field>
+         <field name="active" eval="True"/>
+         <field name="trigger">on_create_or_write</field>
+            <field name="state">code</field>
+            <field name="code">
+record.publicattach()
+            </field>
+   </record>
+
+ </data>
+</odoo>

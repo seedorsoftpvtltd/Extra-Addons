@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+     <record id="sequence_stock_keep" model="ir.sequence">
+            <field name="name">Stock Keep sequence</field>
+            <field name="code">stock.keep.seq</field>
+            <field name="prefix">0</field>
+            <field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+            <field name="padding">4</field>
+        </record>
+
+        <record id="view_pickingform" model="ir.ui.view">
+		<field name="name">stock.picking.line</field>
+		<field name="model">stock.picking</field>
+		<field name="inherit_id" ref="stock.view_picking_form"/>
+		<field name="arch" type="xml">
+             <xpath expr="//button[@name='action_cancel']" position="after">
+                 <button name="del_orders" type="object" string="Create Delivery"/>
+                 <button name="bin_alloc" type="object" string="Bin Allocation"/>
+             </xpath>
+                <xpath expr="//notebook/page[@name='note']" position="after">
+<!--					 <page string="Custom Moves">-->
+<!--                         <button name="select_del" type="object" string="select"/>-->
+<!--                          <field name="cust_del_moves" string="del moves" delete="0" mode="tree" readonly="0">-->
+<!--                            <tree editable="1">-->
+<!--                              <field name="name"/>-->
+<!--                              <field name="select"/>-->
+<!--                            </tree>-->
+<!--                          </field>-->
+<!--                        </page>-->
+                     <page string="Moves to Deliver">
+                        <button name="keep_select" type="object" string="Select to Move"/>
+                          <field name="keep_ids" string="K moves" delete="0" mode="tree" readonly="0">
+                            <tree editable="1">
+                              <field name="name"/>
+                              <field name="qty_adjust"/>
+                              <field name="qty_avail" readonly="1"/>
+                              <field name="create_move" readonly="0"/>
+                            </tree>
+
+                          </field>
+
+                        </page>
+            </xpath>
+            <xpath expr="//field[@name='move_ids_without_package']/tree/field[@name='product_id']" position="before">
+                    <field name="x_sku_id"/>
+                </xpath>
+        </field>
+        </record>
+</odoo>

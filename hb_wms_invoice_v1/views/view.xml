@@ -1,0 +1,171 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <data>
+        <record model="ir.ui.view" id="view_charge_type_form">
+            <field name="name">Charge Types</field>
+            <field name="model">charge.types</field>
+            <field name="arch" type="xml">
+                <form string="Charge Types">
+                    <sheet>
+                        <group>
+                            <field name="name" />
+                            <field name="restricted" groups="base.group_no_one"/>
+                        </group>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_charge_type_tree">
+              <field name="name">Charge Types</field>
+            <field name="model">charge.types</field>
+            <field name="arch" type="xml">
+                <tree string="Charge Types">
+                            <field name="name" />
+                    <field name="restricted" groups="base.group_no_one"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_charge_types_form">
+            <field name="name">Charge Types</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">charge.types</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Add a new Charge Type
+              </p>
+            </field>
+        </record>
+
+            <menuitem id="menu_wms_charge_types" parent="warehouse.menu_warehouse_config"
+                      action="action_charge_types_form"/>
+
+        <record id="view_partner_inh_formv1" model="ir.ui.view">
+            <field name="name">res.partner.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='create_inv_invoice_core']" position="replace">
+
+						<button name="create_inv_invoice_coree" type="object" string="Create Invoice"/>
+
+				</xpath>
+			</field>
+		</record>
+
+
+         <record id="view_move_line_form_chrgetype_detailed" model="ir.ui.view">
+		<field name="model">stock.move.line</field>
+		<field name="inherit_id" ref="stock.view_stock_move_line_operation_tree"/>
+		<field name="arch" type="xml">
+			<xpath expr="//field[@name='product_id']" position="before">
+                <field name="charge_unit_type" options="{'no_create': True, 'no_open': True}" attrs="{'column_invisible': [('parent.picking_code', '!=', 'incoming')]}"/>
+<!--              <field name="charge_unit_type" attrs="{'column_invisible': [('picking_code', '!=', 'incoming')]}" options="{'no_create': True, 'no_open': True}"/>-->
+
+			</xpath>
+		</field>
+	</record>
+
+         <record id="view_move_line_form_chrgetype_detailed1" model="ir.ui.view">
+		<field name="model">stock.move</field>
+		<field name="inherit_id" ref="stock.view_stock_move_operations"/>
+		<field name="arch" type="xml">
+			<xpath expr="//field[@name='move_line_ids']/tree/field[@name='product_id']" position="before">
+                <field name="charge_unit_type" options="{'no_create': True, 'no_open': True}" attrs="{'column_invisible': [('parent.picking_code', '!=', 'incoming')]}"/>
+
+<!--              <field name="charge_unit_type" attrs="{'column_invisible': [('parent.picking_code', '!=', 'incoming')]}" options="{'no_create': True, 'no_open': True}"/>-->
+
+			</xpath>
+		</field>
+	</record>
+
+        <record id="view_move_line_form_chrgetype_detailed2" model="ir.ui.view">
+		<field name="model">stock.move</field>
+		<field name="inherit_id" ref="stock.view_stock_move_nosuggest_operations"/>
+		<field name="arch" type="xml">
+			<xpath expr="//field[@name='move_line_ids']/tree/field[@name='product_id']" position="before">
+                <field name="charge_unit_type" options="{'no_create': True, 'no_open': True}" attrs="{'column_invisible': [('parent.picking_code', '!=', 'incoming')]}"/>
+
+<!--              <field name="charge_unit_type" attrs="{'column_invisible': [('parent.picking_code', '!=', 'incoming')]}" options="{'no_create': True, 'no_open': True}"/>-->
+
+			</xpath>
+		</field>
+	</record>
+
+        <record id="agreement_view_form_extend" model="ir.ui.view">
+		<field name="name">agreement.view</field>
+		<field name="model">agreement</field>
+		<field name="inherit_id" ref="hb_agreement_extend.view_pickingform"/>
+		<field name="arch" type="xml">
+            <xpath expr="//field[@name='uom_id']" position="replace">
+                <field name="is_uom" invisible="1"/>
+                  <field name="uom_id" attrs="{'readonly': [('is_uom','=',False)]}"/>
+            </xpath>
+            <xpath expr="//field[@name='tax_id']" position="replace">
+                <field name="tax_id" widget="many2many_tags" options="{'no_create': True, 'no_open': True}"/>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="replace">
+                <field name="partner_id" required="0" domain="[('company_id','=',company_id)]" attrs="{'invisible': [('type','=','cfs')]}"/>
+            </xpath>
+            <xpath expr="//field[@name='company_id']" position="replace">
+                <field name="company_id" readonly="1"/>
+            </xpath>
+            <xpath expr="//field[@name='start_date']" position="replace">
+                <field name="start_date" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='end_date']" position="replace">
+                <field name="end_date" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='charge_lines_new']/tree/field[@name='fromm']" position="replace">
+                <field name="fromm" attrs="{'invisible': [('charge_type','!=','storage')]}"/>
+            </xpath>
+            <xpath expr="//field[@name='charge_lines_new']/tree/field[@name='to']" position="replace">
+                <field name="to" attrs="{'invisible': [('charge_type','!=','storage')]}"/>
+            </xpath>
+            <xpath expr="//field[@name='charge_lines_new']/tree/field[@name='storage_type']" position="replace">
+                <field name="storage_type" attrs="{'required': [('parent.type','=','CFS')]}"/>
+            </xpath>
+            <xpath expr="//field[@name='charge_lines_new']/tree/field[@name='charge_unit_type']" position="replace">
+                <field name="charge_unit_type" attrs="{'invisible': [('charge_type','=','storage')]}"/>
+            </xpath>
+
+        </field>
+        </record>
+
+
+    <record id="res_config_settings_invoice_modification_ext" model="ir.ui.view">
+        <field name="name">res.config.settings.invoice.ext</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="10"/>
+        <field name="inherit_id" ref="account.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@data-key='account']" position="inside">
+                <h2>Warehouse Invoicing Configuration</h2>
+                <div class="row mt16 o_settings_container">
+                    <div class="col-12 col-lg-6 o_setting_box" >
+                        <div class="o_setting_left_pane"/>
+                        <div class="o_setting_right_pane">
+                            <span class="o_form_label">Warehouse Invoicing</span>
+
+
+                            <div class="content-group">
+                                <div class="row mt16">
+                                    <label string="Invoicing Type" for="invoice_type"
+                                           class="col-lg-3 o_light_label"/>
+                                    <field name="invoice_type"/>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    </data>
+</odoo>

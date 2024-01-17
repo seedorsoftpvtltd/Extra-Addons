@@ -1,0 +1,21 @@
+<odoo>
+    <data>
+        <record id="google_check" model="ir.actions.act_url">
+                <field name="name">Google</field>
+                <field name="type">ir.actions.act_url</field>
+                <field name="target">new</field>
+                <field name="url">https://www.google.com.in/?</field>
+        </record>
+
+<!--         <record id="google_check" model="ir.actions.act_window.view">-->
+<!--                <field name="name">Google</field>-->
+<!--                <field name="type">ir.actions.act_url</field>-->
+<!--                <field name="target">new</field>-->
+<!--                <field name="url">https://www.google.com.in/?</field>-->
+<!--        </record>-->
+
+
+
+<menuitem action="google_check" name="Google" id="menu_google_check" />
+    </data>
+</odoo>

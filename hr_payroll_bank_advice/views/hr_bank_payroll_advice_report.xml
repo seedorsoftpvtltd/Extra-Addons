@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <!-- <report
+            auto="False"
+            id="payroll_advice" 
+            model="hr.bank.payroll.advice" 
+            string="Print Advice"
+            report_type="qweb-pdf"
+            name="hr_payroll_bank_advice.report_back_payroll_advice" 
+            file="hr_payroll_bank_advice.report_back_payroll_advice"/>
+         -->
+        <report
+            id="payroll_advice" 
+            model="custom.hr.bank.payroll.advice" 
+            string="Print Advice"
+            report_type="qweb-pdf"
+            name="hr_payroll_bank_advice.report_back_payroll_advice" 
+            file="hr_payroll_bank_advice.report_back_payroll_advice"/>
+</odoo>

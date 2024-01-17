@@ -1,0 +1,165 @@
+<odoo>
+    <data>
+        <template id="template_rfq" name="RFQ Form">
+    <t t-call="website.layout">
+        <div id="rfq_form">
+            <div id="wrap">
+                <div class="container">
+                    <form action="/seedor/rfqform/submit">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="row">
+                                    <div class="form-group col-xl-12">
+                                        <center><h4>RFQ</h4></center>
+                                    </div>
+                                    <t t-foreach="po or []" t-as="p">
+                                        <div class="form-group col-xl-12">
+                                            <label for="name">Reference Number:</label>
+                                            <t t-esc="p.name" />
+                                        </div>
+                                        <div class="form-group col-xl-12">
+                                            <label for="name">Vendor:</label>
+                                            <t t-esc="p.partner_id.name" />
+                                        </div>
+                                        <div class="form-group col-xl-12">
+                                            <h5>Services</h5>
+                                        </div>
+                                        <t t-foreach="po_lines or []" t-as="l">
+                                            <div class="form-group col-xl-0">
+                                                <input type="text" class="form-control d-none" t-att-id="'service_id_' + str(l.id)" t-att-value="l.id" t-att-name="'service_id_' + str(l.id)" readonly="readonly"/>
+                                            </div>
+                                            <div class="form-group col-xl-3">
+                                                <label for="'service_name_' + str(l.id)">Service Name</label>
+                                                <input type="text" class="form-control" t-att-id="'service_name_' + str(l.id)" t-att-value="l.name" t-att-name="'service_name_' + str(l.id)" readonly="readonly"/>
+                                            </div>
+                                            <div class="form-group col-xl-1">
+                                                <label for="'service_qty_' + str(l.id)">Qty</label>
+                                                <input type="text" class="form-control" t-att-id="'service_qty_' + str(l.id)" t-att-value="l.product_qty" t-att-name="'service_qty_' + str(l.id)" onchange="calculateSubtotals()" readonly="readonly"/>
+                                            </div>
+                                            <div class="form-group col-xl-2">
+                                                <label for="'price_' + str(l.id)">Price</label>
+                                                <input type="text" class="form-control" t-att-id="'price_' + str(l.id)" t-att-name="'price_' + str(l.id)" onchange="calculateSubtotals()"/>
+                                            </div>
+                                            <div class="form-group col-xl-2">
+                                                <label for="'service_subtot_' + str(l.id)">Subtotal</label>
+                                                <input type="text" class="form-control" t-att-id="'service_subtot_' + str(l.id)" t-att-name="'service_subtot_' + str(l.id)" readonly="readonly"/>
+                                            </div>
+                                            <div class="form-group col-xl-2">
+                                                <label for="'po_tax_id_' + str(l.id)">Tax</label>
+                                                <select t-att-id="'po_tax_id_' + str(l.id)" t-att-name="'po_tax_id_' + str(l.id)" class="form-control" onchange="calculateSubtotals()">
+                                                    <option value="">Select Tax</option>
+                                                    <t t-foreach="po_tax" t-as="po_tax_id">
+                                                        <option t-att-value="po_tax_id.id" t-att-data-rate="po_tax_id.amount">
+                                                            <t t-esc="po_tax_id.name"/>
+                                                        </option>
+                                                    </t>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-xl-2">
+                                                <label for="'service_tot_' + str(l.id)">Total</label>
+                                                <input type="text" class="form-control" t-att-id="'service_tot_' + str(l.id)" t-att-name="'service_tot_' + str(l.id)" readonly="readonly"/>
+                                            </div>
+                                        </t>
+                                        <div class="form-group col-xl-8">
+                                        </div>
+                                        <div class="form-group col-xl-2">
+                                            <label for="'tot' + str(l.id)">Total</label>
+                                        </div>
+                                         <div class="form-group col-xl-2">
+                                            <input type="text" class="form-control" id="tot" readonly="readonly" />
+                                        </div>
+                                    </t>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Confirm</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </t>
+
+    <script type="text/javascript">
+        function calculateSubtotals() {
+            var po_lines = document.querySelectorAll("[id^='service_qty_']");
+            po_lines.forEach(function (line) {
+                var lineId = line.getAttribute("id").replace("service_qty_", "");
+                var quantity = parseFloat(line.value) || 0;
+                var price = parseFloat(document.getElementById("price_" + lineId).value) || 0;
+                var subtotal = quantity * price;
+                document.getElementById("service_subtot_" + lineId).value = subtotal.toFixed(2);
+
+                var taxId = document.getElementById("po_tax_id_" + lineId).value;
+                var taxRate = parseFloat(document.querySelector("option[value='" + taxId + "']").getAttribute("data-rate")) || 0;
+                var total = subtotal + (subtotal * taxRate / 100);
+                document.getElementById("service_tot_" + lineId).value = total.toFixed(2);
+            });
+
+            // Calculate the sum of all service_tot_ values
+            var totalSum = 0;
+            var serviceTotals = document.querySelectorAll("[id^='service_tot_']");
+            serviceTotals.forEach(function (serviceTotal) {
+                var value = parseFloat(serviceTotal.value) || 0;
+                totalSum += value;
+            });
+
+            // Update the tot field with the sum
+            var totField = document.getElementById("tot");
+            if (totField) {
+                totField.value = totalSum.toFixed(2);
+            }
+        }
+    </script>
+</template>
+
+
+
+        <template id="rfq_template_success">
+                <div class="alert alert-success">
+                    <p>Record updated successfully!</p>
+                </div>
+        </template>
+         <template id="not_found_page">
+                <div class="alert alert-success">
+                    <p>Page Not Found!</p>
+                </div>
+        </template>
+
+
+          <record id="email_template_edi_rfq" model="mail.template">
+            <field name="name">Purchase Order: Send RFQ</field>
+            <field name="model_id" ref="purchase.model_purchase_order"/>
+            <field name="subject">${object.company_id.name} Order (Ref ${object.name or 'n/a' })</field>
+            <field name="partner_to">${object.partner_id.id}</field>
+            <field name="body_html" type="html">
+<div style="margin: 0px; padding: 0px;">
+    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+        Dear ${object.partner_id.name}
+        % if object.partner_id.parent_id:
+            (${object.partner_id.parent_id.name})
+        % endif
+        <br/><br/>
+        Here is in attachment a request for quotation <strong>${object.name}</strong>
+        % if object.partner_ref:
+            with reference: ${object.partner_ref}
+        % endif
+        from ${object.company_id.name}.
+        <br/><br/>
+        If you have any questions, please do not hesitate to contact us.
+        <br/><br/>
+        <strong> <a href="${object.rfq_form_url}">Click here to update your prices</a>  </strong>
+        <br/><br/>
+        Best regards,
+    </p>
+</div></field>
+            <field name="report_template" ref="purchase.report_purchase_quotation"/>
+            <field name="report_name">RFQ_${(object.name or '').replace('/','_')}</field>
+            <field name="lang">${object.partner_id.lang}</field>
+            <field name="user_signature" eval="False"/>
+            <field name="auto_delete" eval="True"/>
+        </record>
+
+
+
+    </data>
+</odoo>

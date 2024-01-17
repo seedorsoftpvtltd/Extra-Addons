@@ -1,0 +1,23 @@
+<odoo>
+    <record model="ir.model.fields" id="res_partner_fields">
+        <field name="name">res.partner.final_inv_date</field>
+        <field name="model">res.partner</field>
+        <field name="field_description">Final invoice date</field>
+        <field name="ttype">datetime</field>
+        <field name="store">True</field>
+    </record>
+    <record model="ir.model.fields" id="res_partner_fields">
+        <field name="name">res.partner.last_inv_date</field>
+        <field name="model">res.partner</field>
+        <field name="field_description">Last invoice date</field>
+        <field name="ttype">datetime</field>
+        <field name="store">True</field>
+    </record>
+    <record model="ir.model.fields" id="res_partner_fields">
+        <field name="name">res.partner.inv_end_date</field>
+        <field name="model">res.partner</field>
+        <field name="field_description">Invoice Date</field>
+        <field name="ttype">datetime</field>
+        <field name="store">True</field>
+    </record>
+</odoo>

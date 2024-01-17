@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+     <record model="ir.ui.view" id="fleet_vehicle_form_view">
+        <field
+            name="name"
+        >fleet.vehicle.log.services.form</field>
+        <field name="model">fleet.vehicle.log.services</field>
+        <field
+            name="inherit_id"
+            ref="fleet.fleet_vehicle_log_services_view_form"
+        />
+        <field name="arch" type="xml">
+            <field name="vehicle_id" position="after">
+                <field name="model" invisible="1"/>
+                <field name="template_id" domain="[('model','=',model)]"/>
+            </field>
+<!--             <xpath expr="//group" position="after">-->
+            <xpath expr="//sheet/group[3]" position="after">
+<!--                 <notebook>-->
+              <group name="Template Lines">
+<!--                 <page string="Template Lines" >-->
+                            <field
+                                name="template_line_ids"
+                                mode="tree,kanban"
+                                context="{'default_template_id': active_id}"
+                            >
+                                <tree string="Template Line">
+                                    <field name="statee" invisible="1" />
+                                    <field name="service_prod"/>
+                                      <field name="qty"/>
+
+<!--                                    <field name="u" />-->
+<!--                            <field name="qr" />-->
+<!--                            <field name="cs" />-->
+<!--                            <field name="rate" />-->
+<!--                                    <field name="cost"/>-->
+<!--                                    <field name="inspection_item_id" />-->
+<!--                                    <field name="inspection_item_instruction" />-->
+<!--                                    <field name="result_description" />-->
+                                    <field
+                                        name="result"
+                                        widget="label_selection"
+                                        options="{'classes': {'failure': 'danger', 'success': 'success'}}"
+                                    />
+                                    <button
+                                        name="action_item_success"
+                                        statees="draft"
+                                        string="Approve"
+                                        type="object"
+                                        class="oe_highlight btn-success"
+                                        icon="fa-check-circle text-success"
+                                        groups="fleet.fleet_group_manager"
+                                    />
+                                    <button
+                                        name="action_item_failure"
+                                        statees="draft"
+                                        string="Refuse"
+                                        type="object"
+                                        class="oe_highlight btn-danger"
+                                        icon="fa-times-circle text-danger"
+                                        groups="fleet.fleet_group_manager"
+                                    />
+                                </tree>
+                            </field>
+<!--                 </page>-->
+                                 </group>
+
+<!--                 </notebook>-->
+             </xpath>
+
+        </field>
+
+
+    </record>
+
+
+
+
+
+
+    <record model="ir.ui.view" id="fleet_vehicle_template_form_view">
+        <field
+            name="name"
+        >fleet.vehicle.template.form (in fleet_vehicle_template)</field>
+        <field name="model">fleet.vehicle.template</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1" />
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="name" />
+                        <field name="model"/>
+                    </group>
+                    <notebook>
+                        <page
+                            string=" Template Lines"
+                            name="template_lines"
+                        >
+                            <field name="template_line_ids">
+                                <tree
+                                    string="Template Line"
+                                    editable="bottom"
+                                >
+                                    <field name="service_prod" />
+                                        <field name="qty"/>
+
+<!--                           <field name="u" />-->
+<!--                            <field name="qr" />-->
+<!--                            <field name="cs" />-->
+<!--                            <field name="rate" />-->
+<!--                            <field name="cost" />-->
+                                </tree>
+                            </field>
+                        </page>
+
+                    </notebook>
+                </sheet>
+<!--                <div class="oe_chatter">-->
+<!--                    <field name="message_follower_ids" widget="mail_followers" />-->
+<!--                    <field name="activity_ids" widget="mail_activity" />-->
+<!--                    <field name="message_ids" widget="mail_thread" />-->
+<!--                </div>-->
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="fleet_vehicle_template_search_view">
+        <field
+            name="name"
+        >fleet.vehicle.template.search (in fleet_vehicle_template)</field>
+        <field name="model">fleet.vehicle.template</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+            </search>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="fleet_vehicle_template_tree_view">
+        <field
+            name="name"
+        >fleet.vehicle.template.tree (in fleet_vehicle_template)</field>
+        <field name="model">fleet.vehicle.template</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+    <record
+        model="ir.actions.act_window"
+        id="fleet_vehicle_template_act_window"
+    >
+        <field name="name">Template</field>
+        <field name="res_model">fleet.vehicle.template</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record model="ir.ui.menu" id="fleet_vehicle_template_menu">
+        <field name="name">Template</field>
+        <field name="parent_id" ref="fleet.fleet_configuration" />
+        <field name="action" ref="fleet_vehicle_template_act_window" />
+    </record>
+
+    <!-- template lines -->
+     <record model="ir.ui.view" id="fleet_vehicle_template_line_form_view">
+        <field
+            name="name"
+        >fleet.vehicle.template.line.form (in fleet_vehicle_template)</field>
+        <field name="model">fleet.vehicle.template.line</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="template_id" readonly="1" />
+                        </h1>
+                        <h2>
+                            <field name="service_prod" />
+                            <field name="qty"/>
+<!--                           <field name="u" />-->
+<!--                            <field name="qr" />-->
+<!--                            <field name="cs" />-->
+<!--                            <field name="rate" />-->
+<!--                            <field name="cost" />-->
+                        </h2>
+                    </div>
+                    <group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+<!--    <record model="ir.ui.view" id="fleet_vehicle_template_line_search_view">-->
+<!--        <field-->
+<!--            name="name"-->
+<!--        >fleet.vehicle.template.line.search (in fleet_vehicle_template)</field>-->
+<!--        <field name="model">fleet.vehicle.template.line</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <search>-->
+<!--               <field name="service_prod" />-->
+<!--                           <field name="u" />-->
+<!--                            <field name="qr" />-->
+<!--                            <field name="cs" />-->
+<!--                            <field name="rate" />-->
+<!--                            <field name="cost" />-->
+<!--            </search>-->
+<!--        </field>-->
+<!--    </record>-->
+    <record model="ir.ui.view" id="fleet_vehicle_template_line_tree_view">
+        <field
+            name="name"
+        >fleet.vehicle.template.line.tree (in fleet_vehicle_template)</field>
+        <field name="model">fleet.vehicle.template.line</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="template_id" readonly="1" />
+                <field name="service_prod" />
+                  <field name="qty"/>
+
+<!--                           <field name="u" />-->
+<!--                            <field name="qr" />-->
+<!--                            <field name="cs" />-->
+<!--                            <field name="rate" />-->
+<!--                            <field name="cost" />-->
+            </tree>
+        </field>
+    </record>
+    <record
+        model="ir.actions.act_window"
+        id="fleet_vehicle_template_line_act_window"
+    >
+        <field name="name">Template Line</field>
+        <field name="res_model">fleet.vehicle.template.line</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <record id="productf_productf_action" model="ir.actions.act_window">
+            <field name="name">Product Variants</field>
+            <field name="res_model">product.product</field>
+            <field name="view_mode">tree,kanban,form,activity</field>
+            <field name="search_view_id" ref="product.product_search_form_view"/>
+            <field name="context">{"search_default_filter_to_purchase": 1}</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a new product variant
+
+
+              </p>
+            </field>
+        </record>
+
+     <record id="product_normal_action_f" model="ir.actions.act_window">
+        <field name="name">Products</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">kanban,tree,form,activity</field>
+        <field name="context">{"search_default_filter_to_purchase":1, "purchase_product_template": 1}</field>
+        <field name="search_view_id" ref="product.product_template_search_view"/>
+        <field name="view_id" eval="False"/> <!-- Force empty -->
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Create a new product
+          </p>
+        </field>
+    </record>
+
+<menuitem name="Products" id="menu_procurement_partner_contact_form" action="product_normal_action_f"
+          parent="fleet.fleet_configuration" sequence="20"/>
+
+<menuitem id="product_product_menu" name="Product Variants" action="productf_productf_action"
+            parent="fleet.fleet_configuration" sequence="21" groups="product.group_product_variant"/>
+
+
+
+</odoo>

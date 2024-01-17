@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="sales_report_form_view" model="ir.ui.view">
+            <field name="name">sales.xl.report.form</field>
+            <field name="model">sales.xl.report</field>
+            <field name="arch" type="xml">
+                <form string="Sales Report">
+                    <sheet>
+                        <!-- Commented out the unnecessary group tags -->
+                        <group>
+                            <group>
+                                <field name="invoice_no" widget="many2many_tags"/>
+                                <field name="partner_id" widget="many2many_tags"/>
+                                <field name="department" widget="many2many_tags"/>
+                                <field name="include_vat"/>
+<!--                              <field name="name"/>-->
+<!--                                <field name="data" readonly="1"/>-->
+<!--                                <field name="state"/>-->
+                         </group>
+                        </group>
+                        <footer>
+                            <button name="generate_report" string="Export Excel" type="object" class="btn-primary"/>
+<!--                            <button name="generate_pdf" string="Export PDF" type="object" class="btn-primary"/>
+    -->                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_print_sale_report_pdf_xls" model="ir.actions.act_window">
+            <field name="name">Sale Report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sales.xl.report</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="sales_report_form_view"/>
+            <field name="target">new</field>
+            <!-- Add the required context if needed -->
+            <!-- <field name="context">{'model': 'sales.xl.report'}</field> -->
+        </record>
+
+        <menuitem id="menu_report_sales" name="Sales Report (XLSX)" sequence="100" action="action_print_sale_report_pdf_xls"
+                  parent="account.menu_finance_reports"/>
+    </data>
+</odoo>
+
+
+
+

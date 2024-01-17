@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <template id="employee_id_card_back">
+            <t t-call="web.basic_layout">
+                <t t-foreach="docs" t-as="o">
+                    <div class="page">
+                        <div style="width:690px;height:998px; solid #14877d;background-image:url('ht_id_card_01/static/src/images/id_back.png')">
+
+                            <div style="height:10%;color:black;text-align:center;">
+                                
+                                <center>
+                                    <div style="width:20%;float:center;">
+                                        <img t-attf-src="data:image/png;base64,{{res_company.logo}}" style="width:120px;height:120px;margin-top:10px;"/>
+                                        <p><span style="font-size:25px;color:#ffaf08;" t-field="res_company.name"/></p>
+                                    </div>
+                                </center>
+
+                                <center>
+                                    <table style="font-size:30px; margin-top:50px;color:#ffaf08;">
+                                        <tr>
+                                            <td valign="top">Resident Address: </td>
+                                            <td>
+                                                <span style="color:#ffffff;" t-field="o.address_home_id.street"/><br/>
+                                                <span style="color:#ffffff;" t-field="o.address_home_id.street2"/><br/>
+                                                <span style="color:#ffffff;" t-field="o.address_home_id.city"/><br/>
+                                                <span style="color:#ffffff;" t-field="o.address_home_id.state_id"/>  
+                                                <span style="color:#ffffff;" t-field="o.address_home_id.zip"/><br/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td valign="top">Office Address: </td>
+                                            <td>
+                                                <span style="color:#ffffff;" t-field="res_company.street"/><br/>
+                                                <span style="color:#ffffff;" t-field="res_company.street2"/><br/>
+                                                <span style="color:#ffffff;" t-field="res_company.city"/><br/>
+                                                <span style="color:#ffffff;" t-field="res_company.state_id"/><span style="color:#ffffff;" t-field="res_company.zip"/><br/>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <div>
+                                        <p style="font-size:30px;font-weight:bold;margin-bottom:0px;margin-top:70px;color:#ffffff;">Contact Number</p><br />
+                                        <p style="font-size:30px;margin-bottom:0px;color:#ffaf08;">Emergency: <span style="color:#ffffff;" t-field="o.emergency_contact"/></p>
+                                        <p style="font-size:30px;margin-bottom:0px;color:#ffaf08;">Official: <span style="color:#ffffff;" t-field="o.work_phone"/></p>
+                                    </div>
+                                </center>
+                                <div style="text-align:center;font-size:30px;color:white;margin-top:17px;">
+                                    <span t-field="res_company.email"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+        <record id="employee_id_card_back" model="report.paperformat">
+            <field name="name">Employee Back Icard</field>
+            <field name="default" eval="True"/>
+            <field name="format">custom</field>
+            <field name="page_height">143</field>
+            <field name="page_width">100</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">0</field>
+            <field name="margin_bottom">0</field>
+            <field name="margin_left">0</field>
+            <field name="margin_right">2</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">40</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <report 
+            id="employee_back_id_card_report"
+            model="hr.employee"
+            string="Employee Back ID Card"
+            report_type="qweb-pdf"
+            name="ht_id_card_01.employee_id_card_back"
+            file="ht_id_card_01.employee_id_card_back"
+            print_report_name="object.name"
+            paperformat="ht_id_card_01.employee_id_card_back"
+        />
+    </data>
+</odoo>

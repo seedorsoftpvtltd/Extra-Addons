@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_freight_form_inh" model="ir.ui.view">
+		<field name="name">freight.operation.inh</field>
+		<field name="model">freight.operation</field>
+		<field name="inherit_id" ref="jobbooking_custom_view.freight_operation_view_form_custom_view"/>
+		<field name="arch" type="xml">
+            <xpath expr="//button[@name='action_invoice']" position="replace">
+                 <button
+                        name="action_invoice_inh"
+                        type="object"
+                        string="Invoice"
+                        attrs="{'invisible': [('state', 'in', ['draft', 'cancel'])]}"
+                        class="oe_highlight"
+                    />
+             </xpath>
+             <xpath expr="//field[@name='service_ids']/tree/field[@name='x_sale_total']" position="after">
+                 <field name="reimbursable"/>
+             </xpath>
+        </field>
+    </record>
+
+
+</odoo>

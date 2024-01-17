@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <record id="invoice_approval_form_view_extend" model="ir.ui.view">
+            <field name="name">invoice.approval.form.view.extend</field>
+            <field name="model">invoice.approval</field>
+            <field name="inherit_id" ref="invoice_multi_approval.invoice_approval_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/header/button[@name='apply_configuration']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+               <xpath expr="//field[@name='invoice_approver_ids']" position="attributes">
+                    <attribute name="domain">[('company_id', '=',company_id)]</attribute>
+               </xpath>
+                <xpath expr="//field[@name='cust_credit_approver_ids']" position="attributes">
+                    <attribute name="domain">[('company_id', '=',company_id)]</attribute>
+               </xpath>
+                <xpath expr="//field[@name='payment_approver_ids']" position="attributes">
+                    <attribute name="domain">[('company_id', '=',company_id)]</attribute>
+               </xpath>
+                <xpath expr="//field[@name='bill_approver_ids']" position="attributes">
+                    <attribute name="domain">[('company_id', '=',company_id)]</attribute>
+               </xpath>
+                <xpath expr="//field[@name='vend_credit_approver_ids']" position="attributes">
+                    <attribute name="domain">[('company_id', '=',company_id)]</attribute>
+               </xpath>
+                <xpath expr="//field[@name='vendor_payment_approver_ids']" position="attributes">
+                    <attribute name="domain">[('company_id', '=',company_id)]</attribute>
+               </xpath>
+                <xpath expr="//form/sheet/group" position="after">
+                    <group>
+                        <field name="company_id" readonly="1"/>
+                    </group>
+
+                </xpath>
+            </field>
+        </record>
+
+    <record id="invoice_multi_approval_tree" model="ir.ui.view">
+        <field name="name">invoice.approval.tree</field>
+        <field name="model">invoice.approval</field>
+        <field name="arch" type="xml">
+            <tree string="Multi Approval">
+                <field name="name"/>
+                <field name="company_id"/>
+            </tree>
+        </field>
+    </record>
+
+        <record id="invoice_multi_approval.approval_sub_menu_action" model="ir.actions.act_window">
+            <field name="name">Multi Approval</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">invoice.approval</field>
+            <field name="view_mode">tree,form</field>
+            <field name="target">current</field>
+        </record>
+
+
+    </data>
+</odoo>

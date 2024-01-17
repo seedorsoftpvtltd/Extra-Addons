@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+<record model="ir.actions.act_window" id="action_estimate_fleet">
+        <field name="name">Estimation</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.estimate.job</field>
+        <field name="view_mode">form,tree</field>
+        <field name="domain">[('veh_service_id','=',active_id)]</field>
+        <field name="context">{
+            "default_veh_service_id":active_id,
+            "default_user_id": False,
+            }
+        </field>
+    </record>
+
+<record id="action_fleet_estimate_tree" model="ir.actions.act_window.view">
+        <field eval="1" name="sequence"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="job_cost_estimate_customer.view_sale_estimate_tree_job"/>
+        <field name="act_window_id" ref="action_estimate_fleet"/>
+    </record>
+
+
+        <record model='ir.ui.view' id='fleet_vehicle_log_services_view_inhtestimate'>
+        <field name="name">fleet.vehicle.log.services_view</field>
+        <field name="model">fleet.vehicle.log.services</field>
+        <field name="inherit_id" ref="fleet_operations.fleet_vehicle_log_services_view_inherit" />
+        <field name="arch" type="xml">
+
+             <xpath expr="//div[@name='button_box']" position="inside">
+                    <button icon="fa-pencil-square-o"  name="%(action_estimate_fleet)d"
+                       class="oe_highlight" type="action"
+                      attrs="{'invisible': [('state', '=', 'draft')]}"
+                        groups="fleet.fleet_group_manager">
+
+<!--                    <button icon="fa-pencil-square-o" name="" class="oe_stat_button" name="778" type="action" groups="fleet.fleet_group_manager"/>-->
+                        <field name="estimate_count" string="Create Estimation" widget="statinfo"/>
+                    </button>
+
+             </xpath>
+         <xpath expr="//header" position="inside">
+            <!--<header>-->
+             <button name="action_create_estimaterec" string="Create estimate Order" class="oe_highlight" type="object" groups="fleet.fleet_group_manager"/><!--                    <button name="action_create_invoice" string="Create Invoice"-->
+            <!--</header>-->
+        </xpath>
+        </field>
+        </record>
+
+
+
+    </data>
+</odoo>

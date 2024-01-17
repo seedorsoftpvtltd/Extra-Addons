@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Your List View Definition -->
+        <record id="view_freight_operation_inherit" model="ir.ui.view">
+            <field name="name">freight.operation</field>
+            <field name="model">freight.operation</field>
+            <field name="inherit_id" ref="scs_freight.view_freight_operation_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='direction']" position="before">
+                    <field name="category" string="Category" invisible="1"/>
+
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Your Form View Definition -->
+        <record id="view_job_category_form" model="ir.ui.view">
+            <field name="name">job_category_form</field>
+            <field name="model">job.category</field>
+            <field name="arch" type="xml">
+                <form string="Category" version="7.0">
+                    <sheet>
+                        <group>
+                            <!-- Add All Fields You Want In The Form Here -->
+                            <field name="job_types" string="Job Type" options="{'no_create': True, 'no_create_edit':True}" required="1"/>
+                            <field name="direction" string="Segment" required="1"/>
+                            <field name="transport" string="Transport" required="1"/>
+                            <field name="ocean_shipping" string="Service Type" required="1" attrs="{'invisible': ['|',('transport', '!=', 'ocean'),('direction', '=', 'customs_brokerage')]}"/>
+                            <field name="land_shipping" string="Service Type" required="1" attrs="{'invisible': ['|',('transport', '!=', 'land'),('direction', '=', 'customs_brokerage')]}"/>
+                            <field name="freight_air_shipping" string="Service Type" required="1" attrs="{'invisible': ['|',('transport', '!=', 'air'),('direction', '=', 'customs_brokerage')]}"/>
+                            <field name="x_cb_type" string="Service Type" required="1" attrs="{'invisible': [('direction', '!=', 'customs_brokerage')]}"/>
+                            <field name="category" string="Category" force_save="1" readonly="1"/>
+                            <!--field name="department_code"/-->
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Your Action Window Definition -->
+        <record id="job_category_action" model="ir.actions.act_window">
+            <field name="name">Job Category</field>
+            <field name="res_model">job.category</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+
+        <!-- Action Menu Item Related To Above Action Window -->
+        <menuitem
+           action="job_category_action"
+           id="action_job_category_action"
+           parent="scs_freight.main_menu_freight_config"
+           sequence="1"/>
+
+    </data>
+</odoo>

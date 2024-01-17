@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<odoo>
+  <data>
+     <record id="so_integration" model="base.automation">
+        <field name="name">SO Integration</field>
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="state">code</field>
+         <field name="active" eval="True"/>
+         <field name="trigger">on_create_or_write</field>
+            <field name="state">code</field>
+            <field name="code">
+for rec in record:
+  if rec.state == 'sale':
+    action = rec.so()
+            </field>
+   </record>
+
+ </data>
+</odoo>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model='ir.ui.view' id='fright_view_form_congin'>
+        <field name="name">freight.operation.line.form.congin</field>
+        <field name="model">freight.operation</field>
+        <field name="inherit_id" ref="jobbooking_custom_view.freight_operation_view_form_custom_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook//page[1]//field[@name='operation_line_ids']//form//group" position="inside">
+                <field name="subjob_id" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

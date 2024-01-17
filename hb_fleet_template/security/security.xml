@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+
+
+
+<!--    <record model="ir.model.access" id="access_fleet_checkk_user">-->
+<!--        <field name="name">selection_template_fleet_manager</field>-->
+<!--        <field name="model_id" ref="model_fleet_check" />-->
+<!--        <field name="group_id" ref="fleet.fleet_group_manager" />-->
+<!--        <field name="perm_read" eval="1" />-->
+<!--        <field name="perm_create" eval="1" />-->
+<!--        <field name="perm_write" eval="1" />-->
+<!--        <field name="perm_unlink" eval="1" />-->
+<!--    </record>-->
+<!--     <record model="ir.model.access" id="fleet_checkk_user">-->
+<!--        <field name="name">fleet_vehicle_user</field>-->
+<!--        <field name="model_id" ref="model_fleet_check" />-->
+<!--        <field name="group_id" ref="fleet.fleet_group_user" />-->
+<!--        <field name="perm_read" eval="1" />-->
+<!--        <field name="perm_create" eval="0" />-->
+<!--        <field name="perm_write" eval="0" />-->
+<!--        <field name="perm_unlink" eval="0" />-->
+<!--    </record>-->
+
+
+    <record model="ir.model.access" id="access_fleet_fcheckk_user">
+        <field name="name">selection_template_fleet_manager</field>
+        <field name="model_id" ref="model_fcheck_fcheck" />
+        <field name="group_id" ref="fleet.fleet_group_manager" />
+        <field name="perm_read" eval="1" />
+        <field name="perm_create" eval="1" />
+        <field name="perm_write" eval="1" />
+        <field name="perm_unlink" eval="1" />
+    </record>
+     <record model="ir.model.access" id="fleet_fcheckk_user">
+        <field name="name">fleet_vehicle_user</field>
+        <field name="model_id" ref="model_fcheck_fcheck" />
+        <field name="group_id" ref="fleet.fleet_group_user" />
+        <field name="perm_read" eval="1" />
+        <field name="perm_create" eval="0" />
+        <field name="perm_write" eval="0" />
+        <field name="perm_unlink" eval="0" />
+    </record>
+
+
+
+
+    <record model="ir.model.access" id="access_fleet_checklisttt_user">
+        <field name="name">selection_template_fleet_manager</field>
+        <field name="model_id" ref="model_fleet_checklist" />
+        <field name="group_id" ref="fleet.fleet_group_manager" />
+        <field name="perm_read" eval="1" />
+        <field name="perm_create" eval="1" />
+        <field name="perm_write" eval="1" />
+        <field name="perm_unlink" eval="1" />
+    </record>
+     <record model="ir.model.access" id="fleet_checklisttt_user">
+        <field name="name">fleet_vehicle_user</field>
+        <field name="model_id" ref="model_fleet_checklist" />
+        <field name="group_id" ref="fleet.fleet_group_user" />
+        <field name="perm_read" eval="1" />
+        <field name="perm_create" eval="0" />
+        <field name="perm_write" eval="0" />
+        <field name="perm_unlink" eval="0" />
+    </record>
+
+    <record model="ir.model.access" id="fleet_vehicle_check_user">
+        <field name="name">fleet_vehicle_user</field>
+        <field name="model_id" ref="model_check_check" />
+        <field name="group_id" ref="fleet.fleet_group_user" />
+        <field name="perm_read" eval="1" />
+        <field name="perm_create" eval="0" />
+        <field name="perm_write" eval="0" />
+        <field name="perm_unlink" eval="0" />
+    </record>
+    <record model="ir.model.access" id="fleet_vehicle_check_manager">
+        <field name="name">fleet_vehicle_template_manager</field>
+        <field name="model_id" ref="model_check_check" />
+        <field name="group_id" ref="fleet.fleet_group_manager" />
+        <field name="perm_read" eval="1" />
+        <field name="perm_create" eval="1" />
+        <field name="perm_write" eval="1" />
+        <field name="perm_unlink" eval="1" />
+    </record>
+
+
+
+    <record model="ir.model.access" id="fleet_vehicle_template_user">
+        <field name="name">fleet_vehicle_user</field>
+        <field name="model_id" ref="model_fleet_vehicle_template" />
+        <field name="group_id" ref="fleet.fleet_group_user" />
+        <field name="perm_read" eval="1" />
+        <field name="perm_create" eval="0" />
+        <field name="perm_write" eval="0" />
+        <field name="perm_unlink" eval="0" />
+    </record>
+    <record model="ir.model.access" id="fleet_vehicle_template_manager">
+        <field name="name">fleet_vehicle_template_manager</field>
+        <field name="model_id" ref="model_fleet_vehicle_template" />
+        <field name="group_id" ref="fleet.fleet_group_manager" />
+        <field name="perm_read" eval="1" />
+        <field name="perm_create" eval="1" />
+        <field name="perm_write" eval="1" />
+        <field name="perm_unlink" eval="1" />
+    </record>
+
+
+    <record model="ir.model.access" id="fleet_vehicle_template_line_user">
+        <field name="name">fleet_vehicle_template_line_user</field>
+        <field name="model_id" ref="model_fleet_vehicle_template_line" />
+        <field name="group_id" ref="fleet.fleet_group_user" />
+        <field name="perm_read" eval="1" />
+        <field name="perm_create" eval="0" />
+        <field name="perm_write" eval="0" />
+        <field name="perm_unlink" eval="0" />
+    </record>
+    <record model="ir.model.access" id="fleet_vehicle_template_line_manager">
+        <field name="name">fleet_vehicle_template_line_manager</field>
+        <field name="model_id" ref="model_fleet_vehicle_template_line" />
+        <field name="group_id" ref="fleet.fleet_group_manager" />
+        <field name="perm_read" eval="1" />
+        <field name="perm_create" eval="1" />
+        <field name="perm_write" eval="1" />
+        <field name="perm_unlink" eval="1" />
+    </record>
+
+
+<!--     <record model="ir.model.access" id="selection_template_fleet_user">-->
+<!--        <field name="name">selection_template_fleet_user</field>-->
+<!--        <field name="model_id" ref="model_selection_template_fleet" />-->
+<!--        <field name="group_id" ref="fleet.fleet_group_user" />-->
+<!--        <field name="perm_read" eval="1" />-->
+<!--        <field name="perm_create" eval="0" />-->
+<!--        <field name="perm_write" eval="0" />-->
+<!--        <field name="perm_unlink" eval="0" />-->
+<!--    </record>-->
+<!--    <record model="ir.model.access" id="selection_template_fleet_manager">-->
+<!--        <field name="name">selection_template_fleet_manager</field>-->
+<!--        <field name="model_id" ref="model_selection_template_fleet" />-->
+<!--        <field name="group_id" ref="fleet.fleet_group_manager" />-->
+<!--        <field name="perm_read" eval="1" />-->
+<!--        <field name="perm_create" eval="1" />-->
+<!--        <field name="perm_write" eval="1" />-->
+<!--        <field name="perm_unlink" eval="1" />-->
+<!--    </record>-->
+
+
+
+    <record model="ir.model.access" id="access_checklist_points_user">
+        <field name="name">selection_template_fleet_manager</field>
+        <field name="model_id" ref="model_checklist_checklist" />
+        <field name="group_id" ref="fleet.fleet_group_manager" />
+        <field name="perm_read" eval="1" />
+        <field name="perm_create" eval="1" />
+        <field name="perm_write" eval="1" />
+        <field name="perm_unlink" eval="1" />
+    </record>
+
+    <record model="ir.model.access" id="access_fleet_checklist_user">
+        <field name="name">selection_template_fleet_manager</field>
+        <field name="model_id" ref="model_fleet_checklist_template" />
+        <field name="group_id" ref="fleet.fleet_group_manager" />
+        <field name="perm_read" eval="1" />
+        <field name="perm_create" eval="1" />
+        <field name="perm_write" eval="1" />
+        <field name="perm_unlink" eval="1" />
+    </record>
+
+    <record model="ir.model.access" id="access_fleet_checklist_template_user">
+        <field name="name">selection_template_fleet_manager</field>
+        <field name="model_id" ref="model_fleet_checklist_template" />
+        <field name="group_id" ref="fleet.fleet_group_manager" />
+        <field name="perm_read" eval="1" />
+        <field name="perm_create" eval="1" />
+        <field name="perm_write" eval="1" />
+        <field name="perm_unlink" eval="1" />
+    </record>
+
+
+
+</odoo>
