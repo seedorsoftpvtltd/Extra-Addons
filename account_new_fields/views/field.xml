@@ -1,0 +1,16 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="custom_partner_form_view">
+            <field name="name">account.partner.form</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='ref']" position="after">
+                    <field name="podate"/>
+                    <field name="pono"/>
+                    <field name="jobno"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

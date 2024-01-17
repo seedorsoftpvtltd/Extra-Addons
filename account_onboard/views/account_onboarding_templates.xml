@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ONBOARDING STEPS -->
+    <template id="onboarding_bank_account_step">
+        <t t-call="base.onboarding_step">
+            <t t-set="title">Bank Account</t>
+            <t t-set="description">Setup your bank account to sync bank feeds.</t>
+            <t t-set="btn_text">Add a bank</t>
+            <t t-set="done_text">Step Completed!</t>
+            <t t-set="method" t-value="'setting_init_bank_account_action'" />
+            <t t-set="model" t-value="'res.company'" />
+            <t t-set="state" t-value="state.get('account_setup_bank_data_state')" />
+        </t>
+    </template>
+    <template id="onboarding_fiscal_year_step">
+        <t t-call="base.onboarding_step">
+            <t t-set="title">Accounting Periods</t>
+            <t t-set="description">Define your fiscal years &amp; tax returns periodicity.</t>
+            <t t-set="btn_text">Configure</t>
+            <t t-set="done_text">Step Completed!</t>
+            <t t-set="method" t-value="'setting_init_fiscal_year_action'" />
+            <t t-set="model" t-value="'res.company'" />
+            <t t-set="state" t-value="state.get('account_setup_fy_data_state')" />
+        </t>
+    </template>
+    <template id="onboarding_chart_of_account_step">
+        <t t-call="base.onboarding_step">
+            <t t-set="title">Chart of Accounts</t>
+            <t t-set="description">Setup your chart of accounts and record initial balances.</t>
+            <t t-set="btn_text">Review</t>
+            <t t-set="done_text">Chart of account set.</t>
+            <t t-set="method" t-value="'setting_chart_of_accounts_action'" />
+            <t t-set="model" t-value="'res.company'" />
+            <t t-set="state" t-value="state.get('account_setup_coa_state')" />
+        </t>
+    </template>
+    <template id="dashboard_onboarding_company_step" primary="True"
+              inherit_id="base.onboarding_company_step">
+        <xpath expr="//t[@t-set='description']" position="replace">
+            <t t-set="description">
+                Setup your company's data for reports headers.
+            </t>
+        </xpath>
+    </template>
+    <!-- ONBOARDING PANELS -->
+    <template id="account_dashboard_onboarding_panel" name="account.dashboard.onboarding.panel">
+        <t t-call="base.onboarding_container">
+            <t t-set="classes" t-value="'o_onboarding_orange'"/>
+            <t t-set="bg_image" t-value="'/account/static/src/img/account_dashboard_onboarding_bg.jpg'"/>
+            <t t-set="close_method" t-value="'action_close_account_dashboard_onboarding'"/>
+            <t t-set="close_model" t-value="'res.company'"/>
+
+            <t t-call="account_onboard.dashboard_onboarding_company_step" name="company_step" />
+            <t t-call="account_onboard.onboarding_bank_account_step" name="bank_account_step" />
+            <t t-call="account_onboard.onboarding_fiscal_year_step" name="fiscal_year_step" />
+            <t t-call="account_onboard.onboarding_chart_of_account_step" name="chart_of_account_step" />
+        </t>
+    </template>
+ 
+</odoo>

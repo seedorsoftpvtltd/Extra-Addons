@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="custom_account_stage_form_view">
+            <field name="name">custom.account.stage.form.view</field>
+            <field name="model">custom.account.stage</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" />
+                            </group>
+                            <group>
+                                <field name="sequence" />
+                                <field name="is_journal_entry"/>
+                                <field name="is_customer_invoice"/>
+                                <field name="is_customer_credit_note"/>
+                                <field name="is_vendor_bill"/>
+                                <field name="is_vendor_credit_note"/>
+                                <field name="is_sales_receipt"/>
+                                <field name="is_purchase_receipt"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="custom_account_stage_tree_view">
+            <field name="model">custom.account.stage.tree.view</field>
+            <field name="model">custom.account.stage</field>
+            <field name="arch" type ="xml">
+                <tree>
+                    <field name="name" />
+                    <field name="sequence" />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="custom_account_stage_search_view">
+            <field name="model">custom.account.stage.filter.view</field>
+            <field name="model">custom.account.stage</field>
+            <field name="arch" type ="xml">
+                <search>
+                    <field name="name" />
+                    <field name="sequence" />
+                </search>
+            </field>
+        </record>
+  
+        <record id="action_custom_account_stages" model="ir.actions.act_window">
+            <field name="name">Stages</field>
+            <field name="res_model">custom.account.stage</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Stages" id="sub_menu_custom_account_stages" 
+                  parent="account.menu_finance_configuration" 
+                  sequence="22" action="action_custom_account_stages"/>
+
+    </data>
+</odoo>
