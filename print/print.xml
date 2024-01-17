@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="template_id">
+            <t t-call="web.html_container">
+                <t t-set="doc" t-value="doc"/>
+                <t t-call="web.internal_layout">
+                    <div class="page">
+                        <t t-call="web.external_layout">
+                            #add the body here
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+        <template id="payment_template_id">
+            <t t-call="web.html_container">
+                <t t-set="doc" t-value="doc"/>
+                <t t-call="web.internal_layout">
+                    <div class="page">
+                        <t t-call="web.external_layout">
+                            #add the body here
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+        <report
+                id="payment_report_template"
+                string="Voucher"
+                model="account.payment"
+                report_type="qweb-pdf"
+                file="print.payment_template_id"
+                name="print.payment_template_id"
+        />
+        <report
+                id="report_id"
+                string="Warehouse Temp"
+                model="warehouse.order"
+                report_type="qweb-pdf"
+                file="print.template_id"
+                name="print.template_id"
+        />
+
+
+    </data>
+</odoo>

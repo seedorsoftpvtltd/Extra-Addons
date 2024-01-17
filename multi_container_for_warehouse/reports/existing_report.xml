@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="report_front_end_warehouse">
+        <t t-call="web.report_layout">
+            <div class="header" style="border: 1px solid black;height:157px;">
+                <div style="width:100%">
+                    <div style="float:left; width:50%;">
+
+
+                        <div style="width:100%;">
+                            <div style="float:left;width:40%;padding-left:20px;padding-top:1px;width:350px;">
+                                <!--<img src="/web/binary/company_logo" style="width:300px;"  />-->
+                                <span itemprop="image" t-field="res_company.logo"
+                                      t-options="{&quot;widget&quot;: &quot;image&quot;, &quot;style&quot;: &quot;float:center;&quot;}"/>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div style="width:100%">
+                    <div style="float:right; width:50%;">
+
+
+                        <div style="width:100%;text-align:right;margin-top:8px;">
+                            <div style="float:right;padding-top:0.3px;padding-right:3px">
+
+                                <div>
+                                    <b>
+                                        <span style="font-size:22px;padding-right:0px;text-align:center"
+                                              t-field="res_company.name"/>
+                                    </b>
+                                </div>
+
+                                <div style="margin-top:-8px;text-align:center">
+                                    <span style="font-size:14px;text-align:center" t-field="res_company.street_name"/>
+                                </div>
+
+                                <div style="margin-top:-5px;padding-right:-2px;text-align:center">
+                                    <span style="font-size:14px;text-align:center" t-field="res_company.street_number"/>
+                                </div>
+
+                                <div style="margin-top:-5px;text-align:center">
+                                    <span style="font-size:14px;text-align:center" t-field="res_company.street2"/>
+                                </div>
+
+                                <!--                                <div style="margin-top:-5px;text-align:center">-->
+                                <!--                                    <span style="font-size:14px;text-align:center">TAX CARD#:-->
+                                <!--                                        <span t-field="res_company.youtube"/>-->
+                                <!--                                    </span>-->
+                                <!--                                </div>-->
+                                <div style="margin-top:-5px;text-align:center">
+                                    <span style="font-size:14px;text-align:center">VATIN:
+                                        <span t-field="res_company.vat"/>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="article page" style="margin-top:10px;">
+
+
+                <table class="table table-bordered" style="border-left:1px solid;border-right:1px solid;">
+
+                    <tr style="border-left:1px solid black;border-bottom-style:none;">
+                        <t>
+
+                            <td class="text-left"
+                                style="border:1px solid black;border-top:0px solid;border-bottom-style:none;">
+
+                                <div class="text-center"
+                                     style="font-size:medium;width:102.7%;height:5%;margin-left:-13px;background-color:#E8E8E8;margin-top:-13px;border-bottom:1px solid black;border-left:0.5px solid black;border-right:0.5px solid black;">
+                                    <br/>
+                                    <b>ADVANCE SHIPPING NOTE/ASN No-
+                                        <span t-field="o.name"/>
+                                    </b>
+                                    <br/>
+                                    <br/>
+                                </div>
+                                <br/>
+                                <br/>
+                                <div style="width:100%;margin-top:-23px">
+                                    <div style="float:left; width:50%;">
+
+
+                                        <div style="width:100%;">
+                                            <div style="float:left;width:40%;">
+                                                <span style="font-size:10.5px;">
+                                                    <b>Client No</b>
+                                                </span>
+                                                <br/>
+
+                                            </div>
+                                            <div style="float:right;width:60%;">
+                                                <span style="font-size:10.5px;">:&amp;nbsp;
+                                                    <span t-field="o.x_clientno"/>
+                                                    <br/>
+                                                </span>
+                                            </div>
+                                            <div style="clear:both"/>
+                                        </div>
+                                        <div style="width:100%;">
+                                            <div style="float:left;width:40%;">
+                                                <span style="font-size:10.5px;">
+                                                    <b>Client</b>
+                                                </span>
+                                                <br/>
+
+                                            </div>
+                                            <div style="float:right;width:60%;">
+                                                <span style="font-size:10.5px;">:&amp;nbsp;
+                                                    <span t-field="o.partner_id.name"/>
+                                                    <br/>
+                                                </span>
+                                            </div>
+                                            <div style="clear:both"/>
+                                        </div>
+                                        <div style="width:100%;">
+                                            <div style="float:left;width:40%;">
+                                                <span style="font-size:10.5px;">
+                                                    <b>Bill of Entry Date</b>
+                                                </span>
+                                                <br/>
+
+                                            </div>
+                                            <div style="float:right;width:60%;">
+                                                <span style="font-size:10.5px;">:&amp;nbsp;
+                                                    <span t-field="o.x_bill"/>
+                                                    <br/>
+                                                </span>
+                                            </div>
+                                            <div style="clear:both"/>
+                                        </div>
+                                        <div style="width:100%;">
+                                            <div style="float:left;width:40%;">
+                                                <span style="font-size:10.5px;">
+                                                    <b>Source Reference No</b>
+                                                </span>
+                                                <br/>
+
+                                            </div>
+                                            <div style="float:right;width:60%;">
+                                                <span style="font-size:10.5px;">:&amp;nbsp;
+                                                    <span t-field="o.partner_ref"/>
+                                                    <br/>
+                                                </span>
+                                            </div>
+                                            <div style="clear:both"/>
+                                        </div>
+                                        <div style="width:100%;">
+                                            <div style="float:left;width:40%;">
+                                                <span style="font-size:10.5px;">
+                                                    <b>Vessel / Flight Name</b>
+                                                </span>
+                                                <br/>
+
+                                            </div>
+                                            <div style="float:right;width:60%;">
+                                                <span style="font-size:10.5px;">:&amp;nbsp;
+                                                    <span t-field="o.x_flight"/>
+                                                    <br/>
+                                                </span>
+                                            </div>
+                                            <div style="clear:both"/>
+                                        </div>
+
+                                    </div>
+                                    <div style="float:right; width:50%;">
+
+
+                                        <div style="width:100%;">
+                                            <div style="float:left;width:40%;">
+                                                <span style="font-size:10.5px;">
+                                                    <b>ASN No</b>
+                                                </span>
+                                                <br/>
+
+                                            </div>
+                                            <div style="float:right;width:60%;">
+                                                <span style="font-size:10.5px;">:&amp;nbsp;
+                                                    <span t-field="o.name"/>
+                                                    <br/>
+                                                </span>
+                                            </div>
+                                            <div style="clear:both"/>
+                                        </div>
+                                        <div style="width:100%;">
+                                            <div style="float:left;width:40%;">
+                                                <span style="font-size:10.5px;">
+                                                    <b>Bill of Entry No</b>
+                                                </span>
+                                                <br/>
+
+                                            </div>
+                                            <div style="float:right;width:60%;">
+                                                <span style="font-size:10.5px;">:&amp;nbsp;
+                                                    <span t-field="o.x_billno"/>
+                                                    <br/>
+                                                </span>
+                                            </div>
+                                            <div style="clear:both"/>
+                                        </div>
+                                        <div style="width:100%;">
+                                            <div style="float:left;width:40%;">
+                                                <span style="font-size:10.5px;">
+                                                    <b>Warehouse</b>
+                                                </span>
+                                                <br/>
+
+                                            </div>
+                                            <div style="float:right;width:60%;">
+                                                <span style="font-size:10.5px;">:&amp;nbsp;
+                                                    <span t-field="o.x_ware"/>
+                                                    <br/>
+                                                </span>
+                                            </div>
+                                            <div style="clear:both"/>
+                                        </div>
+                                        <div style="width:100%;">
+                                            <div style="float:left;width:40%;">
+                                                <span style="font-size:10.5px;">
+                                                    <b>Container No</b>
+                                                </span>
+                                                <br/>
+
+                                            </div>
+                                            <div style="float:right;width:60%;">
+                                                <span style="font-size:10.5px;">:&amp;nbsp;
+                                                    <span t-field="o.container_no"/>
+                                                    <br/>
+                                                </span>
+                                            </div>
+                                            <div style="clear:both"/>
+                                        </div>
+                                        <div style="width:100%;">
+                                            <div style="float:left;width:40%;">
+                                                <span style="font-size:10.5px;">
+                                                    <b>Container Type</b>
+                                                </span>
+                                                <br/>
+
+                                            </div>
+                                            <div style="float:right;width:60%;">
+                                                <span style="font-size:10.5px;">:&amp;nbsp;
+                                                    <span t-field="o.container"/>
+                                                    <br/>
+                                                </span>
+                                            </div>
+                                            <div style="clear:both"/>
+                                        </div>
+                                        <div style="width:100%;">
+                                            <div style="float:left;width:40%;">
+                                                <span style="font-size:10.5px;">
+                                                    <b>HBL / HAWB No</b>
+                                                </span>
+                                                <br/>
+
+                                            </div>
+                                            <div style="float:right;width:60%;">
+                                                <span style="font-size:10.5px;">:&amp;nbsp;
+                                                    <span t-field="o.x_hbl"/>
+                                                    <br/>
+                                                </span>
+                                            </div>
+                                            <div style="clear:both"/>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </td>
+                        </t>
+                    </tr>
+
+
+                    <style>
+                        hr
+                        {
+                        border: 1px solid black;
+                        }
+                        hr:last-child
+                        {
+                        border: none;
+                        }
+                    </style>
+                    <div>
+
+                        <table>
+                            <p style="margin-left:10px">Container Details</p>
+                            <table>
+                                <tr style="border-top: 0.1px solid; border-bottom: 0.5px solid;height:1px;background-color:#E8E8E8;">
+                                    <th style="width:5%;color:black; font-size: 10.5px; text-align: center; border: 0.1px solid black;">
+                                        Container Type
+                                    </th>
+                                    <th style="width:5%;color:black; font-size: 10.5px; text-align: center; border: 0.1px solid black;">
+                                        Container No
+                                    </th>
+                                    <th style="width:5%;color:black; font-size: 10.5px; text-align: center; border: 0.1px solid black;">
+                                        Serial Number
+                                    </th>
+                                </tr>
+
+                                <t t-foreach="o.multi_container_ids" t-as="l">
+                                    <tr>
+                                        <td style=" width:10%; font-size: 10.5px; text-align: left; border: 0.1px solid black;padding-left:4px;">
+                                            <span t-field="l.container"/>
+                                        </td>
+                                        <td style=" width:10%; font-size: 10.5px; text-align: left; border: 0.1px solid black;padding-left:4px;">
+                                            <span t-field="l.multi_container_no"/>
+                                        </td>
+                                        <td style=" width:10%; font-size: 10.5px; text-align: left; border: 0.1px solid black;padding-left:4px;">
+                                            <span t-field="l.container_serial_no"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </table>
+                        </table>
+                    </div>
+
+                    <table style="margin-top:-25px;width:100%;">
+
+
+                        <td class="text-left"
+                            style="width:100%;font-size:10px;height:800px;border-left:1px solid; border-bottom:1px solid;border-right:1px solid;padding: 8px;!important ;">
+                            <table style="width:102%;margin-left:-8px">
+
+                                <tr style="border-top: 0.1px solid; border-bottom: 0.5px solid;height:1px;background-color:#E8E8E8;">
+                                    <th style="width:5%;color:black; font-size: 10.5px; text-align: center; border: 0.1px solid black;">
+                                        S.No.
+                                    </th>
+
+                                    <th style="width:10%;color:black; font-size: 10.5px; text-align: center; border: 0.1px solid black; ">
+                                        Product Code
+                                    </th>
+                                    <th style="width:20%; color:black;font-size: 10.5px; text-align: center; border: 0.1px solid black;">
+                                        Product Name
+                                    </th>
+
+                                    <th style="width:10%;color:black; font-size: 10.5px;text-align:center; border: 0.1px solid black;">
+                                        Qty
+                                    </th>
+                                    <th style="width:10%;color:black; font-size: 10.5px;text-align: center; border: 0.1px solid black;">
+                                        Pack Code
+                                    </th>
+                                    <th style="width:10%;color:black; font-size: 10.5px;text-align: center; border: 0.1px solid black;">
+                                        Weight
+                                    </th>
+                                    <th style="width:10%;color:black; font-size: 10.5px;text-align: center; border-bottom:0.1px solid;border-top:0.1px solid;">
+                                        Volume
+                                    </th>
+
+
+                                </tr>
+
+                                <t t-set="sno" t-value="1"/>
+
+                                <t t-foreach="o.order_line" t-as="l">
+                                    <tr>
+
+
+                                        <td style="width:5%;  font-size:10.5px; text-align: center; border: 0.1px solid black;">
+                                            <span t-esc="sno"/>
+                                        </td>
+
+                                        <td style=" width:10%; font-size: 10.5px; text-align: left; border: 0.1px solid black;padding-left:4px;">
+                                            <span t-field="l.x_sku_id"/>
+                                        </td>
+
+                                        <td style="width:20%; font-size: 10.5px; text-align: left; border: 0.1px solid black;padding-left:4px;">
+                                            <span t-field="l.product_id.description"/>
+                                        </td>
+                                        <td style="width:10%; font-size: 10.5px; text-align: right; border: 0.1px solid black;padding-right:2px;">
+                                            <span t-field="l.product_qty"
+                                                  t-options='{"widget": "float", "precision": 3}'/>
+                                        </td>
+                                        <td style="width:10%; font-size: 10.5px; text-align: center; border: 0.1px solid black;">
+                                            <span t-field="l.product_uom"/>
+                                        </td>
+                                        <td style="width:10%; font-size: 10.5px; text-align: right; border: 0.1px solid black;padding-right:2px;">
+                                            <t t-set="weight" t-value="l.x_weightt * l.product_qty"/>
+                                            <span t-esc="weight" t-options='{"widget": "float", "precision": 3}'/>
+                                        </td>
+
+                                        <td style="width:10%; font-size: 10.5px; text-align: right; border-bottom:0.1px solid;border-top:0.1px solid;padding-right:2px;">
+                                            <t t-set="volume" t-value="l.x_volume * l.product_qty"/>
+                                            <span t-esc="volume" t-options='{"widget": "float", "precision": 3}'/>
+                                        </td>
+
+
+                                    </tr>
+                                    <t>
+                                        <t t-set="sno" t-value="sno+1"/>
+
+                                    </t>
+                                </t>
+
+
+                                <tr>
+
+                                    <td colspan="3"
+                                        style="font-size: 10.5px; color:black;text-align: right; border: 0.1px solid black;padding-right:2px;">
+                                        <b>Total</b>
+                                    </td>
+                                    <td style="width:10%;font-size: 10.5px; text-align: right; border: 0.1px solid black;padding-right:2px;">
+
+                                        <t t-set="subtotal" t-value="sum(line.product_qty for line in o.order_line)"/>
+                                        <t t-esc="subtotal" t-options='{"widget": "float", "precision": 3}'/>
+                                    </td>
+                                    <td style="width:10%;font-size:10.5px; text-align: right; border: 0.1px solid black;"><!--span t-field="doc.amount_untaxed"/--></td>
+                                    <td style="width:10%;font-size: 10.5px; text-align: right; border: 0.1px solid black;"><!--span t-field="doc.amount_total"/-->
+                                        <t t-set="subtotal"
+                                           t-value="sum((line.x_weightt * line.product_qty) for line in o.order_line)"/>
+                                        <t t-esc="subtotal" t-options='{"widget": "float", "precision": 3}'/>
+                                    </td>
+                                    <td style="width:10%;font-size:10.5px; text-align: right; border: 0.1px solid black;padding-right:2px;">
+
+                                        <t t-set="subtotal"
+                                           t-value="sum((line.x_volume * line.product_qty) for line in o.order_line)"/>
+                                        <t t-esc="subtotal" t-options='{"widget": "float", "precision": 3}'/>
+                                    </td>
+
+                                </tr>
+
+
+                            </table>
+                            <br/>
+                            <br/>
+
+                        </td>
+
+                    </table>
+
+
+                </table>
+                <div style="width:100%;">
+                    <div style="float:left;width:50%;">
+                        <div style="width:100%;">
+                            <div style="float:left;width:50%;">
+                                <span style="font-size:10.5px;">
+                                    <b>User</b>
+                                </span>
+                                <br/>
+
+                            </div>
+                            <div style="float:right;width:50%;">
+                                <span style="font-size:10.5px;">:&amp;nbsp;
+                                    <span t-field="o.write_uid"/>
+                                    <br/>
+                                </span>
+                            </div>
+                            <div style="clear:both"/>
+                        </div>
+                    </div>
+                    <div style="float:right;width:50%;">
+                        <div style="width:100%;">
+                            <div style="float:left;width:50%;">
+                                <span style="font-size:10.5px;">
+                                    <b>Date</b>
+                                </span>
+                                <br/>
+
+                            </div>
+                            <div style="float:right;width:50%;">
+                                <span style="font-size:10.5px;">:&amp;nbsp;
+                                    <span t-field="o.write_date"/>
+                                    <br/>
+                                </span>
+                            </div>
+                            <div style="clear:both"/>
+                        </div>
+                        <div style="clear:both"/>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

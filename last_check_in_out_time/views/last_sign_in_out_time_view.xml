@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+       
+        <record id="view_last_sign_in_out_time_form" model="ir.ui.view">
+            <field name="name">hr.employee.form</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='category_ids']" position="after">
+                    <br>
+                    </br>
+                   <group>
+                      <group>
+                    	<field name="last_sign_in"/> 
+                      </group>
+                      <group>
+                    	<field name="last_sign_out"/>
+                      </group>
+                   </group>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_last_sign_in_out_time_kanban" model="ir.ui.view">
+            <field name="name">hr.employee.kanban</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.hr_kanban_view_employees"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@class='oe_kanban_details']" position="inside">
+			<t t-if="record.last_sign_in.value">
+                    	   <div >
+				(Check-In):<field name="last_sign_in" />
+			   </div>
+			</t>
+			<t t-if="record.last_sign_out.value">
+                    	   <div>
+				(Check-Out):<field name="last_sign_out"/>
+			   </div>
+			</t>
+                </xpath>
+            </field>
+        </record>
+
+
+</odoo>

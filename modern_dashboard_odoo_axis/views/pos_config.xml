@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <data>
+        
+         <record id="tag_dashboard_id" model="ir.actions.client">
+            <field name="name">Point Of Sale Dashboard</field>
+            <field name="tag">tag_dashboard</field>
+        </record>
+        <menuitem id="menu_point_dashboard" action="modern_dashboard_odoo_axis.tag_dashboard_id" name="POS Dashboard"
+              parent="point_of_sale.menu_point_root" sequence="99" groups="modern_dashboard_odoo_axis.group_pos_user"/>
+    </data>
+</odoo>

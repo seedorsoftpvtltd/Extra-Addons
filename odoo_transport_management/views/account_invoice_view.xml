@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="transport_management_account_invoice_form" model="ir.ui.view">
+            <field name="name">account.invoice.form</field>
+<!--            <field name="model">account.invoice</field> odoo13-->
+<!--            <field name="inherit_id" ref="account.invoice_form"/> odoo13-->
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+<!--                <xpath expr="//field[@name='cash_rounding_id']" position="after"> odoo13-->
+                <xpath expr="//field[@name='ref']" position="after">
+<!--                    <field name="transporter_id" domain="[('supplier','=', True)]"/>odoo13-->
+                    <field name="transporter_id"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

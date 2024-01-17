@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <menuitem groups="account.group_account_invoice" id="account_tds_tds_conf" name="TDS/TCS" parent="account.menu_finance_configuration" sequence="2"/>
+    <record id="view_tds_form" model="ir.ui.view">
+        <field name="name">account.tds.tds.form.tds</field>
+        <field name="model">account.tds.tds</field>
+        <field name="arch" type="xml">
+            <form string="TDS Configuration">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Section for TDS" string="Section"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="nature" placeholder="Nature of Payment"/>
+                            <field name="threshold_amt" placeholder="Threshold amount" required="1"/>
+                            <field name="tax_w_wo" widget="selection"/>
+                            <field name="tra_type" required="1" widget="selection"/>
+                            <field name="account_id" options="{'no_create': True}" string="TDS Account"/>
+                        </group>
+                        <group>
+                            <field name="ind_huf_tds_per"/>
+                            <field name="other_tds_per"/>
+                            <field groups="base.group_multi_company" name="company_id" options="{'no_create': True}"/>
+                        </group>
+                    </group>
+                    <group invisible="1" string="Financial Year Detail">
+                        <group>
+                            <field name="curr_year" readonly="1"/>
+                            <field name="curr_qtr" readonly="1"/>
+                            <field name="curr_month" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="f_start_date" readonly="1"/>
+                            <field name="f_end_date" readonly="1"/>
+                            <field name="fq_start_date" readonly="1"/>
+                            <field name="fq_end_date" readonly="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="view_tds_setup_tree" model="ir.ui.view">
+        <field name="name">account.tds.tds.tree.tds</field>
+        <field name="model">account.tds.tds</field>
+        <field name="arch" type="xml">
+            <tree string="TDS Configuration">
+                <field name="name"/>
+                <field name="threshold_amt"/>
+                <field name="tax_w_wo"/>
+                <field name="tra_type"/>
+                <field name="ind_huf_tds_per"/>
+                <field name="other_tds_per"/>
+                <field name="account_id"/>
+                <field groups="base.group_multi_company" name="company_id"/>
+            </tree>
+        </field>
+    </record>
+    <record id="tds_configuration_action" model="ir.actions.act_window">
+        <field name="name">TDS Setup</field>
+        <field name="res_model">account.tds.tds</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem action="laxicon_tds.tds_configuration_action" id="tds_configuration_menu" name="TDS" parent="laxicon_tds.account_tds_tds_conf" sequence="10"/>
+    <!-- TCS -->
+    <record id="view_tcs_form" model="ir.ui.view">
+        <field name="name">account.tcs.tcs.form.tcs</field>
+        <field name="model">account.tcs.tcs</field>
+        <field name="arch" type="xml">
+            <form string="TCS Configuration">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Section for TCS" string="Section"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="nature" placeholder="Nature of Payment"/>
+                            <field name="threshold_amt" placeholder="threshold amount" required="1"/>
+                            <field name="tax_w_wo" widget="selection"/>
+                            <field name="tra_type" required="1" widget="selection"/>
+                            <field name="account_id" options="{'no_create': True}" string="TCS Account"/>
+                        </group>
+                        <group>
+                            <field name="ind_huf_tcs_per"/>
+                            <field name="other_tcs_per" string="Other Tcs %"/>
+                            <field groups="base.group_multi_company" name="company_id" options="{'no_create': True}"/>
+                        </group>
+                    </group>
+                    <group invisible="1" string="Financial Year Detail">
+                        <group>
+                            <field name="curr_year" readonly="1"/>
+                            <field name="curr_qtr" readonly="1"/>
+                            <field name="curr_month" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="f_start_date" readonly="1"/>
+                            <field name="f_end_date" readonly="1"/>
+                            <field name="fq_start_date" readonly="1"/>
+                            <field name="fq_end_date" readonly="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="view_tcs_setup_tree" model="ir.ui.view">
+        <field name="name">account.tcs.tcs.tree.tcs</field>
+        <field name="model">account.tcs.tcs</field>
+        <field name="arch" type="xml">
+            <tree string="TCS Configuration">
+                <field name="name"/>
+                <field name="ind_huf_tcs_per"/>
+                <field name="other_tcs_per"/>
+                <field name="account_id"/>
+                <field groups="base.group_multi_company" name="company_id"/>
+            </tree>
+        </field>
+    </record>
+    <record id="tcs_configuration_action" model="ir.actions.act_window">
+        <field name="name">TCS Setup</field>
+        <field name="res_model">account.tcs.tcs</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem action="laxicon_tds.tcs_configuration_action" id="tcs_configuration_menu" name="TCS" parent="laxicon_tds.account_tds_tds_conf" sequence="11"/>
+</odoo>

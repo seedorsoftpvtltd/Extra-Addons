@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+
+    <record id="warehouse_field_form_inherited_extend" model="ir.ui.view">
+        <field name="name">warehouse.order.inherited</field>
+        <field name="model">warehouse.order</field>
+        <field name="inherit_id" ref="asn_views.view_asn_views_extend_model"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='currency_id']" position="after">
+                <field name="x_billno" attrs="{'readonly': [('state', 'in', ['warehouse', 'done', 'cancel'])]}"/>
+            </xpath>
+            <xpath expr="//field[@name='origin']" position="after">
+                <field name="x_transport" attrs="{'readonly': [('state', 'in', ['warehouse', 'done', 'cancel'])]}"/>
+
+            </xpath>
+        </field>
+    </record>
+
+
+</odoo>

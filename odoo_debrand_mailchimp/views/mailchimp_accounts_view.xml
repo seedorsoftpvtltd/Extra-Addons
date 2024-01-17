@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+     <record id="view_mailchimp_accounts_form_inherit" model="ir.ui.view">
+            <field name="name">mailchimp.accounts.form.inherit</field>
+            <field name="model">mailchimp.accounts</field>
+            <field name="inherit_id" ref="mailchimp.view_mailchimp_accounts_form"/>
+            <field name="arch" type="xml">
+                    <xpath expr="//div[hasclass('o_setting_right_pane')]/label" position="replace">
+                        <label for="auto_create_member" string="Auto Create Member In Seedor?"/>
+                    </xpath>
+                <xpath expr="//div[1]/div[3]" position="replace">
+                     <div class="col-lg-6 o_setting_box" attrs="{'invisible': [('auto_create_member', '=', False)]}">
+                                        <div class="o_setting_left_pane">
+                                            <field name="auto_create_partner"/>
+                                        </div>
+                                        <div class="o_setting_right_pane">
+                                            <label for="auto_create_partner" string="Auto Create Customers In Seedor?"/>
+                                            <div class="text-muted">
+                                                While syncing member lists would you like to create new Customers(Seedor Contacts)
+                                                in Seedor if not found in Seedor?
+                                            </div>
+                                        </div>
+                                    </div>
+                </xpath>
+
+            </field>
+     </record>
+</odoo>

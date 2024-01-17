@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="action_freight_kanban" model="ir.ui.view">
+        <field name="name">Freight kanban</field>
+        <field name="model">freight.operation</field>
+        <field name="arch" type="xml">
+            <kanban banner_route="/jobbooking_onboardpanel/freight_onboarding_panel">
+                <field name="name"/>
+                <field name="x_job_type"/>
+                <field name="customer_id"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click">
+                            <div t-attf-class="oe_kanban_details">
+                                <ul>
+                                    <li>Seq: <field name="name"/>
+                                    </li>
+                                    <li>Job Type: <field name="x_job_type"/>
+                                    </li>
+                                    <li>Customer: <field name="customer_id"/>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+    <record id="action_freight" model="ir.actions.act_window">
+        <field name="name">Freight Job Type</field>
+        <field name="res_model">freight.operation</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="domain">[('x_job_type', '=', 13)]</field>
+        <field name="context">{'default_x_job_type': 13}</field>
+    </record>
+    <record id="action_freight_view_kanban" model="ir.actions.act_window.view">
+        <field name="sequence" eval="0"/>
+        <field name="view_mode">kanban</field>
+        <field name="view_id" ref="action_freight_kanban"/>
+        <field name="act_window_id" ref="action_freight"/>
+    </record>
+    <menuitem id="freight_menu"
+              name="Freight"
+              parent="scs_freight.root_menu_freight"
+              action="action_freight"
+              sequence="1"
+              groups="jobbooking_onboardpanel.group_freightjob"/>
+</odoo>

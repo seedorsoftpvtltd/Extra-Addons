@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="report_asn_document_inherit_warehouse" inherit_id="warehouse.report_warehouseorder">
+        <xpath expr="//*[@t-call='warehouse.report_warehouseorder_document']" position="replace">
+            <t t-call="multi_container_for_warehouse.report_asn_document" t-lang="o.partner_id.lang"/>
+        </xpath>
+    </template>
+
+    <template id="report_asn_document">
+        <t t-call="web.report_layout">
+            <div class="header" style="border: 1px solid black;height:157px;">
+
+            </div>
+            <div class="page">
+                <div class="oe_structure"/>
+            </div>
+            <div class="footer">
+                <!-- footer content goes here -->
+                <p>sdasd</p>
+            </div>
+
+
+        </t>
+
+
+    </template>
+
+</odoo>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>       
+        <record id="view_sales_order_filter_inherit" model="ir.ui.view">
+            <field name="name">sale.order.search.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+            <field name="arch" type="xml">
+            <xpath expr="//filter[@name='my_sale_orders_filter']" position="after">
+                <filter string="Quotation Sent" name="quotation_sent" invisible="1"/>
+                <filter string="Quotation Cancel" name="quotation_cancel" invisible="1"/> 
+                <filter string="Quotation" name="all_quotation" invisible="1"/>
+                <filter string="Sales Order" name="sale_order" invisible="1"/>
+            </xpath>
+            </field>
+        </record>
+
+
+   </data>
+</odoo>

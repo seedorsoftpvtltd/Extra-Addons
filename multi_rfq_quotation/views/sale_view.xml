@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+<data>
+    <record id="vendor_sale_order_form_view" model="ir.ui.view">
+        <field name="name">vendor.sale.order.form.view</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <header>
+                <button name="%(action_create_vendor)d" string="Create RFQ" type="action"
+                        class="btn-primary" attrs="{'invisible':[('state','in',['sale','done','cancel'])]}"/>
+            </header>
+            <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                <button icon="fa-pencil-square-o" name="action_create_po" class="oe_stat_button" type="object">
+                    <field name="po_count" string="RFQs" widget="statinfo"/>
+                </button>
+            </xpath>
+
+        </field>
+    </record>
+    <record id="show_sale_order_form_view" model="ir.ui.view">
+        <field name="name">show.sale.order.form.view</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[2]" position="after">
+                <page string="RFQs">
+                    <field name="show_po_ids">
+                        <tree create="false" delete="false">
+                            <field name="name" readonly="1" string="Purchase Order Number"/>
+                            <field name="date_approve" readonly="1"/>
+                            <field name="partner_id" readonly="1" string="Vendor Name"/>
+<!--                            <field name="origin" readonly="1"/>-->
+                            <field name="amount_untaxed" readonly="1" string="Sub Total"/>
+                            <field name="amount_tax" readonly="1"/>
+                            <field name="amount_total" readonly="1"/>
+                        </tree>
+                    </field>
+                </page>
+
+            </xpath>
+        </field>
+    </record>
+</data>
+
+</odoo>
+

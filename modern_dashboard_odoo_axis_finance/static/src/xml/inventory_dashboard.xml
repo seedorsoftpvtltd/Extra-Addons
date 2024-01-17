@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="InventoryDashboardView">
+        <div class="inventory_dashboard">
+            <div class="container-fluid o_inventory_dashboard">
+                <div class="inventory-dashboard">
+                  <h4 class="text-primary text-center py-5">Inventory Dashboard</h4>
+                  <div class="container">
+                    <div class="sales-cards pb-5">
+                        <div class="row top_4_column">
+                          
+                          <div class="col-lg-3 col-md-4 col-6 mb-30">
+                            <div class="card h-100 border-0 quotation position-relative">
+                              <div class="hover-bg position-relative h-100">
+                                <div class="card-body h-100 position-relative">
+                                  <div class="row">
+                                    <div class="col-md-4">
+                                      <div class="bg-white icon-box w-100 h-100 pt-4 text-center position-relative">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitch"><path d="M21 2H3v16h5v4l4-4h5l4-4V2zm-10 9V7m5 4V7"></path></svg>
+                                      </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                    <h2 class="card-text assigned"></h2>
+                                      <h5 class="card-title">Assigned Count</h5>
+                                    </div>
+                                  </div>  
+                                </div>
+                                <div class="more-info-btn position-absolute">
+                                  <button class="rounded-pill btn bg-white px-3 more-assigned-count">More Info</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-3 col-md-4 col-6 mb-30">
+                            <div class="card h-100 border-0 sales-orders position-relative">
+                              <div class="hover-bg position-relative h-100">
+                                <div class="card-body h-100 position-relative">
+                                  <div class="row">
+                                    <div class="col-md-4">
+                                      <div class="bg-white icon-box w-100 h-100 pt-4 text-center position-relative">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart report-box__icon text-theme-10"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                                      </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                    <h2 class="card-text done"></h2>
+                                      <h5 class="card-title">Delivery Orders</h5>
+                                    </div>
+                                  </div>  
+                                </div>
+                                 <div class="more-info-btn position-absolute">
+                                  <button class="rounded-pill btn bg-white px-3 more-delivery-order">More Info</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-3 col-md-4 col-6 mb-30">
+                            <div class="card h-100 border-0 sales-partners position-relative">
+                              <div class="hover-bg position-relative h-100">
+                                <div class="card-body h-100 position-relative">
+                                  <div class="row">
+                                    <div class="col-md-4">
+                                      <div class="bg-white icon-box w-100 h-100 pt-4 text-center position-relative">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitch"><path d="M21 2H3v16h5v4l4-4h5l4-4V2zm-10 9V7m5 4V7"></path></svg>
+                                      </div>
+                                    </div>
+                                     <div class="col-md-8">
+                                    <h2 class="card-text waiting"></h2>
+                                      <h5 class="card-title">Waiting Count</h5>
+                                    </div>
+                                  </div>  
+                                </div>
+                                 <div class="more-info-btn position-absolute">
+                                  <button class="rounded-pill btn bg-white px-3 more-waiting-count">More Info</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-3 col-md-4 col-6 mb-30">
+                            <div class="card h-100 border-0 customer-cancel position-relative">
+                              <div class="hover-bg position-relative h-100">
+                                <div class="card-body h-100 position-relative">
+                                  <div class="row">
+                                    <div class="col-md-4">
+                                      <div class="bg-white icon-box w-100 h-100 pt-4 text-center position-relative">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+                                      </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                    <h2 class="card-text lot-serial"></h2>
+                                      <h5 class="card-title">Total Lot Serial</h5>
+                                    </div>
+                                  </div>  
+                                </div>
+                              
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-4 col-md-4 col-6">
+                            <div class="card h-100 border-0 customer-sales position-relative">
+                              <div class="hover-bg position-relative h-100">
+                                <div class="card-body h-100 position-relative">
+                                  <div class="row">
+                                    <div class="col-md-4">
+                                      <div class="bg-white icon-box w-100 h-100 pt-4 text-center position-relative">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                                      </div>
+                                    </div>
+                                   <div class="col-md-8">
+                                    <h2 class="card-text total-reordering"></h2>
+                                      <h5 class="card-title">Total Reordering Rules</h5>
+                                    </div>
+                                  </div>  
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-4 col-md-4 col-6">
+                            <div class="card h-100 border-0 customer-sales position-relative">
+                              <div class="hover-bg position-relative h-100">
+                                <div class="card-body h-100 position-relative">
+                                  <div class="row">
+                                    <div class="col-md-4">
+                                      <div class="bg-white icon-box w-100 h-100 pt-4 text-center position-relative">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                                      </div>
+                                    </div>
+                                   <div class="col-md-8">
+                                    <h2 class="card-text total-internal"></h2>
+                                      <h5 class="card-title">Internal Transfer</h5>
+                                    </div>
+                                  </div>  
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          
+                        </div>
+                        <div class="row table-cards">
+                          <div class="col-md-6">
+                            <div class="box box-warning bg-white">
+                              <div class="box-header with-border shadow-sm h-100">
+                                <h3 class="box-title px-4 py-3 text-center bg-gradient text-white mb-0 rounded-top">Delivery Detail</h3>
+                                <div class="box-tools top_sold_order">
+                                  <div class="table-responsive">
+                                    <table class="delivery_data table no-margin" id="deliverydatatable">
+                                   
+                                    </table>
+                                  </div>
+                                </div>
+                                 <button id="deliverydatacsv" class="btn btn-primary mt-4">Export CSV</button>
+                                 <button id="deliverydataxls" class="btn btn-primary mt-4">Export XLS</button>
+                              </div>
+                            </div>
+                          </div>
+                           <div class="col-md-6">
+                             <div class="card-body delivery_order_info">
+                              <div class="panel">
+                                  <div class="panel-heading" style="display: inline-block;">
+                                      <h3 class="panel-title">Delivery Order</h3>
+                                  </div>
+                                  <div class="select-option" style="display: inline-block; float: right; margin-bottom: 0;">
+                                   <select id="color_filter1">
+                                      <option value="cool">Cool</option>
+                                      <option value="warm">warm</option>
+          
+                                  </select>
+                                  <select id="delivery_filter">
+                                      <option value="all"> -- select -- </option>
+                                      <option value="today">Today</option>
+                                      <option value="monthly">This Month</option>
+                                      <option value="year">This Year</option>
+                                  </select>
+                                  
+                                </div>
+                                <div class="panel-body">
+                                <canvas id="delivery_order" width="1000px" height="700px"/>
+                             </div>
+                           </div>
+                         </div>
+                      </div>
+                          <div class="col-md-6">
+                            <div class="box box-warning bg-white">
+                              <div class="box-header with-border shadow-sm h-100">
+                                <h3 class="box-title px-4 py-3 text-center bg-gradient text-white mb-0 rounded-top">Selling Products</h3>
+                                <div class="box-tools sale_order_cancel">
+                                  <div class="table-responsive">
+                                    <table class="sell_data table no-margin" id="selldatatable">
+                                      </table>
+                                  </div>
+                                </div>
+                                
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                       <div class="card-body sell_product">
+                            <div class="panel">
+                                <div class="panel-heading" style="display: inline-block;">
+                                    <h3 class="panel-title">Top Selling Product</h3>
+
+                                </div>
+                                 <select id="color_filter7">
+                                    <option value="cool">Cool</option>
+                                    <option value="warm">warm</option>
+        
+                                </select>
+                                <div class="panel-body">
+                                      <canvas id="selling_product_data" width="1000px" height="900px"/>
+                                      
+                                </div>
+                            </div>
+                        </div>
+                     </div>
+                         
+                         
+                  </div>   
+                    </div>
+                   <div class="row mb-30">
+                      <div class="col-md-6">
+                           <div class="card-body product_m">
+                            <div class="panel">
+                                <div class="panel-heading" style="display: inline-block;">
+                                    <h3 class="panel-title">Product Moves</h3>
+                                </div>
+                                <div class="select-option" style="display: inline-block; float: right; margin-bottom: 0;">
+                                 <select id="color_filter9">
+                                    <option value="cool">Cool</option>
+                                    <option value="warm">warm</option>
+        
+                                </select>
+                                 <select id="product_moves">
+                                    <option value="all"> -- select -- </option>
+                                    <option value="today">Today</option>
+                                    <option value="monthly">This Month</option>
+                                    <option value="year">This Year</option>
+                                </select>
+                              </div>
+                                <div class="panel-body">
+                                      <canvas id="product_move_data" width="1000px" height="900px"/>
+                                </div>
+                                <button id="productcsv" class="btn btn-primary mt-4"> <i class="fa fa-file" style="color="></i> Export CSV</button>
+                                 <button id="product_moves_pdf" class="btn btn-primary mt-4"> <i class="fa fa-download" style="color="></i> Export Pdf
+                                    </button>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                           <div class="card-body stock_m">
+                            <div class="panel">
+                                <div class="panel-heading" style="display: inline-block;">
+                                    <h3 class="panel-title">Stock Moves</h3>
+                                </div>
+                                <div class="select-option" style="display: inline-block; float: right; margin-bottom: 0;">
+                                   <select id="color_filter8">
+                                      <option value="cool">Cool</option>
+                                      <option value="warm">warm</option>
+          
+                                  </select>
+                                   <select id="stock_moves" data-style="btn-info">
+                                      <option value="all"> -- select -- </option>
+                                      <option value="today">Today</option>
+                                      <option value="monthly">This Month</option>
+                                      <option value="year">This Year</option>
+                                  </select>
+                                </div>
+                                <div class="panel-body">
+                                      <canvas id="stock_move_data" width="1000px" height="900px"/>
+                                        <button id="stock_move_data_pdf" class="btn btn-primary mt-4"> <i class="fa fa-download" style="color="></i> Export Pdf
+                                    </button>
+                                      
+                            </div>
+                            </div>
+                            </div>
+                      </div>
+              </div>
+
+<div class="row mb-30">
+                      <div class="col-md-6">
+                        <div class="card-body shadow">
+                            <div class="panel">
+                                <div class="panel-heading" style="display: inline-block;">
+                                    <h3 class="panel-title">Internal Transfer</h3>
+                                </div>
+                                <select id="internal_transfer">
+                                    <option value="all"> -- select -- </option>
+                                    <option value="today">Today</option>
+                                    <option value="monthly">This Month</option>
+                                    <option value="year">This Year</option>
+                                </select>
+                                <div class="panel-body">
+                                      <canvas id="internal_transfer_data" width="1000px" height="900px"/>
+                                       <button id="internal_transfer_info" class="btn btn-primary mt-4"> <i class="fa fa-download" style="color="></i> Export Pdf
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                           <div class="card-body shadow">
+                            <div class="panel">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Top Reserved Stock</h3>
+                                </div>
+                                <div class="panel-body">
+                                      <canvas id="reserved_stock_data" width="1000px" height="900px"/>
+                                        <button id="reserved_stock_info" class="btn btn-primary mt-4"> Export Pdf
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                      </div>
+                      <div class="row mb-30">
+                      <div class="col-md-6">
+                        <div class="card-body open_ward">
+                            <div class="panel">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Open Outward </h3>
+                                </div>
+                                <div class="panel-body">
+                                      <canvas id="open_outward_data" width="1000px" height="900px"/>
+                                       <button id="open_outward_data_pdf" class="btn btn-primary mt-4"> <i class="fa fa-download" style="color="></i> Export Pdf
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                           <div class="card-body open_inward">
+                            <div class="panel">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Open Inwards </h3>
+                                </div>
+                                <div class="panel-body">
+                                      <canvas id="in_outward_data" width="1000px" height="900px"/>
+                                      <button id="in_outward_data_pdf" class="btn btn-primary mt-4"> <i class="fa fa-download" style="color="></i>  Export Pdf
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+
+
+
+<div class="row mb-30">
+                      <div class="col-md-6">
+                         <div class="card-body inventory_i">
+                            <div class="panel">
+                                <div class="panel-heading" style="display: inline-block;">
+                                    <h3 class="panel-title">Inventory Report</h3>
+                                </div>
+                                 <select id="color_filter6">
+                                    <option value="cool">Cool</option>
+                                    <option value="warm">warm</option>
+        
+                                </select>
+                                
+                                <div class="panel-body">
+                                      <canvas id="inventory_report_data" width="1000px" height="900px"/>
+                                     
+                                </div>
+                                <button id="reportcsv" class="btn btn-primary mt-4">Export CSV</button>
+                                 <button id="inventory_dashboard_pdf" class="btn btn-primary mt-4"> Export Pdf
+                                    </button>
+                         </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="card-body operation_type_i">
+                            <div class="panel">
+                                <div class="panel-heading" style="display: inline-block;">
+                                    <h3 class="panel-title">Operation Type</h3>
+                                </div>
+                                 <select id="color_filter4">
+                                    <option value="cool">Cool</option>
+                                    <option value="warm">warm</option>
+        
+                                </select>
+                                
+                                <div class="panel-body">
+                                      <canvas id="operation_type" width="1000px" height="900px"/>
+                                      <button id="operation_type_pdf" class="btn btn-primary mt-4"> Export Pdf
+                                    </button>
+                                     
+                                </div>
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                        </t>
+                        </templates>

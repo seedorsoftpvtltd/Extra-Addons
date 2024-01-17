@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<menuitem id="menu_hr_department_tag" action="act_hr_department_tag" parent="hr.menu_human_resources_configuration" sequence="6" />
+	
+</odoo>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<record id="act_hr_department_tag" model="ir.actions.act_window">
+		<field name="name">Department Tags</field>
+		<field name="res_model">hr.department.tag</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+	
+</odoo>

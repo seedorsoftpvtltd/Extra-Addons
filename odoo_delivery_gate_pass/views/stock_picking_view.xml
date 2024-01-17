@@ -1,0 +1,23 @@
+<odoo>
+    <data>
+        <record id="view_picking_form_inherit_visitor_gate_pass" model="ir.ui.view">
+            <field name="name">stock.picking.form</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/header" position="inside">
+                   <button name="%(odoo_delivery_gate_pass.action_create_visitor_gate_pass)d" string="Generate Gate Pass" type="action" class="oe_highlight"/>
+                </xpath>
+                <xpath expr="//form/header" position="inside">
+                   <button string="Print Gate Pass" type="object" class="btn btn-info" name="print_visitor_card_stock"/>
+                </xpath>
+                <xpath expr="//field[@name='owner_id']" position="after">
+                    <field name="custom_gate_pass_id"/>
+                </xpath>
+                <xpath expr="//div[@name='button_box']" position="inside">
+                <button class="oe_stat_button" name="view_gate_pass" type="object" icon="fa-credit-card" string="Gate Pass"/>
+            </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

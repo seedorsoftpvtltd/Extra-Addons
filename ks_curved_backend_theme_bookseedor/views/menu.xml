@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record id="bundle_menu" model="ir.ui.view">
+            <field name="name">ir.ui.menu.form</field>
+            <field name="model">ir.ui.menu</field>
+            <field name="inherit_id" ref="base.edit_menu_access"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='sequence']" position="after">
+                    <field name="affinity" attrs="{'invisible': [('parent_id', '!=', False)]}"/>
+                    <field name="finance" attrs="{'invisible': [('parent_id', '!=', False)]}"/>
+                    <field name="people" attrs="{'invisible': [('parent_id', '!=', False)]}"/>
+                    <field name="project" attrs="{'invisible': [('parent_id', '!=', False)]}"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,3 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+access_vendor_group,vendor.group,model_create_multivendor,,1,1,1,1
+access_validate_group,validate.group,model_validate_pop,,1,1,1,1

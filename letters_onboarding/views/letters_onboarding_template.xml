@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="onboarding_letters_step1">
+        <t t-call="letters_onboarding.onboarding_default_steps">
+            <t t-set="title">Template</t>
+            <t t-set="description">
+                Verify and finalize the Letter templates and its content.
+            </t>
+            <t t-set="sl">1</t>
+<!--            <t t-set="btn_text">Review</t>-->
+<!--          <t t-set="cnt_text" t-value="request.env['hr.department'].search_count([])">-->
+<!--              <t t-esc="cnt_text">Departments</t>-->
+<!--            </t>-->
+<!--            <t t-set="cnt_desc">Records</t>+-->
+<!--             <t t-set="sl">1</t>-->
+<!--            <t t-set="method" t-value="'onboarding_step1_action'" />-->
+<!--            <t t-set="model" t-value="'res.company'" />-->
+<!--            <t t-set="state" t-value="state.get('onboarding_step1_state')" />-->
+        </t>
+    </template>
+
+    <template id="onboarding_letters_step2">
+        <t t-call="letters_onboarding.onboarding_default_steps">
+            <t t-set="title">Fill Data</t>
+            <t t-set="description">
+                Fill the relevant data and select employee details.
+            </t>
+            <t t-set="sl">2</t>
+<!--            <t t-set="btn_text">Review</t>-->
+<!--          <t t-set="cnt_text" t-value="request.env['hr.department'].search_count([])">-->
+<!--              <t t-esc="cnt_text">Departments</t>-->
+<!--            </t>-->
+<!--            <t t-set="cnt_desc">Records</t>+-->
+<!--             <t t-set="sl">1</t>-->
+<!--            <t t-set="method" t-value="'onboarding_step1_action'" />-->
+<!--            <t t-set="model" t-value="'res.company'" />-->
+<!--            <t t-set="state" t-value="state.get('onboarding_step1_state')" />-->
+        </t>
+    </template>
+
+    <template id="onboarding_letters_step3">
+        <t t-call="letters_onboarding.onboarding_default_steps">
+            <t t-set="title">Approve</t>
+            <t t-set="description">
+                Verify the document template and approve the template.
+            </t>
+            <t t-set="sl">3</t>
+<!--            <t t-set="btn_text">Review</t>-->
+<!--          <t t-set="cnt_text" t-value="request.env['hr.department'].search_count([])">-->
+<!--              <t t-esc="cnt_text">Departments</t>-->
+<!--            </t>-->
+<!--            <t t-set="cnt_desc">Records</t>+-->
+<!--             <t t-set="sl">1</t>-->
+<!--            <t t-set="method" t-value="'onboarding_step1_action'" />-->
+<!--            <t t-set="model" t-value="'res.company'" />-->
+<!--            <t t-set="state" t-value="state.get('onboarding_step1_state')" />-->
+        </t>
+    </template>
+
+    <template id="onboarding_letters_step4">
+        <t t-call="letters_onboarding.onboarding_default_steps">
+            <t t-set="title">Publish</t>
+            <t t-set="description">
+                Print the document or send the document by email.
+            </t>
+            <t t-set="sl">4</t>
+<!--            <t t-set="btn_text">Review</t>-->
+<!--          <t t-set="cnt_text" t-value="request.env['hr.department'].search_count([])">-->
+<!--              <t t-esc="cnt_text">Departments</t>-->
+<!--            </t>-->
+<!--            <t t-set="cnt_desc">Records</t>+-->
+<!--             <t t-set="sl">1</t>-->
+<!--            <t t-set="method" t-value="'onboarding_step1_action'" />-->
+<!--            <t t-set="model" t-value="'res.company'" />-->
+<!--            <t t-set="state" t-value="state.get('onboarding_step1_state')" />-->
+        </t>
+    </template>
+
+
+    <template id="letters_dashboard_onboarding_panel" name="onboarding.letters.onboarding.panel">
+        <t t-call="letters_onboarding.onboarding_default_container">
+            <t t-set="classes" t-value="'o_onboarding_blue'"/>
+            <t t-set="bg_image" t-value="'/onboarding/static/src/img/letters_dashboard_onboarding_bg.jpg'"/>
+<!--            <t t-set="close_method" t-value="'action_close_account_dashboard_onboarding'"/>-->
+<!--            <t t-set="close_model" t-value="'res.company'"/>-->
+<!--            <t t-set="text_completed">Congratulations! You are all set.</t>-->
+
+            <t t-call="letters_onboarding.onboarding_letters_step1" name="template" />
+            <t t-call="letters_onboarding.onboarding_letters_step2" name="fill_data" />
+            <t t-call="letters_onboarding.onboarding_letters_step3" name="approve" />
+            <t t-call="letters_onboarding.onboarding_letters_step4" name="publish" />
+
+
+        </t>
+    </template>
+</odoo>

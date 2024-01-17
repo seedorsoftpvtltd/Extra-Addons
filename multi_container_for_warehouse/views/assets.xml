@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="assets_backend_multi" name="hello_world assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript"
+                    src="/multi_container_for_warehouse/static/src/js/container_condition.js"></script>
+        </xpath>
+    </template>
+<!--    <template id="report_container_style" inherit_id="web.report_assets_pdf">-->
+<!--        <xpath expr="." position="inside">-->
+<!--            <link rel="stylesheet" type="text/css"-->
+<!--                  href="/multi_container_for_warehouse/static/src/css/print_report.css"/>-->
+<!--        </xpath>-->
+<!--    </template>-->
+</odoo>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo> 
+
+	<template id="assets_backend_dashboard" name="Dashboard Inherit" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+        	 <link rel="stylesheet" href="/modern_dashboard_odoo_axis_finance/static/src/scss/style.scss"/>
+            <script type="text/javascript" src="/modern_dashboard_odoo_axis_finance/static/src/js/sale_dashboard.js"/>
+<!--            <script type="text/javascript" src="/modern_dashboard_odoo_axis_finance/static/src/js/crm_dashboard.js"/> -->
+            <script type="text/javascript" src="/modern_dashboard_odoo_axis_finance/static/src/js/inventory_dashboard.js"/>
+            <script type="text/javascript" src="/modern_dashboard_odoo_axis_finance/static/src/js/account_dashbboard.js"/>
+            <link rel="stylesheet" href="/modern_dashboard_odoo_axis_finance/static/src/scss/lib/nv.d3.css"/>
+            <script type="text/javascript" src="/modern_dashboard_odoo_axis_finance/static/src/js/lib/d3.min.js"/>
+             <script type="text/javascript" src="/modern_dashboard_odoo_axis_finance/static/src/js/jquery.dataTables.min.js"/>
+
+
+        </xpath>
+    </template>
+
+     <template id="assets_backend" name="Hr assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                
+                <script type="text/javascript" src="/modern_dashboard_odoo_axis_finance/static/lib/charts/Chart.bundle.js"/>
+                <script type="text/javascript" src="/modern_dashboard_odoo_axis_finance/static/lib/charts/Chart.bundle.min.js"/>
+                <script type="text/javascript" src="/modern_dashboard_odoo_axis_finance/static/lib/charts/Chart.min.js"/>
+                <script type="text/javascript" src="/modern_dashboard_odoo_axis_finance/static/lib/charts/Chart.js"/>
+                <!-- Datatable scripts -->
+                <script type="text/javascript" src="/modern_dashboard_odoo_axis_finance/static/lib/dataTables/datatables.min.js"/>
+                <script type="text/javascript" src="/modern_dashboard_odoo_axis_finance/static/lib/dataTables/dataTables.buttons.min.js"/>
+                <script type="text/javascript" src="/modern_dashboard_odoo_axis_finance/static/lib/dataTables/buttons.flash.min.js"/>
+                <script type="text/javascript" src="/modern_dashboard_odoo_axis_finance/static/lib/dataTables/buttons.html5.min.js"/>
+                <script type="text/javascript" src="/modern_dashboard_odoo_axis_finance/static/lib/dataTables/buttons.print.min.js"/>
+                <script type="text/javascript" src="/modern_dashboard_odoo_axis_finance/static/lib/dataTables/pdfmake.min.js"/>
+                <script type="text/javascript" src="/modern_dashboard_odoo_axis_finance/static/lib/dataTables/vfs_fonts.js"/>
+                <script type="text/javascript" src="/modern_dashboard_odoo_axis_finance/static/lib/dataTables/jszip.min.js"/>
+                <script type="text/javascript" src="/modern_dashboard_odoo_axis_finance/static/lib/dataTables/buttons.bootstrap.min.js"/>
+                <script type="text/javascript" src="/modern_dashboard_odoo_axis_finance/static/lib/dataTables/buttons.bootstrap4.min.js"/>
+                <script type="text/javascript" src="/modern_dashboard_odoo_axis_finance/static/lib/dataTables/buttons.colVis.min.js"/>
+                <!-- Scripts to export html to pdf -->
+                <script type="text/javascript" src="/modern_dashboard_odoo_axis_finance/static/lib/jsPdf/jspdf.min.js"/>
+                <script type="text/javascript" src="/modern_dashboard_odoo_axis_finance/static/lib/jsPdf/jspdf.debug.js"/>
+                <!-- Css scripts for dashboard view and table -->
+            
+                <link rel="stylesheet" href="/modern_dashboard_odoo_axis_finance/static/lib/dataTables/datatables.min.css"/>
+                <link rel="stylesheet" href="/modern_dashboard_odoo_axis_finance/static/lib/dataTables/buttons.dataTables.min.css"/>
+            </xpath>
+        </template>
+
+<!--     <template id="index" name="Pos sales Dashboard" inherit_id="point_of_sale.index">-->
+<!--            <xpath expr="." position="inside">-->
+<!--                <link rel="stylesheet" type="text/css" href="/modern_dashboard_odoo_axis_finance/static/src/css/sales_dashboard.css"/>-->
+
+<!--                <script type="text/javascript" src="/modern_dashboard_odoo_axis_finance/static/src/js/sales_dashboard.js"/>-->
+<!--                <script type="text/javascript" src="/modern_dashboard_odoo_axis_finance/static/src/js/models.js"/>-->
+
+<!--                <script type="text/javascript" src="/modern_dashboard_odoo_axis_finance/static/src/js/lib/canvasjs.min.js"></script>-->
+
+<!--            </xpath>-->
+<!--        </template>-->
+        <template id="dashboard_assets_backend" name="map assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <script type="text/javascript" src="/modern_dashboard_odoo_axis_finance/static/src/js/backend_dashboard_js/dashboard.js"></script>
+                <script type="text/javascript" src="/modern_dashboard_odoo_axis_finance/static/src/js/backend_dashboard_js/amcharts.js"></script>
+               
+            <script type="text/javascript" src="/modern_dashboard_odoo_axis_finance/static/src/js/backend_dashboard_js/serial.js"></script>
+                <script type="text/javascript" src="/modern_dashboard_odoo_axis_finance/static/src/js/backend_dashboard_js/jquery.dataTables.min.js"></script>
+               
+                <script type="text/javascript" src="/modern_dashboard_odoo_axis_finance/static/src/js/backend_dashboard_js/daterangepicker.js"></script>
+
+                <script type="text/javascript" src="/modern_dashboard_odoo_axis_finance/static/src/js/backend_dashboard_js/pie.js"></script>
+                <script type="text/javascript" src="/modern_dashboard_odoo_axis_finance/static/src/js/backend_dashboard_js/export.js"></script>
+                <script type="text/javascript" src="/modern_dashboard_odoo_axis_finance/static/src/js/backend_dashboard_js/light.js"></script>
+                <script type="text/javascript" src="/modern_dashboard_odoo_axis_finance/static/src/js/backend_dashboard_js/list.js"></script>
+                <script type="text/javascript" src="/modern_dashboard_odoo_axis_finance/static/src/js/backend_dashboard_js/libs/blob.js/blob.js"/>
+                <script type="text/javascript" src="/modern_dashboard_odoo_axis_finance/static/src/js/backend_dashboard_js/libs/fabric.js/fabric.min.js"/>
+                <script type="text/javascript" src="/modern_dashboard_odoo_axis_finance/static/src/js/backend_dashboard_js/libs/pdfmake/pdfmake.min.js"/>
+                <script type="text/javascript" src="/modern_dashboard_odoo_axis_finance/static/src/js/backend_dashboard_js/libs/pdfmake/vfs_fonts.js"/>
+                <script type="text/javascript" src="/modern_dashboard_odoo_axis_finance/static/src/js/backend_dashboard_js/libs/jszip/jszip.min.js"/>
+                <script type="text/javascript" src="/modern_dashboard_odoo_axis_finance/static/src/js/backend_dashboard_js/libs/xlsx/xlsx.min.js"/>
+                <script type="text/javascript" src="/modern_dashboard_odoo_axis_finance/static/src/js/backend_dashboard_js/libs/FileSaver.js/FileSaver.min.js"/>
+
+                <link rel="stylesheet" type="text/css" href="/modern_dashboard_odoo_axis_finance/static/src/css/custom.css"/>
+                <link rel="stylesheet" type="text/css" href="/modern_dashboard_odoo_axis_finance/static/src/css/pos_style.css"/>
+
+                <link rel="stylesheet" type="text/css" href="/modern_dashboard_odoo_axis_finance/static/src/css/daterangepicker.css"/>
+                <link rel="stylesheet" type="text/css" href="/modern_dashboard_odoo_axis_finance/static/src/css/export.css"/>
+                <link rel="stylesheet" type="text/css" href="/modern_dashboard_odoo_axis_finance/static/src/css/style.css"/>
+            </xpath>
+        </template>
+
+
+</odoo>

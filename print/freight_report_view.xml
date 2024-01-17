@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+         <template id="CAN_template_id">
+            <t t-call="web.html_container">
+                <t t-set="doc" t-value="doc"/>
+                <t t-call="web.internal_layout">
+                    <div class="page">
+                        <t t-call="web.external_layout">
+                            #add the body here
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+        <report
+                id="CAN_report_id"
+                string="CAN Report"
+                model="freight.operation"
+                report_type="qweb-pdf"
+                file="print.CAN_template_id"
+                name="print.CAN_template_id"
+        />
+    </data>
+</odoo>

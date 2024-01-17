@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record model="ir.actions.act_window" id="action_maint_estim">
+        <field name="name">Estimate</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.estimate.job</field>
+        <field name="view_mode">form,tree</field>
+        <field name="domain">[('main_id','=',active_id)]</field>
+        <field name="context">{
+            "default_main_id":active_id,
+            "default_user_id": False,
+            }
+        </field>
+    </record>
+
+    <record id="action_maint_estim_tree" model="ir.actions.act_window.view">
+        <field eval="1" name="sequence"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="job_cost_estimate_customer.view_sale_estimate_tree_job"/>
+        <field name="act_window_id" ref="action_maint_estim"/>
+    </record>
+
+        <record model='ir.ui.view' id='maintenance_view_inhtestimate'>
+            <field name="name">maintenance.request_view</field>
+            <field name="model">maintenance.request</field>
+            <field name="inherit_id" ref="maintenance.hr_equipment_request_view_form" />
+            <field name="arch" type="xml">
+                <!--xpath expr="//field[@name='name']" position="before"-->
+                    <!--div class="oe_button_box" name="button_box"-->
+                    <xpath expr="//div[@name='button_box']" position="inside">
+                    <button icon="fa-pencil-square-o"  name="%(action_maint_estim)d" class="oe_highlight" type="action">
+                        <field name="estimate_main_count" string="Create Estimation" widget="statinfo"/>
+                    </button>
+                    <!--/div-->
+                </xpath>
+                <xpath expr="//header" position="inside">
+
+                   <button name="action_create_maintenance_estim" string="Create Estimate Order" class="oe_highlight" type="object"/><!--                    <button name="action_create_invoice" string="Create Invoice"-->
+
+                </xpath>
+				<xpath expr="//field[@name='employee_id']" position="after">
+
+                 <field name="par_id"/> <!--                    <button name="action_create_invoice" string="Create Invoice"-->
+                 <field name="amount"/>
+                </xpath>
+				
+            </field>
+        </record>
+
+
+
+    </data>
+</odoo>

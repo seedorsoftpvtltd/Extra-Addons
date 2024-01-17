@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_create_bill_form_jb" model="ir.ui.view">
+        <field name="name">create.bill.wizard.jb</field>
+        <field name="model">create.bill.wizard</field>
+        <field name="inherit_id" ref="jobbooking_service_salecost_read.view_create_bill_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/group[1]" postion="after">
+                <group>
+                    <field name="selectall"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

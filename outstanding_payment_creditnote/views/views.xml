@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+        <record id="view_partner_inherit_followup_form1" model="ir.ui.view">
+			<field name="name">res.partner</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_partner_form"/>
+			<field name="arch" type="xml">
+                <xpath expr="//page/field[@name='balance_invoice_ids']" position="after">
+					<group>
+							<field name="oustanding_invoice_ids" string="Outstanding Payments" >
+								<tree>
+									<field name="state" invisible="1"/>
+									<field name="name" string="Number"/>
+									<field name="payment_date" string="Payment Date"/>
+									<field name="currency_id"/>
+									<field name="amount"/>
+								</tree>
+							</field>
+						</group>
+						<group>
+							<field name="oustanding_credit_ids" string="Credit Note">
+								<tree>
+									<field name="state" invisible="1"/>
+									<field name="name" string="Number"/>
+									<field name="payment_date" string="Payment Date"/>
+									<field name="currency_id"/>
+									<field name="amount"/>
+								</tree>
+							</field>
+						</group>
+				</xpath>
+			</field>
+		</record>
+		<record id="view_partner_inherit_followup_form12" model="ir.ui.view">
+			<field name="name">res.partner</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_partner_form"/>
+			<field name="arch" type="xml">
+				<xpath expr="//page/field[@name='supplier_invoice_ids']" position="after">
+					<group>
+							<field name="supplier_paymnet_ids" string="Vendor Bills" >
+								<tree>
+									<field name="state" invisible="1"/>
+									<field name="name" string="Number"/>
+									<field name="payment_date" string="Payment Date"/>
+									<field name="currency_id"/>
+									<field name="amount"/>
+								</tree>
+							</field>
+						</group>
+						<group>
+							<field name="supplier_credit_ids" string="Debit Note">
+								<tree>
+									<field name="state" invisible="1"/>
+									<field name="name" string="Number"/>
+									<field name="payment_date" string="Payment Date"/>
+									<field name="currency_id"/>
+									<field name="amount"/>
+								</tree>
+							</field>
+						</group>
+				</xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

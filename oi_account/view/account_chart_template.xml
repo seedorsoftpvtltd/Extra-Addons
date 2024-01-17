@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<record id="view_account_chart_template_form" model="ir.ui.view">
+		<field name="name">account.chart.template.form</field>
+		<field name="model">account.chart.template</field>
+		<field name="inherit_id" ref="account.view_account_chart_template_form" />
+		<field name="arch" type="xml">
+			<field name="parent_id" position="after">
+				<field name="currency_id" />
+			</field>
+			<field name="property_account_receivable_id" position="attributes">
+				<attribute name="domain">[('chart_template_id','=', id)]</attribute>
+			</field>
+			<field name="property_account_payable_id" position="attributes">
+				<attribute name="domain">[('chart_template_id','=', id)]</attribute>
+			</field>
+			<field name="property_account_expense_categ_id" position="attributes">
+				<attribute name="domain">[('chart_template_id','=', id)]</attribute>
+			</field>
+			<field name="property_account_income_categ_id" position="attributes">
+				<attribute name="domain">[('chart_template_id','=', id)]</attribute>
+			</field>
+			<field name="property_account_expense_id" position="attributes">
+				<attribute name="domain">[('chart_template_id','=', id)]</attribute>
+			</field>
+			<field name="property_account_income_id" position="attributes">
+				<attribute name="domain">[('chart_template_id','=', id)]</attribute>
+			</field>
+			
+		</field>
+	</record>
+
+
+</odoo>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="tree_view_job_type" model="ir.ui.view">
+        <field name="name">Job type inherit</field>
+        <field name="model">freight.operation</field>
+        <field name="inherit_id" ref="scs_freight.view_freight_operation_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="x_job_type"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,425 @@
+<odoo>
+    <record model="report.paperformat" id="paperformat_mrp_report">
+        <field name="name">paperformat.mrp.report</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_width">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">30</field>
+        <field name="margin_right">5</field>
+        <field name="margin_bottom">10</field>
+        <field name="margin_left">5</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">20</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <report id="mrp_report"
+            model="mrp.report.wizard"
+            string="Mrp Report"
+            report_type="qweb-pdf"
+            name="mrp_pdf.mrp_report_view"
+            paperformat="paperformat_mrp_report"
+            menu="False"/>
+
+ <template id="mrp_report_view">
+    <t t-call="web.html_container">
+    <!--t t-call="web.external_layout"-->
+        <t t-set="docs" t-value="docs.with_context()"/>
+        <div class="page">
+            
+			<div class="header">
+
+				<h3 class="text-center">DAILY PRODUCTION SHEET</h3>
+            
+			</div>
+			<div class="article">
+				<table>
+					<tr>
+					<td style="font-size: 20px;"><b>Batch No: </b></td>
+					<td style="font-size: 20px;margin-right: 50px"><b>Date:</b></td>			
+					</tr>
+				</table>
+				<table>
+				<tr>
+					<td style="width: 500px;font-size: 25px;"><b>Juicer</b></td>
+				</tr>	
+				</table>
+				<table class="table-boarded" style="width: 100%;border-collapse: collapse;border: 1px solid black">
+			
+						<tr>
+							<th class="text-center" style="text-align:center;vertical-align:middle;width: 35%;padding: 15px;border: 1px solid black">Work</th>
+							<th class="text-center" style="width: 40%;padding: 15px;border: 1px solid black" colspan="2">Timing</th>
+							<th class="text-center" style="width: 25%;padding: 15px;border: 1px solid black">Labour</th>
+						</tr>
+						<tr>
+							<th class="text-centre" style="width: 35%;padding: 15px;border: 1px solid black">Juicer-Cleaning and Filtering</th>
+							<td class="text-centre" style="width: 20%;padding: 15px;border: 1px solid black"></td>
+							<td class="text-centre" style="width: 20%;padding: 15px;border: 1px solid black"></td>
+							<td class="text-centre" style="width: 25%;padding: 15px;border: 1px solid black"></td>	
+						</tr>
+						<tr>
+							<th class="text-centre" style="width: 35%;padding: 15px;border: 1px solid black">Juicer-Juice Making</th>
+							<td class="text-centre" style="width: 20%;padding: 15px;border: 1px solid black"></td>
+							<td class="text-centre" style="width: 20%;padding: 15px;border: 1px solid black"></td>
+							<td class="text-centre" style="width: 25%;padding: 15px;border: 1px solid black"></td>
+						</tr>
+						<tr>
+							<th class="text-centre" style="width: 35%;padding: 15px;border: 1px solid black">Juicer-Measuring</th>
+							<td class="text-centre" style="width: 20%;padding: 15px;border: 1px solid black"></td>
+							<td class="text-centre" style="width: 20%;padding: 15px;border: 1px solid black"></td>
+							<td class="text-centre" style="width: 25%;padding: 15px;border: 1px solid black"></td>
+						</tr>		
+				</table>
+			
+				<br></br>
+				<table>
+				<tr>
+				<td style="width: 500px;font-size:25px;"><b>Sugar Syrup</b></td>
+				</tr>	
+				</table>
+					<table class="table-boarded" style="width: 100%;;border-collapse: collapse;border: 1px solid black">
+			
+						<tr>
+							<th class="text-centre" style="text-align:center;vertical-align:middle;width: 35%;padding: 15px;border: 1px solid black">Work</th>
+							<th class="text-centre" style="text-align:center;vertical-align:middle;width: 40%;padding: 15px;border: 1px solid black" colspan="2">Timing</th>
+							<th class="text-centre" style="text-align:center;vertical-align:middle;width: 25%;padding: 15px;border: 1px solid black">Labour</th>
+						</tr>
+						<tr>
+							<th class="text-centre" style="width: 35%;padding: 15px;border: 1px solid black">Cleaning and Circulation</th>
+							<td class="text-centre" style="width: 20%;padding: 15px;border: 1px solid black"></td>
+							<td class="text-centre" style="width: 20%;padding: 15px;border: 1px solid black"></td>
+							<td class="text-centre" style="width: 25%;padding: 15px;border: 1px solid black"></td>
+						</tr>
+						<tr>
+							<th class="text-centre" style="width: 35%;padding: 15px;border: 1px solid black">Initial Heating</th>
+							<td class="text-centre" style="width: 20%;padding: 15px;border: 1px solid black"></td>
+							<td class="text-centre" style="width: 20%;padding: 15px;border: 1px solid black"></td>
+							<td class="text-centre" style="width: 25%;padding: 15px;border: 1px solid black"></td>
+						</tr>
+						<tr>
+							<th class="text-centre" style="width: 35%;padding: 15px;border: 1px solid black">Sugar addition and Heating</th>
+							<td class="text-centre" style="width: 20%;padding: 15px;border: 1px solid black"></td>
+							<td class="text-centre" style="width: 20%;padding: 15px;border: 1px solid black"></td>
+							<td class="text-centre" style="width: 25%;padding: 15px;border: 1px solid black"></td>
+						</tr>	
+						<tr>
+							<th class="text-centre" style="width: 35%;padding: 15px;border: 1px solid black">Cooling Filteration and Water addition</th>
+							<td class="text-centre" style="width: 20%;padding: 15px;border: 1px solid black"></td>
+							<td class="text-centre" style="width: 20%;padding: 15px;border: 1px solid black"></td>
+							<td class="text-centre" style="width: 25%;padding: 15px;border: 1px solid black"></td>
+						</tr>	
+					</table>
+					<br></br>
+					<table class="table-boarded" style="width: 100%;;border-collapse: collapse;border: 1px solid black">
+			
+						<tr>
+							<th class="text-centre" style="text-align:center;vertical-align:middle;width: 35%;padding: 15px;border: 1px solid black">Brix Settings</th>
+							<th class="text-centre" style="width: 40%;padding: 15px;border: 1px solid black" colspan="2">Timing</th>
+							<th class="text-centre" style="width: 25%;padding: 15px;border: 1px solid black">Labour</th>
+						</tr>
+						<tr>
+							<td class="text-centre" style="width: 35%;padding: 15px;border: 1px solid black"></td>
+							<td class="text-centre" style="width: 20%;padding: 15px;border: 1px solid black"></td>
+							<td class="text-centre" style="width: 20%;padding: 15px;border: 1px solid black"></td>
+							<td class="text-centre" style="width: 25%;padding: 15px;border: 1px solid black"></td>
+						</tr>
+					</table>
+					<br></br>
+					<table class="table-boarded" style="width: 100%;;border-collapse: collapse;border: 1px solid black">
+						<tr>
+							<th class="text-centre" style="text-align:center;vertical-align:middle;width: 35%;padding: 15px;border: 1px solid black">Homogenising</th>
+							<th class="text-centre" style="width: 40%;padding: 15px;border: 1px solid black" colspan="2">Timing</th>
+							<th class="text-centre" style="width: 25%;padding: 15px;border: 1px solid black">Labour</th>
+						</tr>
+						<tr>
+							<td class="text-centre" style="width: 35%;padding: 15px;border: 1px solid black"></td>
+							<td class="text-centre" style="width: 20%;padding: 15px;border: 1px solid black"></td>
+							<td class="text-centre" style="width: 20%;padding: 15px;border: 1px solid black"></td>
+							<td class="text-centre" style="width: 25%;padding: 15px;border: 1px solid black"></td>
+						</tr>
+					</table>
+					<br></br>
+					<table class="table-boarded" style="width: 30%;border-collapse: collapse;border: 1px solid black">
+						<tr>
+							<th class="text-centre" style="text-align:center;vertical-align:middle;width: 30%;padding: 10px;border: 1px solid black">Production Target</th>
+						</tr>
+						<tr>
+							<td class="text-centre" style="width: 30%;padding: 10px;border: 1px solid black">testing</td>
+						</tr>
+					</table>	
+					<br></br>
+					<table class="table-boarded" style="width: 30%;border-collapse: collapse;border: 1px solid black">
+						<tr>
+							<th class="text-centre" style="text-align:center;vertical-align:middle;width: 30%;padding: 10px;border: 1px solid black">Production Achieved</th>
+						</tr>			
+						<tr>
+							<td class="text-centre" style="width: 30%;padding: 10px;border: 1px solid black">test</td>
+						</tr>
+					</table>	
+					<br></br>
+					
+					<table class="table-boarded" style="width: 30%;border-collapse: collapse;border: 1px solid black">
+			
+						<tr>
+							<th class="text-centre" style="text-align:center;vertical-align:middle;width: 30%;padding: 15px;border: 1px solid black" colspan="2">Power</th>
+						</tr>
+						<tr>
+							<th class="text-centre" style="width: 15%;padding: 15px;border: 1px solid black">O.U</th>
+							<th class="text-centre" style="width: 15%;padding: 15px;border: 1px solid black">C.U</th>
+						</tr>
+						<tr>
+							<td class="text-centre" style="width: 15%;padding: 15px;border: 1px solid black">units</td>
+							<td class="text-centre" style="width: 15%;padding: 15px;border: 1px solid black">units</td>
+						</tr>
+					</table>
+					<br></br>
+					<div>
+					
+					<table class="centre" style="width: 40%;float: left;border-collapse: collapse;border: 1px solid black;margin-left: 7%;margin-right: 7%">
+						<tr>
+							<th class="text-centre" style="width: 20%;padding: 15px;border: 1px solid black">B.No</th>
+							<th class="text-centre" style="width: 20%;padding: 15px;border: 1px solid black">Time</th>
+						</tr>
+						<tr>
+							<th class="text-centre" style="width: 20%;padding: 15px;border: 1px solid black"></th>
+							<th class="text-centre" style="width: 20%;padding: 15px;border: 1px solid black"></th>
+						</tr>
+						<tr>
+							<th class="text-centre" style="width: 20%;padding: 15px;border: 1px solid black"></th>
+							<th class="text-centre" style="width: 20%;padding: 15px;border: 1px solid black"></th>
+						</tr>
+						<tr>
+							<th class="text-centre" style="width: 20%;padding: 15px;border: 1px solid black"></th>
+							<th class="text-centre" style="width: 20%;padding: 15px;border: 1px solid black"></th>
+						</tr>
+						<tr>
+							<th class="text-centre" style="width: 20%;padding: 15px;border: 1px solid black"></th>
+							<th class="text-centre" style="width: 20%;padding: 15px;border: 1px solid black"></th>
+						</tr>
+						<tr>
+							<th class="text-centre" style="width: 20%;padding: 15px;border: 1px solid black"></th>
+							<th class="text-centre" style="width: 20%;padding: 15px;border: 1px solid black"></th>
+						</tr>
+						<tr>
+							<th class="text-centre" style="width: 20%;padding: 15px;border: 1px solid black"></th>
+							<th class="text-centre" style="width: 20%;padding: 15px;border: 1px solid black"></th>
+						</tr>
+					</table>
+					
+					<table class="table-boarded" style="width: 40%;float: center;border-collapse: collapse;border: 1px solid black;margin-left: 7%;margin-right: 7%">
+						<tr>
+							<th class="text-centre" style="width: 20%;padding: 15px;border: 1px solid black">B.No</th>
+							<th class="text-centre" style="width: 20%;padding: 15px;border: 1px solid black">Time</th>
+						</tr>
+						<tr>
+							<th class="text-centre" style="width: 20%;padding: 15px;border: 1px solid black"></th>
+							<th class="text-centre" style="width: 20%;padding: 15px;border: 1px solid black"></th>
+						</tr>
+						<tr>
+							<th class="text-centre" style="width: 20%;padding: 15px;border: 1px solid black"></th>
+							<th class="text-centre" style="width: 20%;padding: 15px;border: 1px solid black"></th>
+						</tr>
+						<tr>
+							<th class="text-centre" style="width: 20%;padding: 15px;border: 1px solid black"></th>
+							<th class="text-centre" style="width: 20%;padding: 15px;border: 1px solid black"></th>
+						</tr>
+						<tr>
+							<th class="text-centre" style="width: 20%;padding: 15px;border: 1px solid black"></th>
+							<th class="text-centre" style="width: 20%;padding: 15px;border: 1px solid black"></th>
+						</tr>
+						<tr>
+							<th class="text-centre" style="width: 20%;padding: 15px;border: 1px solid black"></th>
+							<th class="text-centre" style="width: 20%;padding: 15px;border: 1px solid black"></th>
+						</tr>
+						<tr>
+							<th class="text-centre" style="width: 20%;padding: 15px;border: 1px solid black"></th>
+							<th class="text-centre" style="width: 20%;padding: 15px;border: 1px solid black"></th>
+						</tr>
+					</table>
+					</div>
+					<br></br>
+					<br></br>
+					<table class="table-boarded" style="width: 100%;float: left;border-collapse: collapse;border: 1px solid black">
+						<tr>
+							<th class="text-centre" style="width: 50%;padding: 15px;border: 1px solid black">Filling</th>
+							<th class="text-centre" style="width: 50%;padding: 15px;border: 1px solid black">Labour</th>
+						</tr>
+						<tr>
+							<th class="text-centre" style="width: 50%;padding: 15px;border: 1px solid black">Bottle Feeder</th>
+							<th class="text-centre" style="width: 50%;padding: 15px;border: 1px solid black"></th>
+						</tr>
+						<tr>
+							<th class="text-centre" style="width: 50%;padding: 15px;border: 1px solid black">Filler</th>
+							<th class="text-centre" style="width: 50%;padding: 15px;border: 1px solid black"></th>
+						</tr>
+						<tr>
+							<th class="text-centre" style="width: 50%;padding: 15px;border: 1px solid black">cap Feeder</th>
+							<th class="text-centre" style="width: 50%;padding: 15px;border: 1px solid black"></th>
+						</tr>
+						<tr>
+							<th class="text-centre" style="width: 50%;padding: 15px;border: 1px solid black">capper</th>
+							<th class="text-centre" style="width: 50%;padding: 15px;border: 1px solid black"></th>
+						</tr>
+						<tr>
+							<th class="text-centre" style="width: 50%;padding: 15px;border: 1px solid black">Cooling Tank Feeder</th>
+							<th class="text-centre" style="width: 50%;padding: 15px;border: 1px solid black"></th>
+						</tr>
+						
+					</table>
+					<div style="page-break-after: always;"/>
+					<table>
+						<tr>
+							<td style="width: 500px;font-size: 20px;"><b>Batch No: </b></td>
+							<td style="width: 500px;font-size: 20px;"><b>Date:</b></td>			
+						</tr>
+					</table>
+					<br></br>
+					<table class="table-boarded" style="width: 100%;border-collapse: collapse;border: 1px solid black">
+			
+						<tr>
+							<th class="text-center" style="text-align:center;vertical-align:middle;width: 100%;padding: 15px;border: 1px solid black" >Bottle Checking</th>
+						</tr>
+					</table>
+					<table class="table-boarded" style="width: 100%;border-collapse: collapse;border: 1px solid black">
+						<tr>
+							<th class="text-centre" style="width: 50%;padding: 15px;border: 1px solid black">Start Time</th>
+							<td class="text-centre" style="width: 50%;padding: 15px;border: 1px solid black"></td>
+						</tr>	
+		
+						<tr>
+							<td class="text-centre" style="width: 50%;padding: 15px;border: 1px solid black">End time</td>
+							<td class="text-centre" style="width: 50%;padding: 15px;border: 1px solid black"></td>
+						</tr>	
+						
+						<tr>
+							<td class="text-centre" style="width: 50%;padding: 15px;border: 1px solid black">Checked by</td>	
+							<td class="text-centre" style="width: 50%;padding: 15px;border: 1px solid black"></td>	
+						</tr>
+					</table>
+					<table class="table-boarded" style="width: 100%;border-collapse: collapse;border: 1px solid black">	
+						<tr>
+							<td class="text-centre" style="width: 25%;padding: 15px;border: 1px solid black" rowspan="4">REJECTED BOTTLES</td>
+							<td class="text-centre" style="width: 25%;padding: 15px;border: 1px solid black">Dirt Bottles</td>
+							<td class="text-centre" style="width: 25%;padding: 15px;border: 1px solid black"></td>
+						</tr>
+						<tr>
+						<td class="text-centre" style="width: 25%;padding: 15px;border: 1px solid black">Insect Bottles</td>	
+						<td class="text-centre" style="width: 25%;padding: 15px;border: 1px solid black"></td>
+						</tr>
+						<tr>
+						<td class="text-centre" style="width: 25%;padding: 15px;border: 1px solid black">Damaged Bottles</td>	
+						<td class="text-centre" style="width: 25%;padding: 15px;border: 1px solid black"></td>
+						</tr>
+						<tr>
+						<td class="text-centre" style="width: 25%;padding: 15px;border: 1px solid black">Total</td>	
+						<td class="text-centre" style="width: 25%;padding: 15px;border: 1px solid black"></td>
+						</tr>
+					</table>
+						<br></br>
+						<table class="table-boarded" style="width: 100%;border-collapse: collapse;border: 1px solid black">
+			
+							<tr>
+								<td class="text-centre" style="width: 30%;padding: 15px;border: 1px solid black">Label Pasting</td>
+								<td class="text-centre" style="width: 30%;padding: 15px;border: 1px solid black">Timing</td>
+								<td class="text-centre" style="width: 30%;padding: 15px;border: 1px solid black">Labour</td>
+							</tr>
+							<tr>
+								<td class="text-centre" style="width: 30%;padding: 15px;border: 1px solid black"></td>
+								<td class="text-centre" style="width: 30%;padding: 15px;border: 1px solid black"></td>
+								<td class="text-centre" style="width: 30%;padding: 15px;border: 1px solid black"></td>
+							</tr>
+						</table>
+						<br></br>
+						<table class="table-boarded" style="width: 100%;border-collapse: collapse;border: 1px solid black">
+			
+							<tr>
+								<td class="text-centre" style="width: 30%;padding: 15px;border: 1px solid black">Data Coding</td>
+								<td class="text-centre" style="width: 30%;padding: 15px;border: 1px solid black">Timing</td>
+								<td class="text-centre" style="width: 30%;padding: 15px;border: 1px solid black">Labour</td>
+							</tr>
+							<tr>
+								<td class="text-centre" style="width: 30%;padding: 15px;border: 1px solid black"></td>
+								<td class="text-centre" style="width: 30%;padding: 15px;border: 1px solid black"></td>
+								<td class="text-centre" style="width: 30%;padding: 15px;border: 1px solid black"></td>
+							</tr>
+						</table>
+						<br></br>
+						<table class="table-boarded" style="width: 100%;border-collapse: collapse;border: 1px solid black">
+			
+						<tr>
+							<th class="text-center" style="text-align:center;vertical-align:middle;width: 100%;padding: 15px;border: 1px solid black" colspan="2">Packing</th>
+						</tr>
+						<tr>
+							<th class="text-centre" style="width: 50%;padding: 15px;border: 1px solid black">Start Time </th>
+							<td class="text-centre" style="width: 50%;padding: 15px;border: 1px solid black"></td>
+						</tr>	
+						<tr>
+							<td class="text-centre" style="width: 50%;padding: 15px;border: 1px solid black">End time</td>
+							<td class="text-centre" style="width: 50%;padding: 15px;border: 1px solid black"></td>
+						</tr>	
+						<tr>
+							<td class="text-centre" style="width: 50%;padding: 15px;border: 1px solid black">Number of crates</td>	
+							<td class="text-centre" style="width: 50%;padding: 15px;border: 1px solid black"></td>	
+						</tr>
+						<tr>
+							<td class="text-centre" style="width: 50%;padding: 15px;border: 1px solid black">Bottle Left Unpacked</td>	
+							<td class="text-centre" style="width: 50%;padding: 15px;border: 1px solid black"></td>	
+						</tr>
+						<tr>
+							<td class="text-centre" style="width: 50%;padding: 15px;border: 1px solid black">Lab Sample</td>	
+							<td class="text-centre" style="width: 50%;padding: 15px;border: 1px solid black"></td>	
+						</tr>
+						</table>
+						<br></br>
+						
+						<table  class="table table-bordered">
+			
+						<tr>
+							<td style="border: 1px solid black">TEA TIME</td>
+							<td style="border: 1px solid black" ></td>
+							<td style="border: 1px solid black">LUNCH TIME</td>
+							<td style="border: 1px solid black" ></td>
+							<td style="border: 1px solid black">TEA TIME</td>
+							<td style="border: 1px solid black" ></td>
+						</tr>
+						</table>
+					
+					
+						
+						
+						
+						<div style="page-break-after: always;"/>
+						
+			<table class="table table-bordered">
+				 <t>
+				 <tr >
+				    <td   class="text-center" style="height:70px;border: 1px solid;padding: 8px;" colspan="4" >RAW MATERIAL 								
+				    </td>
+					<td  class="text-center" colspan="6" style="height:70px;border: 1px solid;padding: 8px;"><span>Amla : 500.00 g </span><br/><span>Sugar : 1945.63 g</span><br/><span>Citric Acid : 10.00 g</span><br/><span>KMS : 2.50 g</span></td>														
+					
+				 </tr>			 
+				 </t>	
+			</table>
+			<br></br>
+			<br></br>
+			<table class="table table-bordered">
+				 <t>
+				 <tr >
+				    <td   class="text-center" style="height:70px;border: 1px solid;padding: 8px;" colspan="4" >PURCHASE MATERIAL								
+				    </td>
+					<td  class="text-center" colspan="6" style="height:70px;border: 1px solid;padding: 8px;"><span>Production Target : 4.17 Bottles </span><br/><span>Bottle : 5</span><br/><span>Caps : 5</span><br/><span>Label : 5</span><br/><span>Shrink Wrapper : 6.25</span></td>													
+					
+				 </tr>			 
+				 </t>	
+			</table>
+						
+						
+				
+			</div>
+		</div>
+    </t>
+	</template>
+</odoo>
+			

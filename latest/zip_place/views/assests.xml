@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="ks_assets_address" inherit_id="web.assets_backend" name="address placeholder change">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" href="/zip_place/static/src/scss/layout/con_place.css"/>
+        </xpath>
+    </template>
+</odoo>

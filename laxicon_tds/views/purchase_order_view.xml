@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+	    <record model="ir.ui.view" id="purchase_order_form_tds">
+	        <field name="name">	purchase.order.form</field>
+	        <field name="model">purchase.order</field>
+	        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+	        <field name="arch" type="xml">
+                <xpath expr="//page[@name='purchase_delivery_invoice']//group[@name='planning']" position="inside">
+	        		<field name="tds_active" invisible="1"/>
+                    <field name="valid_tds" invisible="1"/>
+                    <field name="tds_id" attrs="{'required': [('valid_tds', '=', True)], 'invisible': [('valid_tds', '=', False)]}" options="{'no_create': True}"/>
+                    <field name="tds_type" attrs="{'required': [('valid_tds', '=', True)], 'invisible': [('valid_tds', '=', False)]}"/>
+                    <field name="tds_account_id" attrs="{'invisible': [('valid_tds', '=', False)]}" />
+                    <field name="nature" attrs="{'invisible': [('valid_tds', '=', False)]}"/>
+                    <field name="threshold_amt" attrs="{'invisible': [('valid_tds', '=', False)]}"/>
+                    <field name="tax_w_wo" attrs="{'invisible': [('valid_tds', '=', False)]}"/>
+                    <field name="tra_type" attrs="{'invisible': [('valid_tds', '=', False)]}"/>
+                    <field name="ind_huf_tds_per" attrs="{'invisible': [('valid_tds', '=', False)]}"/>
+                    <field name="other_tds_per" attrs="{'invisible': [('valid_tds', '=', False)]}"/>
+                    <field name="force_tds" attrs="{'invisible': [('valid_tds', '=', False)]}"/>
+                </xpath>
+                <xpath expr="//field[@name='amount_untaxed']" position="after">
+	                <field name="tds_per" attrs="{'invisible': [('valid_tds', '=', False)]}"/>
+	                <field name="tds_value" attrs="{'invisible': [('valid_tds', '=', False)]}"/>
+                </xpath>
+        	</field>
+	    </record>
+    </data>
+</odoo>

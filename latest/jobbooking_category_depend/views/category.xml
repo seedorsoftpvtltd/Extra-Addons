@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <!-- Your List View Definition -->
+        <record id="view_freight_operation_inherit" model="ir.ui.view">
+            <field name="name">freight.operation</field>
+            <field name="model">freight.operation</field>
+            <field name="inherit_id" ref="jobbooking_custom_view.freight_operation_view_form_custom_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='x_job_type']" position="before">
+                    <field name="category" string="Category" invisible="1"/>
+
+                </xpath>
+            </field>
+        </record>
+</odoo>

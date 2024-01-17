@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record model="ir.actions.act_window" id="action_maint_requisition">
+        <field name="name">Requisition</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">material.purchase.requisition</field>
+        <field name="view_mode">form,tree</field>
+        <field name="domain">[('main_id1','=',active_id)]</field>
+        <field name="context">{
+            "default_main_id1":active_id,
+            "default_user_id": False,
+            }
+        </field>
+    </record>
+
+    <record id="action_maint_requisition_tree" model="ir.actions.act_window.view">
+        <field eval="1" name="sequence"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="material_purchase_requisitions.material_purchase_requisition_tree_view"/>
+        <field name="act_window_id" ref="action_maint_requisition"/>
+    </record>
+
+        <record model='ir.ui.view' id='maintenance_viewmaint_inhtestimate'>
+        <field name="name">maintenance.requests_view</field>
+        <field name="model">maintenance.request</field>
+        <field name="inherit_id" ref="maintenance.hr_equipment_request_view_form" />
+        <field name="arch" type="xml">
+
+<!--            <xpath expr="//field[@name='name']" position="before">-->
+                <xpath expr="//div[@name='button_box']" position="inside">
+<!--                <div class="oe_button_box" name="button_box">-->
+                    <button icon="fa-pencil-square-o"  name="%(action_maint_requisition)d" class="oe_highlight" type="action">
+                        <field name="estimate_main_count1" string="Create Requisition" widget="statinfo"/>
+                    </button>
+<!--                </div>-->
+                </xpath>
+            <xpath expr="//header" position="inside">
+             <button name="action_create_purchasematerial" string="Create Requisition Order" class="oe_highlight" type="object"/><!--                    <button name="action_create_invoice" string="Create Invoice"-->
+            </xpath>
+        </field>
+        </record>
+    </data>
+</odoo>

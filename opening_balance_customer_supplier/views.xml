@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="res_partner_view_extend_field" model="ir.ui.view">
+            <field name="name">res.partner_extend.field</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='vat']" position="after">
+                     <field name="opening_balance_customer" string="Opening Balance Customer" invisible="1"/>
+                     <field name="opening_balance_total_customer" string="Opening Balance Total Customer" invisible="1"/>
+                     <field name="opening_balance_vendor" string="Opening Balance Vendor" invisible="1"/>
+                     <field name="opening_balance_total_vendor" string="Opening Balance Total Vendor" invisible="1"/>
+                </xpath>
+            </field>
+
+        </record>
+    </data>
+</odoo>
+
+

@@ -1,0 +1,757 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="freight_operation_view_form_custom_view" model="ir.ui.view">
+        <field name="name">freight.operation.custom.view</field>
+        <field name="model">freight.operation</field>
+        <field name="inherit_id" ref="scs_freight.view_freight_operation_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="replace">
+                <form string="Freight">
+                    <header>
+                        <button name="action_set_to_draft" type="object" string="Set to Draft"
+                                attrs="{'invisible': [('state', 'not in', ['cancel'])]}" class="oe_highlight"/>
+                        <button name="action_confirm" type="object" string="Confirm"
+                                attrs="{'invisible': [('state', 'not in', ['draft'])]}" class="oe_highlight"/>
+                        <button name="action_invoice" type="object" string="New Invoice"
+                                attrs="{'invisible': [('state', 'in', ['draft', 'cancel'])]}" class="oe_highlight"/>
+                        <button name="action_bill" type="object" string="New Bill"
+                                attrs="{'invisible': [('state', 'in', ['draft', 'cancel'])]}" class="oe_highlight"/>
+                        <button name="action_in_progress" type="object" string="In Progress"
+                                attrs="{'invisible': [('state', 'not in', ['confirm'])]}" class="oe_highlight"/>
+                        <button name="action_in_transit" type="object" string="In Transit"
+                                attrs="{'invisible': [('state', 'not in', ['in_progress'])]}" class="oe_highlight"/>
+                        <button name="action_recived" type="object" string="Receive"
+                                attrs="{'invisible': ['|',('state', 'not in', ['in_transit']),('direction','=','export')]}"
+                                class="oe_highlight"/>
+                        <button name="action_delivered" type="object" string="Delivered"
+                                attrs="{'invisible': ['|',('state', 'not in', ['in_transit']),('direction','=','import')]}"
+                                class="oe_highlight"/>
+                        <button name="action_cancel" type="object" string="Cancel"
+                                attrs="{'invisible': [('state', 'in', ['recived', 'cancel', 'delivered', 'intransit'])]}"
+                                class="oe_highlight"/>
+                        <field name="state" widget="statusbar" nolabel="1" statusbar_visible="draft,confirm,cancel"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="2737" type="action" class="oe_stat_button" icon="fa-bars">
+                                <field name="service_count" widget="statinfo" string="Service"/>
+                            </button>
+                            <button name="2738" type="action" class="oe_stat_button" icon="fa-credit-card">
+                                <field name="invoice_count" widget="statinfo" string="Invoice"/>
+                            </button>
+                            <!-- Bill -->
+                            <button name="2739" type="action" class="oe_stat_button" icon="fa-credit-card-alt">
+                                <field name="bill_count" widget="statinfo" string="Bill"/>
+                            </button>
+                            <button name="operation_custom_clarance" type="object" string="Custom"
+                                    class="oe_stat_button" icon="fa-file"
+                                    attrs="{'invisible': [('total_custom', '=', 0)]}">
+                                <field name="total_custom" invisible="1"/>
+                            </button>
+                        </div>
+                        <label for="name" invisible="1"/>
+                        <h2>
+                            <field name="name" readonly="1"/>
+                        </h2>
+                        <group>
+                            <group>
+                                <field name='x_job_types' invisible="1"/>
+                                <field name="x_job_type" string="Job Type" readonly="0"
+                                       options="{'no_create': True, 'no_create_edit':True}"/>
+
+                                <field name="direction" string="Segment"
+                                       attrs="{'readonly': [('state','not in',['draft','confirm'])]}"/>
+                                <field name="x_service_onchange" invisible="1"/>
+
+                                <field name="ocean_shipping" string="Service Type"
+                                       attrs="{'invisible': ['|', ('transport', '!=', 'ocean'),('direction', '=', 'customs_brokerage')],'readonly': [('state','not in',['draft'])]}"/>
+
+                                <field name="freight_air_shipping" string="Service Type"
+                                       attrs="{'invisible': ['|', ('transport', '!=', 'air'),('direction', '=', 'customs_brokerage')],'readonly': [('state','not in',['draft'])]}"/>
+
+                                <field name="land_shipping" string="Service Type"
+                                       attrs="{'invisible': ['|', ('transport', '!=', 'land'),('direction', '=', 'customs_brokerage')],'readonly': [('state','not in',['draft'])]}"/>
+
+                                <field name="x_cb_type" string="Service Type"
+                                       attrs="{'invisible': [('direction', '!=', 'customs_brokerage')],'readonly': [('state','not in',['draft'])]}"/>
+
+                                <field name="main_id" invisible="1"/>
+                                <field name="customer_id" string="Client" required="1"
+                                       context="{'res_partner_search_mode': 'customer'}"
+                                       attrs="{'readonly': [('state','not in',['draft','confirm'])]}"/>
+
+                                <field name="x_pol" string="Country Of Origin" readonly="0"
+                                       attrs="{'invisible':[('x_job_type','=',16)]}"/>
+                                <field name="x_placeofreceipt" string="Place of Receipt" readonly="0"/>
+                                <field name="loading_port_id"
+                                       attrs="{'invisible': [('transport','=','land')], 'required': [('transport', '!=','land')]}"
+                                       string="Port of Loading"/>
+                                <field name="x_carrier" readonly="0"/>
+                                <field name="x_vessel"
+                                       attrs="{'invisible': [('transport','not in',['ocean','land'])]}"/>
+                                <field name="x_mbl_no" string="MBL / MAWB No"
+                                       attrs="{'invisible': ['|', ('x_job_type', '=', 16), ('transport', '=', 'land')]}"/>
+                                <field name="x_mbl_no" string="Freight Receipt No"
+                                       attrs="{'invisible': ['|', ('x_job_type','!=',13), ('transport', '!=', 'land')]}"/>
+                                <field name="x_pp" readonly="0"
+                                       attrs="{'invisible':[('x_job_type','not in',(16,14))]}"/>
+                                <field name="x_date" string="ETD" attrs="{'invisible':[('x_job_type','!=',13)]}"/>
+
+                                <field name="x_manifest_seal" attrs="{'invisible':[('x_job_type','!=',16)]}"/>
+                                <field name="x_clientrefno" string="LPO No." readonly="0"
+                                       attrs="{'invisible': [('x_job_type','=',16)]}"/>
+                                <field name="main_id" attrs="{'invisible':[('x_job_type','==',16)]}"/>
+                                <field name="x_eta" string="ETA" readonly="0"
+                                       attrs="{'invisible':[('x_job_type','not in',(16,14))]}"/>
+
+
+                                <field name="operator_id" required="1" invisible="1"/>
+                                <field name="agent_id" string="Origin Agent"
+                                       attrs="{'required': [('x_job_type', '=',16)]}"
+                                       context="{'default_agent': True, 'res_partner_search_mode': 'supplier'}"
+                                       domain="[('agent','=',True)]"/>
+                                <field name="x_sale" readonly="0"/>
+                                <field name="x_overall_container" string="Overall Container Size"
+                                       attrs="{'invisible':[('x_job_type','!=',16)]}"/>
+                                <!--<field name="x_container" attrs="{'invisible':[('x_job_type','!=',16)]}"/>-->
+                                <!--<field name="x_container_no" attrs="{'invisible':[('x_job_type','!=',16)]}" placeholder="KMTU746627"/>-->
+                                <!--<field name="x_container_type" string="Container Type" attrs="{'invisible':[('x_job_type','!=',16)]}"/>-->
+
+
+                                <field name="x_airline" string="Truck" attrs="{'invisible': [('transport','!=','air')]}"
+                                       invisible="1"/>
+
+                                <field name="x_originadd" readonly="0" attrs="{'invisible':[('x_job_type','!=',14)]}"/>
+
+                                <!--<field name="vessel_id" attrs="{'readonly': [('state','not in',['draft'])], 'invisible': [('transport', '!=', 'ocean')]}"/>-->
+
+
+                            </group>
+
+
+                            <group>
+                                <field name="transport" attrs="{'readonly': [('state','not in',['draft'])]}"/>
+                                <field name="company_id" string="Company/Orgn" required="1"/>
+
+                                <field name="x_notify_party" string="Notify1" invisible="1"/>
+                                <field name="x_del_agent" string="Delivery Agent" invisible="1"/>
+
+                                <field name="x_shipmentno" invisible="1"/>
+
+                                <field name="consignee_id" required="1"
+                                       context="{'res_partner_search_mode': 'customer'}"
+                                       attrs="{'readonly': [('state','not in',['draft','confirm'])]}"/>
+                                <field name="x_pod" readonly="0" string="Country Of FD"
+                                       attrs="{'invisible':[('x_job_type','=',16)]}"/>
+                                <field name="x_placeofdelivery" readonly="0"/>
+                                <field name="discharg_port_id"
+                                       attrs="{'invisible': [('transport','=','land')], 'required': [('transport', '!=','land')]}"
+                                       string="Port of Discharge"/>
+                                <field name="x_pp" readonly="0" attrs="{'invisible':[('x_job_type','!=',13)]}"/>
+                                <field name="x_truck" attrs="{'invisible': [('transport','!=','land')]}"/>
+                                <field name="voyage_no" string="Voyage/Airline No"
+                                       attrs="{'invisible': [('transport','not in',['air','ocean'])]}"/>
+                                <field name="x_hbl_no" string="HBL / HAWB No"
+                                       attrs="{'invisible': ['|', ('x_job_type', '=', 16), ('transport', '=', 'land')]}"/>
+
+                                <field name="x_eta" string="ETA" readonly="0"
+                                       attrs="{'invisible':[('x_job_type','!=',13)]}"/>
+
+                                <field name="x_bayan_no" readonly="0" attrs="{'invisible':[('x_job_type','!=',13)]}"/>
+                                <field name="order_date" required="1"/>
+                                <field name="x_actual_seal" attrs="{'invisible':[('x_job_type','!=',16)]}"/>
+                                <field name="x_del_agent" attrs="{'invisible':[('x_job_type','==',16)]}"/>
+                                <field name="x_remarks" placeholder="Remarks"
+                                       attrs="{'invisible':[('x_job_type','!=',13)]}"/>
+                                <field name="x_remarks" placeholder="Remarks" readonly="0"
+                                       attrs="{'invisible':[('x_job_type','not in',(16,14))]}"/>
+
+                                <field name="x_date" string="ETD"
+                                       attrs="{'invisible':[('x_job_type','not in',(16,14))]}"/>
+
+                                <field name="x_shipper" invisible="0" attrs="{'invisible':[('x_job_type','!=',14)]}"/>
+
+                                <field name="x_destadd" readonly="0" string="Dest. Address"
+                                       attrs="{'invisible':[('x_job_type','!=',14)]}"/>
+
+
+                                <!--<field name="x_mbl_date"/>-->
+
+                                <!--<field name="x_hbl_date"/>-->
+                                <!--<field name="x_master_bl" readonly="1"/>-->
+                                <field name="x_master_bl" string="Master BL No"
+                                       attrs="{'invisible': [('x_job_type','!=',16)], 'required': [('x_job_type', '=',16)]}"/>
+
+                                <!--<field name="x_port_final_des" string="Port of Final Dtn" readonly="0"/>-->
+
+
+                            </group>
+                            <!--</group>-->
+                            <!--<group>-->
+                            <group string="General" invisible="1">
+
+
+                                <!--                             <field name="loading_port_id" required="1" string="Place of Landing"/>-->
+
+
+                                <!--                            <field name="x_eta" string="ETA" readonly="0"/>-->
+
+
+                                <field name="x_airline" attrs="{'invisible': [('transport','!=','air')]}"/>
+                                <field name="x_truck" attrs="{'invisible': [('transport','!=','land')]}"/>
+                                <field name="x_pp" readonly="0"/>
+                                <field name="x_clientrefno" string="LPO No" readonly="0"/>
+                                <field name="x_bayan_no" readonly="0" attrs="{'invisible':[('x_job_type','!=',13)]}"/>
+                            </group>
+
+                            <group string="Container Details" attrs="{'invisible':[('x_job_type','!=',16)]}">
+                                <field name="x_container_no" attrs="{'invisible':[('x_job_type','!=',16)]}"
+                                       placeholder="KMTU746627"/>
+                                <!--<field name="x_container" string="Container ID" attrs="{'invisible':[('x_job_type','!=',16)]}"/>-->
+                                <field name="x_container" string="Container ID" invisible="1"/>
+                                <field name="operator_id" required="1" invisible="1"/>
+
+                            </group>
+                            <group attrs="{'invisible':[('x_job_type','!=',16)]}">
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <field name="x_overall_container" attrs="{'invisible':[('x_job_type','!=',16)]}"/>
+                                <field name="x_container_type" string="Container Type"
+                                       attrs="{'invisible':[('x_job_type','!=',16)]}"/>
+
+                                <field name="x_remarks" placeholder="Remarks" invisible="1"/>
+                                <field name="x_hbllink" default_order="create_date asc" invisible="1"/>
+                                <field name="voyage_no" invisible="1"/>
+                                <!--<field name="vessel_id" attrs="{'readonly': [('state','not in',['draft'])], 'invisible': [('transport', '!=', 'ocean')]}"/>-->
+                                <field name="x_vessel" invisible="1"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Consignment Details" attrs="{'invisible':[('x_job_type','in',(12,14))]}">
+                                <field name="operation_line_ids" string="Consignment">
+                                    <form>
+                                        <group>
+                                            <field name="x_hbl" attrs="{'invisible':[('parent.x_job_type','!=',16)]}"/>
+                                            <field name="x_shipper"
+                                                   attrs="{'invisible':[('parent.x_job_type','!=',16)]}"/>
+
+                                            <field name="partner_id" width="600"
+                                                   attrs="{'invisible':[('parent.x_job_type','!=',16)], 'required': [('parent.x_job_type', '=',16)]}"/>
+                                            <field name="x_truck" width="600"
+                                                   attrs="{'invisible': [('parent.transport','!=','land')]}"/>
+                                            <field name="container_id" string="Container ID" width="600"
+                                                   attrs="{'invisible': ['|',('parent.transport','=','land'),('parent.x_job_type','=',16)]}"/>
+                                            <field name="x_container_number" readonly="0" string="Container No"
+                                                   width="600"
+                                                   attrs="{'invisible': ['|',('parent.transport','!=','ocean'),('parent.x_job_type','=',16)]}"
+                                                   options="{'no_create': True, 'no_open': True}"/>
+                                            <field name="x_cont_type" width="600"
+                                                   attrs="{'invisible': ['|',('parent.transport','!=','ocean'),('parent.x_job_type','=',16)]}"/>
+                                            <field name="qty" string="No of pcs" sum="Total Cost"/>
+                                            <field name="x_uom" attrs="{'invisible':[('parent.x_job_type','!=',16)]}"/>
+                                            <!--<field name="product_id" required="1" width="600" string="Commodity Description" domain="[('type','=', 'product'), ('x_medium', '=', parent.x_job_type),('x_segment', '=', parent.direction),('x_ocean_shipping', '=', parent.ocean_shipping),('x_land_shipping', '=', parent.land_shipping)]"/>-->
+                                            <field name="product_id" required="1" width="600"
+                                                   domain="[('type','=', 'product')]" string="Commodity Description"/>
+                                            <field name="price_list_id" required="0" width="600" invisible="1"/>
+                                            <field name="billing_on" required="0" width="600" invisible="1"/>
+                                            <field name="exp_gross_weight" string="Gross Weight(kg)"
+                                                   attrs="{'invisible':[('parent.x_job_type','=',16)]}" width="600"
+                                                   sum="Total Weight"/>
+                                            <field name="exp_vol" attrs="{'invisible':[('parent.x_job_type','=',16)]}"
+                                                   width="600" sum="Total Volume" string="Volume(m3)"/>
+                                            <field name="x_volume" attrs="{'invisible':[('parent.x_job_type','=',16)]}"
+                                                   width="600" invisible="1" readonly="0"/>
+                                            <field name="x_netweight" string="Net Weight(kg)"
+                                                   attrs="{'invisible':[('parent.x_job_type','=',16)]}" width="600"
+                                                   sum="Net Weight" readonly="0"/>
+                                            <field name="x_volumeweight" string="Volume Weight(kg)"
+                                                   attrs="{'invisible':[('parent.x_job_type','=',16)]}" width="600"
+                                                   sum="Volume Weight" readonly="0"/>
+                                            <!--<field name="exp_vol" attrs="{'invisible':[('parent.x_job_type','!=',16)]}" width="600" sum="Total Volume" string="Volume(m3)"/>-->
+                                            <field name="x_netweight"
+                                                   attrs="{'invisible':[('parent.x_job_type','!=',16)]}" string="Weight"
+                                                   width="600" sum="Net Weight" readonly="0"/>
+
+                                            <field name="x_volumeweight" digits="[5,3]"
+                                                   attrs="{'invisible':[('parent.x_job_type','!=',16)]}" string="Volume"
+                                                   width="600" sum="Volume Weight" readonly="0"/>
+
+                                            <field name="price" width="600"
+                                                   attrs="{'invisible': [('billing_on','=','lumpsum')]}" invisible="1"/>
+                                            <field name="sale_price" sum="Total Cost"
+                                                   attrs="{'readonly': [('billing_on','!=','lumpsum')]}" width="600"
+                                                   invisible="1"/>
+
+                                            <field name="x_remark" width="600" readonly="0"/>
+                                        </group>
+                                    </form>
+                                    <tree>
+                                        <field name="x_hbl"
+                                               attrs="{'column_invisible':[('parent.x_job_type','in',(13))]}"/>
+                                        <field name="partner_id" width="600" required="1"
+                                               attrs="{'column_invisible':[('parent.x_job_type','!=',16)]}"/>
+                                        <field name="x_truck" width="600"
+                                               attrs="{'column_invisible': [('parent.transport','!=','land')]}"/>
+                                        <field name="container_id" string="Container ID" width="600"
+                                               attrs="{'column_invisible':['|',('parent.transport','=','land'), ('parent.x_job_type','=',16)]}"/>
+                                        <field name="x_container_number" readonly="0" string="Container No" width="600"
+                                               attrs="{'column_invisible':  ['|',('parent.transport','!=','ocean'), ('parent.x_job_type','=',16)]}"
+                                               options="{'no_create': True, 'no_open': True}"/>
+                                        <field name="x_cont_type" width="600"
+                                               attrs="{'column_invisible':['|',('parent.transport','!=','ocean'),('parent.x_job_type','=',16)]}"
+                                               options="{'no_create': True, 'no_open': True}"/>
+
+                                        <!--<field name="container_id"  string="Container ID"  width="600" attrs="{'invisible': [('parent.transport','=','land')]}"/>-->
+                                        <!--<field name="x_container_number" string="Container No" width="600" attrs="{'invisible': [('parent.transport','!=','ocean')]}" options="{'no_create': True, 'no_open': True}"/>-->
+                                        <!--  <field name="x_cont_type"  width="600" attrs="{'invisible': ['|',('parent.transport','!=','ocean'),('parent.x_job_type','=',16)]}" options="{'no_create': True, 'no_open': True}"/>                                  -->
+                                        <field name="qty" string="No of Pcks" sum="Total Cost"/>
+                                        <field name="product_id" required="1" width="600" string="Description"
+                                               domain="[('categ_id','=',202)]"/>
+                                        <field name="price_list_id" required="0" width="600" invisible="1"/>
+                                        <!--<field name="exp_gross_weight" width="600" sum="Total Weight"/>-->
+                                        <!--<field name="x_netweight" width="600" sum="Net Weight"/>-->
+                                        <!--<field name="x_volumeweight" width="600" sum="Volume Weight"/>-->
+                                        <!--<field name="exp_vol" width="600" sum="Total Volume" string="Volume(m3)" />-->
+                                        <!--   <field name="x_volume" width="600" invisible="1"/>-->
+                                        <field name="exp_gross_weight"
+                                               attrs="{'column_invisible':[('parent.x_job_type','in',(16))]}"
+                                               width="600" sum="Total Weight"/>
+                                        <field name="exp_vol"
+                                               attrs="{'column_invisible':[('parent.x_job_type','in',(16))]}"
+                                               width="600" sum="Total Volume" string="Volume(m3)"/>
+                                        <field name="x_volume"
+                                               attrs="{'column_invisible':[('parent.x_job_type','in',(16))]}"
+                                               width="600" invisible="1" readonly="0"/>
+                                        <field name="x_netweight"
+                                               attrs="{'coulmn_invisible':[('parent.x_job_type','=',16)]}" width="600"
+                                               sum="Net Weight" readonly="0"/>
+                                        <field name="x_volumeweight"
+                                               attrs="{'coulmn_invisible':[('parent.x_job_type','=',16)]}" width="600"
+                                               sum="Volume Weight" readonly="0"/>
+                                        <!--<field name="exp_vol" attrs="{'invisible':[('parent.x_job_type','!=',16)]}" width="600" sum="Total Volume" string="Volume(m3)"/>-->
+                                        <field name="x_netweight"
+                                               attrs="{'coulmn_invisible':[('parent.x_job_type','!=',16)]}"
+                                               invisible="1" string="Weight" width="600" sum="Net Weight" readonly="0"/>
+
+                                        <field name="x_volumeweight" digits="[5,3]"
+                                               attrs="{'coulmn_invisible':[('parent.x_job_type','!=',16)]}"
+                                               invisible="1" string="Volume" width="600" sum="Volume Weight"
+                                               readonly="0"/>
+
+                                        <field name="price" width="600"
+                                               attrs="{'readonly': [('billing_on','=','lumpsum')]}" invisible="1"/>
+                                        <field name="sale_price" sum="Total Cost"
+                                               attrs="{'readonly': [('billing_on','!=','lumpsum')]}" width="600"
+                                               invisible="1"/>
+                                        <field name="billing_on" required="1" width="600" invisible="1"/>
+                                        <field name="x_remark" width="600" readonly="0"/>
+                                    </tree>
+                                </field>
+                            </page>
+
+                            <!--   <page string="Consignment Details" attrs="{'invisible': [('transport', '!=', 'land')]}">-->
+                            <!--   <field name="x_consignment_road" invisible="0">-->
+                            <!--    <tree editable="bottom">-->
+                            <!--      <field name="x_truck" width="100"/>-->
+                            <!--      <field name="x_typee" width="100"/>-->
+                            <!--       <field name="x_description" width="100"/>-->
+                            <!--      <field name="x_pkgs" width="100"/>-->
+                            <!--        <field name="x_length" width="100"/>-->
+                            <!--        <field name="x_breath" width="100"/>-->
+                            <!--        <field name="x_height" width="100"/>-->
+                            <!--        <field name="x_grossweight" width="100"/>-->
+                            <!--        <field name="x_volumeweight" width="100"/>-->
+                            <!--        <field name="x_billing_on" width="100"/>-->
+                            <!--        <field name="x_remarks" width="100"/>-->
+                            <!--    </tree>-->
+                            <!-- </field>-->
+                            <!--</page>-->
+
+                            <page string="Services">
+                                <field name="service_ids">
+                                    <form>
+                                        <group>
+                                            <group string='Charge'>
+                                                <field name='x_ofd_type' readonly="0"/>
+                                                <!--<field name="product_id" string="Charges" required="1"   domain="[('type','=', 'service'), ('x_medium', '=', parent.x_job_type), ('x_transport', '=', parent.transport), ('x_segment', '=', parent.direction),'|',('x_ocean_shipping', '=', parent.ocean_shipping), ('x_ocean_shipping', '=', parent.x_cb_type),'|',('x_land_shipping', '=', parent.x_cb_type), ('x_land_shipping', '=', parent.land_shipping),'|',('x_air_shipping', '=', parent.freight_air_shipping),('x_air_shipping', '=', parent.x_cb_type)]"/>-->
+                                                <field name="product_id" string="Charges" required="1"
+                                                       domain="[('type','=', 'service'), ('x_medium', '=', parent.x_job_type), ('x_transport', '=', parent.transport), ('x_segment', '=', parent.direction),'|',('x_ocean_shipping', '=', parent.ocean_shipping), ('x_ocean_shipping', '=', parent.x_cb_type),'|',('x_land_shipping', '=', parent.x_cb_type), ('x_land_shipping', '=', parent.land_shipping),'|',('x_air_shipping', '=', parent.freight_air_shipping),('x_air_shipping', '=', parent.x_cb_type)]"/>
+                                                <field name="x_description" readonly="0"/>
+                                                <field name="qty" required="1"/>
+                                                <field name="uom_id"/>
+                                                <!--<field name="sale_total"/>-->
+
+                                                <!--<field name='remark'/>-->
+                                                <!--<field name="x_currency"/>-->
+                                                <!--<field name="x_exchange"/>-->
+                                                <!--<field name="x_costcurrency"/>-->
+                                                <!--<field name="x_costexchange"/>-->
+                                            </group>
+                                            <group string='Sale'>
+                                                <field name="vendor_id" required="1"/>
+                                                <field name="revoke_invoice" invisible="1"/>
+                                                <field name='isinvoice' invisible="1"/>
+                                                <field name="x_list_price" digits="[5,3]"
+                                                       attrs="{'readonly': [('isinvoice', '=', True),('revoke_invoice', '=', False)]}"/>
+                                                <field name='x_currency'
+                                                       attrs="{'readonly': [('isinvoice', '=', True),('revoke_invoice', '=', False)]}"/>
+                                                <field name='x_exchange' digits="[5,3]"
+                                                       attrs="{'readonly': [('isinvoice', '=', True),('revoke_invoice', '=', False)]}"/>
+
+                                                <field name="x_untaxed_amount_sale" digits="[5,3]" invisible="0"
+                                                       attrs="{'readonly': [('isinvoice', '=', True),('revoke_invoice', '=', False)]}"/>
+                                                <field name='x_sale_tax' widget="many2many_tags"
+                                                       domain="[('type_tax_use','=','sale')]"
+                                                       attrs="{'readonly': [('isinvoice', '=', True),('revoke_invoice', '=', False)]}"/>
+
+                                                <field name='x_sale_taxedamount' digits="[5,3]"
+                                                       attrs="{'readonly': [('isinvoice', '=', True),('revoke_invoice', '=', False)]}"/>
+
+                                                <field name='x_sale_total' digits="[5,3]"
+                                                       attrs="{'readonly': [('isinvoice', '=', True),('revoke_invoice', '=', False)]}"/>
+
+                                                <field name="x_sale_remarks"
+                                                       attrs="{'invisible': [('parent.x_job_type','in',(12,16))],'readonly': [('isinvoice', '=', True),('revoke_invoice', '=', False)]}"/>
+                                            </group>
+                                            <group string='Cost'>
+                                                <field name="revoke_bill" invisible="1"/>
+                                                <field name='isbill' invisible="1"/>
+                                                <field name="vendor_id" string="Cost Organization" required="0"
+                                                       attrs="{'readonly': [('isbill', '=', True),('revoke_bill', '=', False)]}"/>
+                                                <field name="x_cost_price" digits="[5,3]"
+                                                       attrs="{'readonly': [('isbill', '=', True),('revoke_bill', '=', False)]}"/>
+                                                <field name='x_costcurrency'
+                                                       attrs="{'readonly': [('isbill', '=', True),('revoke_bill', '=', False)]}"/>
+                                                <field name='x_costexchange' digits="[5,3]"
+                                                       attrs="{'readonly': [('isbill', '=', True),('revoke_bill', '=', False)]}"/>
+
+                                                <field name="x_untaxed_amount_cost" invisible="1" digits="[5,3]"
+                                                       attrs="{'readonly': [('isbill', '=', True),('revoke_bill', '=', False)]}"/>
+                                                <field name="x_tax_ids" domain="[('type_tax_use','=','purchase')]"
+                                                       widget="many2many_tags"
+                                                       attrs="{'readonly': [('isbill', '=', True),('revoke_bill', '=', False)]}"/>
+                                                <field name="x_taxedamount" digits="[5,3]"
+                                                       attrs="{'readonly': [('isbill', '=', True),('revoke_bill', '=', False)]}"/>
+
+
+                                                <field name="x_cost_total" digits="[5,3]"
+                                                       attrs="{'readonly': [('isbill', '=', True),('revoke_bill', '=', False)]}"/>
+                                                <field name="x_cost_remarks"
+                                                       attrs="{'invisible': [('parent.x_job_type','in',(12,16))],'readonly': [('isbill', '=', True),('revoke_bill', '=', False)]}"/>
+
+                                            </group>
+                                        </group>
+                                    </form>
+                                    <tree>
+                                        <field name="x_ofd_type" width="500" readonly="0"/>
+                                        <field name="product_id" domain="[('categ_id','=',202)]" string="Service"
+                                               required="1" width="800"/>
+                                        <field name="x_description" width="500"/>
+                                        <field name="qty" width="500" readonly="0"/>
+                                        <field name="uom_id" width="500" readonly="0"/>
+                                        <field name="vendor_id" string="Customer" width="500"/>
+                                        <field name="x_costcurrency" string="Cost Currency" readonly="0" width="500"
+                                               options="{'no_create': True, 'no_create_edit':True}"/>
+                                        <field name="x_costexchange" digits="[5,3]" readonly="0" width="500"/>
+
+                                        <field name="x_cost_price" digits="[5,3]" required="0" readonly="0"
+                                               width="500"/>
+                                        <field name='x_tax_ids' widget="many2many_tags"
+                                               domain="[('type_tax_use','=','purchase')]"/>
+                                        <field name='x_taxedamount' digits="[5,3]"/>
+                                        <field name="x_cost_total" digits="[5,3]" readonly="0" width="500"
+                                               sum="Total Cost"/>
+
+                                        <field name="x_currency" readonly="0" string="Sale Currency" width="500"
+                                               options="{'no_create': True, 'no_create_edit':True}"/>
+                                        <field name="x_exchange" digits="[5,3]" readonly="0" width="500"
+                                               string="Sales Ex rate"/>
+                                        <field name="x_list_price" readonly="0" digits="[5,3]" width="500"/>
+                                        <field name='x_sale_tax' readonly="0" domain="[('type_tax_use','=','sale')]"/>
+                                        <!--<field name='x_sale_tax'/>-->
+                                        <field name='x_sale_taxedamount' digits="[5,3]" readonly="0"/>
+                                        <!--<field name='cost_price'/>-->
+                                        <!--<field name="operation_id" invisible="1"/>-->
+                                        <!--<field name="list_price" invisible="1" readonly="0"   width="500" />-->
+                                        <field name="x_sale_total" readonly="0" width="500" digits="[5,3]"
+                                               sum="Total Cost"/>
+<!--                                        <field name="sale_total" invisible="1"  readonly="0" width="400" sum="Total Cost"/>-->
+
+
+                                        <!--<field name='x_tax_ids'/>-->
+
+
+                                        <!--<field name="cost_total" invisible="1" readonly="0" width="400" sum="Total Cost"/>-->
+
+
+                                    </tree>
+                                </field>
+                            </page>
+
+                            <page string="Accounts">
+                                <table class="table table-bordered">
+                                    <tr class="row_modifier row_hover">
+                                        <th style="text-align:left;width:24%;background-color:gainsboro;"/>
+                                        <th style="text-align:left;width:24%;background-color:gainsboro;text-align:center;">
+                                            <h3>Invoice (Receivable)</h3>
+                                        </th>
+                                        <th style="text-align:left;width:24%;background-color:gainsboro;text-align:center;">
+                                            <h3>Bill (Payable)</h3>
+                                        </th>
+                                        <th style="text-align:left;width:24%;background-color:gainsboro;text-align:center;">
+                                            <h3>Margin</h3>
+                                        </th>
+                                    </tr>
+                                    <tr class="row_modifier row_hover">
+                                        <th style="text-align:left;width:24%;background-color:gainsboro;text-align:center;">
+                                            <h3>Expected Payment</h3>
+                                        </th>
+                                        <td style="text-align:left;width:24%">
+                                            <field name="exp_inv_payment"/>
+                                        </td>
+                                        <td style="text-align:left;width:24%">
+                                            <field name="exp_bill_payment"/>
+                                        </td>
+                                        <td style="text-align:left;width:24%">
+                                            <field name="exp_payment_margin"/>
+                                        </td>
+                                    </tr>
+                                    <tr class="row_modifier row_hover">
+                                        <th style="text-align:left;width:24%;background-color:gainsboro;text-align:center;">
+                                            <h3>Actual Payment</h3>
+                                        </th>
+                                        <td style="text-align:left;width:24%">
+                                            <field name="act_inv_payment"/>
+                                        </td>
+                                        <td style="text-align:left;width:24%">
+                                            <field name="act_bill_payment"/>
+                                        </td>
+                                        <td style="text-align:left;width:24%">
+                                            <field name="act_payment_margin"/>
+                                        </td>
+                                    </tr>
+                                    <tr class="row_modifier row_hover">
+                                        <th style="text-align:left;width:24%;background-color:gainsboro;text-align:center;">
+                                            <h3>Amount Due</h3>
+                                        </th>
+                                        <td style="text-align:left;width:24%">
+                                            <field name="inv_amount_due"/>
+                                        </td>
+                                        <td style="text-align:left;width:24%">
+                                            <field name="bill_amount_due"/>
+                                        </td>
+                                        <td style="text-align:left;width:24%;background-color:gainsboro;"/>
+                                    </tr>
+                                </table>
+                            </page>
+
+                            <page string="Shipment Details">
+                                <group>
+                                    <group>
+                                        <field name="x_no_ctns"/>
+                                        <field name="x_container_no" attrs="{'invisible':[('x_job_type','!=',13)]}"
+                                               placeholder="KMTU746627"/>
+                                        <field name="x_pol" invisible="1"/>
+                                        <field name="x_commodity"/>
+                                        <field name="x_dim"/>
+                                        <field name="x_shipper"/>
+                                        <field name="x_shipmentno"/>
+
+                                    </group>
+                                    <group>
+                                        <field name="x_equip"/>
+                                        <field name="x_no_pallet"/>
+                                        <field name="x_pod" invisible="1"/>
+                                        <field name="x_network"/>
+                                        <field name="x_route"/>
+
+                                    </group>
+                                </group>
+                                <group>
+                                    <group string="Freight Charges">
+                                        <field name="x_freight_charges"/>
+                                        <field name="x_exw"/>
+                                        <field name="x_insurance"/>
+                                    </group>
+                                    <group string="Valid User">
+                                        <field name="x_approved_by" readonly="0"/>
+                                        <field name="x_confirmed_by" readonly="0"/>
+                                    </group>
+                                </group>
+                                <group>
+                                    <group string="Carrier Details">
+                                        <field name="x_carrier" readonly="0"/>
+                                        <field name="x_carrier_cutoff" readonly="0"/>
+                                        <field name="x_departure_date" readonly="0"/>
+
+                                    </group>
+                                    <group string="Proof Of Delivery" attrs="{'invisible':[('x_job_type','!=',13)]}">
+                                        <field name="x_boe_no"/>
+                                        <field name="x_house_bl"/>
+                                        <field name="x_shipment_ref"/>
+                                    </group>
+                                </group>
+                                <group>
+                                    <group string="Proof Of Delivery" attrs="{'invisible':[('x_job_type','!=',13)]}">
+                                        <field name="x_delivery_received_by"/>
+                                        <field name="x_truck_no"/>
+                                        <field name="x_driver_name"/>
+                                        <field name="x_truck_out_date"/>
+                                        <field name="x_delivery_date"/>
+
+                                    </group>
+                                    <group string="Proof Of Delivery" attrs="{'invisible':[('x_job_type','!=',13)]}">
+                                        <field name="x_cargo_received_by"/>
+                                        <field name="x_cargo_party_name"/>
+                                        <field name="x_sign_seal"/>
+                                        <field name="x_cargo_date"/>
+                                    </group>
+                                </group>
+                                <!--</group>-->
+                            </page>
+
+                            <!--<page string="Document Checklist">-->
+                            <!--      <field name="x_custom_document_type"/>-->
+                            <!--</page>-->
+
+                            <page name="x_custom_document_type" string="Document Checklist">
+
+                                <field name="x_custom_document_type" invisible="0">
+                                    <tree editable="bottom">
+                                        <field name="x_name1" required="1" width="200"
+                                               options="{'no_create': True, 'no_create_edit':True}"/>
+                                        <field name="x_collected_date" width="100"/>
+                                        <field name="x_submitted_date" width="100"/>
+                                        <field name="x_collected_by" width="100"/>
+                                        <field name="x_submitted_by" width="100"/>
+                                        <field name="x_deadline_date" width="100"/>
+                                        <field name="x_assigned_to" width="100"/>
+                                        <field name="x_original" width="100"/>
+                                        <field name="x_copy" width="100"/>
+                                    </tree>
+                                </field>
+
+                            </page>
+
+                            <page name="x_custom_type" string="Documentation Dates">
+
+                                <field name="x_custom_type" invisible="0">
+                                    <tree editable="bottom">
+                                        <field name="x_name1" options="{'no_create': True, 'no_create_edit':True}"
+                                               required="1" width="200"/>
+                                        <field name="x_date" width="100"/>
+                                    </tree>
+                                </field>
+
+                            </page>
+
+                            <page string="MBL and HBL Instructions">
+                                <group string="MBL Instructions">
+                                    <field name="x_mbl_ins"/>
+                                    <field name="x_notify_party" string="Notify Party" invisible="1"/>
+
+                                </group>
+                                <group string="HBL Instructions">
+                                    <field name="x_hbl_ins"/>
+                                    <field name="x_notify_party1"/>
+                                </group>
+                            </page>
+
+                            <!--<page string="Agents" context="{'default_agent': True, 'res_partner_search_mode': 'supplier'}" domain="[('agent','=',True)]" attrs="{'readonly': [('state','not in',['draft','confirm'])]}">-->
+                            <!--  <field name="x_agent"/>-->
+                            <!--</page>-->
+
+                            <page string="Organization">
+
+                                <group>
+                                    <field name="x_organization" options="{'no_create': True, 'no_create_edit':True}"/>
+                                </group>
+                                <group>
+                                    <field name="x_notify_party" string="Notify1" readonly="0"/>
+                                    <field name="x_shipper"/>
+                                    <field name="customer_id"/>
+                                    <field name="consignee_id"/>
+
+                                </group>
+                            </page>
+
+                            <page string="Routes">
+                                <field name="routes_ids"
+                                       attrs="{'readonly': [('state','in',['draft','recived','delivered','cancel'])]}">
+                                    <tree>
+                                        <field name="route_operation"/>
+                                        <field name="source_location"/>
+                                        <field name="dest_location"/>
+                                        <field name="transport" string="Mode of Transport"/>
+                                        <field name="cost_total" sum="Total Cost" digits="[5,3]"/>
+                                        <field name="sale_total" sum="Total Sale" digits="[5,3]"/>
+                                    </tree>
+                                </field>
+                            </page>
+
+                            <page string="Information" invisible="1">
+                                <group>
+                                    <group>
+                                        <field name="exp_send_date"
+                                               attrs="{'invisible': [('direction', '!=', 'export')], 'readonly': [('state','in',['cancel','recived','delivered'])]}"/>
+                                        <field name="exp_rec_date"
+                                               attrs="{'invisible': [('direction', '!=', 'import')], 'readonly': [('state','in',['cancel','recived','delivered'])]}"/>
+                                        <field name="opp_party_id"
+                                               attrs="{'readonly': [('state','in',['cancel','recived','delivered'])]}"/>
+                                    </group>
+                                    <group>
+                                        <field name="act_send_date"
+                                               attrs="{'invisible': [('direction', '!=', 'export')], 'readonly': [('state','in',['cancel','recived','delivered'])]}"/>
+                                        <field name="act_rec_date"
+                                               attrs="{'invisible': [('direction', '!=', 'import')], 'readonly': [('state','in',['cancel','recived','delivered'])]}"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page name="x_custom_id" string="Import Clearance">
+                                <field name="x_custom_id" invisible="0">
+                                    <tree editable="bottom">
+                                        <field name="x_customcleanace"/>
+
+                                    </tree>
+                                </field>
+                            </page>
+
+
+                            <page string="Tracking">
+                                <field name="tracking_ids"
+                                       attrs="{'readonly': [('state','in',['draft','recived','delivered','cancel'])]}">
+                                    <tree>
+                                        <field name="source_location_id"/>
+                                        <field name="dest_location_id"/>
+                                        <field name="date"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Terms and Conditions">
+                                <group>
+                                    <field name="note" string="Credit Terms(SOP)"
+                                           attrs="{'readonly':[('state','in',['cancel','recived','delivered'])]}"/>
+                                </group>
+                                <group>
+                                    <field name="x_Terms" string="Terms and Conditions(CAN)" readonly="0"/>
+                                </group>
+
+                            </page>
+                            <page string="Gross Profit">
+                                <group>
+                                    <field name="x_salessum" string="Sales Organization" invisible="0" digits="[5,3]"/>
+                                    <field name="x_costtsum" string="Cost Organization" invisible="0" digits="[5,3]"/>
+                                    <field name="x_grossprofit" digits="[5,3]"/>
+                                    <field name="x_ratio" string="Gross Profit %"/>
+
+
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </xpath>
+        </field>
+    </record>
+</odoo>

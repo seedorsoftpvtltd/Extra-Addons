@@ -1,0 +1,119 @@
+<odoo>
+    <data>
+        <report
+            id="stock_gate_visitor_pass_report"
+            model="stock.picking"
+            string="Gate Visitor Report"
+            name="odoo_delivery_gate_pass.stock_gate_visitor_report_view" 
+            file="odoo_delivery_gate_pass.stock_gate_visitor_report_view"
+            report_type="qweb-pdf" />
+
+        <template id="stock_gate_visitor_report_view">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="web.internal_layout">
+                        <div class="page">
+                            <div class="well">
+                            <h1 class="text-center">Gate Pass</h1>
+                            <p><h2><span t-field="doc.custom_gate_pass_id.gate_name"/></h2></p><br/>
+                            <table class="table .table-striped">
+                                    <tr>
+                                        <td colspan="4"><h4><b>Gate Pass Information</b></h4></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Visitor Name</strong></td>
+                                        <td><span t-field="doc.custom_gate_pass_id.gate_visitor_name"/></td>
+                                        <td><strong>Visitor Company</strong></td>
+                                        <td><span t-field="doc.custom_gate_pass_id.gate_visitor_company_id"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Phone/Mobile</strong></td>
+                                        <td><span t-field="doc.custom_gate_pass_id.gate_mobile_number"/></td>
+                                        <td><strong>Email</strong></td>
+                                        <td><span t-field="doc.custom_gate_pass_id.gate_email"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Purpose</strong></td>
+                                        <td colspan="3"><span t-field="doc.custom_gate_pass_id.gate_purpose"/></td>
+                                    </tr>
+                                    </table>
+                                    <table class="table .table-striped">
+                                    <tr>
+                                        <td colspan="2"><h4><b>In Out Detail</b></h4></td>
+                                        <td colspan="2"><h4><b>Contact Information</b></h4></td>
+                                    </tr>
+                                        <tr>
+                                        <td><strong>Date Time In</strong></td>
+                                        <td><span t-field="doc.custom_gate_pass_id.gate_in_datetime"/></td>
+                                        <td><strong>Employee</strong></td>
+                                        <td><span t-field="doc.custom_gate_pass_id.gate_partner_id"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Date Time Out</strong></td>
+                                        <td><span t-field="doc.custom_gate_pass_id.gate_out_datetime"/></td>
+                                        <td><strong>Department</strong></td>
+                                        <td><span t-field="doc.custom_gate_pass_id.gate_department_id"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td><strong>Created By</strong></td>
+                                        <td><span t-field="doc.custom_gate_pass_id.gate_user_id"/></td>
+                                    </tr>
+                                </table>
+                                <div class="table-responsive">
+                                    <table class="table table-sm col-md-6">
+                                        <thead>
+                                            <tr class="active">
+                                                <th>Product</th>
+                                                <th>Quantity</th>
+                                                <th>Unit Of Measure</th>
+                                            </tr>
+                                        </thead>
+                                        <t t-foreach="doc.move_ids_without_package" t-as="move">
+                                            <tr class="col-md-4">
+                                                <td>
+                                                    <span t-esc="move.product_id.name"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="move.product_uom_qty"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="move.product_uom.name"/>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </table>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="text-lest">
+                                                <p><strong>Date :</strong>____/_____/______</p>
+                                                <p><strong>Employee Signature :</strong>___________</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="text-right" style="margin-right: 10%;">
+                                                <p><strong>Date :</strong>____/_____/______</p>
+                                                <p><strong>Security Signature :</strong>___________</p>
+                                        </div>
+                                    </div>
+                                </div><br/>
+                                <div class="row">
+                                    <div class="col-4">
+                                    </div>
+                                    <t t-if="not doc.custom_gate_pass_id.gate_out_datetime">
+                                        <img class="col-4 text-center" align="center" src="/odoo_delivery_gate_pass/static/description/check_in.jpg" width="30" height="200"/>
+                                    </t>
+                                    <t t-if="doc.custom_gate_pass_id.gate_out_datetime">
+                                        <img class="col-4 text-center" align="center" src="/odoo_delivery_gate_pass/static/description/check_out.jpg" width="30" height="200"/>    
+                                    </t>
+                                </div>
+                            </div>
+                       </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

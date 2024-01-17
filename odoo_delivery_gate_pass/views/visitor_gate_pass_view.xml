@@ -1,0 +1,34 @@
+<odoo>
+    <data>
+        <record id="view_gate_pass_form_inherit" model="ir.ui.view">
+            <field name="name">visitor.gate.pass.custom.form</field>
+            <field name="model">visitor.gate.pass.custom</field>
+            <field name="inherit_id" ref="visitor_gate_pass.visitor_gate_pass_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet/group[last()]" position="after">
+                   <notebook>
+                    <page string="Operations">
+                        <field name="gate_product_line_ids">
+                            <tree editable="bottom">
+                                <field name="custom_product_id"/>
+                                <field name="custom_product_uom_id"/>
+                                <field name="custom_product_uom_qty"/>
+                            </tree>
+                        </field>
+                    </page>
+                   </notebook>
+                </xpath>
+                <xpath expr="//field[@name='gate_out_datetime']" position="after">
+                    <field name="custom_stock_picking_id"/>
+                </xpath>
+                <xpath expr="//form/sheet//field[@name='gate_name']" position="before">
+                    <div class="oe_button_box" name="button_box">
+                        <!-- <div class="oe_button_box"> -->
+                            <button class="oe_stat_button" name="view_stock_picking" type="object" icon="fa-shopping-cart" string="Picking"/>
+                        <!-- </div> -->
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="tag_dashboard">
+    <div t-name="SalesDashboard" style="width:100%">
+        <div class="container-fluid pos_cards_item" style="margin-top:5px;">
+            <div class="row pos_cards_box top_cards_box">
+                <div class="col-md-3" style="padding-right:0">
+                  <div class="box box-widget widget-user-2 mb-10" style="margin-top:0">
+                    <div class="widget-user-header bg-blue px-2 py-3" style="height: 80px">
+                      <div class="widget-user-image" id="image_viewer"/>
+                        <h5 class="widget-user-desc ml-70">Welcome</h5>
+                        <h3 class="welcome-text widget-user-username ml-70"/>
+                      </div>
+                      <div class="box-footer no-padding" style="padding-bottom:7px">
+                        <div class="form-group">
+                          <span id="select-year">
+                          <select class="pos-company form-control pull-left" placeholder="select company"/>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card h-100 border-0 cards_box_first position-relative mb-0">
+                          <div class="hover-bg position-relative h-100">
+                            <div class="card-body h-100 position-relative">
+                              <div class="row">
+                                <div class="col-md-4 pr-1">
+                                  <div class="bg-white icon-box w-100 h-100 pt-4 text-center position-relative">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user">
+                                          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                            <circle cx="12" cy="7" r="4"></circle>
+                                      </svg>
+                                  </div>
+                                </div>
+                                <div class="col-md-8 text-right">
+                                  <h2 class="card-text active-session"></h2>
+                                  <h5 class="card-title">Active Sessions</h5>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                  </div>
+
+                  <div class="col-md-9">
+                    <div class="row">
+                      <div class="col-md-4" style="padding-left:5px; padding-right:2px">
+                        <div class="card h-100 border-0 cards_box1 position-relative mb-0">
+                          <div class="hover-bg position-relative h-100">
+                            <div class="card-body h-100 position-relative">
+                              <div class="row">
+                                <div class="col-md-4 pr-1">
+                                  <div class="bg-white icon-box w-100 h-100 pt-4 text-center position-relative">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                    </svg>
+                                  </div>
+                                </div>
+                                <div class="col-md-8 text-right">
+                                  <h2 class="card-text today-total-orders">15</h2>
+                                  <h5 class="card-title">Today Orders</h5>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4" style="padding-left:5px; padding-right:2px">
+                        <div class="card h-100 border-0 cards_box2 position-relative mb-0">
+                          <div class="hover-bg position-relative h-100">
+                            <div class="card-body h-100 position-relative">
+                              <div class="row">
+                                <div class="col-md-4 pr-1">
+                                  <div class="bg-white icon-box w-100 h-100 pt-4 text-center position-relative">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trending-up"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+                                  </div>
+                                </div>
+                                <div class="col-md-8 text-right">
+                                  <h2 class="card-text today-total-sales">15</h2>
+                                  <h5 class="card-title">Today Sales</h5>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4" style="padding-left:5px; padding-right:2px">
+                        <div class="card h-100 border-0 cards_box3 position-relative mb-0">
+                          <div class="hover-bg position-relative h-100">
+                            <div class="card-body h-100 position-relative">
+                              <div class="row">
+                                <div class="col-md-4 pr-1">
+                                  <div class="bg-white icon-box w-100 h-100 pt-4 text-center position-relative">
+                                   <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-gift"><polyline points="20 12 20 22 4 22 4 12"></polyline><rect x="2" y="7" width="20" height="5"></rect><line x1="12" y1="22" x2="12" y2="7"></line><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path></svg>
+                                  </div>
+                                </div>
+                                <div class="col-md-8 text-right">
+                                  <h2 class="card-text today-product-sold">15</h2>
+                                  <h5 class="card-title">Today Product Sold</h5>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+    <div class="row">
+      <div class="col-md-4" style="padding-left:5px; padding-right:2px">
+        <div class="card h-100 border-0 cards_box4 position-relative mb-0">
+          <div class="hover-bg position-relative h-100">
+            <div class="card-body h-100 position-relative">
+              <div class="row">
+                <div class="col-md-4 pr-1">
+                  <div class="bg-white icon-box w-100 h-100 pt-4 text-center position-relative">
+                   <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-bag"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                       <line x1="3" y1="6" x2="21" y2="6"></line>
+                       <path d="M16 10a4 4 0 0 1-8 0"></path>
+                   </svg>
+                  </div>
+                </div>
+                <div class="col-md-8 text-right">
+                  <h2 class="card-text total-orders">15</h2>
+                  <h5 class="card-title">Total Orders</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4" style="padding-left:5px; padding-right:2px">
+        <div class="card h-100 border-0 cards_box5 position-relative mb-0">
+          <div class="hover-bg position-relative h-100">
+            <div class="card-body h-100 position-relative">
+              <div class="row">
+                <div class="col-md-4 pr-1">
+                    <div class="bg-white icon-box w-100 h-100 pt-4 text-center position-relative">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-dollar-sign">
+                          <line x1="12" y1="1" x2="12" y2="23"></line>
+                          <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                      </svg>
+                    </div>
+                </div>
+                <div class="col-md-8 text-right">
+                  <h2 class="card-text total-sales">15</h2>
+                  <h5 class="card-title">Total Sales</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4" style="padding-left:5px; padding-right:2px">
+        <div class="card h-100 border-0 cards_box6 position-relative mb-0">
+          <div class="hover-bg position-relative h-100">
+            <div class="card-body h-100 position-relative">
+              <div class="row">
+                <div class="col-md-4 pr-1">
+                  <div class="bg-white icon-box w-100 h-100 pt-4 text-center position-relative">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-package"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                  </div>
+                </div>
+                <div class="col-md-8 text-right">
+                  <h2 class="card-text product-sold">15</h2>
+                  <h5 class="card-title">Total Products Sold</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row my-4">
+              <div class="col-md-4 pos-info box-info-content pos_cards_item">
+                    <div class="box transparent pos_cards_box my-0" style="background:transparent; border:none;">
+                        <div class="box-body">
+                          <div class="card h-100 border-0 cards_box7 position-relative mb-1">
+                            <div class="hover-bg position-relative h-100">
+                              <div class="card-body h-100 position-relative">
+                               <div class="row">
+                                  
+                                <div class="col-lg-6">
+                            <div class="card">
+                                <div class="card_contan">
+                                  <div class="card_icon1 card_icon">
+                                      <i class="fa fa-user-o"></i>
+                                  </div>
+                                  <div class="action-new-request">
+                                    <h6><b class="stage-new-request"></b></h6>
+                                    <h6 class="mb-1 card_up_title">Top Staff Today</h6>
+                                        <span class="info-box-number" id="top_staff_today_amount">0.0</span>
+                                       
+                                      
+                                    <span class="progress-description" id="top_staff_today_name">
+                                          No Data Found
+                                      </span>
+                                  </div>
+                                </div>
+                            </div>
+                          </div>
+                           <div class="col-lg-6">
+                            <div class="card">
+                                <div class="card_contan">
+                                  <div class="card_icon1 card_icon">
+                                      <i class="fa fa-hourglass"></i>
+                                  </div>
+                                  <div class="action-new-request">
+                                    <h6><b class="stage-new-request"></b></h6>
+                                    <h6 class="mb-1 card_up_title"> Hour Today</h6>
+                                        <span class="info-box-number" id="top_hour_amount"/>
+                                       
+                                    <span class="progress-description" id="top_staff_today_name">
+                                          Last 30 days
+                                      </span>
+                                  </div>
+                                </div>
+                            </div>
+                          </div>
+                             
+                              </div>
+                               <div class="row">
+                                  
+                                <div class="col-lg-6">
+                            <div class="card">
+                                <div class="card_contan">
+                                  <div class="card_icon1 card_icon">
+                                      <i class="fa fa-usd"></i>
+                                  </div>
+                                  <div class="action-new-request">
+                                    <h6><b class="stage-new-request"></b></h6>
+                                    <h6 class="mb-1 card_up_title"> Spending</h6>
+                                      <span class="info-box-number" id="average-custmer-spenting"/>
+                                       
+                                      
+                                    <span class="progress-description" id="top_staff_today_name">
+                                         Last 30 Days
+                                      </span>
+                                  </div>
+                                </div>
+                            </div>
+                          </div>
+                           <div class="col-lg-6">
+                            <div class="card">
+                                <div class="card_contan">
+                                  <div class="card_icon1 card_icon">
+                                      <i class="fa fa-users"></i>
+                                  </div>
+                                  <div class="action-new-request">
+                                    <h6><b class="stage-new-request"></b></h6>
+                                    <h6 class="mb-1 card_up_title">Visity</h6>
+                                        <span class="info-box-number" id="average-custmer-visit"/>
+                                       
+                                    <span class="progress-description" id="top_staff_today_name">
+                                          Last 30 days
+                                      </span>
+                                  </div>
+                                </div>
+                            </div>
+                          </div>
+                             
+                              </div>
+                            </div>
+                          </div>
+                          
+
+                         
+                        </div>
+                    </div>
+                </div>
+
+  
+</div>
+                <div class="col-md-8" style="padding-right:0">
+                    <div class="box box-warning my-0 h-100">
+                        <div class="box-header with-border bg-gradient">
+                            <h3 class="box-title text-white pt-2"><i class="fa fa-line-chart pr-2"></i>Sales Report</h3>
+                            <span class="dmy-btn-group btn-group pull-right">
+                                <button type="button" class="dmy btn btn-secondary active" data-text="today" value="today">Today</button>
+                                <button type="button" class="dmy btn btn-secondary" data-text="month" value="month">This Month</button>
+                                <button type="button" class="dmy btn btn-secondary" data-text="year" value="year">This Year</button>
+                            </span>
+                        </div>
+                        <div class="box-body">
+                            <div class="chart">
+                                <div id="chart_day_month_year" class="day" style="height:338px;"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+        <!--PAYMENT BY JOURNAL-->
+         <div class="row" style="margin-left: 0; margin-right: 0;">
+            <div class="col-md-12">
+                <div class="box box-warning">
+                    <div class="box-header with-border bg-gradient">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h3 class="box-title text-white pt-2"><i class="fa fa-credit-card-alt pr-2"></i>Payment By Journal</h3>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="box-tools">
+                                    <span class="form-group">
+                                        <span class="pull-right">
+                                            <select class="journal-option form-control" placeholder="select option">
+                                            </select>
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="chart">
+                                    <div id="journal_pie_chart" style="width: 100%; height:400px;"/>
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="chart">
+                                    <div id="journal_line_chart" style="width: 100%; height:400px;"/>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4" style="padding-right:2px">
+                    <div class="box box-warning">
+                        <div class="box-header with-border bg-gradient">
+                            <h3 class="box-title text-white pt-2"><i class="fa fa-users pr-2"></i>Top 10 Customers</h3>
+                            <div class="box-tools pull-right">
+                                <select class="top_customer_w_m_y form-control pull-left" placeholder="select Month">
+                                    <option data-value="week" selected="selected">This Week</option>
+                                    <option data-value="month">This Month</option>
+                                    <option data-value="year">This Year</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="box-body" style="height:250px">
+                            <div class="table-responsive">
+                                <table class="top-client table no-margin">
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="box box-warning">
+                        <div class="box-header with-border bg-gradient">
+                            <h3 class="box-title text-white pt-2"><i class="fa fa-user-circle-o pr-2"></i>Sale By Salesman</h3>
+                            <div class="box-tools pull-right">
+                                <select class="top_salesman_w_m_y form-control pull-left" placeholder="select Month">
+                                    <option data-value="week" selected="selected">This Week</option>
+                                    <option data-value="month">This Month</option>
+                                    <option data-value="year">This Year</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="box-body" style="height:250px">
+                            <div class="table-responsive">
+                                <table class="top_salesperson table no-margin">
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4" style="padding-left:0">
+                    <div class="box box-warning">
+                        <div class="box-header with-border bg-gradient" style="padding-right:10px">
+                            <h3 class="box-title text-white pt-2"><i class="fa fa-clock-o pr-2"></i>Employee Working Hours</h3>
+                            <div class="box-tools pull-right">
+                            </div>
+                        </div>
+                        <div class="box-body" style="height:250px">
+                            <div class="table-responsive">
+                                <table class="employee_time table no-margin">
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="box box-warning">
+                        <div class="box-header with-border bg-gradient">
+                            <h3 class="box-title text-white pt-2"><i class="fa fa-shopping-bag pr-2"></i>Top Items by Sales</h3>
+                            <div class="box-tools pull-right">
+                                <div class="form-group">
+                                    <span class="pull-right">
+                                        <select class="top_items_sales_w_m_y form-control pull-left" placeholder="select Month">
+                                            <option data-value="week" selected="selected">This Week</option>
+                                            <option data-value="month">This Month</option>
+                                            <option data-value="year">This Year</option>
+                                        </select>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-body" style="height:288px">
+                            <div class="table-responsive">
+                                <table id="top_items_sold" class="table no-margin"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8" style="padding-left:0">
+                    <div class="box box-warning">
+                        <div class="box-header with-border bg-gradient">
+                            <h3 class="box-title text-white pt-2"><i class="fa fa-sliders pr-2"></i>Top 5 Categories by Sales</h3>
+                            <div class="box-tools pull-right">
+                                <div class="form-group">
+                                    <span class="pull-right">
+                                        <select class="product-option form-control pull-left" placeholder="select option">
+                                            <option select="selected">Price</option>
+                                            <option>Quantity</option>
+                                        </select>
+                                    </span>
+                                    <span class="pull-right mr-2">
+                                        <select class="product-order form-control pull-left" placeholder="select order" style="margin-left: - 5px;">
+                                            <option select="selected">Top</option>
+                                            <option >Bottom</option>
+                                        </select>
+                                    </span>
+                                    <span class="pull-right mr-2">
+                                        <select class="top_product_catg_w_m_y form-control" placeholder="select Month">
+                                                <option data-value="week" selected="selected">This Week</option>
+                                                <option data-value="month">This Month</option>
+                                                <option data-value="year">This Year</option>
+                                        </select>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div id="top_product_category" style="width: 100%; height: 255px;" class="graph-div"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box box-warning">
+                        <div class="box-header with-border bg-gradient">
+                            <h3 class="box-title text-white pt-2"><i class="fa fa-calendar-check-o pr-2"></i>Weekly Sales Details</h3>
+                            <div class="box-tools pull-right">
+                                <div class="form-group">
+                                    <span class="pull-right mr-2">
+                                        <select class="week-option form-control pull-left" placeholder="select Week"/>
+                                    </span>
+                                    <span class="pull-right mr-2">
+                                        <select class="month-option form-control pull-left" placeholder="select Month">
+                                            <option value="1">January</option>
+                                            <option value="2">February</option>
+                                            <option value="3">March</option>
+                                            <option value="4">April</option>
+                                            <option value="5">May</option>
+                                            <option value="6">June</option>
+                                            <option value="7">July</option>
+                                            <option value="8">August</option>
+                                            <option value="9">September</option>
+                                            <option value="10">October</option>
+                                            <option value="11">November</option>
+                                            <option value="12">December</option>
+                                        </select>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div id="chartweekly" style="width: 100%; height: 400px;" class="graph-div"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--DAILY COMPARE GROSS SALES-->
+         <div class="row" style="margin-left:0; margin-right: 0;">
+            <div class="col-md-12">
+                <div class="box box-warning">
+                    <div class="box-header with-border bg-gradient">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h3 class="box-title text-white pt-2"><i class="fa fa-calendar pr-2"></i>Daily Gross Sales</h3>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="box-tools">
+                                    <span class="form-group">
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="chart">
+                                    <div id="daily_gross_sale" style="width: 100%; height:400px;"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--WEEKLY COMPARE GROSS SALES-->
+         <div class="row" style="margin-left:0; margin-right: 0;">
+            <div class="col-md-12">
+                <div class="box box-warning">
+                    <div class="box-header with-border bg-gradient">
+                        <div class="row">
+                        <div class="col-md-4">
+                            <h3 class="box-title text-white pt-2"><i class="fa fa-bar-chart pr-2"></i>Weekly Gross Sales</h3>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="box-tools">
+                                <span class="form-grou pull-right" id="weekly_gross_date">
+
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="chart">
+                                    <div id="weekly_gross_sales_compare_barchart" style="width: 100%; height:400px;"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</templates>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<odoo>
+
+    <record id="monthly_sale_corn" model="ir.cron">
+        <field name="name">Daily Sale Report</field>
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="state">code</field>
+        <field name="code">model.monthlyreport()</field>
+        <field name="user_id" ref="base.user_root" />
+        <field name="interval_number">5</field>
+        <field name="interval_type">minutes</field>
+        <field name="numbercall">-1</field>
+        <field eval="False" name="doall"/>
+    </record>
+</odoo>

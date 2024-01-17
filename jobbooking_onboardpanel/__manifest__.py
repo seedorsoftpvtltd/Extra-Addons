@@ -1,0 +1,20 @@
+{
+    'name': 'Job Booking Onboarding Panel',
+    'summary': 'Onboarding panel for all Job type',
+    'author': 'Arun Seed',
+    'depends': ['scs_freight', 'hb_freight_extend',],
+    'data': [
+        'security/security.xml',
+        'views/scs_freight_view.xml',
+        'views/cfs_view.xml',
+        'views/freight_view.xml',
+        'views/freight_onboarding.xml',
+        'views/cfs_onboarding.xml',
+        'views/relocation_onboarding.xml',
+        'views/relocation_view.xml',
+        'views/onboard_default_jobbooking_onboardpanel.xml',
+        'views/onboard_template.xml',
+    ],
+    'installable': True,
+    'auto_install': False,
+}

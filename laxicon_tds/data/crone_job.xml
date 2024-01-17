@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record forcecreate="True" id="ir_cron_finacialyear_cron_tcs" model="ir.cron">
+        <field name="name">Check Financial year TCS</field>
+        <field name="model_id" ref="model_account_tcs_tcs"/>
+        <field name="state">code</field>
+        <field name="code">model.get_date_time()</field>
+        <field eval="True" name="active"/>
+        <field name="user_id" ref="base.user_root"/>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field eval="False" name="doall"/>
+    </record>
+    <record forcecreate="True" id="ir_cron_finacialyear_cron_tds" model="ir.cron">
+        <field name="name">Check Financial year TDS</field>
+        <field name="model_id" ref="model_account_tds_tds"/>
+        <field name="state">code</field>
+        <field name="code">model.get_date_time()</field>
+        <field eval="True" name="active"/>
+        <field name="user_id" ref="base.user_root"/>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field eval="False" name="doall"/>
+    </record>
+</odoo>

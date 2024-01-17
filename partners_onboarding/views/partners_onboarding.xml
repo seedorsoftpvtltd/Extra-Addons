@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ONBOARDING STEPS -->
+
+    <template id="partners_step1">
+
+        <t t-call="partners_onboarding.onboarding_default_step">
+            <t t-set="title">Individuals</t>
+            <t t-set="description">
+                Create &amp; Manage Individuals (B2C)
+
+            </t>
+            <t t-set="sl"></t>
+                        <t t-set="btn_text">Create</t><t t-set="btn_text3">Import</t>
+                        <t t-set="method" t-value="'onboardings_step11_action'" />
+                        <t t-set="method2" t-value="'onboardings_import_action'" />
+                        <t t-set="model" t-value="'res.company'" />
+        </t>
+    </template>
+
+    <template id="partners_step2">
+        <t t-call="partners_onboarding.onboarding_default_step">
+            <t t-set="title">Companies</t>
+            <t t-set="description">
+               Create &amp; Manage Companies (B2B)
+            </t>
+            <t t-set="sl"></t>
+                    <t t-set="btn_text">Establish</t><t t-set="btn_text3">Import</t>
+                    <t t-set="method" t-value="'onboardings_Allocation11_action'" />
+                    <t t-set="method2" t-value="'onboardings_import_action'" />
+                    <t t-set="model" t-value="'res.company'" />
+
+        </t>
+    </template>
+
+    <template id="partners_step3">
+        <t t-call="partners_onboarding.onboarding_default_step">
+            <t t-set="title">Agents</t>
+            <t t-set="description">
+                Create &amp; manage Intermediaries
+
+            </t>
+            <t t-set="sl"></t>
+                        <t t-set="btn_text1">Add</t>
+                        <t t-set="method1" t-value="'onboarding_step12_action'" />
+                        <t t-set="model" t-value="'res.company'" />
+        </t>
+    </template>
+
+    <template id="partners_step4">
+        <t t-call="partners_onboarding.onboarding_default_step">
+            <t t-set="title">Customers</t>
+            <t t-set="description">
+                Manage B2C / B2B Clients
+            </t>
+            <t t-set="sl"></t>
+                        <t t-set="btn_text1">Review</t>
+                        <t t-set="method1" t-value="'onboarding_approve11_action'" />
+                        <t t-set="model" t-value="'res.company'" />
+        </t>
+    </template>
+
+     <template id="partners_step5">
+        <t t-call="partners_onboarding.onboarding_default_step">
+            <t t-set="title">Vendors</t>
+            <t t-set="description">
+                Create&amp; Manage Suppliers
+            </t>
+            <t t-set="sl"></t>
+                        <t t-set="btn_text1">Manage</t>
+                        <t t-set="method1" t-value="'onboarding_approve12_action'" />
+                        <t t-set="model" t-value="'res.company'" />
+        </t>
+    </template>
+
+
+
+    <template id="partners_dashboard_onboarding_panel" name="onboarding.dashboard.onboarding.panel">
+        <t t-call="partners_onboarding.onboarding_default_container">
+            <t t-set="classes" t-value="'o_onboarding_blue'"/>
+            <t t-set="bg_image" t-value="'/onboarding/static/src/img/employee_dashboard_onboarding_bg.jpg'"/>
+            <!--            <t t-set="close_method" t-value="'action_close_account_dashboard_onboarding'"/>-->
+            <!--            <t t-set="close_model" t-value="'res.company'"/>-->
+            <!--            <t t-set="text_completed">Congratulations! You are all set.</t>-->
+
+            <t t-call="partners_onboarding.partners_step1" name="partners_individual"/>
+            <t t-call="partners_onboarding.partners_step2" name="partners_companies"/>
+            <t t-call="partners_onboarding.partners_step3" name="partners_agents"/>
+            <t t-call="partners_onboarding.partners_step4" name="partners_customers"/>
+            <t t-call="partners_onboarding.partners_step5" name="partners_vendors"/>
+
+
+
+        </t>
+    </template>
+    <!-- SAMPLE INVOICE EMAIL -->
+
+</odoo>

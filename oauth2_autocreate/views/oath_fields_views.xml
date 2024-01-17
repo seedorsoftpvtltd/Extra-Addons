@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_users_form_inherit" model="ir.ui.view">
+        <field name="name">muk_rest.oauth2</field>
+        <field name="model">muk_rest.oauth2</field>
+        <field name="inherit_id" ref="muk_rest.view_rest_oauth2_form"/>
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="OAuth2 Information">
+                    <group>
+                        <field name="name"/>
+                        <field name="client_id"/>
+                        <field name="client_secret"/>
+                        <field name="user"/>
+
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+</odoo>

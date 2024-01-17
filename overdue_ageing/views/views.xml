@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+        <record id="view_partner_inherit_followup_form13" model="ir.ui.view">
+			<field name="name">res.partner</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_partner_form"/>
+			<field name="arch" type="xml">
+                <xpath expr="//field[@name='phone']" position="after">
+					        <field name="curr_first_thirty_day1" invisible="1"/>
+							<field name="curr_thirty_sixty_days1" invisible="1"/>
+							<field name="curr_sixty_ninty_days1" invisible="1"/>
+							<field name="curr_ninty_onetwenty_days1" invisible="1"/>
+							<field name="curr_onetwenty_onefifty_days1" invisible="1"/>
+							<field name="curr_onefifthy_oneeighty_days1" invisible="1"/>
+							<field name="curr_oneeighty_plus_days1" invisible="1"/>
+							<field name="curr_total1" invisible="1"/>
+					        <field name="curr_first_thirty_usd" invisible="1"/>
+							<field name="curr_thirty_sixty_usd" invisible="1"/>
+							<field name="curr_sixty_ninty_usd" invisible="1"/>
+							<field name="curr_ninty_onetwenty_usd" invisible="1"/>
+							<field name="curr_onetwenty_onefifty_usd" invisible="1"/>
+							<field name="curr_onefifthy_oneeighty_usd" invisible="1"/>
+							<field name="curr_oneeighty_plus_usd" invisible="1"/>
+							<field name="curr_usd" invisible="1"/>
+
+				</xpath>
+			</field>
+		</record>
+    </data>
+</odoo>

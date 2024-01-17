@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+         <template id="GRN_template_id">
+            <t t-call="web.html_container">
+                <t t-set="doc" t-value="doc"/>
+                <t t-call="web.internal_layout">
+                    <div class="page">
+                        <t t-call="web.external_layout">
+                            #add the body here
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </template>
+        <template id="Delivery_template_id">
+            <t t-call="web.html_container">
+                <t t-set="doc" t-value="doc"/>
+                <t t-call="web.internal_layout">
+                    <div class="page">
+                        <t t-call="web.external_layout">
+                            #add the body here
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+        <template id="Picking_template_id">
+            <t t-call="web.html_container">
+                <t t-set="doc" t-value="doc"/>
+                <t t-call="web.internal_layout">
+                    <div class="page">
+                        <t t-call="web.external_layout">
+                            #add the body here
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+        <report
+                id="GRN_report_id"
+                string="GRN Consolidated Report"
+                model="stock.picking"
+                report_type="qweb-pdf"
+                file="print.GRN_template_id"
+                name="print.GRN_template_id"
+        />
+        <report
+                id="Delivery_report_id"
+                string="Delivery Consol Rep"
+                model="stock.picking"
+                report_type="qweb-pdf"
+                file="print.Delivery_template_id"
+                name="print.Delivery_template_id"
+        />
+        <report
+                id="Picking_report_id"
+                string="Picking Consol Rep"
+                model="stock.picking"
+                report_type="qweb-pdf"
+                file="print.Picking_template_id"
+                name="print.Picking_template_id"
+        />
+    </data>
+</odoo>

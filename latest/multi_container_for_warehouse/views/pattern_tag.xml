@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_container_tags_tree" model="ir.ui.view">
+        <field name="name">container.tag.tree</field>
+        <field name="model">container.pattern</field>
+        <field name="arch" type="xml">
+            <tree multi_edit="1">
+                <field name="company_id" groups="base.group_multi_company" invisible="1"/>
+                <field name="pattern"/>
+                <field name="country_id"/>
+                <field name="example"/>
+            </tree>
+        </field>
+    </record>
+<!--    <record id="view_container_tags_form" model="ir.ui.view">-->
+<!--        <field name="name">container.tag.form</field>-->
+<!--        <field name="model">container.pattern</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <form>-->
+<!--                <sheet>-->
+<!--                    <group>-->
+<!--                        <field name="company_id" readonly="0"/>-->
+<!--                        <field name="pattern"/>-->
+<!--                        <field name="country_id"/>-->
+<!--                        <field name="example"/>-->
+<!--                    </group>-->
+<!--                </sheet>-->
+<!--            </form>-->
+<!--        </field>-->
+<!--    </record>-->
+
+    <record id="open_view_pattern_tags" model="ir.actions.act_window">
+        <field name="name">Container Number</field>
+        <field name="res_model">container.pattern</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create your first Tag
+            </p>
+        </field>
+    </record>
+    <menuitem id="menu_pattern_tags" name="Container Pattern" parent="warehouse.menu_warehouse_config"
+              action="open_view_pattern_tags" sequence="21"/>
+</odoo>

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="letter_kanban" model="ir.ui.view">
+        <field name="name">Letters</field>
+        <field name="model">letters</field>
+        <field name="arch" type="xml">
+            <kanban string="Letters">
+                <field name="subject"/>
+                <field name="letter_template"/>
+                <field name="partner_id"/>
+                <field name="date"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div class="oe_kanban_details d-flex flex-column">
+                                <ul>
+                                    <field name="subject"/>
+                                    <br></br>
+                                    <field name="letter_template"/>
+                                    <br></br>
+                                    <field name="partner_id"/>
+                                    <br></br>
+                                    <field name="date"/>
+                                </ul>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+        </record>
+
+	<record id="letter_tree" model="ir.ui.view">
+		<field name="name">Letters</field>
+		<field name="model">letters</field>
+		<field name="arch" type = "xml">
+			<tree string="Letters">
+				<field name="subject"/>
+				<field name="letter_template"/>
+				<field name="partner_id"/>
+				<field name="employee"/>
+				<field name="date"/>
+			</tree>
+		</field>
+	</record>
+
+	<record id="view_letter_search" model="ir.ui.view">
+		<field name="name">letter.search</field>
+		<field name="model">letters</field>
+		<field name="arch" type="xml">
+			<search string="Letter">
+				<field name="subject" filter_domain="['|', ('name','ilike',self)]" string="Letters"/>
+				<field name="partner_id"/>
+				<filter string="Archived" domain="[('active', '=', False)]" name="inactive"/>
+				<group expand="0" string="Group By...">
+					<filter string="Partner" name="partner" domain="[]" context="{'group_by':'partner_id'}"/>
+				</group>
+			</search>
+		</field>
+	</record>
+
+	<record id="letter_form" model="ir.ui.view">
+		<field name="name">Letters</field>
+		<field name="model">letters</field>
+		<field name="arch" type="xml">
+			<form string="Letters">
+				<header>
+					<button name="letter_approved" type="object" string="Approved" class="oe_highlight" attrs="{'invisible': [('state', 'not in', ['draft'])]}"/>
+					<button name="send_email" type="object" string="Send Email"/>
+					<button name="cancel" type="object" string="Cancel" attrs="{'invisible': [('state', 'not in', ['approved'])]}"/>
+					<field name="state" widget="statusbar"/>
+				</header>
+				<sheet>
+					<group>
+						<group>
+							<field name="subject" required='1'/>
+							<field name="letter_template" required='1'/>
+							<field name="partner_id" attrs="{'invisible': [('letter_type', '=', 'employee')], 'required': [('letter_type', '=', 'partner')]}"/>
+							<field name="old_partner_id" invisible="1"/>
+						</group>
+						<group>
+							<field name="letter_type" required='1'/>
+							<field name="employee" attrs="{'invisible': [('letter_type', '=', 'partner')], 'required': [('letter_type', '=', 'employee')]}"/>
+							<field name="old_employee_id" invisible="1"/>
+							<field name="date"/>
+							<field name="template_value" invisible="1"/>
+							<field name="reference"/>
+						</group>
+						<field name="template"/>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+
+
+
+	<record id="letters_action" model="ir.actions.act_window">
+		<field name="name">Letters</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">letters</field>
+		<field name="view_mode">kanban,tree,form</field>
+	</record>
+
+       <report id="letter_report_id"
+        model="letters"
+        string=" Letter"
+        report_type="qweb-pdf"
+        name="letters_and_certificate_app.letter_print"
+        file="letter_print_file"
+        />
+
+
+   <template id="letter_print">
+     <t t-call="web.html_container">
+          <t t-foreach="docs" t-as="o">
+              <t t-call="web.internal_layout">
+                  <div class="page">
+                      <h3 style="align:center;">Letters</h3>
+
+                  </div>
+              </t>
+          </t>
+     </t>
+   </template>
+
+
+	<menuitem id="letter" name="Letters" 
+		action="letters_action" 
+		sequence="6" 
+		groups="base.user_admin"/>
+</odoo>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_freight_form_inh_sale_cost" model="ir.ui.view">
+        <field name="name">freight.operation.sale.cost</field>
+        <field name="model">freight.operation</field>
+        <field name="inherit_id" ref="jobbooking_custom_view.freight_operation_view_form_custom_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='service_ids']/tree/field[@name='reimbursable']" position="after">
+                <field name="customer_id" string="Customer" />
+                <field name="isbill" />
+                <field name="isinvoice" />
+            </xpath>
+
+        </field>
+    </record>
+</odoo>

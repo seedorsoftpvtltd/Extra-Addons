@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ONBOARDING STEPS -->
+
+    <template id="leaves_step1">
+        <t t-call="leaves_onboarding.onboarding_default_step">
+            <t t-set="title">Leave Types</t>
+            <t t-set="description">
+                Check and update your organization’s leave types.
+            </t>
+            <t t-set="sl">1</t>
+                        <t t-set="btn_text">Config</t>
+                        <t t-set="method" t-value="'onboardings_step1_action'" />
+                        <t t-set="model" t-value="'res.company'" />
+        </t>
+    </template>
+
+    <template id="leaves_step2">
+        <t t-call="leaves_onboarding.onboarding_default_step">
+            <t t-set="title">Leave Allocation</t>
+            <t t-set="description">
+                Seedor auto allocates the default leaves to your employees, Validate the allocated leaves.
+            </t>
+            <t t-set="sl">2</t>
+                    <t t-set="btn_text">Allocation</t>
+                    <t t-set="method" t-value="'onboardings_Allocation1_action'" />
+                    <t t-set="model" t-value="'res.company'" />
+
+        </t>
+    </template>
+
+    <template id="leaves_step3">
+        <t t-call="leaves_onboarding.onboarding_default_step">
+            <t t-set="title">Automatic Leave Allocation</t>
+            <t t-set="description">
+                Add  your employees leave allocations for the leave types by categorizing them
+            </t>
+            <t t-set="sl">3</t>
+                        <t t-set="btn_text1">Allocate</t>
+                        <t t-set="method1" t-value="'onboarding_step2_action'" />
+                        <t t-set="model" t-value="'res.company'" />
+        </t>
+    </template>
+
+    <template id="leaves_step4">
+        <t t-call="leaves_onboarding.onboarding_default_step">
+            <t t-set="title">Approval and Validate</t>
+            <t t-set="description">
+                Approve and validate your employees leave requests, and get your employees leave summaries.
+            </t>
+            <t t-set="sl">4</t>
+                        <t t-set="btn_text1">Approve</t>
+                        <t t-set="method1" t-value="'onboarding_approve2_action'" />
+                        <t t-set="model" t-value="'res.company'" />
+        </t>
+    </template>
+
+
+
+    <template id="leaves_dashboard_onboarding_panel" name="onboarding.dashboard.onboarding.panel">
+        <t t-call="leaves_onboarding.onboarding_default_container">
+            <t t-set="classes" t-value="'o_onboarding_blue'"/>
+            <t t-set="bg_image" t-value="'/onboarding/static/src/img/employee_dashboard_onboarding_bg.jpg'"/>
+            <!--            <t t-set="close_method" t-value="'action_close_account_dashboard_onboarding'"/>-->
+            <!--            <t t-set="close_model" t-value="'res.company'"/>-->
+            <!--            <t t-set="text_completed">Congratulations! You are all set.</t>-->
+
+            <t t-call="leaves_onboarding.leaves_step1" name="types_setup"/>
+            <t t-call="leaves_onboarding.leaves_step2" name="allocation_setup"/>
+            <t t-call="leaves_onboarding.leaves_step3" name="automatic_setup"/>
+            <t t-call="leaves_onboarding.leaves_step4" name="approval_setup"/>
+
+
+        </t>
+    </template>
+    <!-- SAMPLE INVOICE EMAIL -->
+
+</odoo>

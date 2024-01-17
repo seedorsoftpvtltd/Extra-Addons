@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<menuitem id="menu_hr_job_tag" action="act_hr_job_tag" parent="hr.menu_human_resources_configuration" sequence="20" />
+	
+</odoo>

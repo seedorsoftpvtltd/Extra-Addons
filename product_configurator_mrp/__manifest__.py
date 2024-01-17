@@ -1,0 +1,21 @@
+{
+    "name": "Product Configurator Manufacturing",
+    "version": "13.0.1.0.0",
+    "category": "Manufacturing",
+    "summary": "BOM Support for configurable products",
+    "author": "Pledra",
+    "license": "AGPL-3",
+    "website": "http://www.pledra.com/",
+    "depends": ["mrp", "product_configurator"],
+    "data": [
+        "data/menu_product.xml",
+        "views/assets.xml",
+        "views/mrp_view.xml",
+        "security/ir.model.access.csv",
+    ],
+    "demo": ["demo/product_template.xml"],
+    "qweb": ["static/src/xml/mrp_production_views.xml"],
+    "test": [],
+    "installable": True,
+    "auto_install": False,
+}

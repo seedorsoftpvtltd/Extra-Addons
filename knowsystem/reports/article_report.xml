@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report id="action_report_knowsystem_article"
+                string="Articles"
+                model="knowsystem.article"
+                report_type="qweb-pdf"
+                file="knowsystem.report_article"
+                name="knowsystem.report_article"
+                print_report_name="object.name"
+        />
+
+    </data>
+</odoo>

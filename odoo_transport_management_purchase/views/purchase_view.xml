@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="transport_management_field_form_custom" model="ir.ui.view">
+            <field name="name">purchase.order.form.custom</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='date_order']" position="after">
+                    <field name="custom_transporter_id" attrs="{'readonly': [('state', 'in', ('purchase', 'to approve','done', 'cancel'))]}"/>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="transport_management_field_search_form_custom" model="ir.ui.view">
+            <field name="name">purchase.order.search.custom</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//search" position="inside">
+                    <field name="custom_transporter_id"/>
+                    <filter name="Transporter" context="{'group_by':'custom_transporter_id'}"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

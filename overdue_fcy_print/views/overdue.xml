@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<!-- followup of customers views -->
+
+		<record id="view_partner_inherit_followup_form_finance" model="ir.ui.view">
+			<field name="name">res.partner</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_partner_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//page/div/button[@name='do_button_print']" position="after">
+
+					<button name="do_fcy_print" type="object"
+								string="Print FCY Report"
+								help="Print fcy Report"
+								 />
+                    <button name="do_outstanding_print" type="object"
+								string="Print BL Details Report"
+								help="Print BL Details Report"
+								 />
+				</xpath>
+            </field>
+        </record>
+		<report
+            id="report_customer_fcy_print"
+            string="FCY Report"
+            model="res.partner"
+            report_type="qweb-pdf"
+            file="overdue_fcy_print.fcy_report_finance"
+            name="overdue_fcy_print.fcy_report_finance"
+            attachment="(object.name + '_FCY Report.pdf')"
+        />
+
+	<report
+            id="report_customer_outstanding_print"
+            string="Outstanding Report"
+            model="res.partner"
+            report_type="qweb-pdf"
+            file="overdue_fcy_print.outstanding_report_finance"
+            name="overdue_fcy_print.outstanding_report_finance"
+            attachment="(object.name + '_Outstanding Report.pdf')"
+        />
+
+    </data>
+</odoo>

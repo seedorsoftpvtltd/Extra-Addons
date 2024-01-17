@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ONBOARDING STEPS -->
+
+    <template id="jobcfs_step1">
+        <t t-call="jobbooking_onboardpanel.onboarding_default_step">
+            <t t-set="title">Customers</t>
+            <t t-set="description">
+                Create / Import &amp; Manage Customers
+
+            </t>
+            <t t-set="sl">1</t>
+            <t t-set="btn_text">Include</t>
+            <t t-set="btn_text3">Import</t>
+            <t t-set="method" t-value="'onboardings_jobcfs_action'"/>
+            <t t-set="method2" t-value="'onboardings_step_jobfreight_import_action'"/>
+            <t t-set="model" t-value="'res.company'"/>
+        </t>
+    </template>
+
+    <template id="jobcfs_step2">
+        <t t-call="jobbooking_onboardpanel.onboarding_default_step">
+            <t t-set="title">Services</t>
+            <t t-set="description">
+                Create / Import &amp; Manage Services
+
+            </t>
+            <t t-set="sl">2</t>
+            <t t-set="btn_text">Specify</t>
+            <t t-set="btn_text3">Import</t>
+            <t t-set="method" t-value="'onboardings_jobcfsstep2_action'"/>
+            <t t-set="method2" t-value="'onboardings_step_jobcfs_import_action'"/>
+            <t t-set="model" t-value="'res.company'"/>
+
+        </t>
+    </template>
+
+    <template id="jobcfs_step3">
+        <t t-call="jobbooking_onboardpanel.onboarding_default_step">
+            <t t-set="title">Jobs</t>
+            <t t-set="description">
+                Update consignments based on container / truck size &amp; type
+
+            </t>
+            <t t-set="sl">3</t>
+            <t t-set="btn_text3">Create</t>
+            <t t-set="method2" t-value="'onboarding_jobcfsstep3_action'"/>
+            <t t-set="model" t-value="'res.company'"/>
+        </t>
+    </template>
+
+    <template id="jobcfs_step4">
+        <t t-call="jobbooking_onboardpanel.onboarding_default_step">
+            <t t-set="title">Sub Jobs</t>
+            <t t-set="description">
+                Manage subjobs, process the GRNs &amp; DOs as needed
+
+            </t>
+            <t t-set="sl">4</t>
+<!--            <t t-set="btn_text1">Create</t>-->
+<!--            <t t-set="method1" t-value="'onboarding_jobcfsstep4_action'"/>-->
+<!--            <t t-set="model" t-value="'res.company'"/>-->
+        </t>
+    </template>
+
+    <template id="jobcfs_step5">
+        <t t-call="jobbooking_onboardpanel.onboarding_default_step">
+            <t t-set="title">Invoices</t>
+            <t t-set="description">
+                Create Invoices separately in Job &amp; Sub-Job Level
+            </t>
+            <t t-set="sl">5</t>
+<!--            <t t-set="btn_text1">Generate</t>-->
+<!--            <t t-set="method1" t-value="'onboarding_jobcfsapprove2_action'"/>-->
+<!--            <t t-set="model" t-value="'res.company'"/>-->
+        </t>
+    </template>
+
+
+    <template id="jobcfs_dashboard_onboarding_panel" name="onboarding.dashboard.onboarding.panel">
+        <t t-call="jobbooking_onboardpanel.onboarding_default_container">
+            <t t-set="classes" t-value="'o_onboarding_blue'"/>
+            <t t-set="bg_image" t-value="'/onboarding/static/src/img/employee_dashboard_onboarding_bg.jpg'"/>
+
+            <t t-call="jobbooking_onboardpanel.jobcfs_step1" name="jobcfs_partner"/>
+            <t t-call="jobbooking_onboardpanel.jobcfs_step2" name="jobcfs_location"/>
+            <t t-call="jobbooking_onboardpanel.jobcfs_step3" name="jobcfs_products"/>
+            <t t-call="jobbooking_onboardpanel.jobcfs_step4" name="jobcfs_agreements"/>
+            <t t-call="jobbooking_onboardpanel.jobcfs_step5" name="jobcfs_create"/>
+
+
+        </t>
+    </template>
+    <!-- SAMPLE INVOICE EMAIL -->
+
+</odoo>

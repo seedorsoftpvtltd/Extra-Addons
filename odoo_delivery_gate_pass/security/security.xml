@@ -1,0 +1,10 @@
+<odoo>
+	<data noupdate="1">
+		<record id="delivery_gate_pass_user_rule" model="ir.rule">
+            <field name="name">Employee - Delivery Gate User</field>
+            <field ref="visitor_gate_pass.model_visitor_gate_pass_custom" name="model_id"/>
+            <field name="groups" eval="[(4,ref('stock.group_stock_user'))]"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+        </record>
+	</data>
+</odoo>

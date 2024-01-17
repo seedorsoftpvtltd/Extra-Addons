@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+
+    <record id="view_picking_form_inherited" model="ir.ui.view">
+        <field name="name">stock.picking.form.inherited</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='picking_type_id']" position="after">
+                <field name="x_transport_mode" invisible="1"/>
+                <field name="agent_seal"
+                       attrs="{'invisible': ['|', ('x_transport_mode', 'not in', ('land',)),('picking_type_code', 'not in', ('incoming','outgoing'))] }"/>
+                <field name="developer_seal"
+                       attrs="{'invisible': ['|',('x_transport_mode', 'not in', ('land','air','ocean',)),('picking_type_code', 'not in', ('incoming','outgoing'))]}"/>
+                <field name="custom_seal"
+                       attrs="{'invisible': ['|',('x_transport_mode', 'not in', ('land','air','ocean',)),('picking_type_code', 'not in', ('incoming','outgoing'))]}"/>
+
+
+                <field name="custom_officer_name"
+                       attrs="{'invisible': [('picking_type_code', 'not in', 'incoming',)]}"/>
+                <field name="custom_officer_id" attrs="{'invisible': [('picking_type_code', 'not in', 'incoming',)]}"/>
+                <field name="x_regime" widget='many2many_tags'
+                       attrs="{'invisible': [('picking_type_code', 'not in', ('incoming','outgoing'))]}"/>
+
+
+            </xpath>
+            <xpath expr="//field[@name='picking_type_id']" position="after">
+
+                <field name="x_driver1"
+                       attrs="{'invisible': [('picking_type_code', 'not in', ('incoming','outgoing'))]}"/>
+                <field name="driver_id"
+                       attrs="{'invisible': [('picking_type_code', 'not in', ('incoming','outgoing'))]}"/>
+                <field name="lorry_no"
+                       attrs="{'invisible': [('picking_type_code', 'not in', ('incoming','outgoing'))]}"/>
+
+            </xpath>
+            <!--            <xpath expr="//field[@name='x_gio']" position="replace">-->
+            <!--                <field name="x_gio" string="Agent Seal"/>-->
+            <!--            </xpath>-->
+            <!--            <xpath expr="//field[@name='x_boe']" position="replace">-->
+            <!--                <field name="x_boe" string ="Developer Seal"/>-->
+            <!--            </xpath>-->
+            <!--            <xpath expr="//field[@name='x_remarks']" position="replace">-->
+            <!--                <field name="x_remarks" string="Custom Seal"/>-->
+            <!--            </xpath>-->
+        </field>
+    </record>
+
+
+</odoo>

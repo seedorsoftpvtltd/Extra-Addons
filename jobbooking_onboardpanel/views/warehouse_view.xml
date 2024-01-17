@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo><record id="action_warehouse_kanban" model="ir.ui.view">
+        <field name="name">Warehouse kanban</field>
+        <field name="model">freight.operation</field>
+        <field name="arch" type="xml">
+            <kanban banner_route="/jobbooking_onboardpanel/warehouse_onboarding_panel">
+                <field name="name"/>
+                <field name="x_job_type"/>
+                <field name="customer_id"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click">
+                            <div t-attf-class="oe_kanban_details">
+                                <ul>
+                                    <li>Seq: <field name="name"/>
+                                    </li>
+                                    <li>Job Type: <field name="x_job_type"/>
+                                    </li>
+                                    <li>Customer: <field name="customer_id"/>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+    <record id="action_warehouse" model="ir.actions.act_window">
+        <field name="name">Warehouse Job Type</field>
+        <field name="res_model">freight.operation</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('x_job_type', '=', 12)]</field>
+    </record>
+    <record id="action_warehouse_view_kanban" model="ir.actions.act_window.view">
+        <field name="sequence" eval="0"/>
+        <field name="view_mode">kanban</field>
+        <field name="view_id" ref="action_warehouse_kanban"/>
+        <field name="act_window_id" ref="action_warehouse"/>
+    </record>
+
+    <menuitem id="warehouse_menu"
+              name="Warehouse"
+              parent="scs_freight.main_menu_freight_shipping"
+              action="action_warehouse"
+              sequence="1"/>
+</odoo>

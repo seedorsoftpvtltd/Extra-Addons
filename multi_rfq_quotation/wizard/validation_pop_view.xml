@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_validate_pop_form" model="ir.ui.view">
+        <field name="name">validate.pop.form</field>
+        <field name="model">validate.pop</field>
+        <field name="arch" type="xml">
+            <form string="Validation Wizard">
+                <group>
+                    <field name="message" readonly="1"/>
+                </group>
+                <footer>
+                    <button name="confirm_overwrite" string="Ok" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

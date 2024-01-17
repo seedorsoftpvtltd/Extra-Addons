@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ONBOARDING STEPS -->
+
+    <template id="overtime_step1">
+        <t t-call="overtime_onboarding.onboarding_default_step">
+            <t t-set="title">Overtime</t>
+            <t t-set="description">
+                Apply overtime beyond the shift hours.
+            </t>
+            <t t-set="sl">1</t>
+            <!--            <t t-set="btn_text">Review</t>-->
+            <!--          <t t-set="cnt_text" t-value="request.env['hr.department'].search_count([])">-->
+            <!--              <t t-esc="cnt_text">Departments</t>-->
+            <!--            </t>-->
+            <!--            <t t-set="cnt_desc">Records</t>-->
+            <!--            <t t-set="method" t-value="'onboarding_step1_action'" />-->
+            <!--            <t t-set="model" t-value="'res.company'" />-->
+            <!--            <t t-set="state" t-value="state.get('onboarding_step1_state')" />-->
+        </t>
+    </template>
+
+    <template id="overtime_step2">
+        <t t-call="overtime_onboarding.onboarding_default_step">
+            <t t-set="title">Define</t>
+            <t t-set="description">
+                Add the employees details and manage the overtime types as cash/leave.
+            </t>
+            <t t-set="sl">2</t>
+            <!--   <t t-set="btn_text">Month - Year </t>-->
+            <!--      <t t-set="cnt_text" t-value="request.env['hr.job'].search_count([])">-->
+            <!--          <t t-esc="cnt_text">Jobs</t>-->
+            <!--            </t>-->
+            <!--            <t t-set="cnt_desc">Records</t>-->
+            <!--                        <t t-set="done_text">Step 2 Completed!</t>-->
+            <!--            <t t-set="method" t-value="'onboarding_step2_action'" />-->
+            <!--             <t t-set="methodcnt" t-value="'onboarding_step2_count'" />-->
+
+            <!--            <t t-set="model" t-value="'res.company'" />-->
+            <!--            <t t-set="state" t-value="state.get('onboarding_step2_state')" />-->
+        </t>
+    </template>
+    <template id="overtime_step3">
+        <t t-call="overtime_onboarding.onboarding_default_step">
+            <t t-set="title">Approval</t>
+            <t t-set="description">
+                Approve or reject the overtime document.
+            </t>
+            <t t-set="sl">3</t>
+<!--                        <t t-set="btn_text">Employees</t>-->
+<!--                        <t t-set="done_text">step 3 set.</t>-->
+<!--                        <t t-set="method" t-value="'onboarding_step3_action'" />-->
+<!--                        <t t-set="model" t-value="'hr.overtime'" />-->
+        </t>
+    </template>
+
+    <template id="overtime_step4">
+        <t t-call="overtime_onboarding.onboarding_default_step">
+            <t t-set="title">Payout</t>
+            <t t-set="description">
+                Auto calculate the approved overtime amount in the forthcoming payroll.
+            </t>
+            <t t-set="sl">4</t>
+        </t>
+    </template>
+
+    <template id="overtime_step5">
+        <t t-call="overtime_onboarding.onboarding_default_step">
+            <t t-set="title">Compensate</t>
+            <t t-set="description">
+                Compensated leaves will be added in the system.
+            </t>
+            <t t-set="sl">5</t>
+        </t>
+    </template>
+
+    <template id="overtime_dashboard_onboarding_panel" name="onboarding.dashboard.onboarding.panel">
+        <t t-call="overtime_onboarding.onboarding_default_container">
+            <t t-set="classes" t-value="'o_onboarding_blue'"/>
+            <t t-set="bg_image" t-value="'/onboarding/static/src/img/employee_dashboard_onboarding_bg.jpg'"/>
+            <!--            <t t-set="close_method" t-value="'action_close_account_dashboard_onboarding'"/>-->
+            <!--            <t t-set="close_model" t-value="'res.company'"/>-->
+            <!--            <t t-set="text_completed">Congratulations! You are all set.</t>-->
+
+            <t t-call="overtime_onboarding.overtime_step1" name="overtime_setup"/>
+            <t t-call="overtime_onboarding.overtime_step2" name="define_setup"/>
+            <t t-call="overtime_onboarding.overtime_step3" name="approve_setup"/>
+            <t t-call="overtime_onboarding.overtime_step4" name="payout_setup"/>
+	    <t t-call="overtime_onboarding.overtime_step5" name="compensate_setup"/>
+
+        </t>
+    </template>
+    <!-- SAMPLE INVOICE EMAIL -->
+
+</odoo>
+

@@ -1,0 +1,17 @@
+
+Version 13.0.0.1 : (17/01/20)
+		- Solve issue of onchange method in sale.order.line
+
+=> 13.0.0.2 : Improved demanded apps link in index file.
+
+Version 13.0.0.3 : (18/06/20)
+		- Solve Odoo sh errors.
+
+13.0.0.4 => 6-11-2020 => Fixed issue while creating picking from POS picking should be on done stage but in draft, not it's fixed picking will be on done stage.
+
+13.0.0.5 => 9-11-2020 => Fixed issue while qty is available enough in stock and in picking of SO check availability button is visible.
+
+Version 13.0.0.6 : (03 Dec 2020)
+		- Move line is not set proper when bundle product order
+
+13.0.0.7 ==>added widget for image in pack products.

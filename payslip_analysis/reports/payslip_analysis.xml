@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="payslip_analysis_view_search" model="ir.ui.view">
+            <field name="name">payslip_analysis.form</field>
+            <field name="model">payslip.analysis</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="payslip_id"/>
+                    <field name="employee_id"/>
+                    <field name="department_id"/>
+                    <field name="job_id"/>
+                    <field name="structure_id"/>
+                    <field name="rule_id"/>
+                    <field name="parent_id"/>
+                    <field name="run_id"/>
+                    <field name="state"/>
+                    <group name="filter_payslip_state" string="Payslip Status">
+                        <filter name="state_draft" string="Draft" domain="[('state','=','draft')]"/>
+                        <filter name="state_done" string="Done" domain="[('state','=','done')]"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="payslip_analysis_view_pivot" model="ir.ui.view">
+            <field name="name">payslip.analysis.pivot</field>
+            <field name="model">payslip.analysis</field>
+            <field name="arch" type="xml">
+                <pivot string="Payslip Analysis" disable_linking="True">
+                    <field name="payslip_id" type="row"/>
+                    <field name="amount" type="measure"/>
+                </pivot>
+            </field>
+        </record>
+
+        <record id="payslip_analysis_view_graph" model="ir.ui.view">
+            <field name="name">payslip.analysis.graph</field>
+            <field name="model">payslip.analysis</field>
+            <field name="arch" type="xml">
+                <graph string="Payslip Analysis">
+                    <field name="payslip_id" type="col"/>
+                    <field name="amount" type="measure"/>
+                </graph>
+            </field>
+        </record>
+
+        <record id="payslip_analysis_action" model="ir.actions.act_window">
+            <field name="name">Payslip Analysis</field>
+            <field name="res_model">payslip.analysis</field>
+            <!--field name="view_type">form</field-->
+            <field name="view_mode">pivot,graph,form</field>
+            <field name="context">{'search_default_state_done':1}</field>
+            <field name="search_view_id" ref="payslip_analysis_view_search"/>
+        </record>
+
+        <menuitem id="menu_hr_payroll_reporting" name="Reporting" sequence="99" parent="hr_payroll_community.menu_hr_payroll_community_root"/>
+
+        <menuitem
+            id="menu_payslip_analysis_id"
+            name="Payslip Analysis"
+            parent="menu_hr_payroll_reporting"
+            action="payslip_analysis_action"/>
+    </data>
+</odoo>

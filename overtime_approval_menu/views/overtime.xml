@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+<!--    <record id="overtime_packages_form" model="ir.ui.view">-->
+<!--        <field name="name">overtime.packages.form</field>-->
+<!--        <field name="model">hr.overtime</field>-->
+<!--         <field name="inherit_id" ref="ohrms_overtime.hr_overtime"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <form>-->
+
+<!--                <sheet>-->
+
+<!--                    <group>-->
+
+
+
+
+<!--                    </group>-->
+
+<!--                </sheet>-->
+
+
+<!--            </form>-->
+<!--        </field>-->
+<!--    </record>-->
+
+
+<!--    <record id="overtime_packages_tree" model="ir.ui.view">-->
+<!--        <field name="name">overtime.packages.tree</field>-->
+<!--        <field name="model">hr.overtime</field>-->
+<!--         <field name="inherit_id" ref="ohrms_overtime.hr_overtime"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <tree>-->
+
+
+<!--            </tree>-->
+<!--        </field>-->
+<!--    </record>-->
+
+
+    <record id="overtime_packages_action" model="ir.actions.act_window">
+        <field name="name">Level-One To Approve</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hr.overtime</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">['|','|','|','|','|',('user_id', '=', uid), ('employee_id.parent_id.user_id', '=', uid),('employee_id.parent_id.parent_id.user_id', '=', uid),('employee_id.parent_id.parent_id.parent_id.user_id', '=', uid), ('employee_id.parent_id.parent_id.parent_id.parent_id.user_id', '=', uid),('employee_id.parent_id.parent_id.parent_id.parent_id.parent_id.user_id', '=', uid),('state','=', 'f_approve')]</field>
+
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+
+            </p>
+
+        </field>
+    </record>
+
+    <record id="overtime_packages_action_one" model="ir.actions.act_window">
+        <field name="name">Level-Two To Approve</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hr.overtime</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('state','=', 'approved1')]</field>
+
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+
+            </p>
+
+        </field>
+    </record>
+
+    <menuitem
+            id="overtime_menu"
+            name="Level-One To Approve"
+            parent="ohrms_overtime.overtime_submenu"
+            action="overtime_packages_action"
+            sequence="10"
+    />
+     <menuitem
+            id="overtime_menu_one"
+            name="Level-Two To Approve"
+            parent="ohrms_overtime.overtime_submenu"
+            action="overtime_packages_action_one"
+            sequence="10"
+    />
+
+</odoo>

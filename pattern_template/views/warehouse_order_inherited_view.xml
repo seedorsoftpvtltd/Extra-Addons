@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+
+    <record id="warehouse_order_form_inherited" model="ir.ui.view">
+        <field name="name">warehouse.order.inherited</field>
+        <field name="model">warehouse.order</field>
+        <field name="inherit_id" ref="warehouse.warehouse_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='currency_id']" position="after">
+
+            </xpath>
+        </field>
+    </record>
+
+
+</odoo>

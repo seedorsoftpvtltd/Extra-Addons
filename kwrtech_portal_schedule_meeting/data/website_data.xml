@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="schedule_meeting" name="Schedule a Meeting">
+            <t t-call="website.layout">
+                <div id="wrap">
+                    <div class="oe_structure">
+                        <section class="pt8 pb8">
+                            <div class="container">
+                                <div class="row s_nb_column_fixed">
+                                    <div class="col-lg-12 s_title pt16 pb16">
+                                        <h1>Schedule a Meeting</h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="container mt-2">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="oe_structure">
+                                    <section class="s_text_block">
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <p>
+                                                        Schedule the meeting with our representative after checking their availability in your time zone.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                                <form id="website_meeting_form" t-ignore="true" action="/website_form/" method="post" data-model_name="calendar.event" class="s_website_form container-fluid mt32" enctype="multipart/form-data" data-success_page="/meetings-thank-you">
+                                    <div class="form-group row form-field o_website_form_custom o_website_form_required_custom">
+                                        <div class="col-lg-3 col-md-4">
+                                            <label class="col-form-label" for="name">Meetings Subject</label>
+                                        </div>
+                                        <div class="col-lg-7 col-md-8">
+                                            <input id="subject" type="text" class="form-control o_website_form_input" name="name" required=""/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row form-field o_website_form_custom o_website_form_required_custom">
+                                        <div class="col-lg-3 col-md-4">
+                                            <label class="col-form-label" for="user_id">Representative</label>
+                                        </div>
+                                        <div class="col-lg-7 col-md-8">
+                                            <select id="employee" class="form-control o_website_form_input set-availability-timeslots" name="user_id" required="">
+                                                <t t-foreach="members" t-as="member">
+                                                    <option t-att-value="member[1]"><t t-esc="member[0]"/></option>
+                                                </t>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row form-field o_website_form_required_custom">
+                                        <div class="col-lg-3 col-md-4">
+                                            <label class="col-form-label" for="duration">Duration</label>
+                                        </div>
+                                        <div class="col-lg-7 col-md-8">
+                                            <input type="radio" id="fifteen_minutes" name="duration" value="15" checked="" class="set-availability-timeslots"/>
+                                            <label for="fifteen_minutes">15 minutes</label>
+                                            <input type="radio" id="thirty_minutes" name="duration" value="30" class="set-availability-timeslots"/>
+                                            <label for="thirty_minutes">30 minutes</label><br/>
+                                            <input type="radio" id="forty_five_minutes" name="duration" value="45" class="set-availability-timeslots"/>
+                                            <label for="forty_five_minutes">45 minutes</label>
+                                            <input type="radio" id="sixty_minutes" name="duration" value="60" class="set-availability-timeslots"/>
+                                            <label for="sixty_minutes">1 hour</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row form-field o_website_form_custom o_website_form_required_custom">
+                                        <div class="col-lg-3 col-md-4">
+                                            <label class="col-form-label" for="meeting_date">Date</label>
+                                        </div>
+                                        <div class="col-lg-7 col-md-8">
+                                            <t t-set='date_formatted'><t t-esc="datetime.date.today().strftime('%Y-%m-%d')"/></t>
+                                            <input id="meeting_date" type="date" min="1900-01-01" name="meeting_date" t-att-value="date_formatted" class="datetimepicker-input form-control set-availability-timeslots" data-date-format="YYYY-MM-DD" placeholder="YYYY-MM-DD" required=""/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row form-field o_website_form_required_custom">
+                                        <div class="col-lg-3 col-md-4">
+                                            <label class="col-form-label" for="timezone">My Timezone</label>
+                                        </div>
+                                        <div class="col-lg-7 col-md-8">
+                                            <select id="timezone" class="form-control o_website_form_input set-availability-timeslots" name="timezone" required="">
+                                                <t t-foreach="tzs" t-as="tz">
+                                                    <option t-att-value="tz[1]"><t t-esc="tz[0]"/></option>
+                                                </t>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row form-field o_website_form_custom o_website_form_required_custom">
+                                        <div class="col-lg-3 col-md-4">
+                                            <label class="col-form-label" for="timeslot">Available Time Slot</label>
+                                        </div>
+                                        <div class="col-lg-7 col-md-8">
+                                            <select id="timeslot" class="form-control o_website_form_input" name="timeslot" required=""/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="offset-lg-3 offset-md-4 col-md-8 col-lg-7">
+                                            <a href="#" class="btn btn-primary btn-lg o_website_form_send">Schedule</a>
+                                            <span id="o_website_form_result"></span>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="oe_structure mt-2"/>
+                </div>
+            </t>
+        </template>
+
+        <record id="meetings_thanks" model="website.page">
+            <field name="name">Thanks for Scheduling a Meeting with Us</field>
+            <field name="type">qweb</field>
+            <field name="url">/meetings-thank-you</field>
+            <field name="website_indexed" eval="False"/>
+            <field name="is_published">True</field>
+            <field name="key">kwrtech_portal_schedule_meeting.meetings_thanks</field>
+            <field name="arch" type="xml">
+                <t name="Thanks for Scheduling a Meeting with Us" t-name="kwrtech_portal_schedule_meeting.meetings_thanks">
+                    <t t-call="website.layout">
+                      <div id="wrap">
+                        <div class="oe_structure" id="oe_structure_website_form_contact_us_thanks_1"/>
+                        <div class="container mt-4">
+                            <div class="row">
+                                <div class="col-lg-7 col-xl-6 mr-lg-auto oe_structure">
+                                    <section class="pt40 s_text_block pb40 o_colored_level o_cc o_cc1" data-snippet="s_text_block" data-name="Text">
+                                        <div class="container">
+                                            <span class="d-block fa fa-4x fa-thumbs-up mx-auto rounded-circle bg-primary"/><br/>
+                                            <h1 class="text-center">Thank you!</h1>
+                                            <div class="pb16 pt16 s_hr" data-snippet="s_hr" data-name="Separator">
+                                                <hr class="mx-auto border-top w-50 border-dark text-center"/>
+                                            </div>
+                                            <h5 class="text-center">
+                                                <span class="fa fa-check-circle"/>
+                                                <span>You have schedule the meeting with us <b>successfully.</b></span>
+                                            </h5>
+                                            <p class="text-center">The responsible person for the meeting will get back to you shortly.</p>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="oe_structure" id="oe_structure_website_form_contact_us_thanks_2"/>
+                      </div>
+                    </t>
+                </t>
+            </field>
+        </record>
+    </data>
+
+    <data noupdate="1">
+        <record id="menu_schedule_meeting" model="website.menu">
+            <field name="name">Schedule a Meeting</field>
+            <field name="url">/schedule</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence" type="int">70</field>
+        </record>
+    </data>
+</odoo>

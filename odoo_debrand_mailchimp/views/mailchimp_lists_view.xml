@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_mailchimp_lists_form_inherit" model="ir.ui.view">
+            <field name="name">mailchimp.lists.form.inherit</field>
+            <field name="model">mailchimp.lists</field>
+            <field name="inherit_id" ref="mailchimp.view_mailchimp_lists_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='field_id']" position="replace">
+                    <field name="field_id" string='Seedor field' attrs="{'readonly': ['|', ('type','=', 'address'), ('tag','in', ['FNAME','LNAME'])]}"/>
+                </xpath>
+            </field>
+    </record>
+</odoo>

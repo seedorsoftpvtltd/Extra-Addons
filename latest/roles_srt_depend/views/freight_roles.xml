@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+		<record id="view_freight_access_inherit" model="ir.ui.view">
+            <field name="name">freight.operation</field>
+            <field name="model">freight.operation</field>
+            <field name="inherit_id" ref="jobbooking_custom_view.freight_operation_view_form_custom_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_confirm']" position="attributes">
+                    <attribute name="groups">roles_srt.group_confirm_access_freight</attribute>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_freight_access1_inherit" model="ir.ui.view">
+            <field name="name">freight.operation</field>
+            <field name="model">freight.operation</field>
+            <field name="inherit_id" ref="jobbooking_custom_view.freight_operation_view_form_custom_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='jobbooking_service_salecost_read.action_create_bill']" position="attributes">
+                    <attribute name="groups">roles_srt.group_inv_access_freight</attribute>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_freight_access2_inherit" model="ir.ui.view">
+            <field name="name">freight.operation</field>
+            <field name="model">freight.operation</field>
+            <field name="inherit_id" ref="jobbooking_custom_view.freight_operation_view_form_custom_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='jobbooking_service_salecost_read.action_create_invoice']" position="attributes">
+                    <attribute name="groups">roles_srt.group_inv_access_freight</attribute>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_model_product_history,access.product.history,model_product_history,base.group_user,1,1,1,1
+access_model_product_summary,access.product.summary,model_product_summary,base.group_user,1,1,1,1
+access_model_picking_services,access.picking.services,model_picking_services,base.group_user,1,1,1,1
+access_model_summary_sheet,access.summary.sheet,model_summary_sheet,base.group_user,1,1,1,1
+access_model_summary_sheet_lines,access.summary.sheet.lines,model_summary_sheet_lines,base.group_user,1,1,1,1
+
+
+
+
+

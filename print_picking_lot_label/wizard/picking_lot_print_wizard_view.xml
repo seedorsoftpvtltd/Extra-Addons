@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+        <record model="ir.ui.view" id="view_picking_lot_print_wizard_form">
+           <field name="name">picking.lot.print.wizard.form</field>
+           <field name="model">picking.lot.print.wizard</field>
+           <field name="arch" type="xml">
+               <form string="Print Lot Label">
+                    <p>This wizard will print number of lot labels as per defined quantity.</p>
+                    <group>
+                        <field name="quantity"/>
+                    </group>
+                    <footer>
+                        <button string="Print" name="action_print_lot_label" type="object" default_focus="1" class="btn-primary"/> or 
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+           </field>
+       </record>
+       
+       <!-- <act_window id="action_picking_lot_print_wizard"
+            key2="client_print_multi"
+            name="Print Lot Label" 
+            res_model="picking.lot.print.wizard"
+            src_model="stock.picking"
+            view_mode="form"
+            target="new"
+            view_type="form"/> -->
+
+        <act_window
+            name="Print Lot Label"
+            id="action_picking_lot_print_wizard"
+            res_model="picking.lot.print.wizard"
+            binding_model="stock.picking"
+            view_mode="form"
+            target="new"
+            /> <!-- odoo13 -->
+           
+</odoo>

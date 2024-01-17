@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+	<record id="sale_dashboard_action" model="ir.actions.client">
+         <field name="name">Sale Dashboard</field>
+         <field name="tag">sale_dashboard</field>
+    </record>
+
+    <menuitem id="sale_dashboard_menu" name="Sale Dashboard" parent="sale.sale_menu_root"
+        action="sale_dashboard_action" sequence="0"  groups="modern_dashboard_odoo_axis_bookseedor.group_sale_user"/>
+
+
+     <record id="crm_dashboard_action" model="ir.actions.client">
+         <field name="name">CRM Dashboard</field>
+         <field name="tag">crm_dashboard_action</field>
+    </record>
+
+    <!--menuitem id="crm_dashboard_menu" name="CRM Dashboard" parent="crm.crm_menu_root"
+        action="crm_dashboard_action" sequence="-1" groups="modern_dashboard_odoo_axis_bookseedor.group_crm_user"/-->
+
+    <menuitem id="crm_dashboard_menu" name="Dashboard" parent="crm.crm_menu_root"
+        action="crm_dashboard_action" sequence="-1" groups="modern_dashboard_odoo_axis_bookseedor.group_crm_user"/>
+
+
+     <record id="inventory_dashboard_action" model="ir.actions.client">
+         <field name="name">Inventory Dashboard</field>
+         <field name="tag">inventory_dashboard_action</field>
+    </record>
+
+    <!--menuitem id="inventory_dashboard_menu" name="Inventory Dashboard" parent="stock.menu_stock_root"
+        action="inventory_dashboard_action" sequence="-1" groups="modern_dashboard_odoo_axis_bookseedor.group_inventory_user"/-->
+
+    <menuitem id="inventory_dashboard_menu" name="Dashboard" parent="stock.menu_stock_root"
+        action="inventory_dashboard_action" sequence="-1" groups="modern_dashboard_odoo_axis_bookseedor.group_inventory_user"/>
+
+     <record id="account_dashboard_action" model="ir.actions.client">
+         <field name="name">Account Dashboard</field>
+         <field name="tag">account_dashboard_action</field>
+    </record>
+
+    <menuitem id="account_dashboard_menu" name="Account Dashboard" parent="account.menu_finance"
+        action="account_dashboard_action" sequence="0" groups="modern_dashboard_odoo_axis_bookseedor.group_account_user"/>
+
+   </data>
+</odoo>

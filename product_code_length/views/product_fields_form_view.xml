@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+<!--        <record id="product_template_form_view_field" model="ir.ui.view">-->
+<!--            <field name="name">product.template.field</field>-->
+<!--            <field name="model">product.template</field>-->
+<!--            <field name="inherit_id" ref="product.product_template_form_view"/>-->
+<!--            <field name="arch" type="xml">-->
+
+<!--                <xpath expr="//group/field[@name='description']" position="before">-->
+<!--&lt;!&ndash;                    <label string="Narration"/>&ndash;&gt;-->
+<!--                    <group>-->
+<!--                        <field name="narration"  style="width:270%;"/>-->
+<!--                    </group>-->
+
+<!--                </xpath>-->
+<!--                  <xpath expr="//group/field[@name='description']" position="attributes">-->
+<!--&lt;!&ndash;                    <label string="Narration"/>&ndash;&gt;-->
+<!--                   <attribute name="invisible">1</attribute>-->
+<!--                </xpath>-->
+
+<!--            </field>-->
+<!--        </record>-->
+<!--          <record id="view_product_filter" model="ir.ui.view">-->
+<!--            <field name="name">product.filter.search</field>-->
+<!--            <field name="model">product.template</field>-->
+<!--            <field name="inherit_id" ref="product.product_template_search_view"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <xpath expr="//filter[@name='filter_to_sell']" position="replace">-->
+<!--&lt;!&ndash;                    <filter name="filter_to_sell" options="{'no_create': True, 'no_open': True, 'no_edit': True, 'no_remove': True}"/>&ndash;&gt;-->
+<!--                </xpath>-->
+
+<!--            </field>-->
+<!--        </record>-->
+
+
+    </data>
+</odoo>
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_picking_transport_inherit_purchase_custom" inherit_id="odoo_transport_management.picking_transport_print">
+        <xpath expr="//div[hasclass('page')]/table/tr[1]/td[2]" position="after">
+            <td><strong>Purchase Order</strong></td><td> <span t-field="doc.purchaseorder_id.name"/></td>
+        </xpath>
+    </template>
+</odoo>

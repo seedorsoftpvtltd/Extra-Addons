@@ -1,0 +1,30 @@
+<odoo>    
+    <record model="ir.ui.view" id="mrp_report_wizard">
+        <field name="name">Mrp Report</field>
+        <field name="model">mrp.report.wizard</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Mrp Report">
+                <group>				
+                    
+                       <field name="date_start"/>
+                       
+                </group>
+                <footer>
+                    <button name="get_report" string="Get Report" type="object" class="oe_highlight"/>
+                    <button string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <act_window id="action_mrp_report_wizard"
+                name="Mrp Report"
+                res_model="mrp.report.wizard"
+                view_mode="form"
+                target="new"/>
+
+    <menuitem action="action_mrp_report_wizard"
+              id="menu_mrp_report_wizard"
+              parent="mrp.menu_mrp_reporting"/>
+</odoo>

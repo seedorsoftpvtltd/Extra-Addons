@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>       
+        <record id="view_picking_internal_search_inherit" model="ir.ui.view">
+            <field name="name">stock.picking,.search.inherit</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_internal_search"/>
+            <field name="arch" type="xml">
+            <xpath expr="//filter[@name='my_transfers']" position="after">
+                <filter string="Assigned" name="assigned_count" invisible="1"/>
+                 <filter string="Delivery Order" name="delievery_orders" invisible="1"/>
+                 <filter string="Waiting" name="waiting_count" invisible="1"/>
+            </xpath>
+            </field>
+        </record>
+   </data>
+</odoo>

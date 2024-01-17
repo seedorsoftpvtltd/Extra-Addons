@@ -1,0 +1,32 @@
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="warehouse_order_form_container_extend">
+            <field name="name">warehouse.order.form</field>
+            <field name="model">warehouse.order</field>
+            <field name="inherit_id" ref="asn_views.view_asn_views_extend_model"/>
+            <field name="arch" type="xml">
+            <xpath expr="//field[@name='company_id']" position="after">
+                <field name="multi_container_qty" invisible="1"/>
+            </xpath>
+            <field name="container_no" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <xpath expr="//notebook//page[1]" position="after">
+                <page string="Container/Truck" name="multi_container">
+                    <field name="multi_container_ids">
+                        <tree editable="bottom">
+                            <field name="container" attrs="{'column_invisible': [('parent.x_transport', 'in', ['land','air'])]}"/>
+                            <field name="container_serial_no" attrs="{'column_invisible': [('parent.x_transport', 'in', ['land','air'])]}"/>
+                            <field name="truck_no"/>
+                            <field name="agent_seal" attrs="{'column_invisible': [('parent.x_transport', 'in', ['land','air',False])]}"/>
+                            <field name="developer_seal"/>
+                            <field name="custom_seal"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+        </record>
+    </data>
+</openerp>

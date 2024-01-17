@@ -1,0 +1,45 @@
+<odoo>
+    <data>
+    <record id="report_wizard" model="ir.ui.view" >
+    <field name="name">Report</field>
+    <field name="model">reportt.wizardd</field>
+    <field name="type">form</field>
+    <field name="arch" type="xml">
+        <form string="Report">
+<!--            <h> Stock Movement Report </h>-->
+            <group>
+                <field name="overall_report"/>
+            </group>
+            <group>
+                <field name="start_date" attrs="{'invisible': [('overall_report', '!=', False)]}"/>
+                <field name="end_date" attrs="{'invisible': [('overall_report', '!=', False)]}"/>
+            </group>
+            <group>
+                 <field name="partner_id" attrs="{'invisible': [('overall_report', '!=', False)]}"/>
+                <field name="product_id"  attrs="{'invisible': [('overall_report', '!=', False)]}" widget="many2many_tags"/>
+            </group>
+            <footer>
+                <button name="view_stock_movement" string="Stock Movement Report" type="object" class="oe_highlight" attrs="{'invisible': [('overall_report', '!=', False)]}"/>
+                <button name="view_stock_movementt" string="Stock Movement Report" type="object" class="oe_highlight" attrs="{'invisible': [('overall_report', '=', False)]}"/>
+
+                <button string="Cancel" special="cancel"/>
+            </footer>
+        </form>
+    </field>
+</record>
+
+<act_window id="action_report_wizard"
+    name="Stock Movement Report"
+    res_model="reportt.wizardd"
+    view_mode="form"
+    target="new"/>
+
+
+
+<menuitem action="action_report_wizard"
+    id="report_wizard_menu"
+    parent="stock.menu_warehouse_report" />
+
+    </data>
+
+</odoo>

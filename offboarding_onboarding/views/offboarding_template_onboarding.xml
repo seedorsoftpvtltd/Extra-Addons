@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="onboarding_offboarding_step1">
+        <t t-call="offboarding_onboarding.onboarding_default_steps">
+            <t t-set="title">Add the resign date</t>
+            <t t-set="description">
+                Update your employees resignation by adding the resignation date in Employees.
+            </t>
+            <t t-set="sl">1</t>
+<!--            <t t-set="btn_text">Attendance</t>-->
+<!--&lt;!&ndash;          <t t-set="cnt_text" t-value="request.env['hr.department'].search_count([])">&ndash;&gt;-->
+<!--&lt;!&ndash;              <t t-esc="cnt_text">Departments</t>&ndash;&gt;-->
+<!--&lt;!&ndash;            </t>&ndash;&gt;-->
+<!--&lt;!&ndash;            <t t-set="cnt_desc">Records</t>+&ndash;&gt;-->
+<!--&lt;!&ndash;             <t t-set="sl">1</t>&ndash;&gt;-->
+<!--            <t t-set="method" t-value="'onboarding_step1_action'" />-->
+<!--            <t t-set="model" t-value="'hr.attendance'" />-->
+<!--&lt;!&ndash;            <t t-set="state" t-value="state.get('onboarding_step1_state')" />&ndash;&gt;-->
+        </t>
+    </template>
+
+    <template id="onboarding_offboarding_step2">
+        <t t-call="offboarding_onboarding.onboarding_default_steps">
+            <t t-set="title">Offboarding Plans</t>
+            <t t-set="description">
+                Manage the Offboarding process and approval of the employee.
+            </t>
+		<t t-set="sl">2</t>
+                        <t t-set="btn_text">Plan</t>
+                        <t t-set="done_text">step 2 set.</t>
+                        <t t-set="method" t-value="'onboarding_plan2_action'" />
+                        <t t-set="model" t-value="'hr.resignation'" />
+        </t>
+    </template>
+    <template id="onboarding_offboarding_step3">
+        <t t-call="offboarding_onboarding.onboarding_default_steps">
+            <t t-set="title">Manage Resigned employees</t>
+            <t t-set="description">
+                Manage the information of the resigned employees under Offboarding.
+            </t>
+
+            <t t-set="btn_text">Offboarding</t>
+<!--          <t t-set="cnt_text" t-value="request.env['hr.department'].search_count([])">-->
+<!--              <t t-esc="cnt_text">Departments</t>-->
+<!--            </t>-->
+<!--            <t t-set="cnt_desc">Records</t>+-->
+             <t t-set="sl">3</t>
+            <t t-set="method" t-value="'onboarding_step1_action'" />
+            <t t-set="model" t-value="'hr.resignation'" />
+<!--            <t t-set="state" t-value="state.get('onboarding_step1_state')" />-->
+        </t>
+    </template>
+
+
+
+
+
+
+
+    <template id="offboarding_dashboard_onboarding_panel" name="onboarding.offboarding.onboarding.panel">
+        <t t-call="offboarding_onboarding.onboarding_default_container">
+            <t t-set="classes" t-value="'o_onboarding_blue'"/>
+<!--            <t t-set="bg_image" t-value="'/onboarding/static/src/img/attendance_dashboard_onboarding_bg.jpg'"/>-->
+<!--            <t t-set="close_method" t-value="'action_close_account_dashboard_onboarding'"/>-->
+<!--            <t t-set="close_model" t-value="'res.company'"/>-->
+<!--            <t t-set="text_completed">Congratulations! You are all set.</t>-->
+
+            <t t-call="offboarding_onboarding.onboarding_offboarding_step1" name="resign_date" />
+            <t t-call="offboarding_onboarding.onboarding_offboarding_step2" name="offboarding_plan" />
+            <t t-call="offboarding_onboarding.onboarding_offboarding_step3" name="offboard_employee" />
+
+
+        </t>
+    </template>
+</odoo>

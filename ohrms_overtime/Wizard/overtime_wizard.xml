@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="wizard_overtime_form" model="ir.ui.view">
+        <field name="name">reject.overtime.wizard.new</field>
+        <field name="model">reject.overtime.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Warning1">
+                <group>
+                	<field name="reason"/>
+                        <field name="approve_dur"/>
+                </group>
+
+                <footer>
+                    <button name="reject_overtime_button" string="Reject"
+                      type="object" class="oe_highlight"
+                      />
+                    <button string="Cancel" class="bin-secondary" special="cancel"/>
+
+                </footer>
+            </form>
+        </field>
+       </record>
+    <record id="action_confirm11" model="ir.actions.act_window">
+        <field name="name">Reject Timesheet</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">reject.overtime.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="wizard_overtime_form"/>
+        <field name="target">new</field>
+
+      </record>
+
+    <record id="wizard_overtime_form_2" model="ir.ui.view">
+        <field name="name">approve.overtime.wizard.new</field>
+        <field name="model">approve.overtime.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Warning2">
+                <group>
+                  <field name="message"/>
+                </group>
+                <footer>
+                    <button name="approve_overtime_button" string="Approve"
+                      type="object" class="oe_highlight"
+                      />
+                    <button string="Cancel" class="bin-secondary" special="cancel"/>
+
+                </footer>
+            </form>
+        </field>
+       </record>
+
+    <record id="action_confirm2" model="ir.actions.act_window">
+        <field name="name">Approve Timesheet</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">approve.overtime.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="wizard_overtime_form_2"/>
+        <field name="target">new</field>
+
+      </record>
+
+
+        <act_window
+        name="Approved"
+        res_model="approve.overtime.wizard"
+        binding_model="hr.overtime"
+        binding_views="list"
+        view_mode="form"
+        target="new"
+        id="action_account_from_approve"
+        groups="hr_timesheet.group_timesheet_manager"
+        />
+    <act_window
+        name="Rejected"
+        res_model="reject.overtime.wizard"
+        binding_model="hr.overtime"
+        binding_views="list"
+        view_mode="form"
+        target="new"
+        id="action_account_from_reject"
+        groups="hr_timesheet.group_timesheet_manager"
+        />
+</odoo>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.model.access" id="access_maintenance_fcheckk_user">
+        <field name="name">selection_template_maintenance_manager</field>
+        <field name="model_id" ref="model_mcheck_mcheck" />
+        <field name="group_id" ref="base.group_user" />
+        <field name="perm_read" eval="1" />
+        <field name="perm_create" eval="1" />
+        <field name="perm_write" eval="1" />
+        <field name="perm_unlink" eval="1" />
+    </record>
+     <record model="ir.model.access" id="maintenance_fcheckk_user">
+        <field name="name">maintenance_vehicle_user</field>
+        <field name="model_id" ref="model_mcheck_mcheck" />
+        <field name="group_id" ref="base.group_user" />
+        <field name="perm_read" eval="1" />
+        <field name="perm_create" eval="0" />
+        <field name="perm_write" eval="0" />
+        <field name="perm_unlink" eval="0" />
+    </record>
+
+
+
+
+    <record model="ir.model.access" id="access_maintenance_checklisttt_user">
+        <field name="name">selection_template_maintenance_manager</field>
+        <field name="model_id" ref="model_maintenance_checklist" />
+        <field name="group_id" ref="base.group_user" />
+        <field name="perm_read" eval="1" />
+        <field name="perm_create" eval="1" />
+        <field name="perm_write" eval="1" />
+        <field name="perm_unlink" eval="1" />
+    </record>
+     <record model="ir.model.access" id="maintenance_checklisttt_user">
+        <field name="name">maintenance_vehicle_user</field>
+        <field name="model_id" ref="model_maintenance_checklist" />
+        <field name="group_id" ref="base.group_user" />
+        <field name="perm_read" eval="1" />
+        <field name="perm_create" eval="0" />
+        <field name="perm_write" eval="0" />
+        <field name="perm_unlink" eval="0" />
+    </record>
+
+    <record model="ir.model.access" id="maintenance_vehicle_check_user">
+        <field name="name">maintenance_vehicle_user</field>
+        <field name="model_id" ref="model_maintcheck_check" />
+        <field name="group_id" ref="base.group_user" />
+        <field name="perm_read" eval="1" />
+        <field name="perm_create" eval="0" />
+        <field name="perm_write" eval="0" />
+        <field name="perm_unlink" eval="0" />
+    </record>
+    <record model="ir.model.access" id="maintenance_vehicle_check_manager">
+        <field name="name">maintenance_vehicle_template_manager</field>
+        <field name="model_id" ref="model_maintcheck_check" />
+        <field name="group_id" ref="base.group_user" />
+        <field name="perm_read" eval="1" />
+        <field name="perm_create" eval="1" />
+        <field name="perm_write" eval="1" />
+        <field name="perm_unlink" eval="1" />
+    </record>
+    <record model="ir.model.access" id="access_checklist_points_user">
+        <field name="name">selection_template_maintenance_manager</field>
+        <field name="model_id" ref="model_mchecklist_mchecklist" />
+        <field name="group_id" ref="base.group_user" />
+        <field name="perm_read" eval="1" />
+        <field name="perm_create" eval="1" />
+        <field name="perm_write" eval="1" />
+        <field name="perm_unlink" eval="1" />
+    </record>
+
+    <record model="ir.model.access" id="access_maintenance_checklist_user">
+        <field name="name">selection_template_maintenance_manager</field>
+        <field name="model_id" ref="model_maintenance_checklist_template" />
+        <field name="group_id" ref="base.group_user" />
+        <field name="perm_read" eval="1" />
+        <field name="perm_create" eval="1" />
+        <field name="perm_write" eval="1" />
+        <field name="perm_unlink" eval="1" />
+    </record>
+
+    <record model="ir.model.access" id="access_maintenance_checklist_template_user">
+        <field name="name">selection_template_maintenance_manager</field>
+        <field name="model_id" ref="model_maintenance_checklist_template" />
+        <field name="group_id" ref="base.group_user" />
+        <field name="perm_read" eval="1" />
+        <field name="perm_create" eval="1" />
+        <field name="perm_write" eval="1" />
+        <field name="perm_unlink" eval="1" />
+    </record>
+</odoo>

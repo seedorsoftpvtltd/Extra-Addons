@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="stock_order_form_container" model="ir.ui.view">
+        <field name="name">stock.picking.form.container</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook//page[3]" position="after">
+                <page string="Container/Truck" name="multi_container" attrs="{'invisible': [('picking_type_code', '!=', 'incoming')]}">
+                    <field name="multi_container_ids">
+                        <tree editable="bottom">
+                            <field name="container" attrs="{'column_invisible': [('parent.x_transport_mode', 'in', ['land','air'])]}" />
+                            <field name="container_serial_no" attrs="{'column_invisible': [('parent.x_transport_mode', 'in', ['land','air'])]}"/>
+                            <field name="truck_no"/>
+                            <field name="agent_seal" attrs="{'column_invisible': [('parent.x_transport_mode', 'in', ['land','air',False])]}"/>
+                            <field name="developer_seal"/>
+                            <field name="custom_seal"/>
+                        </tree>
+                    </field>
+                </page>
+                <page string="Container/Truck" name="multi_container" attrs="{'invisible': [('picking_type_code', '!=', 'outgoing')]}">
+                    <field name="multi_container_ids_for_delivery">
+                        <tree editable="bottom">
+                            <field name="container" attrs="{'column_invisible': [('parent.x_transport_mode', 'in', ['land','air'])]}"/>
+                            <field name="container_serial_no" attrs="{'column_invisible': [('parent.x_transport_mode', 'in', ['land','air'])]}"/>
+                            <field name="truck_no"/>
+                            <field name="agent_seal" attrs="{'column_invisible': [('parent.x_transport_mode', 'in', ['land','air',False])]}"/>
+                            <field name="developer_seal"/>
+                            <field name="custom_seal"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

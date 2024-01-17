@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>       
+        <record id="view_account_move_filter_inherit" model="ir.ui.view">
+            <field name="name">stock.picking,.search.inherit</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_account_invoice_filter"/>
+            <field name="arch" type="xml">
+            <xpath expr="//filter[@name='unpaid']" position="after">
+                <filter string="Open Invoice" name="open_invoice" invisible="1"/>
+                 <filter string="Cancel Invoice" name="closse_invoice" invisible="1"/>
+                 <filter string="Vendor" name="vendor_payment" invisible="1"/>
+                 <filter string="Customer" name="customer_payment" invisible="1"/>
+            </xpath>
+            </field>
+        </record>
+   </data>
+</odoo>

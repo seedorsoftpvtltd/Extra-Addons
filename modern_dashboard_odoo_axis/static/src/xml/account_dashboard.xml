@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="AccountDashboardView">
+        <div class="account_dashboard">
+            <div class="container-fluid o_account_dashboard">
+                <div class="account-dashboard">
+                  <h4 class="text-primary text-center py-5">Account Dashboard</h4>
+                  <div class="container">
+                    <div class="sales-cards pb-5">
+                        <div class="row top_4_column">
+                          <div class="col-lg-3 col-md-4 col-6 mb-30">
+                            <div class="card h-100 border-0 quotation position-relative">
+                              <div class="hover-bg position-relative h-100">
+                                <div class="card-body h-100 position-relative">
+                                  <div class="row">
+                                    <div class="col-md-4">
+                                      <div class="bg-white icon-box w-100 h-100 pt-4 text-center position-relative">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitch"><path d="M21 2H3v16h5v4l4-4h5l4-4V2zm-10 9V7m5 4V7"></path></svg>
+                                      </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                    <h2 class="card-text total-posted"></h2>
+                                      <h5 class="card-title">Open Invoice</h5>
+                                    </div>
+                                  </div>  
+                                </div>
+                                <div class="more-info-btn position-absolute">
+                                  <button class="rounded-pill btn bg-white px-3 more-open-invoice">More Info</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-3 col-md-4 col-6 mb-30">
+                            <div class="card h-100 border-0 sales-orders position-relative">
+                              <div class="hover-bg position-relative h-100">
+                                <div class="card-body h-100 position-relative">
+                                  <div class="row">
+                                    <div class="col-md-4">
+                                      <div class="bg-white icon-box w-100 h-100 pt-4 text-center position-relative">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart report-box__icon text-theme-10"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                                      </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                      <h2 class="card-text total-cancel"></h2>
+                                      <h5 class="card-title">Cancel Invoice</h5>
+                                    </div>
+                                  </div>  
+                                </div>
+                                <div class="more-info-btn position-absolute">
+                                  <button class="rounded-pill btn bg-white px-3 more-cancel-invoice">More Info</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-3 col-md-4 col-6 mb-30">
+                            <div class="card h-100 border-0 sales-partners position-relative">
+                              <div class="hover-bg position-relative h-100">
+                                <div class="card-body h-100 position-relative">
+                                  <div class="row">
+                                    <div class="col-md-4">
+                                      <div class="bg-white icon-box w-100 h-100 pt-4 text-center position-relative">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitch"><path d="M21 2H3v16h5v4l4-4h5l4-4V2zm-10 9V7m5 4V7"></path></svg>
+                                      </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                      <h2 class="card-text total-customer-payment"></h2>
+                                      <h5 class="card-title">Receivable Amount</h5>
+                                    </div>
+                                  </div>  
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-3 col-md-4 col-6 mb-30">
+                            <div class="card h-100 border-0 customer-cancel position-relative">
+                              <div class="hover-bg position-relative h-100">
+                                <div class="card-body h-100 position-relative">
+                                  <div class="row">
+                                    <div class="col-md-4">
+                                      <div class="bg-white icon-box w-100 h-100 pt-4 text-center position-relative">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+                                      </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                      <h2 class="card-text total-vendor-payment"></h2>
+                                      <h5 class="card-title">Open Purchase Invoice</h5>
+                                    </div>
+                                  </div>  
+                                </div>
+                               
+                              </div>
+                            </div>
+                          </div>
+
+                           
+                         
+                        </div>
+                        <div class="row table-cards">
+                          <div class="col-md-6">
+                            <div class="box box-warning bg-white">
+                              <div class="box-header with-border shadow-sm h-100">
+                                <h3 class="box-title px-4 py-3 text-center bg-gradient text-white mb-0 rounded-top">Customer Payment List</h3>
+                                <div class="box-tools custommer_payment_list">
+                                  <div class="table-responsive">
+                                    <table class="customer_payment_data table no-margin" id="custpaymenttable" >
+                                    </table>
+                                  </div>
+                                </div>
+                                <button id="custpaymentcsv" class="btn btn-primary mt-4">Export CSV</button>
+                                <button id="custpaymentxls" class="btn btn-primary mt-4">Export XLS</button>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                     
+
+
+                         <div class="card-body customer_payment_i">
+                            <div class="panel">
+                                <div class="panel-heading" style="display: inline-block;">
+                                    <h3 class="panel-title">Customer Payment</h3>
+                                </div>
+                               <select id="color_filter2">
+                                    <option value="cool">Cool</option>
+                                    <option value="warm">warm</option>
+        
+                                </select>
+                                 <select id="cust_payment">
+                                    <option value="all"> -- select -- </option>
+                                    <option value="today">Today</option>
+                                    <option value="monthly">This Month</option>
+                                    <option value="year">This Year</option>
+                                </select>
+                    
+                                <div class="panel-body">
+                                      <canvas id="customer_payment" width="1000px" height="900px"/>
+                                       <button id="customer_payment_pdf" class="btn btn-primary mt-4"> <i class="fa fa-download" style="color="></i> Export Pdf
+                                    </button>
+                                      
+
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+
+                          <div class="col-md-6">
+                            <div class="box box-warning bg-white">
+                              <div class="box-header with-border shadow-sm h-100">
+                                <h3 class="box-title px-4 py-3 text-center bg-gradient text-white mb-0 rounded-top">Orders</h3>
+                                <select id="order_details">
+                                    <option value="all"> -- select -- </option>
+                                    <option value="today">Today</option>
+                                    <option value="monthly">This Month</option>
+                                    <option value="year">This Year</option>
+                                </select>
+                                <div class="box-tools invoice_order_list">
+                                  <div class="table-responsive">
+                                    <table class="invoice_order_data table no-margin" id="ordertable">
+                                    </table>
+                                  </div>
+                                </div>
+                                 <button id="ordercsv" class="btn btn-primary mt-4">Export CSV</button>
+                                <button id="orderxls" class="btn btn-primary mt-4">Export XLS</button>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-md-6">
+                            <div class="box box-warning bg-white">
+                              <div class="box-header with-border shadow-sm h-100">
+                                <h3 class="box-title px-4 py-3 text-center bg-gradient text-white mb-0 rounded-top">Top Sale Revenue Customer</h3>
+                                <div class="box-tools revenue_customer_data">
+                                  <div class="table-responsive">
+                                    <table class="revenue_customer_record table no-margin" id="revenuetable">
+                                    </table>
+                                  </div>
+                                </div>
+                                 <button id="revenuerecordcsv" class="btn btn-primary mt-4">Export CSV</button>
+                                 <button id="revenuerecordxls" class="btn btn-primary mt-4">Export XLS</button>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="box box-warning bg-white">
+                              <div class="box-header with-border shadow-sm h-100">
+                                <h3 class="box-title px-4 py-3 text-center bg-gradient text-white mb-0 rounded-top">Vendor Payment List</h3>
+                                <div class="box-tools vendor_payment_list">
+                                  <div class="table-responsive">
+                                    <table class="vendor_payment_data table no-margin" id="venderpaytable">
+                                      </table>
+                                  </div>
+                                </div>
+                                 <button id="venderpaycsv" class="btn btn-primary mt-4">Export CSV</button>
+                                 <button id="venderpayxls" class="btn btn-primary mt-4">Export XLS</button>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                       
+
+
+                         <div class="card-body vendor_payment_i">
+                            <div class="panel">
+                                <div class="panel-heading" style="display: inline-block ">
+                                    <h3 class="panel-title">Vendor Payment</h3>
+                                </div>
+                                 <select id="color_filter3">
+                                    <option value="cool">Cool</option>
+                                    <option value="warm">warm</option>
+                                  </select>
+                                   <select id="vender_payment">
+                                    <option value="all"> -- select -- </option>
+                                    <option value="today">Today</option>
+                                    <option value="monthly">This Month</option>
+                                    <option value="year">This Year</option>
+                                </select>
+        
+                                <div class="panel-body">
+                                      <canvas id="supplier_invoice" width="1000px" height="900px"/>
+                                       <button id="vendor_payment_pdf" class="btn btn-primary mt-4"> <i class="fa fa-download" style="color="></i> Export Pdf
+                                    </button>
+                                      
+                                      
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                           <div class="col-md-6">
+                            <div class="box box-warning bg-white">
+                              <div class="box-header with-border shadow-sm h-100">
+                                <h3 class="box-title px-4 py-3 text-center bg-gradient text-white mb-0 rounded-top">Top Customer</h3>
+                                <div class="box-tools customer_record">
+                                  <div class="table-responsive">
+                                    <table class="customer_record_data table no-margin" id="custrecordtable">
+                                      </table>
+                                  </div>
+                                </div>
+                                 <button id="custrecordcsv" class="btn btn-primary mt-4">Export CSV</button>
+                                 <button id="custrecordxls" class="btn btn-primary mt-4">Export XLS</button>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-md-6">
+                            <div class="box box-warning bg-white">
+                              <div class="box-header with-border shadow-sm h-100">
+                                <h3 class="box-title px-4 py-3 text-center bg-gradient text-white mb-0 rounded-top">Top Vendor </h3>
+                                <div class="box-tools vendor_record">
+                                  <div class="table-responsive">
+                                    <table class="vendor_record_data table no-margin" id="vendertable">
+                                      </table>
+                                  </div>
+                                </div>
+                                 <button id="vendercsv" class="btn btn-primary mt-4">Export CSV</button>
+                                 <button id="venderxls" class="btn btn-primary mt-4">Export XLS</button>
+                              </div>
+                            </div>
+                          </div>
+
+                           <div class="col-md-6">
+                            <div class="box box-warning bg-white">
+                              <div class="box-header with-border shadow-sm h-100">
+                                <h3 class="box-title px-4 py-3 text-center bg-gradient text-white mb-0 rounded-top"> Journal List</h3>
+                                <div class="box-tools journal_record">
+                                  <div class="table-responsive">
+                                    <table class="journal_record_data table no-margin" id="journaltable">
+                                      </table>
+                                  </div>
+                                </div>
+                                 <button id="journalcsv" class="btn btn-primary mt-4">Export CSV</button>
+                                 <button id="journalxls" class="btn btn-primary mt-4">Export XLS</button>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                         <div class="card-body journal_list">
+                            <div class="panel">
+                                <div class="panel-heading" style="display: inline-block;">
+                                    <h3 class="panel-title">Journal List</h3>
+                                </div>
+                                 <select id="color_filter4">
+                                    <option value="cool">Cool</option>
+                                    <option value="warm">warm</option>
+        
+                                </select>
+                                <div class="panel-body">
+                                      <canvas id="journal_record" width="1000px" height="900px"/>
+                                       <button id="journal_list_pdf" class="btn btn-primary mt-4"> <i class="fa fa-download" style="color="></i> Export Pdf
+                                    </button>
+                                      
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                     </div>   
+                    </div>
+                     <div class="row mb-30">
+                      
+                  
+                  <div class="col-md-6">
+                       <div class="card-body recent_customer_i">
+                            <div class="panel">
+                                <div class="panel-heading" style="display: inline-block;">
+                                    <h3 class="panel-title">Top recent customer</h3>
+                                </div>
+                                <select id="color_filter6">
+                                    <option value="cool">Cool</option>
+                                    <option value="warm">warm</option>
+        
+                                </select>
+                                <div class="panel-body">
+                                      <canvas id="r_customer" width="1000px" height="900px"/>
+                                       <button id="recent_customer_pdf" class="btn btn-primary mt-4"> <i class="fa fa-download" style="color="></i> Export Pdf
+                                    </button>
+                                     
+                                </div>
+                            </div>
+                        </div>
+                      </div>  
+
+                      <div class="col-md-6">
+                        <div class="card-body cash_balance">
+                            <div class="panel">
+                                <div class="panel-heading" style="display: inline-block;">
+                                    <h3 class="panel-title">Cash and Bank Balance</h3>
+                                </div>
+                                <select id="color_filter8">
+                                    <option value="cool">Cool</option>
+                                    <option value="warm">warm</option>
+        
+                                </select>
+                                 <select id="cash_bank_detail" style="float: right; margin-bottom: 10px;width: 19%;">
+                                    <option value="all"> -- select -- </option>
+                                    <option value="today">Today</option>
+                                    <option value="monthly">This Month</option>
+                                    <option value="year">This Year</option>
+                                </select>
+                                <div class="panel-body">
+                                      <canvas id="cash_bank" width="1000px" height="900px"/>
+                                       <button id="cashbankcsv" class="btn btn-primary mt-4"> <i class="fa fa-file"></i> Export CSV</button>
+                                 <button id="cash_bank_pdf"  class="btn btn-primary mt-4"> <i class="fa fa-download" style="color="></i> Export Pdf
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                  </div>
+                 
+
+                 
+                  </div>
+                </div>
+              </div>
+          </div>
+      </t>
+
+   
+
+</templates>

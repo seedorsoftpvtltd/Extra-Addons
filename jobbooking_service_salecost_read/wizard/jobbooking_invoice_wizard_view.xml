@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<odoo>
+     <record id="view_freight_form_invoice_inh" model="ir.ui.view">
+		<field name="name">freight.operation.inh</field>
+		<field name="model">freight.operation</field>
+		<field name="inherit_id" ref="scs_freight.view_freight_operation_form"/>
+		<field name="arch" type="xml">
+            <xpath expr="//button[@name='action_invoice_inh']" position="replace">
+                 <button
+                        name="jobbooking_service_salecost_read.action_create_invoice"
+                         type="action"
+                        string="Invoice"
+                        attrs="{'invisible': [('state', 'in', ['draft', 'cancel'])]}"
+                        class="oe_highlight"
+                    />
+             </xpath>
+
+        </field>
+    </record>
+    <record id="view_create_invoice_form" model="ir.ui.view">
+        <field name="name">create.invoice.wizard.form</field>
+        <field name="model">create.invoice.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Generate Invoice">
+                <field  name="triger" invisible="1"/>
+                <group>
+
+                     <field name="service_ids" nolabel="1" readonly="0">
+                                <tree editable="bottom" create="0" delete="false">
+                                        <field name="customer_id" string="Customer" />
+                                    <field name="product_id" string="Service" />
+                                    <field name="qty" />
+                                    <field name="list_price" string="Sale Price"/>
+<!--                                    <field name="list_price" />-->
+<!--                                    <field name="cost_total" sum="Total Cost" />-->
+<!--                                    <field name="sale_total" sum="Total Sale" />-->
+                                     <field name="isinvoice" force_save="True" string="Select Invoice"/>
+                                </tree>
+                            </field>
+
+                </group>
+
+
+                <footer>
+                    <button name="action_invoice_inh" string="Generate Invoice" class="btn-primary" type="object"/>
+<!--                     <button name="view_patient_pdf_view" string="Print PDF" class="btn-primary" type="object"/>-->
+<!--                    <button name="print_xlsx_report" string="Print Excel" class="btn-primary" type="object"/>-->
+
+
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_create_invoice" model="ir.actions.act_window">
+        <field name="name">Create Invoice</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">create.invoice.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_create_invoice_form"/>
+        <field name="target">new</field>
+<!--          <field name="context">{'default_service_ids': active_ids}</field>-->
+    </record>
+</odoo>

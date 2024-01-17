@@ -1,0 +1,15 @@
+<odoo>
+    <data>
+        <record id="knk_model_delivery_order_action_confirm" model="ir.actions.server">
+            <field name="name">Confirm Order(s)</field>
+            <field name="model_id" ref="stock.model_stock_picking"/>
+            <field name="binding_model_id" ref="stock.model_stock_picking"/>
+            <field name="binding_view_types">list</field>
+            <field name="state">code</field>
+            <field name="code">
+ for do in records.filtered(lambda x: x.state in ('waiting', 'assigned')):
+  action = do.button_validate()
+            </field>
+        </record>
+    </data>
+</odoo>
