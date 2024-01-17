@@ -1,0 +1,2239 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* warehouse
+# 
+# Translators:
+# Martin Trigaux, 2019
+# krnkris, 2019
+# Kovács Tibor <kovika@gmail.com>, 2019
+# Ákos Nagy <akos.nagy@oregional.hu>, 2019
+# Tibor Kőnig <konig.tibor@evitalit.hu>, 2019
+# Tamás Belinszky <tamasbelinszky@gmail.com>, 2019
+# gezza <geza.nagy@oregional.hu>, 2020
+# Tamás Németh <ntomasz81@gmail.com>, 2021
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-12-05 12:32+0000\n"
+"PO-Revision-Date: 2019-08-26 09:13+0000\n"
+"Last-Translator: Tamás Németh <ntomasz81@gmail.com>, 2021\n"
+"Language-Team: Hungarian (https://www.transifex.com/odoo/teams/41243/hu/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: hu\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: warehouse
+#: model:ir.actions.report,print_report_name:warehouse.action_report_warehouse_order
+msgid ""
+"                 (object.state in ('draft', 'sent') and 'Warehouse  "
+"Quotation - %s' % (object.name) or                 'Warehouse Booking - %s' % "
+"(object.name))"
+msgstr ""
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_partner__supplier_invoice_count
+#: model:ir.model.fields,field_description:warehouse.field_res_users__supplier_invoice_count
+msgid "# Vendor Bills"
+msgstr "# Beszállítói számlák"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__nbr_lines
+msgid "# of Lines"
+msgstr "# sor"
+
+#. module: warehouse
+#: model:mail.template,subject:warehouse.email_template_edi_warehouse
+#: model:mail.template,subject:warehouse.email_template_edi_warehouse_done
+msgid "${object.company_id.name} Order (Ref ${object.name or 'n/a' })"
+msgstr "${object.company_id.name} Megrendelés (Ref ${object.name or 'n/a' })"
+
+#. module: warehouse
+#: model:ir.actions.report,print_report_name:warehouse.report_warehouse_quotation
+msgid "'Warehouse  Booking - %s' % (object.name)"
+msgstr "'Árajánlatkérés - %s' % (object.name)"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.res_config_settings_view_form_warehouse
+msgid "3-way matching"
+msgstr "3 irányú egyeztetés"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_config_settings__module_account_3way_match
+msgid "3-way matching: warehouses, receptions and bills"
+msgstr "3 irányú egyeztetés: beszerzések, átvételek és számlák"
+
+#. module: warehouse
+#: model:mail.template,body_html:warehouse.email_template_edi_warehouse_done
+msgid ""
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"    <p style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
+"        Dear ${object.partner_id.name}\n"
+"        % if object.partner_id.parent_id:\n"
+"            (${object.partner_id.parent_id.name})\n"
+"        % endif\n"
+"        <br/><br/>\n"
+"        Here is in attachment a Warehouse Booking <strong>${object.name}</strong>\n"
+"        % if object.partner_ref:\n"
+"            with reference: ${object.partner_ref}\n"
+"        % endif\n"
+"        amounting in <strong>${format_amount(object.amount_total, object.currency_id)}</strong>\n"
+"        from ${object.company_id.name}.\n"
+"        <br/><br/>\n"
+"        If you have any questions, please do not hesitate to contact us.\n"
+"        <br/><br/>\n"
+"        Best regards,\n"
+"    </p>\n"
+"</div>"
+msgstr ""
+
+#. module: warehouse
+#: model:mail.template,body_html:warehouse.email_template_edi_warehouse
+msgid ""
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"    <p style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
+"        Dear ${object.partner_id.name}\n"
+"        % if object.partner_id.parent_id:\n"
+"            (${object.partner_id.parent_id.name})\n"
+"        % endif\n"
+"        <br/><br/>\n"
+"        Here is in attachment a Warehouse  Booking <strong>${object.name}</strong>\n"
+"        % if object.partner_ref:\n"
+"            with reference: ${object.partner_ref}\n"
+"        % endif\n"
+"        from ${object.company_id.name}.\n"
+"        <br/><br/>\n"
+"        If you have any questions, please do not hesitate to contact us.\n"
+"        <br/><br/>\n"
+"        Best regards,\n"
+"    </p>\n"
+"</div>"
+msgstr ""
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_partner_kanban_view
+msgid ""
+"<i class=\"fa fa-fw fa-shopping-cart\" role=\"img\" aria-label=\"Shopping "
+"cart\" title=\"Shopping cart\"/>"
+msgstr ""
+"<i class=\"fa fa-fw fa-shopping-cart\" role=\"img\" aria-label=\"Shopping "
+"cart\" title=\"Shopping cart\"/>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_warehouse_orders
+msgid ""
+"<span class=\"badge badge-info\"><i class=\"fa fa-fw fa-file-text\"/> "
+"Waiting for Bill</span>"
+msgstr ""
+"<span class=\"badge badge-info\"><i class=\"fa fa-fw fa-file-"
+"text\"/>Számlára vár</span>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_warehouse_orders
+msgid ""
+"<span class=\"badge badge-secondary\"><i class=\"fa fa-fw fa-remove\"/> "
+"Cancelled</span>"
+msgstr ""
+"<span class=\"badge badge-secondary\"><i class=\"fa fa-fw fa-"
+"remove\"/>Törölve</span>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.res_config_settings_view_form_warehouse
+msgid ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
+"specific.\" aria-label=\"Values set here are company-specific.\" "
+"groups=\"base.group_multi_company\" role=\"img\"/>"
+msgstr ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
+"specific.\" aria-label=\"Values set here are company-specific.\" "
+"groups=\"base.group_multi_company\" role=\"img\"/>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid ""
+"<span class=\"o_form_label\" attrs=\"{'invisible': [('state','not in',('draft','sent'))]}\">Warehouse  Booking </span>\n"
+"                        <span class=\"o_form_label\" attrs=\"{'invisible': [('state','in',('draft','sent'))]}\">Warehouse Booking </span>"
+msgstr ""
+"<span class=\"o_form_label\" attrs=\"{'invisible': [('state','not in',('draft','sent'))]}\">Ajánlatkérés </span>\n"
+"                        <span class=\"o_form_label\" attrs=\"{'invisible': [('state','in',('draft','sent'))]}\">Beszerzési rendelés </span>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.product_normal_form_view_inherit_warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.view_product_template_warehouse_buttons_from
+msgid "<span class=\"o_stat_text\">warehoused</span>"
+msgstr "<span class=\"o_stat_text\">Beszerzett</span>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehouseorder_document
+msgid "<strong class=\"mr16\">Subtotal</strong>"
+msgstr "<strong class=\"mr16\">Részösszeg</strong>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehouseorder_document
+msgid "<strong>Amount</strong>"
+msgstr "Összeg"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehouseorder_document
+msgid "<strong>Date Req.</strong>"
+msgstr "<strong>Kérés dátuma</strong>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_warehouse_order
+msgid "<strong>Date:</strong>"
+msgstr "<strong>Dátum:</strong>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehouseorder_document
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehousequotation_document
+msgid "<strong>Description</strong>"
+msgstr "<strong>Leírás</strong>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehousequotation_document
+msgid "<strong>Expected Date</strong>"
+msgstr "<strong>Elvárt dátum</strong>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehouseorder_document
+msgid "<strong>Order Date:</strong>"
+msgstr "<strong>Megrendelés dátuma:</strong>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_warehouse_order
+msgid "<strong>Product</strong>"
+msgstr "<strong>Termék</strong>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehouseorder_document
+msgid "<strong>warehouse Representative:</strong>"
+msgstr "<strong>Beszerző:</strong>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehouseorder_document
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehousequotation_document
+msgid "<strong>Qty</strong>"
+msgstr "<strong>Menny.</strong>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_warehouse_order
+msgid "<strong>Quantity</strong>"
+msgstr "<strong>Mennyiség</strong>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehouseorder_document
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehousequotation_document
+msgid "<strong>Shipping address:</strong>"
+msgstr "<strong>Szállítási cím:</strong>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_warehouse_order
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehouseorder_document
+msgid "<strong>Subtotal</strong>"
+msgstr "<strong>Részösszeg</strong>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehouseorder_document
+msgid "<strong>Taxes</strong>"
+msgstr "<strong>Adók</strong>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.track_po_line_template
+msgid "<strong>The ordered quantity has been updated.</strong>"
+msgstr "<strong>A rendelt mennyiség frissítésre került.</strong>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_warehouse_order
+msgid "<strong>Total:</strong>"
+msgstr "<strong>Összesen:</strong>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehouseorder_document
+msgid "<strong>Total</strong>"
+msgstr "<strong>Összesen</strong>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_warehouse_order
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehouseorder_document
+msgid "<strong>Unit Price</strong>"
+msgstr "<strong>Egység ár</strong>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehouseorder_document
+msgid "<strong>Your Order Reference:</strong>"
+msgstr "Önök rendelési referenciája"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order_line__product_type
+msgid ""
+"A storable product is a product for which you manage stock. The Inventory app has to be installed.\n"
+"A consumable product is a product for which stock is not managed.\n"
+"A service is a non-material product you provide."
+msgstr ""
+"A készletezett termék olyan materiális termék, mely készletre kerül. Ehhez telepíteni kell a Készlet app-ot.\n"
+"A fogyóeszköz termék olyan materiális termék, mely nem kerül készletre.\n"
+"A szolgálatás immateriális termék."
+
+#. module: warehouse
+#: model:res.groups,name:warehouse.group_warning_warehouse
+msgid "A warning can be set on a product or a customer (warehouse)"
+msgstr ""
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__access_warning
+msgid "Access warning"
+msgstr "Hozzáférési figyelmeztetés"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order_line__qty_received_method
+msgid ""
+"According to product configuration, the recieved quantity can be automatically computed by mechanism :\n"
+"  - Manual: the quantity is set manually on the line\n"
+"  - Stock Moves: the quantity comes from confirmed pickings\n"
+msgstr ""
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__message_needaction
+msgid "Action Needed"
+msgstr "Művelet szükséges"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__activity_ids
+msgid "Activities"
+msgstr "Tevékenységek"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__activity_state
+msgid "Activity State"
+msgstr "Tevékenység állapota"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Add a note"
+msgstr "Új megjegyzés"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Add a Good"
+msgstr "Új termék"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Add a section"
+msgstr "Új szakasz"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.res_config_settings_view_form_warehouse
+msgid "Add several variants to the Warehouse Booking from a grid"
+msgstr ""
+
+#. module: warehouse
+#: model:res.groups,name:warehouse.group_warehouse_manager
+msgid "Administrator"
+msgstr "Adminisztrátor"
+
+#. module: warehouse
+#: code:addons/warehouse/controllers/portal.py:0
+#, python-format
+msgid "All"
+msgstr "Összes"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__res_company__po_lock__edit
+msgid "Allow to edit Warehouse Booking"
+msgstr "Beszerzési rendelések szerkesztésének engedélyezése"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_bill_union__amount
+msgid "Amount"
+msgstr "Összeg"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__account_analytic_id
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__account_analytic_id
+msgid "Analytic Account"
+msgstr "Analitikus számla"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__analytic_tag_ids
+msgid "Analytic Tags"
+msgstr "Analitikus címkék"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Approve Order"
+msgstr "Megrendelés jóváhagyás"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__message_attachment_count
+msgid "Attachment Count"
+msgstr "Mellékletek száma"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_account_move__warehouse_vendor_bill_id
+msgid "Auto-complete"
+msgstr "Automatikus kitöltés"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_account_move__warehouse_vendor_bill_id
+msgid "Auto-complete from a past bill / Warehouse Booking."
+msgstr ""
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_account_move__warehouse_id
+msgid "Auto-complete from a past Warehouse Booking."
+msgstr ""
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.res_config_settings_view_form_warehouse
+msgid "Automatically lock confirmed orders to prevent edition"
+msgstr ""
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__price_average
+msgid "Average Cost"
+msgstr "Átlagos költség"
+
+#. module: warehouse
+#: model:ir.filters,name:warehouse.filter_warehouse_order_average_delivery_time
+msgid "Average Delivery Time"
+msgstr "Átlagos szállítási idő"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_config_settings__default_warehouse_method
+msgid "Bill Control"
+msgstr "Számla ellenőrzés"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__invoice_count
+msgid "Bill Count"
+msgstr "Számlák száma"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__invoice_lines
+msgid "Bill Lines"
+msgstr "Számla sor"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Billed"
+msgstr "Számlázva"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__qty_invoiced
+msgid "Billed Qty"
+msgstr "Számlázott menny."
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Billed Quantity"
+msgstr "Számlázott mennyiség"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.track_po_line_template
+msgid "Billed Quantity:"
+msgstr "Számlázott mennyiség"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__invoice_status
+msgid "Billing Status"
+msgstr "Számlázás állapota"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__invoice_ids
+msgid "Bills"
+msgstr "Számlák"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_search
+msgid "Bills Received"
+msgstr "Bejövő számlák"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__product_template__warehouse_line_warn__block
+#: model:ir.model.fields.selection,name:warehouse.selection__res_partner__warehouse_warn__block
+msgid "Blocking Message"
+msgstr "Blokkoló üzenet"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_calendar
+msgid "Calendar View"
+msgstr "Naptárnézet"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.res_config_settings_view_form_warehouse
+msgid ""
+"Calls for tenders are used when you want to generate Warehouse Booking"
+" to several vendors for a given set of products. You can configure per "
+"product if you directly do a Warehouse  Booking to one vendor or if you "
+"want a Call for Tenders to compare offers from several vendors."
+msgstr ""
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Cancel"
+msgstr "Mégse"
+
+#. module: warehouse
+#: code:addons/warehouse/controllers/portal.py:0
+#: model:ir.model.fields.selection,name:warehouse.selection__warehouse_order__state__cancel
+#: model:ir.model.fields.selection,name:warehouse.selection__warehouse_report__state__cancel
+#, python-format
+msgid "Cancelled"
+msgstr "Visszavonva"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehouseorder_document
+msgid "Cancelled Warehouse Booking #"
+msgstr "Visszavont beszerzési rendelés #"
+
+#. module: warehouse
+#: code:addons/warehouse/models/warehouse.py:0
+#, python-format
+msgid "Cannot delete a Warehouse Booking line which is in state '%s'."
+msgstr ""
+"Nem törölhet olyan beszerzési megrendelés sort, mely ebben az állapotban van"
+" '%s'."
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__product_uom_category_id
+msgid "Category"
+msgstr "Kategória"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__commercial_partner_id
+msgid "Commercial Entity"
+msgstr "Értékesítő személy"
+
+#. module: warehouse
+#: model:ir.model,name:warehouse.model_res_company
+msgid "Companies"
+msgstr "Vállalatok"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_bill_union__company_id
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__company_id
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__company_id
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__company_id
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_search
+msgid "Company"
+msgstr "Vállalat"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_config_settings__company_currency_id
+msgid "Company Currency"
+msgstr "Vállalat pénzneme"
+
+#. module: warehouse
+#: code:addons/warehouse/models/warehouse.py:0
+#, python-format
+msgid "Compose Email"
+msgstr "E-mail írás"
+
+#. module: warehouse
+#: model:ir.model,name:warehouse.model_res_config_settings
+msgid "Config Settings"
+msgstr "Konfigurációs beállítások"
+
+#. module: warehouse
+#: model:ir.ui.menu,name:warehouse.menu_warehouse_config
+msgid "Configuration"
+msgstr "Konfiguráció"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Confirm Order"
+msgstr "Rendelés visszaigazolása"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__res_company__po_double_validation__one_step
+msgid "Confirm Warehouse Booking in one step"
+msgstr "Beszerzési megrendelések egy lépcsős jóváhagyása"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__date_approve
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__date_approve
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_search
+msgid "Confirmation Date"
+msgstr "Megerősítés dátuma"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__res_company__po_lock__lock
+msgid "Confirmed Warehouse Booking are not editable"
+msgstr "A jóváhagyott beszerzési rendelések nem szerkeszthetők"
+
+#. module: warehouse
+#: model:ir.model,name:warehouse.model_res_partner
+msgid "Contact"
+msgstr "Kapcsolat"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_product_product__warehouse_method
+#: model:ir.model.fields,field_description:warehouse.field_product_template__warehouse_method
+msgid "Control Policy"
+msgstr "Ellenőrzési politika"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order_line__product_uom_category_id
+msgid ""
+"Conversion between Units of Measure can only occur if they belong to the "
+"same category. The conversion will be made based on the ratios."
+msgstr ""
+"A mértékegységek közötti átváltás csak akkor valósul meg, ha ugyanabba a "
+"kategóriába tartoznak. Az átváltás az arányszámok alapján történik."
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Create Bill"
+msgstr "Számla létrehozása"
+
+#. module: warehouse
+#: model_terms:ir.actions.act_window,help:warehouse.product_normal_action_warehoused
+msgid "Create a new product"
+msgstr "Új termék"
+
+#. module: warehouse
+#: model_terms:ir.actions.act_window,help:warehouse.product_product_action
+msgid "Create a new product variant"
+msgstr "Új termékváltozat"
+
+#. module: warehouse
+#: model_terms:ir.actions.act_window,help:warehouse.warehouse_form_action
+msgid "Create a quotation"
+msgstr "Új árajánlat"
+
+#. module: warehouse
+#: model_terms:ir.actions.act_window,help:warehouse.warehouse_Booking
+msgid "Create a Warehouse  Booking"
+msgstr "Új árajánlatkérés"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__create_uid
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__create_uid
+msgid "Created by"
+msgstr "Létrehozta"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__create_date
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__create_date
+msgid "Created on"
+msgstr "Létrehozva"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_bill_union__currency_id
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__currency_id
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__currency_id
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__currency_id
+msgid "Currency"
+msgstr "Pénznem"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__currency_rate
+msgid "Currency Rate"
+msgstr "Valuta árfolyam"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order__access_url
+msgid "Customer Portal URL"
+msgstr "Ügyfélportál webcíme"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_bill_union__date
+msgid "Date"
+msgstr "Dátum"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_report__date_order
+msgid "Date on which this document has been created"
+msgstr "A dokumentum készítésének dátuma"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__delay
+msgid "Days to Confirm"
+msgstr ""
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__delay_pass
+msgid "Days to Receive"
+msgstr ""
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Define your terms and conditions ..."
+msgstr "Feltételek meghatározása..."
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order__date_order
+#: model:ir.model.fields,help:warehouse.field_warehouse_order_line__date_order
+msgid ""
+"Depicts the date where the Quotation should be validated and converted into "
+"a Warehouse Booking."
+msgstr ""
+"Előírja azt a dátumot, melyen az Árajánlatot jóvá kell hagyni és át kell "
+"alakítani beszerzési megrendeléssé."
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__name
+msgid "Description"
+msgstr "Leírás"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_bill_union__display_name
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__display_name
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__display_name
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__display_name
+msgid "Display Name"
+msgstr "Megjelenített név"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__display_type
+msgid "Display Type"
+msgstr "Megjelenítés típusa"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__warehouse_report__state__done
+msgid "Done"
+msgstr "Elvégezve"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_company__po_double_validation_amount
+msgid "Double validation amount"
+msgstr "Kétszeresen jóváhagyott mennyiség"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__warehouse_report__state__draft
+msgid "Draft Booking"
+msgstr "Aj.kér. piszkozat"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__dest_address_id
+msgid "Drop Ship Address"
+msgstr "Közvetlen szállítási cím"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_search
+msgid "Extended Filters"
+msgstr "Bővített szűrők"
+
+#. module: warehouse
+#: code:addons/warehouse/models/warehouse.py:0
+#, python-format
+msgid "Extra line with %s "
+msgstr "Extra sor ezzel: %s "
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__fiscal_position_id
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__fiscal_position_id
+msgid "Fiscal Position"
+msgstr "Költségvetési pozíció"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__message_follower_ids
+msgid "Followers"
+msgstr "Követők"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__message_channel_ids
+msgid "Followers (Channels)"
+msgstr "Követők (Csatornák)"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Követők (Partnerek)"
+
+#. module: warehouse
+#: model:ir.model.constraint,message:warehouse.constraint_warehouse_order_line_non_accountable_null_fields
+msgid "Forbidden values on non-accountable Warehouse Booking line"
+msgstr ""
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__warehouse_order__invoice_status__invoiced
+msgid "Fully Billed"
+msgstr "Teljesen kiszámlázva"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_search
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_filter
+msgid "Future Activities"
+msgstr "Jövőbeli tevékenységek"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__res_company__po_double_validation__tpo_step
+msgid "Get 2 levels of approvals to confirm a Warehouse Booking"
+msgstr "Kétszintű 2 ellenőrzés egy beszerzési megrendelés jóváhagyásához"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.res_config_settings_view_form_warehouse
+msgid "Get warnings in orders for products or vendors"
+msgstr ""
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__weight
+msgid "Gross Weight"
+msgstr "Bruttó súly"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_line_search
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_search
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_filter
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_search
+msgid "Group By"
+msgstr "Csoportosítás"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_line_search
+msgid "Hide cancelled lines"
+msgstr "Visszavont sorok eltüntetése"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_bill_union__id
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__id
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__id
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__id
+msgid "ID"
+msgstr "Azonosító"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__activity_exception_icon
+msgid "Icon"
+msgstr "Ikon"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order__message_needaction
+#: model:ir.model.fields,help:warehouse.field_warehouse_order__message_unread
+msgid "If checked, new messages require your attention."
+msgstr "Ha be van jelölve, akkor az új üzenetek figyelmet igényelnek."
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order__message_has_error
+#: model:ir.model.fields,help:warehouse.field_warehouse_order__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+"Ha be van jelölve, akkor néhány üzenetnél kézbesítési hiba lépett fel."
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.res_config_settings_view_form_warehouse
+msgid ""
+"If enabled, activates 3-way matching on vendor bills : the items must be "
+"received in order to pay the invoice."
+msgstr ""
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.res_config_settings_view_form_warehouse
+msgid ""
+"If installed, the product variants will be added to Warehouse Booking through "
+"a grid entry."
+msgstr ""
+
+#. module: warehouse
+#: code:addons/warehouse/models/product.py:0
+#, python-format
+msgid "Import Template for Products"
+msgstr "Importálási sablon termékekhez"
+
+#. module: warehouse
+#: code:addons/warehouse/models/warehouse.py:0
+#, python-format
+msgid "In order to delete a Warehouse Booking, you must cancel it first."
+msgstr "A megrendelés törléséhez először vissza kell vonnia azt."
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__incoterm_id
+msgid "Incoterm"
+msgstr "Nemzetközi Kereskedelmi Feltételek"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order__incoterm_id
+msgid ""
+"International Commercial Terms are a series of predefined commercial terms "
+"used in international transactions."
+msgstr ""
+"Nemzetközi üzleti feltételek, olyan előredefiniált üzleti feltételek, "
+"melyeket nemzetközi ügyleteknél használnak."
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Invoices and Incoming Shipments"
+msgstr "Számlák és beérkező szállítmányok"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.res_config_settings_view_form_warehouse
+msgid "Invoicing"
+msgstr "Számlázás"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__message_is_follower
+msgid "Is Follower"
+msgstr "Követő"
+
+#. module: warehouse
+#: model_terms:ir.actions.act_window,help:warehouse.warehouse_form_action
+msgid "It will be converted into a Warehouse Booking."
+msgstr "Átalakításra kerül beszerzési rendeléssé."
+
+#. module: warehouse
+#: model:ir.model,name:warehouse.model_account_move
+msgid "Journal Entries"
+msgstr "Könyvelési tételek"
+
+#. module: warehouse
+#: model:ir.model,name:warehouse.model_account_move_line
+msgid "Journal Item"
+msgstr "Könyvelési napló tételsor"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_bill_union____last_update
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order____last_update
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line____last_update
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report____last_update
+msgid "Last Modified on"
+msgstr "Legutóbb frissítve"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__write_uid
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__write_uid
+msgid "Last Updated by"
+msgstr "Frissítette"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__write_date
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__write_date
+msgid "Last Updated on"
+msgstr "Frissítve "
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_search
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_filter
+msgid "Late Activities"
+msgstr "Késő tevékenységek"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_company__po_double_validation
+msgid "Levels of Approvals"
+msgstr "Jóváhagyások szintjei"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_config_settings__po_double_validation
+msgid "Levels of Approvals *"
+msgstr "Jóváhagyások szintjei *"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Lock"
+msgstr "Zárolás"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_config_settings__lock_confirmed_po
+msgid "Lock Confirmed Orders"
+msgstr "Jóváhagyott rendelések zárolása"
+
+#. module: warehouse
+#: code:addons/warehouse/controllers/portal.py:0
+#: model:ir.model.fields.selection,name:warehouse.selection__warehouse_order__state__done
+#, python-format
+msgid "Locked"
+msgstr "Zárolt"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Fő melléklet"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.res_config_settings_view_form_warehouse
+msgid ""
+"Make sure you only pay bills for which you received the goods you ordered"
+msgstr ""
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.res_config_settings_view_form_warehouse
+msgid "Manage your warehouse agreements (call for tenders, blanket orders)"
+msgstr ""
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__warehouse_order_line__qty_received_method__manual
+msgid "Manual"
+msgstr "Kézi"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_line_form2
+msgid "Manual Invoices"
+msgstr "Kézi számlák"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__qty_received_manual
+msgid "Manual Received Qty"
+msgstr ""
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_res_company__po_lead
+#: model:ir.model.fields,help:warehouse.field_res_config_settings__po_lead
+msgid ""
+"Margin of error for vendor lead times. When the system generates warehouse "
+"Orders for procuring products, they will be scheduled that many days earlier"
+" to cope with unexpected vendor delays."
+msgstr ""
+"Határidő hiba a beszállító átfutási időiben. Ha a rendszer állít elő "
+"beszerzési megrendeléseket a megrendelt termékekre, akkor azokat ennyi "
+"nappal előbbre fogja tenni a beszállító ellőre nem látható késése miatt."
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_res_config_settings__use_po_lead
+msgid ""
+"Margin of error for vendor lead times. When the system generates warehouse "
+"Orders for reordering products,they will be scheduled that many days earlier"
+" to cope with unexpected vendor delays."
+msgstr ""
+"Beszállítói átfutási idő hibahatára. Amikor a rendszer Beszerzési rendelést "
+"generál termékek újrarendelése során, akkor a rendelés ennyi nappal korábbra"
+" kerül ütemezésre a váratlan beszállítói késések kezelése érdekében."
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__message_has_error
+msgid "Message Delivery error"
+msgstr "Üzenetkézbesítési hiba"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_partner__warehouse_warn_msg
+#: model:ir.model.fields,field_description:warehouse.field_res_users__warehouse_warn_msg
+msgid "Message for Warehouse Booking"
+msgstr "Üzenet a beszerzési megrendelésről"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_product_product__warehouse_line_warn_msg
+#: model:ir.model.fields,field_description:warehouse.field_product_template__warehouse_line_warn_msg
+msgid "Message for Warehouse Booking Line"
+msgstr "Üzenet a szállítói megrendelés sorról"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__message_ids
+msgid "Messages"
+msgstr "Üzenetek"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_config_settings__po_double_validation_amount
+msgid "Minimum Amount"
+msgstr "Minimum mennyiség"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_res_company__po_double_validation_amount
+#: model:ir.model.fields,help:warehouse.field_res_config_settings__po_double_validation_amount
+msgid "Minimum amount for which a double validation is required"
+msgstr "Minimum mennyiség melyre dupla jóváhagyás szükséges"
+
+#. module: warehouse
+#: model:ir.model.constraint,message:warehouse.constraint_warehouse_order_line_accountable_required_fields
+msgid "Missing required fields on accountable Warehouse Booking line."
+msgstr ""
+
+#. module: warehouse
+#: model:ir.filters,name:warehouse.filter_warehouse_order_monthly_warehouses
+msgid "Monthly warehouses"
+msgstr "Havi beszerzések"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_search
+msgid "My Orders"
+msgstr "Megrendeléseim"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_filter
+msgid "My warehouses"
+msgstr "Beszerzéseim"
+
+#. module: warehouse
+#: code:addons/warehouse/controllers/portal.py:0
+#, python-format
+msgid "Name"
+msgstr "Név"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Name, TIN, Email, or Reference"
+msgstr "Név, adószám, e-mail vagy referencia"
+
+#. module: warehouse
+#: code:addons/warehouse/controllers/portal.py:0
+#, python-format
+msgid "Newest"
+msgstr "Legújabb"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Következő tevékenység határideje"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__activity_summary
+msgid "Next Activity Summary"
+msgstr "Következő tevékenység összegzés"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__activity_type_id
+msgid "Next Activity Type"
+msgstr "Következő tevékenység típusa"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__product_template__warehouse_line_warn__no-message
+#: model:ir.model.fields.selection,name:warehouse.selection__res_partner__warehouse_warn__no-message
+msgid "No Message"
+msgstr "Nincs üzenet"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__warehouse_order_line__display_type__line_note
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Note"
+msgstr "Megjegyzés"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Notes"
+msgstr "Megjegyzések"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__warehouse_order__invoice_status__no
+msgid "Nothing to Bill"
+msgstr "Nincs számlázandó"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Műveletek száma"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__message_has_error_counter
+msgid "Number of errors"
+msgstr "Hibák száma"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "Üzenetek száma, melyekhez művelet szükséges"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Kézbesítési hibával rendelkező üzenetek száma"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order__message_unread_counter
+msgid "Number of unread messages"
+msgstr "Olvasatlan üzenetek száma"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__product_template__warehouse_method__warehouse
+msgid "On ordered quantities"
+msgstr "Megrendelt mennyiségeken"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_product_product__warehouse_method
+#: model:ir.model.fields,help:warehouse.field_product_template__warehouse_method
+msgid ""
+"On ordered quantities: Control bills based on ordered quantities.\n"
+"On received quantities: Control bills based on received quantities."
+msgstr ""
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__product_template__warehouse_method__receive
+msgid "On received quantities"
+msgstr "Érkezett mennyiségeken"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__order_id
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_search
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_filter
+msgid "Order"
+msgstr "Rendelés"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__date_order
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__date_order
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__date_order
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_warehouse_orders
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_search
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_filter
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_search
+msgid "Order Date"
+msgstr "Rendelés dátuma"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__order_line
+msgid "Order Lines"
+msgstr "Megrendelési tételek"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__name
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__order_id
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_line_search
+msgid "Order Reference"
+msgstr "Rendeléshivatkozás"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__state
+msgid "Order Status"
+msgstr "Rendelés állapota"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.track_po_line_template
+msgid "Ordered Quantity:"
+msgstr "Rendelt mennyiség:"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__res_config_settings__default_warehouse_method__warehouse
+msgid "Ordered quantities"
+msgstr "Megrendelt mennyiségek"
+
+#. module: warehouse
+#: model:ir.ui.menu,name:warehouse.menu_procurement_management
+#: model_terms:ir.ui.view,arch_db:warehouse.res_config_settings_view_form_warehouse
+msgid "Orders"
+msgstr "Rendelések"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Other Information"
+msgstr "Egyéb információ"
+
+#. module: warehouse
+#: model:mail.template,report_name:warehouse.email_template_edi_warehouse_done
+msgid "po_${(object.name or '').replace('/','_')}"
+msgstr "po_${(object.name or '').replace('/','_')}"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__partner_id
+msgid "Partner"
+msgstr "Partner"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__country_id
+msgid "Partner Country"
+msgstr "Partner ország"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__payment_term_id
+msgid "Payment Terms"
+msgstr "Fizetési feltételek"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__access_url
+msgid "Portal Access URL"
+msgstr "Portálelérés URL"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_product_category__property_account_creditor_price_difference_categ
+#: model:ir.model.fields,field_description:warehouse.field_product_product__property_account_creditor_price_difference
+#: model:ir.model.fields,field_description:warehouse.field_product_template__property_account_creditor_price_difference
+msgid "Price Difference Account"
+msgstr "Árkülönbözet számla"
+
+#. module: warehouse
+#: model:ir.filters,name:warehouse.filter_warehouse_order_price_per_supplier
+msgid "Price Per Vendor"
+msgstr "Beszállítónkénti ár"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Print Booking"
+msgstr "Árajánlat kérés nyomtatás"
+
+#. module: warehouse
+#: model:ir.model,name:warehouse.model_product_product
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__product_id
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__product_id
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__product_id
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_warehouse_order
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_line_search
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_search
+msgid "Product"
+msgstr "Termék"
+
+#. module: warehouse
+#: model:ir.ui.menu,name:warehouse.menu_product_category_config_warehouse
+msgid "Product Categories"
+msgstr "Termék kategóriák"
+
+#. module: warehouse
+#: model:ir.model,name:warehouse.model_product_category
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__category_id
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_search
+msgid "Product Category"
+msgstr "Termék kategória"
+
+#. module: warehouse
+#: model:ir.model,name:warehouse.model_product_template
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__product_tmpl_id
+msgid "Product Template"
+msgstr "Terméksablon"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__product_type
+msgid "Product Type"
+msgstr "Terméktípus"
+
+#. module: warehouse
+#: model:ir.actions.act_window,name:warehouse.product_product_action
+#: model:ir.ui.menu,name:warehouse.product_product_menu
+msgid "Product Variants"
+msgstr "Termékváltozatok"
+
+#. module: warehouse
+#: model:ir.actions.act_window,name:warehouse.product_normal_action_warehoused
+#: model:ir.ui.menu,name:warehouse.menu_procurement_partner_contact_form
+#: model:ir.ui.menu,name:warehouse.menu_product_in_config_warehouse
+#: model:ir.ui.menu,name:warehouse.menu_warehouse_products
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+#: model_terms:ir.ui.view,arch_db:warehouse.res_config_settings_view_form_warehouse
+msgid "Products"
+msgstr "Termékek"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_res_company__po_double_validation
+#: model:ir.model.fields,help:warehouse.field_res_config_settings__po_double_validation
+msgid "Provide a double validation mechanism for warehouses"
+msgstr "Kétszeres jóváhagyás szerkezetet ad a beszerzésekre"
+
+#. module: warehouse
+#: model:ir.ui.menu,name:warehouse.menu_warehouse_root
+#: model:ir.ui.menu,name:warehouse.menu_report_warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.res_config_settings_view_form_warehouse
+msgid "warehouse"
+msgstr "Beszerzés"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_config_settings__module_warehouse_requisition
+msgid "warehouse Agreements"
+msgstr "Beszerzési megállapodások"
+
+#. module: warehouse
+#: model:ir.actions.act_window,name:warehouse.action_warehouse_order_report_all
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_pivot
+msgid "warehouse Analysis"
+msgstr "Beszerzés elemzése"
+
+#. module: warehouse
+#: model_terms:ir.actions.act_window,help:warehouse.action_warehouse_order_report_all
+msgid ""
+"warehouse Analysis allows you to easily check and analyse your company "
+"warehouse history and performance. From this menu you can track your "
+"negotiation performance, the delivery performance of your vendors, etc."
+msgstr ""
+"A beszerzés elemzése menüpont lehetővé teszi a vállalat beszerzései "
+"történetének és teljesítményének könnyű ellenőrzését és elemzését. Ebből a "
+"menüpontból Ön nyomon követheti a saját tárgyalási teljesítményét, a "
+"szállítók beszállítási tevékenységét stb."
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.view_product_supplier_inherit
+msgid "warehouse Description"
+msgstr "Beszerzési leírás"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_config_settings__module_warehouse_product_matrix
+msgid "warehouse Grid Entry"
+msgstr ""
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_company__po_lead
+#: model:ir.model.fields,field_description:warehouse.field_res_config_settings__po_lead
+msgid "warehouse Lead Time"
+msgstr "Beszerzési átfutási idő"
+
+#. module: warehouse
+#: code:addons/warehouse/controllers/portal.py:0
+#: code:addons/warehouse/models/warehouse.py:0
+#: model:ir.actions.report,name:warehouse.action_report_warehouse_order
+#: model:ir.model,name:warehouse.model_warehouse_order
+#: model:ir.model.fields,field_description:warehouse.field_account_move__warehouse_id
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_bill_union__warehouse_order_id
+#: model:ir.model.fields,field_description:warehouse.field_res_partner__warehouse_warn
+#: model:ir.model.fields,field_description:warehouse.field_res_users__warehouse_warn
+#: model:ir.model.fields.selection,name:warehouse.selection__warehouse_order__state__warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__warehouse_report__state__warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_warehouse_order
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_graph
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_pivot
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_tree
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_activity
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_tree
+#, python-format
+msgid "Warehouse Booking"
+msgstr "Beszerzési megrendelés"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehouseorder_document
+msgid "Warehouse Booking #"
+msgstr "Beszerzési megrendelés #"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_config_settings__po_order_approval
+msgid "Warehouse Booking Approval"
+msgstr ""
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_partner__warehouse_order_count
+#: model:ir.model.fields,field_description:warehouse.field_res_users__warehouse_order_count
+msgid "Warehouse Booking Count"
+msgstr ""
+
+#. module: warehouse
+#: model:ir.model,name:warehouse.model_warehouse_order_line
+#: model:ir.model.fields,field_description:warehouse.field_account_move_line__warehouse_line_id
+#: model:ir.model.fields,field_description:warehouse.field_product_product__warehouse_line_warn
+#: model:ir.model.fields,field_description:warehouse.field_product_template__warehouse_line_warn
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_line_form2
+msgid "Warehouse Booking Line"
+msgstr "Beszerzési megrendelés sor"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_line_tree
+msgid "Warehouse Booking Lines"
+msgstr "Beszerzési megrendelés sorok"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_company__po_lock
+msgid "Warehouse Booking Modification"
+msgstr ""
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_config_settings__po_lock
+msgid "Warehouse Booking Modification *"
+msgstr ""
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_res_company__po_lock
+#: model:ir.model.fields,help:warehouse.field_res_config_settings__po_lock
+msgid ""
+"Warehouse Booking Modification used when you want to Warehouse Booking editable "
+"after confirm"
+msgstr ""
+
+#. module: warehouse
+#: model:ir.actions.act_window,name:warehouse.warehouse_form_action
+#: model:ir.actions.act_window,name:warehouse.warehouse_order_action_generic
+#: model:ir.ui.menu,name:warehouse.menu_warehouse_form_action
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_home_menu_warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_home_warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_warehouse_orders
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_bill_union_filter
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_filter
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_search
+msgid "Warehouse Booking"
+msgstr "Beszerzési megrendelések"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_warehouse_orders
+msgid "Warehouse Booking #"
+msgstr "Beszerzési megrendelések #"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_graph
+msgid "Warehouse Booking Statistics"
+msgstr "Beszerzési megrendelés statisztikák"
+
+#. module: warehouse
+#: model:ir.model,name:warehouse.model_warehouse_report
+msgid "warehouse Report"
+msgstr "Beszerzés riport"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__user_id
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__user_id
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_search
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_filter
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_search
+msgid "warehouse Representative"
+msgstr "Beszerző"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_config_settings__group_warning_warehouse
+msgid "warehouse Warnings"
+msgstr "Beszerzési figyelmeztetés"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_search
+msgid "Warehouse Booking that have been invoiced."
+msgstr "Beszerzési rendelések, amik ki lettek számlázva."
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_search
+msgid "Warehouse Booking that include lines not invoiced."
+msgstr "Beszerzési megrendelés, melynek van számlázandó sora"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_product_product__warehoused_product_qty
+#: model:ir.model.fields,field_description:warehouse.field_product_template__warehoused_product_qty
+msgid "warehoused"
+msgstr "Beszerzett"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.product_normal_form_view_inherit_warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.view_product_template_warehouse_buttons_from
+msgid "warehoused in the last 365 days"
+msgstr "Beszerezve az elmúlt 365 napban"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.res_partner_view_warehouse_buttons
+msgid "warehouses"
+msgstr "Beszerzések"
+
+#. module: warehouse
+#: model:ir.model,name:warehouse.model_warehouse_bill_union
+msgid "warehouses & Bills Union"
+msgstr ""
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order__dest_address_id
+msgid ""
+"Put an address if you want to deliver directly from the vendor to the "
+"customer. Otherwise, keep empty to deliver to your own company."
+msgstr ""
+"Egy cím megadása, ha közvetlenül a beszállítótól a vevő felé szeretne "
+"szállítani. Egyébként, hagyja üresen, ha a saját cégéhez szeretne "
+"szállíttatni."
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__qty_billed
+msgid "Qty Billed"
+msgstr "Menny. számlázva"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__qty_ordered
+msgid "Qty Ordered"
+msgstr "Menny. rendelve"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__qty_received
+msgid "Qty Received"
+msgstr "Menny. érkezett"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__qty_to_be_billed
+msgid "Qty to be Billed"
+msgstr "Menny. számlázandó"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.res_config_settings_view_form_warehouse
+msgid "Quantities billed by vendors"
+msgstr "Beszállító által számlázott mennyiség"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__product_qty
+msgid "Quantity"
+msgstr "Mennyiség"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Quantity:"
+msgstr "Mennyiség:"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__warehouse_order__state__draft
+msgid "Booking"
+msgstr "Árajánlatkérés"
+
+#. module: warehouse
+#: model:mail.message.subtype,name:warehouse.mt_Booking_approved
+msgid "Booking Approved"
+msgstr "Árajánlatkérés jóváhagyva"
+
+#. module: warehouse
+#: model:mail.message.subtype,name:warehouse.mt_Booking_confirmed
+msgid "Booking Confirmed"
+msgstr "Árajánlatkérés visszaigazolva"
+
+#. module: warehouse
+#: model:mail.message.subtype,name:warehouse.mt_Booking_done
+msgid "Booking Done"
+msgstr "Árajánlatkérés kész"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__warehouse_order__state__sent
+#: model:ir.model.fields.selection,name:warehouse.selection__warehouse_report__state__sent
+msgid "Booking Sent"
+msgstr "Árajánlatkérés elküldve"
+
+#. module: warehouse
+#: model:mail.template,report_name:warehouse.email_template_edi_warehouse
+msgid "Booking_${(object.name or '').replace('/','_')}"
+msgstr "Booking_${(object.name or '').replace('/','_')}"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_filter
+msgid "Bookings"
+msgstr "Árajánlatkérések"
+
+#. module: warehouse
+#: model:ir.actions.act_window,name:warehouse.act_res_partner_2_warehouse_order
+msgid "Bookings and warehouses"
+msgstr "Árajnálat kérések és Beszerzések"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order__currency_rate
+msgid "Ratio between the Warehouse Booking currency and the company currency"
+msgstr ""
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Re-Send by Email"
+msgstr "E-mail újraküldése"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__date_planned
+msgid "Receipt Date"
+msgstr "Számla dátuma"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Received"
+msgstr "Fogadott"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__qty_received
+msgid "Received Qty"
+msgstr "Beérkeztetett menny."
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__qty_received_method
+msgid "Received Qty Method"
+msgstr ""
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Received Quantity"
+msgstr "Érkezett mennyiség"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.track_po_line_template
+msgid "Received Quantity:"
+msgstr "Érkezett mennyiség:"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__res_config_settings__default_warehouse_method__receive
+msgid "Received quantities"
+msgstr "Érkezett mennyiség"
+
+#. module: warehouse
+#: model_terms:ir.actions.act_window,help:warehouse.act_res_partner_2_supplier_invoices
+msgid "Record a new vendor bill"
+msgstr "Új szállítói számla rögzítése"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_bill_union__name
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_tree
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_tree
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_bill_union_filter
+msgid "Reference"
+msgstr "Hivatkozás"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_bill_union_tree
+msgid "Reference Document"
+msgstr "Referencia dokumentum"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__product_uom
+msgid "Reference Unit of Measure"
+msgstr "Referencia mértékegység"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order__origin
+msgid ""
+"Reference of the document that generated this Warehouse Booking request (e.g. a"
+" sales order)"
+msgstr ""
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order__partner_ref
+msgid ""
+"Reference of the sales order or bid sent by the vendor. It's used to do the "
+"matching when you receive the products as this reference is usually written "
+"on the delivery order sent by your vendor."
+msgstr ""
+"Beszállító által küldött Vásárlói megrendelés vagy licit ajánlati "
+"hivatkozás. Ez főként összeegyeztetésre használja, mikor beérkeznek az áruk,"
+" mivel ezek a referencia hivatkozások általában rá vannak írva a beszállító "
+"által kitöltött és az áruhoz kapcsolt szállító levelekre."
+
+#. module: warehouse
+#: model:ir.ui.menu,name:warehouse.warehouse_report
+msgid "Reporting"
+msgstr "Kimutatás készítés"
+
+#. module: warehouse
+#: code:addons/warehouse/models/warehouse.py:0
+#: model:ir.actions.report,name:warehouse.report_warehouse_quotation
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_warehouse_order
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehousequotation_document
+#, python-format
+msgid "Warehouse  Booking"
+msgstr "Ajánlatkérés"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehouseorder_document
+msgid "Warehouse  Booking #"
+msgstr "Árajánlat kérés #"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.res_config_settings_view_form_warehouse
+msgid "Request managers to approve orders above a minimum amount"
+msgstr ""
+
+#. module: warehouse
+#: model:ir.actions.act_window,name:warehouse.warehouse_Booking
+#: model:ir.ui.menu,name:warehouse.menu_warehouse_Booking
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_search
+msgid "Warehouse Booking"
+msgstr "Ajánlatkérések"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__activity_user_id
+msgid "Responsible User"
+msgstr "Felelős felhasználó"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "SMS kézbesítési hiba"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__date_planned
+msgid "Scheduled Date"
+msgstr "Ütemezett dátum"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_line_search
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_search
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_filter
+msgid "Search Warehouse Booking"
+msgstr "Szállítói megrendelés keresése"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_bill_union_filter
+msgid "Search Reference Document"
+msgstr ""
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__warehouse_order_line__display_type__line_section
+msgid "Section"
+msgstr "Szakasz"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Section Name (eg. Products, Services)"
+msgstr "Szakasznév (pl. Termékek, Szolgáltatások)"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_config_settings__use_po_lead
+msgid "Security Lead Time for warehouse"
+msgstr "Beszerzés biztonsági átfutási idő"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__access_token
+msgid "Security Token"
+msgstr "Biztonsági token"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.view_move_form_inherit_warehouse
+msgid "Select a Warehouse Booking or an old bill"
+msgstr ""
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_product_product__warehouse_line_warn
+#: model:ir.model.fields,help:warehouse.field_product_template__warehouse_line_warn
+#: model:ir.model.fields,help:warehouse.field_res_partner__warehouse_warn
+#: model:ir.model.fields,help:warehouse.field_res_users__warehouse_warn
+msgid ""
+"Selecting the \"Warning\" option will notify user with the message, "
+"Selecting \"Blocking Message\" will throw an exception with the message and "
+"block the flow. The Message has to be written in the next field."
+msgstr ""
+"A \"Figyelmeztetés\" lehetőség kiválasztása a felhasználót egy üzenettel "
+"értesíti, az \"Üzenet blokkolása\" lehetőség egy kivételt küld az üzenethez "
+"és leblokkolja a folyamatot. Az üzenetet a következő mezőbe kell beírni."
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Send Booking by Email"
+msgstr "Beszerzési megrendelés elküldve Email-ben"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Send by Email"
+msgstr "Küldés e-mailben"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__sequence
+msgid "Sequence"
+msgstr "Sorszám"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Set to Draft"
+msgstr "Beállítás tervezetnek"
+
+#. module: warehouse
+#: model:ir.actions.act_window,name:warehouse.action_warehouse_configuration
+#: model:ir.ui.menu,name:warehouse.menu_warehouse_general_settings
+msgid "Settings"
+msgstr "Beállítások"
+
+#. module: warehouse
+#: model:ir.actions.server,name:warehouse.model_warehouse_order_action_share
+msgid "Share"
+msgstr "Megosztás"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_search
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_filter
+msgid "Show all records which has next action date is before today"
+msgstr ""
+"Mutassa az összes olyan rekordot, melynél a következő akció dátuma a mai nap"
+" előtti"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_bill_union__reference
+msgid "Source"
+msgstr "Forrás"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__origin
+msgid "Source Document"
+msgstr "Forrás dokumentum"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__state
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__state
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_line_search
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_search
+msgid "Status"
+msgstr "Állapot"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"Tevékenységeken alapuló állapot\n"
+"Lejárt: A tevékenység határideje lejárt\n"
+"Ma: A határidő ma van\n"
+"Tervezett: Jövőbeli határidő."
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__price_subtotal
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_warehouse_order
+msgid "Subtotal"
+msgstr "Részösszeg"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_partner__property_warehouse_currency_id
+#: model:ir.model.fields,field_description:warehouse.field_res_users__property_warehouse_currency_id
+msgid "Supplier Currency"
+msgstr "Beszállítói pénznem"
+
+#. module: warehouse
+#: model:ir.model,name:warehouse.model_product_supplierinfo
+msgid "Supplier Pricelist"
+msgstr "Szállítói árlista"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__price_tax
+msgid "Tax"
+msgstr "Adó"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__amount_tax
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__taxes_id
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehouseorder_document
+msgid "Taxes"
+msgstr "Adók"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_warehouse_order
+msgid "Taxes:"
+msgstr "Adók:"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order_line__display_type
+msgid "Technical field for UX purpose."
+msgstr "Technikai mező UX célokra."
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__notes
+msgid "Terms and Conditions"
+msgstr "Kikötések és feltételek"
+
+#. module: warehouse
+#: model_terms:ir.actions.act_window,help:warehouse.warehouse_Booking
+msgid ""
+"The quotation contains the history of the discussion\n"
+"                you had with your vendor."
+msgstr ""
+
+#. module: warehouse
+#: model_terms:ir.actions.act_window,help:warehouse.act_res_partner_2_warehouse_order
+msgid ""
+"The Warehouse  Booking is the first step of the warehouses flow. Once\n"
+"                    converted into a Warehouse Booking, you will be able to control the receipt\n"
+"                    of the products and the vendor bill."
+msgstr ""
+"Az árajánlat kérés az első lépés a beszerzési folyamatban. Miután\n"
+"                    beszerzési megrendeléssé alakította, irányíthatja a termék \n"
+"                    beérkezését  és a beszállítói számlákat."
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_product_product__property_account_creditor_price_difference
+#: model:ir.model.fields,help:warehouse.field_product_template__property_account_creditor_price_difference
+msgid ""
+"This account is used in automated inventory valuation to record the price "
+"difference between a Warehouse Booking and its related vendor bill when "
+"validating this vendor bill."
+msgstr ""
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_product_category__property_account_creditor_price_difference_categ
+msgid ""
+"This account will be used to value price difference between warehouse price "
+"and accounting cost."
+msgstr ""
+"Ez a főkönyvi számla szolgál a tényleges bekerülési érték és a "
+"nyilvántartási ár /elszámoló ár/ közötti árkülönbözet értékének "
+"meghatározásához."
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_res_partner__property_warehouse_currency_id
+#: model:ir.model.fields,help:warehouse.field_res_users__property_warehouse_currency_id
+msgid ""
+"This currency will be used, instead of the default one, for warehouses from "
+"the current partner"
+msgstr ""
+"A rendszer az alapértelmezett helyett ezt a pénznemet használja az aktuális "
+"partnertől való beszerzéseknél"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_res_config_settings__default_warehouse_method
+#: model_terms:ir.ui.view,arch_db:warehouse.res_config_settings_view_form_warehouse
+msgid ""
+"This default value is applied to any new product created. This can be "
+"changed in the product detail form."
+msgstr ""
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.view_product_supplier_inherit
+msgid "This note is added to Warehouse Booking."
+msgstr "Ez a megjegyzés bekerül a beszerzési megrendelésbe."
+
+#. module: warehouse
+#: code:addons/warehouse/models/account_invoice.py:0
+#, python-format
+msgid "This vendor bill has been created from: %s"
+msgstr ""
+
+#. module: warehouse
+#: code:addons/warehouse/models/account_invoice.py:0
+#, python-format
+msgid "This vendor bill has been modified from: %s"
+msgstr ""
+
+#. module: warehouse
+#: model_terms:ir.actions.act_window,help:warehouse.act_res_partner_2_warehouse_order
+msgid "This vendor has no Warehouse Booking. Create a new Booking"
+msgstr ""
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__warehouse_order__state__to_approve
+#: model:ir.model.fields.selection,name:warehouse.selection__warehouse_report__state__to_approve
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_filter
+msgid "To Approve"
+msgstr "Jóváhagyandó"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_search
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_filter
+msgid "Today Activities"
+msgstr "Mai tevékenységek"
+
+#. module: warehouse
+#: code:addons/warehouse/controllers/portal.py:0
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__amount_total
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__price_total
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__price_total
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_warehouse_orders
+#, python-format
+msgid "Total"
+msgstr "Összesen"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__product_uom_qty
+msgid "Total Quantity"
+msgstr "Összes mennyiség"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_tree
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_tree
+msgid "Total Untaxed amount"
+msgstr "Teljes nettó összeg"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_tree
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_tree
+msgid "Total amount"
+msgstr "Teljes összeg"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: warehouse
+#: code:addons/warehouse/models/warehouse.py:0
+#, python-format
+msgid ""
+"Unable to cancel this Warehouse Booking. You must first cancel the related "
+"vendor bills."
+msgstr ""
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__price_unit
+msgid "Unit Price"
+msgstr "Egységár"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Unit Price:"
+msgstr "Egységár:"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__product_uom
+msgid "Unit of Measure"
+msgstr "Mértékegység"
+
+#. module: warehouse
+#: model:ir.ui.menu,name:warehouse.menu_warehouse_uom_form_action
+msgid "Units of Measure"
+msgstr "Mértékegység"
+
+#. module: warehouse
+#: model:ir.ui.menu,name:warehouse.menu_warehouse_uom_categ_form_action
+msgid "Units of Measure Categories"
+msgstr "Mértékegység kategóriák"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Unlock"
+msgstr "Feloldás"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__message_unread
+msgid "Unread Messages"
+msgstr "Olvasatlan üzenetek"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "Olvasatlan üzenetek száma"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_tree
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_tree
+msgid "Untaxed"
+msgstr "Nettó érték"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__amount_untaxed
+msgid "Untaxed Amount"
+msgstr "Nettó érték"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_warehouse_order
+msgid "Untaxed Amount:"
+msgstr "Adózatlan összeg:"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__untaxed_total
+msgid "Untaxed Total"
+msgstr "Összes adózatlan"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "UoM"
+msgstr "Mértékegység"
+
+#. module: warehouse
+#: model:res.groups,name:warehouse.group_warehouse_user
+msgid "User"
+msgstr "Felhasználó"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_res_config_settings__company_currency_id
+msgid "Utility field to express amount currency"
+msgstr "Kisegítő mező az összeg pénznemének kifejezéséhez"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.res_config_settings_view_form_warehouse
+msgid "Variant Grid Entry"
+msgstr ""
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_bill_union__partner_id
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__partner_id
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__partner_id
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_line_search
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_line_tree
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_search
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_filter
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_search
+msgid "Vendor"
+msgstr "Beszállító"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_bill_union__vendor_bill_id
+msgid "Vendor Bill"
+msgstr "Beszállítói számla"
+
+#. module: warehouse
+#: model:ir.actions.act_window,name:warehouse.act_res_partner_2_supplier_invoices
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+#: model_terms:ir.ui.view,arch_db:warehouse.res_partner_view_warehouse_account_buttons
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_bill_union_filter
+msgid "Vendor Bills"
+msgstr "Beszállítói számlák"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_search
+msgid "Vendor Country"
+msgstr "Beszállító ország"
+
+#. module: warehouse
+#: model:ir.ui.menu,name:warehouse.menu_product_pricelist_action2_warehouse
+msgid "Vendor Pricelists"
+msgstr "Beszállítói árlisták"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__partner_ref
+msgid "Vendor Reference"
+msgstr "Beszállítói hivatkozás"
+
+#. module: warehouse
+#: model:ir.ui.menu,name:warehouse.menu_procurement_management_supplier_name
+msgid "Vendors"
+msgstr "Beszállítók"
+
+#. module: warehouse
+#: model_terms:ir.actions.act_window,help:warehouse.act_res_partner_2_supplier_invoices
+msgid ""
+"Vendors bills can be pre-generated based on warehouse\n"
+"                    orders or receipts. This allows you to control bills\n"
+"                    you receive from your vendor according to the draft\n"
+"                    document in Odoo."
+msgstr ""
+"Beszállítói számlákat előre létrehozhat a beszerzési megrendelés\n"
+"                    vagy nyugták alapján. Ez lehetővé teszi a beszállítóktól kapott \n"
+"                     számlák ellenőrzését az Odoo rendszerben lévő\n"
+"                    vázlat dokumentumok alalpján."
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__volume
+msgid "Volume"
+msgstr "Térfogat"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__warehouse_order__invoice_status__to_invoice
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_search
+msgid "Waiting Bills"
+msgstr "Várakozó számlák"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__product_template__warehouse_line_warn__warning
+#: model:ir.model.fields.selection,name:warehouse.selection__res_partner__warehouse_warn__warning
+msgid "Warning"
+msgstr "Figyelmeztetés"
+
+#. module: warehouse
+#: code:addons/warehouse/models/warehouse.py:0
+#: code:addons/warehouse/models/warehouse.py:0
+#, python-format
+msgid "Warning for %s"
+msgstr "Figyelmeztetés erre %s"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.res_partner_view_warehouse_buttons
+msgid "Warning on the Warehouse Booking"
+msgstr "Figyelmeztetés a beszerzési megrendelésre"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.view_product_supplier_inherit
+msgid "Warning when Purchasing this Product"
+msgstr "Figyelmeztetés, amikor ebből a termékből beszerzés történik"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_search
+#: model_terms:ir.ui.view,arch_db:warehouse.res_config_settings_view_form_warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_filter
+msgid "Warnings"
+msgstr "Figyelmeztetések"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__website_message_ids
+msgid "Website Messages"
+msgstr "Weboldali üzenetek"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order__website_message_ids
+msgid "Website communication history"
+msgstr "Weboldali kommunikációs előzmények"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order__partner_id
+#: model:ir.model.fields,help:warehouse.field_warehouse_order_line__partner_id
+msgid "You can find a vendor by its Name, TIN, Email or Internal Reference."
+msgstr ""
+
+#. module: warehouse
+#: model_terms:ir.actions.act_window,help:warehouse.product_product_action
+msgid ""
+"You must define a product for everything you sell or warehouse,\n"
+"                whether it's a storable product, a consumable or a service."
+msgstr ""
+
+#. module: warehouse
+#: model_terms:ir.actions.act_window,help:warehouse.product_normal_action_warehoused
+msgid ""
+"You must define a product for everything you sell or warehouse,\n"
+"            whether it's a storable product, a consumable or a service."
+msgstr ""
+
+#. module: warehouse
+#: code:addons/warehouse/models/warehouse.py:0
+#, python-format
+msgid ""
+"Your quotation contains products from company %s whereas your quotation belongs to company %s. \n"
+" Please change the company of your quotation or remove the products from other companies (%s)."
+msgstr ""
+
+#. module: warehouse
+#: code:addons/warehouse/models/warehouse.py:0
+#, python-format
+msgid ""
+"You cannot change the type of a Warehouse Booking line. Instead you should "
+"delete the current line and create a new line of the proper type."
+msgstr ""

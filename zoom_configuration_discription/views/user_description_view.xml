@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_users_form_inherited_zoom_des" model="ir.ui.view">
+        <field name="name">res.users.form.inherited.zoom</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="zoom_integration.view_users_form_inherited_zoom"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[3]" position="inside">
+                <group>
+                    <field name="zoom_description"/>
+                </group>
+
+
+            </xpath>
+
+        </field>
+    </record>
+
+
+</odoo>

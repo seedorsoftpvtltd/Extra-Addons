@@ -1,0 +1,2255 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* warehouse
+# 
+# Translators:
+# 前園義博 <yoshihiro.maezono@pro-spire.co.jp>, 2019
+# Takuya Sawada <takuya@tuntunkun.com>, 2019
+# 城谷 龍弥 <tatsuya.shirotani@pro-spire.co.jp>, 2019
+# SHIMIZU Taku <shimizu.taku@gmail.com>, 2019
+# Martin Trigaux, 2019
+# Manami Hashi <manami@roomsfor.hk>, 2019
+# 高木正勝 <masakatsu.takagi@pro-spire.co.jp>, 2019
+# kent_ocean <ke.tanabe@gmail.com>, 2019
+# Takahiro MURAKAMI <murakami@date-yakkyoku.com>, 2019
+# Norimichi Sugimoto <norimichi.sugimoto@tls-ltd.co.jp>, 2019
+# Yoon Nankyung <nankyung.yoon@pro-spire.co.jp>, 2019
+# Tim Siu Lai <tl@roomsfor.hk>, 2019
+# NANIWA Masahiro <naniwa.masahiro@gmail.com>, 2019
+# Hau Dao <hau@quartile.co>, 2020
+# Shunho Kin <s-kin@shonan-innovation.co.jp>, 2020
+# Yoshi Tashiro <tashiro@roomsfor.hk>, 2020
+# Noma Yuki, 2020
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-12-05 12:32+0000\n"
+"PO-Revision-Date: 2019-08-26 09:13+0000\n"
+"Last-Translator: Noma Yuki, 2020\n"
+"Language-Team: Japanese (https://www.transifex.com/odoo/teams/41243/ja/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: ja\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. module: warehouse
+#: model:ir.actions.report,print_report_name:warehouse.action_report_warehouse_order
+msgid ""
+"                 (object.state in ('draft', 'sent') and 'Warehouse  "
+"Quotation - %s' % (object.name) or                 'Warehouse Booking - %s' % "
+"(object.name))"
+msgstr ""
+"                 (object.state in ('draft', 'sent') and '見積依頼 - %s' % "
+"(object.name) or                 '購買オーダ - %s' % (object.name))"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_partner__supplier_invoice_count
+#: model:ir.model.fields,field_description:warehouse.field_res_users__supplier_invoice_count
+msgid "# Vendor Bills"
+msgstr "仕入先請求書数"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__nbr_lines
+msgid "# of Lines"
+msgstr "行数"
+
+#. module: warehouse
+#: model:mail.template,subject:warehouse.email_template_edi_warehouse
+#: model:mail.template,subject:warehouse.email_template_edi_warehouse_done
+msgid "${object.company_id.name} Order (Ref ${object.name or 'n/a' })"
+msgstr "${object.company_id.name} オーダ (Ref ${object.name or 'n/a' })"
+
+#. module: warehouse
+#: model:ir.actions.report,print_report_name:warehouse.report_warehouse_quotation
+msgid "'Warehouse  Booking - %s' % (object.name)"
+msgstr "'見積依頼 - %s' % (object.name)"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.res_config_settings_view_form_warehouse
+msgid "3-way matching"
+msgstr "3つの方法で照合"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_config_settings__module_account_3way_match
+msgid "3-way matching: warehouses, receptions and bills"
+msgstr "入荷請求差異照合: 購買オーダ、入荷、請求書"
+
+#. module: warehouse
+#: model:mail.template,body_html:warehouse.email_template_edi_warehouse_done
+msgid ""
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"    <p style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
+"        Dear ${object.partner_id.name}\n"
+"        % if object.partner_id.parent_id:\n"
+"            (${object.partner_id.parent_id.name})\n"
+"        % endif\n"
+"        <br/><br/>\n"
+"        Here is in attachment a Warehouse Booking <strong>${object.name}</strong>\n"
+"        % if object.partner_ref:\n"
+"            with reference: ${object.partner_ref}\n"
+"        % endif\n"
+"        amounting in <strong>${format_amount(object.amount_total, object.currency_id)}</strong>\n"
+"        from ${object.company_id.name}.\n"
+"        <br/><br/>\n"
+"        If you have any questions, please do not hesitate to contact us.\n"
+"        <br/><br/>\n"
+"        Best regards,\n"
+"    </p>\n"
+"</div>"
+msgstr ""
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"<p style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
+"${object.partner_id.name} ${object.partner_id.title or \"様\"}\n"
+"% if object.partner_id.parent_id:\n"
+"(${object.partner_id.parent_id.name})\n"
+"% endif\n"
+"<br/><br/>\n"
+"${object.company_id.name}からの注文書 <strong>${object.name}</strong>\n"
+"% if object.partner_ref:\n"
+"参照: ${object.partner_ref}\n"
+"% endif\n"
+"(金額 <strong>${format_amount(object.amount_total, object.currency_id)}</strong>)\n"
+"を添付いたします。\n"
+"<br/><br/>\n"
+"ご質問等ございましたらお知らせください。\n"
+"<br/><br/>\n"
+"よろしくお願いいたします。\n"
+"</p>\n"
+"</div>"
+
+#. module: warehouse
+#: model:mail.template,body_html:warehouse.email_template_edi_warehouse
+msgid ""
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"    <p style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
+"        Dear ${object.partner_id.name}\n"
+"        % if object.partner_id.parent_id:\n"
+"            (${object.partner_id.parent_id.name})\n"
+"        % endif\n"
+"        <br/><br/>\n"
+"        Here is in attachment a Warehouse  Booking <strong>${object.name}</strong>\n"
+"        % if object.partner_ref:\n"
+"            with reference: ${object.partner_ref}\n"
+"        % endif\n"
+"        from ${object.company_id.name}.\n"
+"        <br/><br/>\n"
+"        If you have any questions, please do not hesitate to contact us.\n"
+"        <br/><br/>\n"
+"        Best regards,\n"
+"    </p>\n"
+"</div>"
+msgstr ""
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"<p style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
+"${object.partner_id.name} ${object.partner_id.title or \"様\"}\n"
+"% if object.partner_id.parent_id:\n"
+"(${object.partner_id.parent_id.name})\n"
+"% endif\n"
+"<br/><br/>\n"
+"${object.company_id.name}からの見積依頼 <strong>${object.name}</strong>\n"
+"% if object.partner_ref:\n"
+"参照: ${object.partner_ref}\n"
+"% endif\n"
+"(金額 <strong>${format_amount(object.amount_total, object.currency_id)}</strong>)\n"
+"を添付いたします。\n"
+"<br/><br/>\n"
+"ご質問等ございましたらお知らせください。\n"
+"<br/><br/>\n"
+"よろしくお願いいたします。\n"
+"</p>\n"
+"</div>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_partner_kanban_view
+msgid ""
+"<i class=\"fa fa-fw fa-shopping-cart\" role=\"img\" aria-label=\"Shopping "
+"cart\" title=\"Shopping cart\"/>"
+msgstr ""
+"<i class=\"fa fa-fw fa-shopping-cart\" role=\"img\" aria-label=\"Shopping "
+"cart\" title=\"Shopping cart\"/>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_warehouse_orders
+msgid ""
+"<span class=\"badge badge-info\"><i class=\"fa fa-fw fa-file-text\"/> "
+"Waiting for Bill</span>"
+msgstr ""
+"<span class=\"badge badge-info\"><i class=\"fa fa-fw fa-file-text\"/> "
+"請求書待ち</span>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_warehouse_orders
+msgid ""
+"<span class=\"badge badge-secondary\"><i class=\"fa fa-fw fa-remove\"/> "
+"Cancelled</span>"
+msgstr ""
+"<span class=\"badge badge-secondary\"><i class=\"fa fa-fw fa-"
+"remove\"/>取消済</span>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.res_config_settings_view_form_warehouse
+msgid ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
+"specific.\" aria-label=\"Values set here are company-specific.\" "
+"groups=\"base.group_multi_company\" role=\"img\"/>"
+msgstr ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"各企業固有の値\" aria-"
+"label=\"各企業固有の値\" groups=\"base.group_multi_company\" role=\"img\"/>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid ""
+"<span class=\"o_form_label\" attrs=\"{'invisible': [('state','not in',('draft','sent'))]}\">Warehouse  Booking </span>\n"
+"                        <span class=\"o_form_label\" attrs=\"{'invisible': [('state','in',('draft','sent'))]}\">Warehouse Booking </span>"
+msgstr ""
+"<span class=\"o_form_label\" attrs=\"{'invisible': [('state','not in',('draft','sent'))]}\">見積依頼 </span>\n"
+"                        <span class=\"o_form_label\" attrs=\"{'invisible': [('state','in',('draft','sent'))]}\">購買オーダ </span>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.product_normal_form_view_inherit_warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.view_product_template_warehouse_buttons_from
+msgid "<span class=\"o_stat_text\">warehoused</span>"
+msgstr "<span class=\"o_stat_text\">購買</span>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehouseorder_document
+msgid "<strong class=\"mr16\">Subtotal</strong>"
+msgstr "<strong class=\"mr16\">小計</strong>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehouseorder_document
+msgid "<strong>Amount</strong>"
+msgstr "<strong>金額</strong>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehouseorder_document
+msgid "<strong>Date Req.</strong>"
+msgstr "<strong>納入期日</strong>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_warehouse_order
+msgid "<strong>Date:</strong>"
+msgstr "<strong>日付:</strong>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehouseorder_document
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehousequotation_document
+msgid "<strong>Description</strong>"
+msgstr "<strong>説明</strong>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehousequotation_document
+msgid "<strong>Expected Date</strong>"
+msgstr "<strong>納入予定日</strong>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehouseorder_document
+msgid "<strong>Order Date:</strong>"
+msgstr "<strong>発注日:</strong>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_warehouse_order
+msgid "<strong>Product</strong>"
+msgstr "<strong>プロダクト</strong>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehouseorder_document
+msgid "<strong>warehouse Representative:</strong>"
+msgstr "<strong>購買担当者:</strong>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehouseorder_document
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehousequotation_document
+msgid "<strong>Qty</strong>"
+msgstr "<strong>数量</strong>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_warehouse_order
+msgid "<strong>Quantity</strong>"
+msgstr "<strong>数量</strong>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehouseorder_document
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehousequotation_document
+msgid "<strong>Shipping address:</strong>"
+msgstr "<strong>出荷先:</strong>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_warehouse_order
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehouseorder_document
+msgid "<strong>Subtotal</strong>"
+msgstr "<strong>小計</strong>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehouseorder_document
+msgid "<strong>Taxes</strong>"
+msgstr "<strong>税金</strong>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.track_po_line_template
+msgid "<strong>The ordered quantity has been updated.</strong>"
+msgstr "<strong>注文数量が更新されました。</strong>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_warehouse_order
+msgid "<strong>Total:</strong>"
+msgstr "<strong>合計:</strong>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehouseorder_document
+msgid "<strong>Total</strong>"
+msgstr "<strong>合計</strong>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_warehouse_order
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehouseorder_document
+msgid "<strong>Unit Price</strong>"
+msgstr "<strong>単価</strong>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehouseorder_document
+msgid "<strong>Your Order Reference:</strong>"
+msgstr "<strong>ご注文のリファレンス:</strong>"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order_line__product_type
+msgid ""
+"A storable product is a product for which you manage stock. The Inventory app has to be installed.\n"
+"A consumable product is a product for which stock is not managed.\n"
+"A service is a non-material product you provide."
+msgstr ""
+"在庫可能品は在庫管理対象のプロダクトです。在庫アプリのインストールが必要です。\n"
+"消耗品は移動処理の対象ではあるものの、厳密な在庫管理対象ではないプロダクトです。\n"
+"サービス品は物理的なモノが存在しない無形のプロダクトです。"
+
+#. module: warehouse
+#: model:res.groups,name:warehouse.group_warning_warehouse
+msgid "A warning can be set on a product or a customer (warehouse)"
+msgstr "プロダクトまたは取引先に警告設定可(購買)"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__access_warning
+msgid "Access warning"
+msgstr "アクセス警告"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order_line__qty_received_method
+msgid ""
+"According to product configuration, the recieved quantity can be automatically computed by mechanism :\n"
+"  - Manual: the quantity is set manually on the line\n"
+"  - Stock Moves: the quantity comes from confirmed pickings\n"
+msgstr ""
+"製品構成に応じて、受信数量を仕組みによって自動的に計算できます:\n"
+"  - 手動: 数量はライン上で手動で設定されます\n"
+"  - 在庫の動き: 数量は確定済みのピッキングから得られます\n"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__message_needaction
+msgid "Action Needed"
+msgstr "要アクション"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__activity_ids
+msgid "Activities"
+msgstr "活動"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "例外の活動を示す文字装飾"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__activity_state
+msgid "Activity State"
+msgstr "活動状態"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Add a note"
+msgstr "メモ追加"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Add a Good"
+msgstr "プロダクト追加"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Add a section"
+msgstr "セクション追加"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.res_config_settings_view_form_warehouse
+msgid "Add several variants to the Warehouse Booking from a grid"
+msgstr "グリッドビューから購買オーダに複数のバリアントを追加"
+
+#. module: warehouse
+#: model:res.groups,name:warehouse.group_warehouse_manager
+msgid "Administrator"
+msgstr "管理者"
+
+#. module: warehouse
+#: code:addons/warehouse/controllers/portal.py:0
+#, python-format
+msgid "All"
+msgstr "全て"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__res_company__po_lock__edit
+msgid "Allow to edit Warehouse Booking"
+msgstr "購買オーダの編集を許可"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_bill_union__amount
+msgid "Amount"
+msgstr "金額"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__account_analytic_id
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__account_analytic_id
+msgid "Analytic Account"
+msgstr "分析勘定"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__analytic_tag_ids
+msgid "Analytic Tags"
+msgstr "分析タグ"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Approve Order"
+msgstr "オーダー承認"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__message_attachment_count
+msgid "Attachment Count"
+msgstr "添付数"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_account_move__warehouse_vendor_bill_id
+msgid "Auto-complete"
+msgstr "オートコンプリート"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_account_move__warehouse_vendor_bill_id
+msgid "Auto-complete from a past bill / Warehouse Booking."
+msgstr "過去の請求書/注文書からオートコンプリートします。"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_account_move__warehouse_id
+msgid "Auto-complete from a past Warehouse Booking."
+msgstr "過去の注文書からオートコンプリートします。"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.res_config_settings_view_form_warehouse
+msgid "Automatically lock confirmed orders to prevent edition"
+msgstr "編集を防止するため確認済み注文を自動的にロック"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__price_average
+msgid "Average Cost"
+msgstr "平均原価"
+
+#. module: warehouse
+#: model:ir.filters,name:warehouse.filter_warehouse_order_average_delivery_time
+msgid "Average Delivery Time"
+msgstr "平均配送時間"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_config_settings__default_warehouse_method
+msgid "Bill Control"
+msgstr "請求管理"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__invoice_count
+msgid "Bill Count"
+msgstr "請求件数"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__invoice_lines
+msgid "Bill Lines"
+msgstr "ビルライン"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Billed"
+msgstr "請求済"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__qty_invoiced
+msgid "Billed Qty"
+msgstr "請求済数量"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Billed Quantity"
+msgstr "請求済数量"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.track_po_line_template
+msgid "Billed Quantity:"
+msgstr "請求済数量:"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__invoice_status
+msgid "Billing Status"
+msgstr "請求ステータス"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__invoice_ids
+msgid "Bills"
+msgstr "請求書"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_search
+msgid "Bills Received"
+msgstr "請求書受領済"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__product_template__warehouse_line_warn__block
+#: model:ir.model.fields.selection,name:warehouse.selection__res_partner__warehouse_warn__block
+msgid "Blocking Message"
+msgstr "阻止メッセージ"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_calendar
+msgid "Calendar View"
+msgstr "カレンダビュー"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.res_config_settings_view_form_warehouse
+msgid ""
+"Calls for tenders are used when you want to generate Warehouse Booking"
+" to several vendors for a given set of products. You can configure per "
+"product if you directly do a Warehouse  Booking to one vendor or if you "
+"want a Call for Tenders to compare offers from several vendors."
+msgstr ""
+"入札の呼び出しは、特定の製品セットについて複数のベンダーへの見積依頼を生成する場合に使用されます。1つのベンダーに直接見積依頼を行う場合、または入札依頼で複数のベンダーからのオファーを比較する場合は、製品ごとに構成できます。"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Cancel"
+msgstr "取消"
+
+#. module: warehouse
+#: code:addons/warehouse/controllers/portal.py:0
+#: model:ir.model.fields.selection,name:warehouse.selection__warehouse_order__state__cancel
+#: model:ir.model.fields.selection,name:warehouse.selection__warehouse_report__state__cancel
+#, python-format
+msgid "Cancelled"
+msgstr "取消済"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehouseorder_document
+msgid "Cancelled Warehouse Booking #"
+msgstr "キャンセルされた注文書#(番号)"
+
+#. module: warehouse
+#: code:addons/warehouse/models/warehouse.py:0
+#, python-format
+msgid "Cannot delete a Warehouse Booking line which is in state '%s'."
+msgstr "%s ステータスの購買オーダ明細は削除できません。"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__product_uom_category_id
+msgid "Category"
+msgstr "カテゴリ"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__commercial_partner_id
+msgid "Commercial Entity"
+msgstr "商業体"
+
+#. module: warehouse
+#: model:ir.model,name:warehouse.model_res_company
+msgid "Companies"
+msgstr "会社"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_bill_union__company_id
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__company_id
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__company_id
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__company_id
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_search
+msgid "Company"
+msgstr "会社"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_config_settings__company_currency_id
+msgid "Company Currency"
+msgstr "会社の通貨"
+
+#. module: warehouse
+#: code:addons/warehouse/models/warehouse.py:0
+#, python-format
+msgid "Compose Email"
+msgstr "Eメール作成"
+
+#. module: warehouse
+#: model:ir.model,name:warehouse.model_res_config_settings
+msgid "Config Settings"
+msgstr "コンフィグ設定"
+
+#. module: warehouse
+#: model:ir.ui.menu,name:warehouse.menu_warehouse_config
+msgid "Configuration"
+msgstr "設定"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Confirm Order"
+msgstr "オーダ確認"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__res_company__po_double_validation__one_step
+msgid "Confirm Warehouse Booking in one step"
+msgstr "1段階の承認をもち購買オーダ確定"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__date_approve
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__date_approve
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_search
+msgid "Confirmation Date"
+msgstr "確認日"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__res_company__po_lock__lock
+msgid "Confirmed Warehouse Booking are not editable"
+msgstr "確定済の購買オーダは編集不可"
+
+#. module: warehouse
+#: model:ir.model,name:warehouse.model_res_partner
+msgid "Contact"
+msgstr "連絡先"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_product_product__warehouse_method
+#: model:ir.model.fields,field_description:warehouse.field_product_template__warehouse_method
+msgid "Control Policy"
+msgstr "購買請求管理方針"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order_line__product_uom_category_id
+msgid ""
+"Conversion between Units of Measure can only occur if they belong to the "
+"same category. The conversion will be made based on the ratios."
+msgstr "単位間の変換は同じカテゴリに属している場合のみ可能です。変換は比率に基づいて行われます。"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Create Bill"
+msgstr "請求書作成"
+
+#. module: warehouse
+#: model_terms:ir.actions.act_window,help:warehouse.product_normal_action_warehoused
+msgid "Create a new product"
+msgstr "プロダクト新規作成"
+
+#. module: warehouse
+#: model_terms:ir.actions.act_window,help:warehouse.product_product_action
+msgid "Create a new product variant"
+msgstr "プロダクトバリアント新規作成"
+
+#. module: warehouse
+#: model_terms:ir.actions.act_window,help:warehouse.warehouse_form_action
+msgid "Create a quotation"
+msgstr "見積作成"
+
+#. module: warehouse
+#: model_terms:ir.actions.act_window,help:warehouse.warehouse_Booking
+msgid "Create a Warehouse  Booking"
+msgstr "見積依頼を作成しましょう。"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__create_uid
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__create_uid
+msgid "Created by"
+msgstr "作成者"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__create_date
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__create_date
+msgid "Created on"
+msgstr "作成日"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_bill_union__currency_id
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__currency_id
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__currency_id
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__currency_id
+msgid "Currency"
+msgstr "通貨"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__currency_rate
+msgid "Currency Rate"
+msgstr "為替レート"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order__access_url
+msgid "Customer Portal URL"
+msgstr "顧客ポータルURL"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_bill_union__date
+msgid "Date"
+msgstr "日付"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_report__date_order
+msgid "Date on which this document has been created"
+msgstr "このドキュメントが作成された日付"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__delay
+msgid "Days to Confirm"
+msgstr "確認する日数"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__delay_pass
+msgid "Days to Receive"
+msgstr "受け取る日数"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Define your terms and conditions ..."
+msgstr "取引諸条件を定義..."
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order__date_order
+#: model:ir.model.fields,help:warehouse.field_warehouse_order_line__date_order
+msgid ""
+"Depicts the date where the Quotation should be validated and converted into "
+"a Warehouse Booking."
+msgstr ""
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__name
+msgid "Description"
+msgstr "説明"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_bill_union__display_name
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__display_name
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__display_name
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__display_name
+msgid "Display Name"
+msgstr "表示名"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__display_type
+msgid "Display Type"
+msgstr "表示タイプ"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__warehouse_report__state__done
+msgid "Done"
+msgstr "完了"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_company__po_double_validation_amount
+msgid "Double validation amount"
+msgstr "検証量が2倍"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__warehouse_report__state__draft
+msgid "Draft Booking"
+msgstr "ドラフト見積依頼書"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__dest_address_id
+msgid "Drop Ship Address"
+msgstr "直送先"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_search
+msgid "Extended Filters"
+msgstr "拡張フィルタ"
+
+#. module: warehouse
+#: code:addons/warehouse/models/warehouse.py:0
+#, python-format
+msgid "Extra line with %s "
+msgstr "%sの余分な行"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__fiscal_position_id
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__fiscal_position_id
+msgid "Fiscal Position"
+msgstr "会計ポジション"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__message_follower_ids
+msgid "Followers"
+msgstr "フォロワー"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__message_channel_ids
+msgid "Followers (Channels)"
+msgstr "フォロワー (チャネル)"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "フォロワー (取引先)"
+
+#. module: warehouse
+#: model:ir.model.constraint,message:warehouse.constraint_warehouse_order_line_non_accountable_null_fields
+msgid "Forbidden values on non-accountable Warehouse Booking line"
+msgstr "説明責任のない発注書行の禁止値"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__warehouse_order__invoice_status__invoiced
+msgid "Fully Billed"
+msgstr "完全請求済"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_search
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_filter
+msgid "Future Activities"
+msgstr "将来の活動"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__res_company__po_double_validation__tpo_step
+msgid "Get 2 levels of approvals to confirm a Warehouse Booking"
+msgstr "2段階の承認をもち購買オーダ確定"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.res_config_settings_view_form_warehouse
+msgid "Get warnings in orders for products or vendors"
+msgstr "プロダクトや仕入先設定をもとにオーダに警告を表示"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__weight
+msgid "Gross Weight"
+msgstr "総重量"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_line_search
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_search
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_filter
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_search
+msgid "Group By"
+msgstr "グループ化"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_line_search
+msgid "Hide cancelled lines"
+msgstr "キャンセルした行を隠す"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_bill_union__id
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__id
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__id
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__id
+msgid "ID"
+msgstr "ID"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__activity_exception_icon
+msgid "Icon"
+msgstr "アイコン"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "例外的なアクティビティを示唆するアイコン"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order__message_needaction
+#: model:ir.model.fields,help:warehouse.field_warehouse_order__message_unread
+msgid "If checked, new messages require your attention."
+msgstr "チェックされている場合は、新しいメッセージに注意が必要です。"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order__message_has_error
+#: model:ir.model.fields,help:warehouse.field_warehouse_order__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "チェックした場合、一部のメッセージが配信エラーが発生しています。"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.res_config_settings_view_form_warehouse
+msgid ""
+"If enabled, activates 3-way matching on vendor bills : the items must be "
+"received in order to pay the invoice."
+msgstr "有効にすると、仕入先請求書の3者間照合が有効になります。請求書を支払うには、アイテムを受け取る必要があります。"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.res_config_settings_view_form_warehouse
+msgid ""
+"If installed, the product variants will be added to Warehouse Booking through "
+"a grid entry."
+msgstr "インストールされている場合、製品バリアントはグリッドエントリを介して発注書に追加されます。"
+
+#. module: warehouse
+#: code:addons/warehouse/models/product.py:0
+#, python-format
+msgid "Import Template for Products"
+msgstr "製品テンプレートをインポート"
+
+#. module: warehouse
+#: code:addons/warehouse/models/warehouse.py:0
+#, python-format
+msgid "In order to delete a Warehouse Booking, you must cancel it first."
+msgstr "購買オーダを削除するには、まず取消してください。"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__incoterm_id
+msgid "Incoterm"
+msgstr "インコタームズ"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order__incoterm_id
+msgid ""
+"International Commercial Terms are a series of predefined commercial terms "
+"used in international transactions."
+msgstr "国際取引条件は国際間の取り引きで使用する、事前に定義された取引条件をまとめたものです。"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Invoices and Incoming Shipments"
+msgstr "請求書および入荷"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.res_config_settings_view_form_warehouse
+msgid "Invoicing"
+msgstr "請求"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__message_is_follower
+msgid "Is Follower"
+msgstr "フォロー中　"
+
+#. module: warehouse
+#: model_terms:ir.actions.act_window,help:warehouse.warehouse_form_action
+msgid "It will be converted into a Warehouse Booking."
+msgstr ""
+
+#. module: warehouse
+#: model:ir.model,name:warehouse.model_account_move
+msgid "Journal Entries"
+msgstr "仕訳"
+
+#. module: warehouse
+#: model:ir.model,name:warehouse.model_account_move_line
+msgid "Journal Item"
+msgstr "仕訳項目"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_bill_union____last_update
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order____last_update
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line____last_update
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report____last_update
+msgid "Last Modified on"
+msgstr "最終更新日"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__write_uid
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__write_uid
+msgid "Last Updated by"
+msgstr "最終更新者"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__write_date
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__write_date
+msgid "Last Updated on"
+msgstr "最終更新日"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_search
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_filter
+msgid "Late Activities"
+msgstr "遅れた活動"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_company__po_double_validation
+msgid "Levels of Approvals"
+msgstr "承認レベル"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_config_settings__po_double_validation
+msgid "Levels of Approvals *"
+msgstr "承認レベル *"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Lock"
+msgstr "ロック"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_config_settings__lock_confirmed_po
+msgid "Lock Confirmed Orders"
+msgstr "確認済オーダをロック"
+
+#. module: warehouse
+#: code:addons/warehouse/controllers/portal.py:0
+#: model:ir.model.fields.selection,name:warehouse.selection__warehouse_order__state__done
+#, python-format
+msgid "Locked"
+msgstr "ロック済"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "主な添付"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.res_config_settings_view_form_warehouse
+msgid ""
+"Make sure you only pay bills for which you received the goods you ordered"
+msgstr "オーダした商品が入荷済の仕入先請求書のみ支払可とする"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.res_config_settings_view_form_warehouse
+msgid "Manage your warehouse agreements (call for tenders, blanket orders)"
+msgstr "購買契約 (入札、ブランケットオーダ) を管理"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__warehouse_order_line__qty_received_method__manual
+msgid "Manual"
+msgstr "手動"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_line_form2
+msgid "Manual Invoices"
+msgstr "手動作成請求書"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__qty_received_manual
+msgid "Manual Received Qty"
+msgstr "手動受領数量"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_res_company__po_lead
+#: model:ir.model.fields,help:warehouse.field_res_config_settings__po_lead
+msgid ""
+"Margin of error for vendor lead times. When the system generates warehouse "
+"Orders for procuring products, they will be scheduled that many days earlier"
+" to cope with unexpected vendor delays."
+msgstr ""
+"ベンダーのリードタイムの "
+"許容誤差。システムが製品を調達するための発注書を生成するとき、予期しないベンダーの遅延に対処するために、それらは何日も前にスケジュールされます。"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_res_config_settings__use_po_lead
+msgid ""
+"Margin of error for vendor lead times. When the system generates warehouse "
+"Orders for reordering products,they will be scheduled that many days earlier"
+" to cope with unexpected vendor delays."
+msgstr ""
+"ベンダーのリードタイムの​​許容誤差。システムが製品を再注文するための発注書を生成するとき、予期しないベンダーの遅延に対処するために、それらは何日も前にスケジュールされます。"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__message_has_error
+msgid "Message Delivery error"
+msgstr "メッセージ配信エラー"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_partner__warehouse_warn_msg
+#: model:ir.model.fields,field_description:warehouse.field_res_users__warehouse_warn_msg
+msgid "Message for Warehouse Booking"
+msgstr "購買オーダのメッセージ"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_product_product__warehouse_line_warn_msg
+#: model:ir.model.fields,field_description:warehouse.field_product_template__warehouse_line_warn_msg
+msgid "Message for Warehouse Booking Line"
+msgstr "購買オーダ明細のメッセージ"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__message_ids
+msgid "Messages"
+msgstr "メッセージ"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_config_settings__po_double_validation_amount
+msgid "Minimum Amount"
+msgstr "最小金額"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_res_company__po_double_validation_amount
+#: model:ir.model.fields,help:warehouse.field_res_config_settings__po_double_validation_amount
+msgid "Minimum amount for which a double validation is required"
+msgstr "二重検証が必要な最小量"
+
+#. module: warehouse
+#: model:ir.model.constraint,message:warehouse.constraint_warehouse_order_line_accountable_required_fields
+msgid "Missing required fields on accountable Warehouse Booking line."
+msgstr "説明責任のある発注書行に必須フィールドがありません。"
+
+#. module: warehouse
+#: model:ir.filters,name:warehouse.filter_warehouse_order_monthly_warehouses
+msgid "Monthly warehouses"
+msgstr "月別購買"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_search
+msgid "My Orders"
+msgstr "自分のオーダ"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_filter
+msgid "My warehouses"
+msgstr "自分の購買"
+
+#. module: warehouse
+#: code:addons/warehouse/controllers/portal.py:0
+#, python-format
+msgid "Name"
+msgstr "名称"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Name, TIN, Email, or Reference"
+msgstr "名称/納税者番号/Eメール/参照"
+
+#. module: warehouse
+#: code:addons/warehouse/controllers/portal.py:0
+#, python-format
+msgid "Newest"
+msgstr "最新"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "次の活動期限"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__activity_summary
+msgid "Next Activity Summary"
+msgstr "次の活動サマリ"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__activity_type_id
+msgid "Next Activity Type"
+msgstr "次の活動タイプ"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__product_template__warehouse_line_warn__no-message
+#: model:ir.model.fields.selection,name:warehouse.selection__res_partner__warehouse_warn__no-message
+msgid "No Message"
+msgstr "メッセージなし"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__warehouse_order_line__display_type__line_note
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Note"
+msgstr "ノート"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Notes"
+msgstr "ノート"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__warehouse_order__invoice_status__no
+msgid "Nothing to Bill"
+msgstr "請求対象なし"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__message_needaction_counter
+msgid "Number of Actions"
+msgstr "アクションの数"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__message_has_error_counter
+msgid "Number of errors"
+msgstr "エラー数"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "アクションを必要とするメッセージの数"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "配信エラーのメッセージ数"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order__message_unread_counter
+msgid "Number of unread messages"
+msgstr "未読メッセージ件数"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__product_template__warehouse_method__warehouse
+msgid "On ordered quantities"
+msgstr "オーダ数量に基づく"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_product_product__warehouse_method
+#: model:ir.model.fields,help:warehouse.field_product_template__warehouse_method
+msgid ""
+"On ordered quantities: Control bills based on ordered quantities.\n"
+"On received quantities: Control bills based on received quantities."
+msgstr "注文数量について:注文数量に基づいて請求書を管理します。入庫数量について：入庫数量に基づいて請求書を管理します。"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__product_template__warehouse_method__receive
+msgid "On received quantities"
+msgstr "入荷数量に基づく"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__order_id
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_search
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_filter
+msgid "Order"
+msgstr "オーダ"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__date_order
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__date_order
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__date_order
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_warehouse_orders
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_search
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_filter
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_search
+msgid "Order Date"
+msgstr "オーダ日"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__order_line
+msgid "Order Lines"
+msgstr "オーダ明細"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__name
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__order_id
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_line_search
+msgid "Order Reference"
+msgstr "オーダ参照"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__state
+msgid "Order Status"
+msgstr "オーダステータス"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.track_po_line_template
+msgid "Ordered Quantity:"
+msgstr "注文数量:"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__res_config_settings__default_warehouse_method__warehouse
+msgid "Ordered quantities"
+msgstr "オーダ数量"
+
+#. module: warehouse
+#: model:ir.ui.menu,name:warehouse.menu_procurement_management
+#: model_terms:ir.ui.view,arch_db:warehouse.res_config_settings_view_form_warehouse
+msgid "Orders"
+msgstr "オーダ"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Other Information"
+msgstr "その他情報"
+
+#. module: warehouse
+#: model:mail.template,report_name:warehouse.email_template_edi_warehouse_done
+msgid "po_${(object.name or '').replace('/','_')}"
+msgstr "po_${(object.name or '').replace( '/', '_')}"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__partner_id
+msgid "Partner"
+msgstr "取引先"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__country_id
+msgid "Partner Country"
+msgstr "取引国"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__payment_term_id
+msgid "Payment Terms"
+msgstr "支払条件"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__access_url
+msgid "Portal Access URL"
+msgstr "ポータルアクセスURL"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_product_category__property_account_creditor_price_difference_categ
+#: model:ir.model.fields,field_description:warehouse.field_product_product__property_account_creditor_price_difference
+#: model:ir.model.fields,field_description:warehouse.field_product_template__property_account_creditor_price_difference
+msgid "Price Difference Account"
+msgstr "価格差異勘定"
+
+#. module: warehouse
+#: model:ir.filters,name:warehouse.filter_warehouse_order_price_per_supplier
+msgid "Price Per Vendor"
+msgstr "仕入先別価格"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Print Booking"
+msgstr "見積依頼を印刷"
+
+#. module: warehouse
+#: model:ir.model,name:warehouse.model_product_product
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__product_id
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__product_id
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__product_id
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_warehouse_order
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_line_search
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_search
+msgid "Product"
+msgstr "プロダクト"
+
+#. module: warehouse
+#: model:ir.ui.menu,name:warehouse.menu_product_category_config_warehouse
+msgid "Product Categories"
+msgstr "プロダクトカテゴリ"
+
+#. module: warehouse
+#: model:ir.model,name:warehouse.model_product_category
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__category_id
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_search
+msgid "Product Category"
+msgstr "プロダクトカテゴリ"
+
+#. module: warehouse
+#: model:ir.model,name:warehouse.model_product_template
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__product_tmpl_id
+msgid "Product Template"
+msgstr "プロダクトテンプレート"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__product_type
+msgid "Product Type"
+msgstr "プロダクトタイプ"
+
+#. module: warehouse
+#: model:ir.actions.act_window,name:warehouse.product_product_action
+#: model:ir.ui.menu,name:warehouse.product_product_menu
+msgid "Product Variants"
+msgstr "プロダクトバリアント"
+
+#. module: warehouse
+#: model:ir.actions.act_window,name:warehouse.product_normal_action_warehoused
+#: model:ir.ui.menu,name:warehouse.menu_procurement_partner_contact_form
+#: model:ir.ui.menu,name:warehouse.menu_product_in_config_warehouse
+#: model:ir.ui.menu,name:warehouse.menu_warehouse_products
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+#: model_terms:ir.ui.view,arch_db:warehouse.res_config_settings_view_form_warehouse
+msgid "Products"
+msgstr "プロダクト"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_res_company__po_double_validation
+#: model:ir.model.fields,help:warehouse.field_res_config_settings__po_double_validation
+msgid "Provide a double validation mechanism for warehouses"
+msgstr "購入に二重の検証メカニズムを提供する"
+
+#. module: warehouse
+#: model:ir.ui.menu,name:warehouse.menu_warehouse_root
+#: model:ir.ui.menu,name:warehouse.menu_report_warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.res_config_settings_view_form_warehouse
+msgid "warehouse"
+msgstr "購買"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_config_settings__module_warehouse_requisition
+msgid "warehouse Agreements"
+msgstr "購買契約"
+
+#. module: warehouse
+#: model:ir.actions.act_window,name:warehouse.action_warehouse_order_report_all
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_pivot
+msgid "warehouse Analysis"
+msgstr "購買分析"
+
+#. module: warehouse
+#: model_terms:ir.actions.act_window,help:warehouse.action_warehouse_order_report_all
+msgid ""
+"warehouse Analysis allows you to easily check and analyse your company "
+"warehouse history and performance. From this menu you can track your "
+"negotiation performance, the delivery performance of your vendors, etc."
+msgstr ""
+"購入分析を使用すると、会社の購入履歴とパフォーマンスを簡単に確認および分析できます。このメニューから、交渉のパフォーマンス、ベンダーの配信パフォーマンスなどを追跡できます。"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.view_product_supplier_inherit
+msgid "warehouse Description"
+msgstr "仕入説明"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_config_settings__module_warehouse_product_matrix
+msgid "warehouse Grid Entry"
+msgstr "グリッドエントリを購入する"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_company__po_lead
+#: model:ir.model.fields,field_description:warehouse.field_res_config_settings__po_lead
+msgid "warehouse Lead Time"
+msgstr "購買リードタイム"
+
+#. module: warehouse
+#: code:addons/warehouse/controllers/portal.py:0
+#: code:addons/warehouse/models/warehouse.py:0
+#: model:ir.actions.report,name:warehouse.action_report_warehouse_order
+#: model:ir.model,name:warehouse.model_warehouse_order
+#: model:ir.model.fields,field_description:warehouse.field_account_move__warehouse_id
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_bill_union__warehouse_order_id
+#: model:ir.model.fields,field_description:warehouse.field_res_partner__warehouse_warn
+#: model:ir.model.fields,field_description:warehouse.field_res_users__warehouse_warn
+#: model:ir.model.fields.selection,name:warehouse.selection__warehouse_order__state__warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__warehouse_report__state__warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_warehouse_order
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_graph
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_pivot
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_tree
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_activity
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_tree
+#, python-format
+msgid "Warehouse Booking"
+msgstr "購買オーダ"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehouseorder_document
+msgid "Warehouse Booking #"
+msgstr "注文書 ＃"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_config_settings__po_order_approval
+msgid "Warehouse Booking Approval"
+msgstr "購買オーダ承認"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_partner__warehouse_order_count
+#: model:ir.model.fields,field_description:warehouse.field_res_users__warehouse_order_count
+msgid "Warehouse Booking Count"
+msgstr "注文書数"
+
+#. module: warehouse
+#: model:ir.model,name:warehouse.model_warehouse_order_line
+#: model:ir.model.fields,field_description:warehouse.field_account_move_line__warehouse_line_id
+#: model:ir.model.fields,field_description:warehouse.field_product_product__warehouse_line_warn
+#: model:ir.model.fields,field_description:warehouse.field_product_template__warehouse_line_warn
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_line_form2
+msgid "Warehouse Booking Line"
+msgstr "購買オーダ明細"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_line_tree
+msgid "Warehouse Booking Lines"
+msgstr "購買オーダ明細"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_company__po_lock
+msgid "Warehouse Booking Modification"
+msgstr "購買オーダ修正"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_config_settings__po_lock
+msgid "Warehouse Booking Modification *"
+msgstr "購買オーダ修正 *"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_res_company__po_lock
+#: model:ir.model.fields,help:warehouse.field_res_config_settings__po_lock
+msgid ""
+"Warehouse Booking Modification used when you want to Warehouse Booking editable "
+"after confirm"
+msgstr "確認後に編集可能な注文書を購入する場合に使用される注文書の変更"
+
+#. module: warehouse
+#: model:ir.actions.act_window,name:warehouse.warehouse_form_action
+#: model:ir.actions.act_window,name:warehouse.warehouse_order_action_generic
+#: model:ir.ui.menu,name:warehouse.menu_warehouse_form_action
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_home_menu_warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_home_warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_warehouse_orders
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_bill_union_filter
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_filter
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_search
+msgid "Warehouse Booking"
+msgstr "購買オーダ"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_warehouse_orders
+msgid "Warehouse Booking #"
+msgstr "購買オーダ番号"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_graph
+msgid "Warehouse Booking Statistics"
+msgstr "購買オーダ統計"
+
+#. module: warehouse
+#: model:ir.model,name:warehouse.model_warehouse_report
+msgid "warehouse Report"
+msgstr "購買レポート"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__user_id
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__user_id
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_search
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_filter
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_search
+msgid "warehouse Representative"
+msgstr "購買担当者"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_config_settings__group_warning_warehouse
+msgid "warehouse Warnings"
+msgstr "購入の警告"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_search
+msgid "Warehouse Booking that have been invoiced."
+msgstr "請求書受領済の購買オーダ"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_search
+msgid "Warehouse Booking that include lines not invoiced."
+msgstr "未請求明細を含む購買オーダ"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_product_product__warehoused_product_qty
+#: model:ir.model.fields,field_description:warehouse.field_product_template__warehoused_product_qty
+msgid "warehoused"
+msgstr "購入した"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.product_normal_form_view_inherit_warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.view_product_template_warehouse_buttons_from
+msgid "warehoused in the last 365 days"
+msgstr "過去365日で購買"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.res_partner_view_warehouse_buttons
+msgid "warehouses"
+msgstr "購買"
+
+#. module: warehouse
+#: model:ir.model,name:warehouse.model_warehouse_bill_union
+msgid "warehouses & Bills Union"
+msgstr "warehouses&Bills Union"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order__dest_address_id
+msgid ""
+"Put an address if you want to deliver directly from the vendor to the "
+"customer. Otherwise, keep empty to deliver to your own company."
+msgstr "ベンダーから顧客に直接配達する場合は、住所を入力してください。それ以外の場合は、空のままにして自分の会社に配達します。"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__qty_billed
+msgid "Qty Billed"
+msgstr "請求済数量"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__qty_ordered
+msgid "Qty Ordered"
+msgstr "オーダ数量"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__qty_received
+msgid "Qty Received"
+msgstr "入荷済数量"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__qty_to_be_billed
+msgid "Qty to be Billed"
+msgstr "請求待ち数量"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.res_config_settings_view_form_warehouse
+msgid "Quantities billed by vendors"
+msgstr "仕入先の請求数量"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__product_qty
+msgid "Quantity"
+msgstr "数量"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Quantity:"
+msgstr "数量:"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__warehouse_order__state__draft
+msgid "Booking"
+msgstr "見積依頼"
+
+#. module: warehouse
+#: model:mail.message.subtype,name:warehouse.mt_Booking_approved
+msgid "Booking Approved"
+msgstr "見積依頼承認"
+
+#. module: warehouse
+#: model:mail.message.subtype,name:warehouse.mt_Booking_confirmed
+msgid "Booking Confirmed"
+msgstr "見積依頼確認"
+
+#. module: warehouse
+#: model:mail.message.subtype,name:warehouse.mt_Booking_done
+msgid "Booking Done"
+msgstr "見積依頼完了"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__warehouse_order__state__sent
+#: model:ir.model.fields.selection,name:warehouse.selection__warehouse_report__state__sent
+msgid "Booking Sent"
+msgstr "見積依頼送付済"
+
+#. module: warehouse
+#: model:mail.template,report_name:warehouse.email_template_edi_warehouse
+msgid "Booking_${(object.name or '').replace('/','_')}"
+msgstr "Booking_${(object.name or '').replace('/','_')}"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_filter
+msgid "Bookings"
+msgstr "Booking"
+
+#. module: warehouse
+#: model:ir.actions.act_window,name:warehouse.act_res_partner_2_warehouse_order
+msgid "Bookings and warehouses"
+msgstr "見積依頼と購買"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order__currency_rate
+msgid "Ratio between the Warehouse Booking currency and the company currency"
+msgstr "発注通貨と会社通貨の比率"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Re-Send by Email"
+msgstr "Eメールで再送"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__date_planned
+msgid "Receipt Date"
+msgstr "入荷日"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Received"
+msgstr "入荷済"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__qty_received
+msgid "Received Qty"
+msgstr "入荷済数量"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__qty_received_method
+msgid "Received Qty Method"
+msgstr "受け取った数量メソッド"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Received Quantity"
+msgstr "受領数量"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.track_po_line_template
+msgid "Received Quantity:"
+msgstr "受領数量:"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__res_config_settings__default_warehouse_method__receive
+msgid "Received quantities"
+msgstr "入荷数量"
+
+#. module: warehouse
+#: model_terms:ir.actions.act_window,help:warehouse.act_res_partner_2_supplier_invoices
+msgid "Record a new vendor bill"
+msgstr "仕入先請求書を新規作成してください"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_bill_union__name
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_tree
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_tree
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_bill_union_filter
+msgid "Reference"
+msgstr "参照"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_bill_union_tree
+msgid "Reference Document"
+msgstr "参考資料"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__product_uom
+msgid "Reference Unit of Measure"
+msgstr "基準単位"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order__origin
+msgid ""
+"Reference of the document that generated this Warehouse Booking request (e.g. a"
+" sales order)"
+msgstr "この注文書リクエストを生成したドキュメントの参照(例:販売注文)"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order__partner_ref
+msgid ""
+"Reference of the sales order or bid sent by the vendor. It's used to do the "
+"matching when you receive the products as this reference is usually written "
+"on the delivery order sent by your vendor."
+msgstr ""
+"ベンダーから送信された受注または入札の参照。この参照は通常、ベンダーから送信された配送注文に記載されているため、商品を受け取ったときに照合を行うために使用されます。"
+
+#. module: warehouse
+#: model:ir.ui.menu,name:warehouse.warehouse_report
+msgid "Reporting"
+msgstr "レポーティング"
+
+#. module: warehouse
+#: code:addons/warehouse/models/warehouse.py:0
+#: model:ir.actions.report,name:warehouse.report_warehouse_quotation
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_warehouse_order
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehousequotation_document
+#, python-format
+msgid "Warehouse  Booking"
+msgstr "見積依頼"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehouseorder_document
+msgid "Warehouse  Booking #"
+msgstr "見積依頼 #"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.res_config_settings_view_form_warehouse
+msgid "Request managers to approve orders above a minimum amount"
+msgstr "マネージャーの承認が必須となる注文金額を設定"
+
+#. module: warehouse
+#: model:ir.actions.act_window,name:warehouse.warehouse_Booking
+#: model:ir.ui.menu,name:warehouse.menu_warehouse_Booking
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_search
+msgid "Warehouse Booking"
+msgstr "見積依頼"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__activity_user_id
+msgid "Responsible User"
+msgstr "担当者"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "SMS配信エラー"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__date_planned
+msgid "Scheduled Date"
+msgstr "予定日"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_line_search
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_search
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_filter
+msgid "Search Warehouse Booking"
+msgstr "発注を検索"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_bill_union_filter
+msgid "Search Reference Document"
+msgstr "参照ドキュメントの検索"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__warehouse_order_line__display_type__line_section
+msgid "Section"
+msgstr "セクション"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Section Name (eg. Products, Services)"
+msgstr "セクション名"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_config_settings__use_po_lead
+msgid "Security Lead Time for warehouse"
+msgstr "購買の安全リードタイム"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__access_token
+msgid "Security Token"
+msgstr "セキュリティトークン"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.view_move_form_inherit_warehouse
+msgid "Select a Warehouse Booking or an old bill"
+msgstr "購買オーダまたは過去の請求書を選択"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_product_product__warehouse_line_warn
+#: model:ir.model.fields,help:warehouse.field_product_template__warehouse_line_warn
+#: model:ir.model.fields,help:warehouse.field_res_partner__warehouse_warn
+#: model:ir.model.fields,help:warehouse.field_res_users__warehouse_warn
+msgid ""
+"Selecting the \"Warning\" option will notify user with the message, "
+"Selecting \"Blocking Message\" will throw an exception with the message and "
+"block the flow. The Message has to be written in the next field."
+msgstr ""
+"警告オプションを選択するとユーザにメッセージを通知します。メッセージをブロックを選択するとメッセージとともに例外が発生しその流れがブロックされます。メッセージは次の項目で記述する必要があります。"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Send Booking by Email"
+msgstr "発注をEメールで送信"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Send by Email"
+msgstr "Eメールで送信"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__sequence
+msgid "Sequence"
+msgstr "付番"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Set to Draft"
+msgstr "ドラフトに設定"
+
+#. module: warehouse
+#: model:ir.actions.act_window,name:warehouse.action_warehouse_configuration
+#: model:ir.ui.menu,name:warehouse.menu_warehouse_general_settings
+msgid "Settings"
+msgstr "管理設定"
+
+#. module: warehouse
+#: model:ir.actions.server,name:warehouse.model_warehouse_order_action_share
+msgid "Share"
+msgstr "共有"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_search
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_filter
+msgid "Show all records which has next action date is before today"
+msgstr "次のアクションの日付が今日より前のすべてのレコードを表示する"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_bill_union__reference
+msgid "Source"
+msgstr "要求元"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__origin
+msgid "Source Document"
+msgstr "参照元"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__state
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__state
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_line_search
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_search
+msgid "Status"
+msgstr "ステータス"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"活動に基づく状態\n"
+"延滞：期限は既に過ぎました\n"
+"当日：活動日は本日です\n"
+"予定：将来の活動。"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__price_subtotal
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_warehouse_order
+msgid "Subtotal"
+msgstr "小計"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_partner__property_warehouse_currency_id
+#: model:ir.model.fields,field_description:warehouse.field_res_users__property_warehouse_currency_id
+msgid "Supplier Currency"
+msgstr "仕入先通貨"
+
+#. module: warehouse
+#: model:ir.model,name:warehouse.model_product_supplierinfo
+msgid "Supplier Pricelist"
+msgstr "仕入先価格リスト"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__price_tax
+msgid "Tax"
+msgstr "税"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__amount_tax
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__taxes_id
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehouseorder_document
+msgid "Taxes"
+msgstr "税"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_warehouse_order
+msgid "Taxes:"
+msgstr "税:"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order_line__display_type
+msgid "Technical field for UX purpose."
+msgstr "UXの目的のためのテクニカルフィールド。"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__notes
+msgid "Terms and Conditions"
+msgstr "諸条件"
+
+#. module: warehouse
+#: model_terms:ir.actions.act_window,help:warehouse.warehouse_Booking
+msgid ""
+"The quotation contains the history of the discussion\n"
+"                you had with your vendor."
+msgstr "見積依頼で仕入先とのやりとりの履歴を管理します。"
+
+#. module: warehouse
+#: model_terms:ir.actions.act_window,help:warehouse.act_res_partner_2_warehouse_order
+msgid ""
+"The Warehouse  Booking is the first step of the warehouses flow. Once\n"
+"                    converted into a Warehouse Booking, you will be able to control the receipt\n"
+"                    of the products and the vendor bill."
+msgstr "見積依頼は、購入フローの最初のステップです。注文書に変換されると、製品の受領とベンダーの請求書を管理できるようになります。"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_product_product__property_account_creditor_price_difference
+#: model:ir.model.fields,help:warehouse.field_product_template__property_account_creditor_price_difference
+msgid ""
+"This account is used in automated inventory valuation to record the price "
+"difference between a Warehouse Booking and its related vendor bill when "
+"validating this vendor bill."
+msgstr "このアカウントは、自動在庫評価で使用され、このベンダー請求書を検証するときに、発注書と関連するベンダー請求書の間の価格差を記録します。"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_product_category__property_account_creditor_price_difference_categ
+msgid ""
+"This account will be used to value price difference between warehouse price "
+"and accounting cost."
+msgstr "このアカウントは、購入価格と会計コストの価格差を評価するために使用されます。"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_res_partner__property_warehouse_currency_id
+#: model:ir.model.fields,help:warehouse.field_res_users__property_warehouse_currency_id
+msgid ""
+"This currency will be used, instead of the default one, for warehouses from "
+"the current partner"
+msgstr "この通貨は、現在のパートナーからの購入に、デフォルトの通貨の代わりに使用されます"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_res_config_settings__default_warehouse_method
+#: model_terms:ir.ui.view,arch_db:warehouse.res_config_settings_view_form_warehouse
+msgid ""
+"This default value is applied to any new product created. This can be "
+"changed in the product detail form."
+msgstr "このデフォルト値は、作成されたすべての新製品に適用されます。これは、製品詳細フォームで変更できます。"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.view_product_supplier_inherit
+msgid "This note is added to Warehouse Booking."
+msgstr "このメモは購買オーダに追加されます。"
+
+#. module: warehouse
+#: code:addons/warehouse/models/account_invoice.py:0
+#, python-format
+msgid "This vendor bill has been created from: %s"
+msgstr "この仕入先請求書は次のオーダから作成されました: %s"
+
+#. module: warehouse
+#: code:addons/warehouse/models/account_invoice.py:0
+#, python-format
+msgid "This vendor bill has been modified from: %s"
+msgstr "このベンダーの請求書は次のように変更されています:%s"
+
+#. module: warehouse
+#: model_terms:ir.actions.act_window,help:warehouse.act_res_partner_2_warehouse_order
+msgid "This vendor has no Warehouse Booking. Create a new Booking"
+msgstr "このベンダーには発注書がありません。新しいBookingを作成する"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__warehouse_order__state__to_approve
+#: model:ir.model.fields.selection,name:warehouse.selection__warehouse_report__state__to_approve
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_filter
+msgid "To Approve"
+msgstr "未承認"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_search
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_filter
+msgid "Today Activities"
+msgstr "本日の活動"
+
+#. module: warehouse
+#: code:addons/warehouse/controllers/portal.py:0
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__amount_total
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__price_total
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__price_total
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_warehouse_orders
+#, python-format
+msgid "Total"
+msgstr "合計"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__product_uom_qty
+msgid "Total Quantity"
+msgstr "合計数量"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_tree
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_tree
+msgid "Total Untaxed amount"
+msgstr "税抜合計"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_tree
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_tree
+msgid "Total amount"
+msgstr "合計金額"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "記録上の例外アクティビティのタイプ。"
+
+#. module: warehouse
+#: code:addons/warehouse/models/warehouse.py:0
+#, python-format
+msgid ""
+"Unable to cancel this Warehouse Booking. You must first cancel the related "
+"vendor bills."
+msgstr "この注文書をキャンセルできません。最初に、関連する仕入先請求をキャンセルする必要があります。"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__price_unit
+msgid "Unit Price"
+msgstr "単価"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Unit Price:"
+msgstr "単価:"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__product_uom
+msgid "Unit of Measure"
+msgstr "単位"
+
+#. module: warehouse
+#: model:ir.ui.menu,name:warehouse.menu_warehouse_uom_form_action
+msgid "Units of Measure"
+msgstr "単位"
+
+#. module: warehouse
+#: model:ir.ui.menu,name:warehouse.menu_warehouse_uom_categ_form_action
+msgid "Units of Measure Categories"
+msgstr "単位カテゴリ"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Unlock"
+msgstr "ロック解除"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__message_unread
+msgid "Unread Messages"
+msgstr "未読メッセージ"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "未読メッセージカウンター"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_tree
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_tree
+msgid "Untaxed"
+msgstr "税抜金額"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__amount_untaxed
+msgid "Untaxed Amount"
+msgstr "税抜金額"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_warehouse_order
+msgid "Untaxed Amount:"
+msgstr "税抜金額"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__untaxed_total
+msgid "Untaxed Total"
+msgstr "税抜合計"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "UoM"
+msgstr "単位"
+
+#. module: warehouse
+#: model:res.groups,name:warehouse.group_warehouse_user
+msgid "User"
+msgstr "ユーザ"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_res_config_settings__company_currency_id
+msgid "Utility field to express amount currency"
+msgstr "金額を表すユーティリティー項目"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.res_config_settings_view_form_warehouse
+msgid "Variant Grid Entry"
+msgstr "バリアントグリッド入力"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_bill_union__partner_id
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__partner_id
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__partner_id
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_line_search
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_line_tree
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_search
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_filter
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_search
+msgid "Vendor"
+msgstr "仕入先"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_bill_union__vendor_bill_id
+msgid "Vendor Bill"
+msgstr "仕入先請求書"
+
+#. module: warehouse
+#: model:ir.actions.act_window,name:warehouse.act_res_partner_2_supplier_invoices
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+#: model_terms:ir.ui.view,arch_db:warehouse.res_partner_view_warehouse_account_buttons
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_bill_union_filter
+msgid "Vendor Bills"
+msgstr "仕入先請求書"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_search
+msgid "Vendor Country"
+msgstr "ベンダーの国"
+
+#. module: warehouse
+#: model:ir.ui.menu,name:warehouse.menu_product_pricelist_action2_warehouse
+msgid "Vendor Pricelists"
+msgstr "仕入先価格表"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__partner_ref
+msgid "Vendor Reference"
+msgstr "仕入先参照"
+
+#. module: warehouse
+#: model:ir.ui.menu,name:warehouse.menu_procurement_management_supplier_name
+msgid "Vendors"
+msgstr "仕入先"
+
+#. module: warehouse
+#: model_terms:ir.actions.act_window,help:warehouse.act_res_partner_2_supplier_invoices
+msgid ""
+"Vendors bills can be pre-generated based on warehouse\n"
+"                    orders or receipts. This allows you to control bills\n"
+"                    you receive from your vendor according to the draft\n"
+"                    document in Odoo."
+msgstr ""
+"仕入先請求書は、発注書または領収書に基づいて事前に生成できます。これにより、Odooのドラフト文書に従って、ベンダーから受け取る請求書を管理できます。"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__volume
+msgid "Volume"
+msgstr "容積"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__warehouse_order__invoice_status__to_invoice
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_search
+msgid "Waiting Bills"
+msgstr "請求書待ち"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__product_template__warehouse_line_warn__warning
+#: model:ir.model.fields.selection,name:warehouse.selection__res_partner__warehouse_warn__warning
+msgid "Warning"
+msgstr "警告"
+
+#. module: warehouse
+#: code:addons/warehouse/models/warehouse.py:0
+#: code:addons/warehouse/models/warehouse.py:0
+#, python-format
+msgid "Warning for %s"
+msgstr "%s の警告です。"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.res_partner_view_warehouse_buttons
+msgid "Warning on the Warehouse Booking"
+msgstr "購買オーダにて警告"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.view_product_supplier_inherit
+msgid "Warning when Purchasing this Product"
+msgstr "プロダクト購買時に警告"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_search
+#: model_terms:ir.ui.view,arch_db:warehouse.res_config_settings_view_form_warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_filter
+msgid "Warnings"
+msgstr "警告"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__website_message_ids
+msgid "Website Messages"
+msgstr "ウェブサイトメッセージ"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order__website_message_ids
+msgid "Website communication history"
+msgstr "ウェブサイトコミュニケーション履歴"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order__partner_id
+#: model:ir.model.fields,help:warehouse.field_warehouse_order_line__partner_id
+msgid "You can find a vendor by its Name, TIN, Email or Internal Reference."
+msgstr "ベンダーは、名前、TIN、電子メール、または内部参照で見つけることができます。"
+
+#. module: warehouse
+#: model_terms:ir.actions.act_window,help:warehouse.product_product_action
+msgid ""
+"You must define a product for everything you sell or warehouse,\n"
+"                whether it's a storable product, a consumable or a service."
+msgstr "販売または購買するもの(在庫品、消耗品、サービス品等)は、プロダクトとして登録する必要があります。"
+
+#. module: warehouse
+#: model_terms:ir.actions.act_window,help:warehouse.product_normal_action_warehoused
+msgid ""
+"You must define a product for everything you sell or warehouse,\n"
+"            whether it's a storable product, a consumable or a service."
+msgstr "販売または購買するもの(在庫品、消耗品、サービス品等)は、プロダクトとして登録する必要があります。"
+
+#. module: warehouse
+#: code:addons/warehouse/models/warehouse.py:0
+#, python-format
+msgid ""
+"Your quotation contains products from company %s whereas your quotation belongs to company %s. \n"
+" Please change the company of your quotation or remove the products from other companies (%s)."
+msgstr ""
+
+#. module: warehouse
+#: code:addons/warehouse/models/warehouse.py:0
+#, python-format
+msgid ""
+"You cannot change the type of a Warehouse Booking line. Instead you should "
+"delete the current line and create a new line of the proper type."
+msgstr "注文書行のタイプを変更することはできません。代わりに、現在の行を削除して、適切なタイプの新しい行を作成する必要があります。"

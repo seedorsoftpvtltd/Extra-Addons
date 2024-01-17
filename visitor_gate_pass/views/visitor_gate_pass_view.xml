@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="visitor_gate_pass_form_view">
+            <field name="name">Visitor Gate Pass Form</field>
+            <field name="model">visitor.gate.pass.custom</field>
+            <field name="arch" type="xml">
+                <form string="Visitor Form">
+                    <header>
+                        <button string="Check In" type="object" name="action_confirm"
+                                 attrs="{'invisible':['|',('gate_state','not in', 'draft')]}" class="oe_highlight"/>
+                        <button string="Cancel" type="object" name="action_cancel"
+                                attrs="{'invisible':['|',('gate_state','not in', 'draft')]}"/>
+                        <button string="Reset To Draft" type="object" name="action_reset_to_draft"
+                                attrs="{'invisible':['|',('gate_state','not in', 'check_out')]}"/>
+                        <button string="Check Out" type="object" name="action_exit"
+                                attrs="{'invisible':['|',('gate_state','not in', 'check_in')]}" class="oe_highlight"/>
+                        <button string="Print" type="object" class="btn btn-info" name="print_visitor_card"/>
+                        
+                        <field name="gate_state" widget="statusbar" statusbar_visible="draft,check_in,check_out"/>
+                    </header>
+                    <sheet>
+                            <h1><field name="gate_name" readonly="1"/></h1>
+                            <group string="Gate Pass Information">
+                                <group>
+                                    <field name="gate_visitor_name" placeholder="Visitor Name..." attrs="{'readonly':['|',('gate_state','in',['check_in','check_out','cancel'])]}"/>
+                                    <field name="gate_mobile_number" placeholder="Contact Number..." attrs="{'readonly':['|',('gate_state','in',['check_in','check_out','cancel'])]}"/>
+                                </group>
+                                <group>
+                                    <field name="gate_visitor_company_id" placeholder="Company Name..." attrs="{'readonly':['|',('gate_state','in',['check_in','check_out','cancel'])]}" />
+                                    <field name="gate_email" placeholder="E mail..." attrs="{'readonly':['|',('gate_state','in',['check_in','check_out','cancel'])]}"/>
+                                </group>
+                            </group>
+                            <group>
+                                <field name="gate_purpose" placeholder="Purpose..." attrs="{'readonly':['|',('gate_state','in',['check_in','check_out','cancel'])]}"/>
+                            </group>
+                            <group>
+                                <group string="In Out Details">
+                                    <field name="gate_in_datetime" placeholder="In Time.." attrs="{'readonly':['|',('gate_state','in',['check_in','check_out','cancel'])]}"/>
+                                    <field name="gate_out_datetime" placeholder="Out Time..." attrs="{'readonly':['|',('gate_state','in',['check_out','cancel'])]}"/>
+                                </group>
+                                <group string="Contact Information">
+                                    <field name="gate_partner_id" placeholder="Contact Person Name..." attrs="{'readonly':['|',('gate_state','in',['check_in','check_out','cancel'])]}"/>
+                                    <field name="gate_department_id" placeholder="Department..." attrs="{'readonly':['|',('gate_state','in',['check_in','check_out','cancel'])]}"/>
+                                    <field name="gate_user_id" placeholder="Created By..." attrs="{'readonly':['|',('gate_state','in',['check_in','check_out','cancel'])]}" readonly="1"/>
+                                    <field name="gate_company_id" placeholder="Company..." attrs="{'readonly':['|',('gate_state','in',['check_in','check_out','cancel'])]}" readonly="1" groups="base.group_multi_company"/>
+                                </group>
+                            </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        
+        <record id="visitor_gate_pass_list_view" model="ir.ui.view">
+            <field name="name">Visitor Gate Pass list</field>
+            <field name="model">visitor.gate.pass.custom</field>
+                <field name="arch" type="xml">
+                    <tree string="Visitor Process">
+                        <field name="gate_name"/>
+                        <field name="gate_visitor_name"/>
+                        <field name="gate_mobile_number"/>
+                        <field name="gate_email"/>
+                        <field name="gate_in_datetime"/>
+                        <field name="gate_out_datetime"/>
+                        <field name="gate_partner_id"/>
+                        <field name="gate_department_id"/>
+                        <field name="gate_company_id" groups="base.group_multi_company"/>
+                        <field name="gate_user_id"/>
+                        <field name="gate_state"/>
+                  </tree>
+                </field>
+        </record>
+
+        <record model="ir.ui.view" id="visitor_gate_pass_search_view">
+            <field name="name">Visitor Gate Pass Search</field>
+            <field name="model">visitor.gate.pass.custom</field>
+                <field name="arch" type="xml">
+                    <search>
+                        <field name="gate_visitor_name"/>
+                        <field name="gate_partner_id"/>
+                        <field name="gate_in_datetime"/>
+                        <field name="gate_out_datetime"/>
+                        <field name="gate_department_id"/>
+                        <field name="gate_company_id" groups="base.group_multi_company"/>
+                        <field name="gate_user_id"/>
+                        <field name="gate_state"/>
+                        <group string="Group By">
+                            <filter name="by_gate_visitor_name" string="Visitor"
+                                    context="{'group_by': 'gate_visitor_name'}"/>
+                            <filter name="by_gate_patnar_id" string="Employee"
+                                    context="{'group_by': 'gate_partner_id'}"/>
+                            <filter name="by_gate_visitor_user" string="User"
+                                    context="{'group_by': 'gate_user_id'}"/>
+                            <filter name="by_gate_visitor_state" string="State"
+                                    context="{'group_by': 'gate_state'}"/>
+                            <filter name="by_gate_visitor_department" string="Department"
+                                    context="{'group_by': 'gate_department_id'}"/>
+                            <filter name="by_gate_visitor_in" string="Date Time In"
+                                    context="{'group_by': 'gate_in_datetime'}"/>
+                            <filter name="by_gate_visitor_out" string="Date Time Out"
+                                    context="{'group_by': 'gate_out_datetime'}"/>
+                        </group>
+                    </search>
+                </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="visitor_gate_pass_action">
+            <field name="name">Gate Passes</field>
+            <field name="res_model">visitor.gate.pass.custom</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="main_visitor_gate_pass" name="Gate Passes" groups="group_gate_pass_user"/>
+        <menuitem id="visitor_gate_pass_menu"   name="Gate Passes"
+                  parent="main_visitor_gate_pass" action="visitor_gate_pass_action"/>
+        <!-- <menuitem id="visitors_gate_pass_menu" name="Visitors"   parent="visitor_gate_pass_menu"
+                  action="visitor_gate_pass_action"/> -->
+
+    </data>
+</odoo>

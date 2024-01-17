@@ -1,0 +1,2335 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* warehouse
+# 
+# Translators:
+# Jesús Alan Ramos Rodríguez <alan.ramos@jarsa.com.mx>, 2019
+# Rick Hunter <rick.hunter.ec@gmail.com>, 2019
+# Pablo Rojas <rojaspablo88@gmail.com>, 2019
+# renodoo <ren@odoo.com>, 2019
+# Harald Panten <harald.panten@qubiq.es>, 2019
+# Cristian Salamea <ovnicraft@gmail.com>, 2019
+# Martin Trigaux, 2019
+# Alejandro Santana <alejandrosantana@anubia.es>, 2019
+# Carlos Lopez <celm1990@hotmail.com>, 2019
+# gabriumaa <gabriel.umana@delfixcr.com>, 2019
+# RGB Consulting <odoo@rgbconsulting.com>, 2019
+# Miguel Orueta <mo@landoo.es>, 2019
+# 36700cd705c35e1852bdffcd0b296648, 2019
+# Cristopher Cravioto <ccr@odoo.com>, 2019
+# Mariana Santos Romo <msn@odoo.com>, 2019
+# Jon Perez <jop@odoo.com>, 2019
+# Sergio Lop Sanz <slop@sdi.es>, 2019
+# Ana Margarita Gutiérrez Rodríguez <ana.gutierrez@jarsa.com.mx>, 2020
+# Jesus Vicente Alcala Rodriguez <jesus.alcala@jarsa.com.mx>, 2020
+# Pedro M. Baeza <pedro.baeza@gmail.com>, 2020
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-12-05 12:32+0000\n"
+"PO-Revision-Date: 2019-08-26 09:13+0000\n"
+"Last-Translator: Pedro M. Baeza <pedro.baeza@gmail.com>, 2020\n"
+"Language-Team: Spanish (https://www.transifex.com/odoo/teams/41243/es/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: warehouse
+#: model:ir.actions.report,print_report_name:warehouse.action_report_warehouse_order
+msgid ""
+"                 (object.state in ('draft', 'sent') and 'Warehouse  "
+"Quotation - %s' % (object.name) or                 'Warehouse Booking - %s' % "
+"(object.name))"
+msgstr ""
+"                 (object.state in ('draft', 'sent') and 'Solicitud de "
+"presupuesto- %s' % (object.name) or                 'Orden de compra - %s' %"
+" (object.name))"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_partner__supplier_invoice_count
+#: model:ir.model.fields,field_description:warehouse.field_res_users__supplier_invoice_count
+msgid "# Vendor Bills"
+msgstr "# Facturas de proveedores"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__nbr_lines
+msgid "# of Lines"
+msgstr "# de líneas"
+
+#. module: warehouse
+#: model:mail.template,subject:warehouse.email_template_edi_warehouse
+#: model:mail.template,subject:warehouse.email_template_edi_warehouse_done
+msgid "${object.company_id.name} Order (Ref ${object.name or 'n/a' })"
+msgstr "${object.company_id.name} Pedido (Ref ${object.name or 'n/a' })"
+
+#. module: warehouse
+#: model:ir.actions.report,print_report_name:warehouse.report_warehouse_quotation
+msgid "'Warehouse  Booking - %s' % (object.name)"
+msgstr "'Solicitud de presupuesto - %s' % (object.name)"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.res_config_settings_view_form_warehouse
+msgid "3-way matching"
+msgstr "Asignación de 3-vías"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_config_settings__module_account_3way_match
+msgid "3-way matching: warehouses, receptions and bills"
+msgstr "Asignación de 3-vías: compras, recepciones y facturas"
+
+#. module: warehouse
+#: model:mail.template,body_html:warehouse.email_template_edi_warehouse_done
+msgid ""
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"    <p style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
+"        Dear ${object.partner_id.name}\n"
+"        % if object.partner_id.parent_id:\n"
+"            (${object.partner_id.parent_id.name})\n"
+"        % endif\n"
+"        <br/><br/>\n"
+"        Here is in attachment a Warehouse Booking <strong>${object.name}</strong>\n"
+"        % if object.partner_ref:\n"
+"            with reference: ${object.partner_ref}\n"
+"        % endif\n"
+"        amounting in <strong>${format_amount(object.amount_total, object.currency_id)}</strong>\n"
+"        from ${object.company_id.name}.\n"
+"        <br/><br/>\n"
+"        If you have any questions, please do not hesitate to contact us.\n"
+"        <br/><br/>\n"
+"        Best regards,\n"
+"    </p>\n"
+"</div>"
+msgstr ""
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"<p style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
+"Estimado ${object.partner_id.name}\n"
+"% if object.partner_id.parent_id:\n"
+"(${object.partner_id.parent_id.name})\n"
+"% endif\n"
+"<br/><br/>\n"
+"Adjunto remito pedido de compra <strong>${object.name}</strong>\n"
+"% if object.partner_ref:\n"
+"con referencia: ${object.partner_ref}\n"
+"% endif\n"
+"que asciende a <strong>${format_amount(object.amount_total, object.currency_id)}</strong>\n"
+"de ${object.company_id.name}.\n"
+"<br/><br/>\n"
+"Ante cualquier consulta no dude en contactarnos.\n"
+"<br/><br/>\n"
+"Atentamente,\n"
+"</p>\n"
+"</div>"
+
+#. module: warehouse
+#: model:mail.template,body_html:warehouse.email_template_edi_warehouse
+msgid ""
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"    <p style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
+"        Dear ${object.partner_id.name}\n"
+"        % if object.partner_id.parent_id:\n"
+"            (${object.partner_id.parent_id.name})\n"
+"        % endif\n"
+"        <br/><br/>\n"
+"        Here is in attachment a Warehouse  Booking <strong>${object.name}</strong>\n"
+"        % if object.partner_ref:\n"
+"            with reference: ${object.partner_ref}\n"
+"        % endif\n"
+"        from ${object.company_id.name}.\n"
+"        <br/><br/>\n"
+"        If you have any questions, please do not hesitate to contact us.\n"
+"        <br/><br/>\n"
+"        Best regards,\n"
+"    </p>\n"
+"</div>"
+msgstr ""
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"    <p style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
+"        Querido ${object.partner_id.name}\n"
+"        % if object.partner_id.parent_id:\n"
+"            (${object.partner_id.parent_id.name})\n"
+"        % endif\n"
+"        <br/><br/>\n"
+"        Aquí está adjunto una solicitud de cotización <strong>${object.name}</strong>\n"
+"        % if object.partner_ref:\n"
+"            con referencia: ${object.partner_ref}\n"
+"        % endif\n"
+"        de ${object.company_id.name}.\n"
+"        <br/><br/>\n"
+"        Si tiene alguna pregunta, no dude en contactarnos.\n"
+"        <br/><br/>\n"
+"        Saludos Cordiales,\n"
+"    </p>\n"
+"</div>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_partner_kanban_view
+msgid ""
+"<i class=\"fa fa-fw fa-shopping-cart\" role=\"img\" aria-label=\"Shopping "
+"cart\" title=\"Shopping cart\"/>"
+msgstr ""
+"<i class=\"fa fa-fw fa-shopping-cart\" role=\"img\" aria-label=\"Shopping "
+"cart\" title=\"Shopping cart\"/>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_warehouse_orders
+msgid ""
+"<span class=\"badge badge-info\"><i class=\"fa fa-fw fa-file-text\"/> "
+"Waiting for Bill</span>"
+msgstr ""
+"<span class=\"badge badge-info\"><i class=\"fa fa-fw fa-file-"
+"text\"/>Esperando la factura</span>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_warehouse_orders
+msgid ""
+"<span class=\"badge badge-secondary\"><i class=\"fa fa-fw fa-remove\"/> "
+"Cancelled</span>"
+msgstr ""
+"<span class=\"badge badge-secondary\"><i class=\"fa fa-fw fa-"
+"remove\"/>Cancelado</span>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.res_config_settings_view_form_warehouse
+msgid ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
+"specific.\" aria-label=\"Values set here are company-specific.\" "
+"groups=\"base.group_multi_company\" role=\"img\"/>"
+msgstr ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Los valores establecidos aquí"
+" son específicos de la empresa.\" aria-label=\"Los valores establecidos aquí"
+" son específicos de la empresa.\" groups=\"base.group_multi_company\" "
+"role=\"img\"/>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid ""
+"<span class=\"o_form_label\" attrs=\"{'invisible': [('state','not in',('draft','sent'))]}\">Warehouse  Booking </span>\n"
+"                        <span class=\"o_form_label\" attrs=\"{'invisible': [('state','in',('draft','sent'))]}\">Warehouse Booking </span>"
+msgstr ""
+"<span class=\"o_form_label\" attrs=\"{'invisible': [('state','not in',('draft','sent'))]}\">Solicitud de presupuesto</span>\n"
+"<span class=\"o_form_label\" attrs=\"{'invisible': [('state','in',('draft','sent'))]}\">Orden de compra</span>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.product_normal_form_view_inherit_warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.view_product_template_warehouse_buttons_from
+msgid "<span class=\"o_stat_text\">warehoused</span>"
+msgstr "<span class=\"o_stat_text\">Comprado</span>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehouseorder_document
+msgid "<strong class=\"mr16\">Subtotal</strong>"
+msgstr "<strong class=\"mr16\">Subtotal</strong>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehouseorder_document
+msgid "<strong>Amount</strong>"
+msgstr "<strong>Monto</strong>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehouseorder_document
+msgid "<strong>Date Req.</strong>"
+msgstr "<strong>Fecha req.</strong>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_warehouse_order
+msgid "<strong>Date:</strong>"
+msgstr "<strong>Fecha:</strong>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehouseorder_document
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehousequotation_document
+msgid "<strong>Description</strong>"
+msgstr "<strong>Descripción</strong>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehousequotation_document
+msgid "<strong>Expected Date</strong>"
+msgstr "<strong>Fecha prevista</strong>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehouseorder_document
+msgid "<strong>Order Date:</strong>"
+msgstr "<strong>Fecha orden:</strong>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_warehouse_order
+msgid "<strong>Product</strong>"
+msgstr "<strong>Producto</strong>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehouseorder_document
+msgid "<strong>warehouse Representative:</strong>"
+msgstr "<strong>Representante del Proveedor:</strong>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehouseorder_document
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehousequotation_document
+msgid "<strong>Qty</strong>"
+msgstr "<strong>Cant</strong>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_warehouse_order
+msgid "<strong>Quantity</strong>"
+msgstr "<strong>Cantidad</strong>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehouseorder_document
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehousequotation_document
+msgid "<strong>Shipping address:</strong>"
+msgstr "<strong>Dirección de Envío</strong>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_warehouse_order
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehouseorder_document
+msgid "<strong>Subtotal</strong>"
+msgstr "<strong>Subtotal</strong>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehouseorder_document
+msgid "<strong>Taxes</strong>"
+msgstr "<strong>Impuestos</strong>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.track_po_line_template
+msgid "<strong>The ordered quantity has been updated.</strong>"
+msgstr "<strong>La cantidad pedida ha sido actualizada.</strong>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_warehouse_order
+msgid "<strong>Total:</strong>"
+msgstr "<strong>Total:</strong>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehouseorder_document
+msgid "<strong>Total</strong>"
+msgstr "<strong>Total</strong>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_warehouse_order
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehouseorder_document
+msgid "<strong>Unit Price</strong>"
+msgstr "<strong>Precio Unidad</strong>"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehouseorder_document
+msgid "<strong>Your Order Reference:</strong>"
+msgstr "<strong>Su referencia de pedido:</strong>"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order_line__product_type
+msgid ""
+"A storable product is a product for which you manage stock. The Inventory app has to be installed.\n"
+"A consumable product is a product for which stock is not managed.\n"
+"A service is a non-material product you provide."
+msgstr ""
+"Un producto almacenable es un producto para el que gestiona stock. La aplicación de inventario debe estar instalada.\n"
+"Un producto consumible es un producto para el que no se gestionan las existencias.\n"
+"Un servicio es un producto no material."
+
+#. module: warehouse
+#: model:res.groups,name:warehouse.group_warning_warehouse
+msgid "A warning can be set on a product or a customer (warehouse)"
+msgstr "Se puede establecer una advertencia por producto o cliente. (Compras)"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__access_warning
+msgid "Access warning"
+msgstr "Alerta de acceso"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order_line__qty_received_method
+msgid ""
+"According to product configuration, the recieved quantity can be automatically computed by mechanism :\n"
+"  - Manual: the quantity is set manually on the line\n"
+"  - Stock Moves: the quantity comes from confirmed pickings\n"
+msgstr ""
+"Según la configuración del producto, la cantidad recibida se puede calcular automáticamente por uno de estos mecanismos:\n"
+"- Manual: la cantidad se establece manualmente en la línea.\n"
+"- Movimientos de existencias: la cantidad proviene de los albaranes confirmados.\n"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__message_needaction
+msgid "Action Needed"
+msgstr "Acción requerida"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__activity_ids
+msgid "Activities"
+msgstr "Actividades"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "Decoración de Actividad  de Excepción"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__activity_state
+msgid "Activity State"
+msgstr "Estado de la actividad"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Add a note"
+msgstr "Agregar nota"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Add a Good"
+msgstr "Agregar un producto"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Add a section"
+msgstr "Agregar una sección"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.res_config_settings_view_form_warehouse
+msgid "Add several variants to the Warehouse Booking from a grid"
+msgstr "Añadir varias variantes a una orden de compra desde una matriz"
+
+#. module: warehouse
+#: model:res.groups,name:warehouse.group_warehouse_manager
+msgid "Administrator"
+msgstr "Administradora"
+
+#. module: warehouse
+#: code:addons/warehouse/controllers/portal.py:0
+#, python-format
+msgid "All"
+msgstr "Todos"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__res_company__po_lock__edit
+msgid "Allow to edit Warehouse Booking"
+msgstr "Permite editar órdenes de compra"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_bill_union__amount
+msgid "Amount"
+msgstr "Importe"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__account_analytic_id
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__account_analytic_id
+msgid "Analytic Account"
+msgstr "Cuenta analítica"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__analytic_tag_ids
+msgid "Analytic Tags"
+msgstr "Etiquetas analíticas"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Approve Order"
+msgstr "Aprobar pedido"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__message_attachment_count
+msgid "Attachment Count"
+msgstr "Conteo de archivos adjuntos"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_account_move__warehouse_vendor_bill_id
+msgid "Auto-complete"
+msgstr "Completar automáticamente"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_account_move__warehouse_vendor_bill_id
+msgid "Auto-complete from a past bill / Warehouse Booking."
+msgstr "Auto-completar de una factura anterior / orden de compra"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_account_move__warehouse_id
+msgid "Auto-complete from a past Warehouse Booking."
+msgstr "Auto-completar de una orden de compra anterior"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.res_config_settings_view_form_warehouse
+msgid "Automatically lock confirmed orders to prevent edition"
+msgstr ""
+"Bloquea de forma automática los pedidos confirmados para evitar su edición"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__price_average
+msgid "Average Cost"
+msgstr "Costo promedio"
+
+#. module: warehouse
+#: model:ir.filters,name:warehouse.filter_warehouse_order_average_delivery_time
+msgid "Average Delivery Time"
+msgstr "Plazo medio de entrega"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_config_settings__default_warehouse_method
+msgid "Bill Control"
+msgstr "Control de Factura"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__invoice_count
+msgid "Bill Count"
+msgstr "Número de facturas"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__invoice_lines
+msgid "Bill Lines"
+msgstr "Líneas de factura"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Billed"
+msgstr "Facturado"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__qty_invoiced
+msgid "Billed Qty"
+msgstr "Cant. facturada"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Billed Quantity"
+msgstr "Cantidad facturada"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.track_po_line_template
+msgid "Billed Quantity:"
+msgstr "Cantidad Facturada:"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__invoice_status
+msgid "Billing Status"
+msgstr "Estado de facturación"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__invoice_ids
+msgid "Bills"
+msgstr "Facturas"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_search
+msgid "Bills Received"
+msgstr "Facturas recibidas"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__product_template__warehouse_line_warn__block
+#: model:ir.model.fields.selection,name:warehouse.selection__res_partner__warehouse_warn__block
+msgid "Blocking Message"
+msgstr "Mensaje de bloqueo"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_calendar
+msgid "Calendar View"
+msgstr "Vista calendario"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.res_config_settings_view_form_warehouse
+msgid ""
+"Calls for tenders are used when you want to generate Warehouse Booking"
+" to several vendors for a given set of products. You can configure per "
+"product if you directly do a Warehouse  Booking to one vendor or if you "
+"want a Call for Tenders to compare offers from several vendors."
+msgstr ""
+"Las convocatorias de ofertas se utilizan cuando desea generar solicitudes de"
+" cotizaciones a varios proveedores para un conjunto determinado de "
+"productos. Puede configurar por producto si realiza directamente una "
+"Solicitud de oferta a un proveedor o si desea que una Convocatoria de "
+"ofertas compare las ofertas de varios proveedores."
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: warehouse
+#: code:addons/warehouse/controllers/portal.py:0
+#: model:ir.model.fields.selection,name:warehouse.selection__warehouse_order__state__cancel
+#: model:ir.model.fields.selection,name:warehouse.selection__warehouse_report__state__cancel
+#, python-format
+msgid "Cancelled"
+msgstr "Cancelado"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehouseorder_document
+msgid "Cancelled Warehouse Booking #"
+msgstr "Pedido de compra cancelado #"
+
+#. module: warehouse
+#: code:addons/warehouse/models/warehouse.py:0
+#, python-format
+msgid "Cannot delete a Warehouse Booking line which is in state '%s'."
+msgstr ""
+"No se puede eliminar una línea de pedido de venta que esté en estado '%s'."
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__product_uom_category_id
+msgid "Category"
+msgstr "Categoría"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__commercial_partner_id
+msgid "Commercial Entity"
+msgstr "Entidad comercial"
+
+#. module: warehouse
+#: model:ir.model,name:warehouse.model_res_company
+msgid "Companies"
+msgstr "Compañías"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_bill_union__company_id
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__company_id
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__company_id
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__company_id
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_search
+msgid "Company"
+msgstr "Compañía"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_config_settings__company_currency_id
+msgid "Company Currency"
+msgstr "Moneda de la Compañía"
+
+#. module: warehouse
+#: code:addons/warehouse/models/warehouse.py:0
+#, python-format
+msgid "Compose Email"
+msgstr "Componer correo electrónico"
+
+#. module: warehouse
+#: model:ir.model,name:warehouse.model_res_config_settings
+msgid "Config Settings"
+msgstr "Opciones de Configuración"
+
+#. module: warehouse
+#: model:ir.ui.menu,name:warehouse.menu_warehouse_config
+msgid "Configuration"
+msgstr "Configuración"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Confirm Order"
+msgstr "Confirmar pedido"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__res_company__po_double_validation__one_step
+msgid "Confirm Warehouse Booking in one step"
+msgstr "Confirmar pedidos de compra en un único paso"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__date_approve
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__date_approve
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_search
+msgid "Confirmation Date"
+msgstr "Fecha confirmación"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__res_company__po_lock__lock
+msgid "Confirmed Warehouse Booking are not editable"
+msgstr "Las ordenes de compra confirmadas no son editables"
+
+#. module: warehouse
+#: model:ir.model,name:warehouse.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_product_product__warehouse_method
+#: model:ir.model.fields,field_description:warehouse.field_product_template__warehouse_method
+msgid "Control Policy"
+msgstr "Política de Control"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order_line__product_uom_category_id
+msgid ""
+"Conversion between Units of Measure can only occur if they belong to the "
+"same category. The conversion will be made based on the ratios."
+msgstr ""
+"La conversión entre las unidades de medidas sólo pueden ocurrir si "
+"pertenecen a la misma categoría. La conversión se basará en los ratios "
+"establecidos."
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Create Bill"
+msgstr "Crear factura"
+
+#. module: warehouse
+#: model_terms:ir.actions.act_window,help:warehouse.product_normal_action_warehoused
+msgid "Create a new product"
+msgstr "Crear un nuevo producto"
+
+#. module: warehouse
+#: model_terms:ir.actions.act_window,help:warehouse.product_product_action
+msgid "Create a new product variant"
+msgstr "Crear una nueva variante del producto"
+
+#. module: warehouse
+#: model_terms:ir.actions.act_window,help:warehouse.warehouse_form_action
+msgid "Create a quotation"
+msgstr "Crear un presupuesto"
+
+#. module: warehouse
+#: model_terms:ir.actions.act_window,help:warehouse.warehouse_Booking
+msgid "Create a Warehouse  Booking"
+msgstr "Crear una solicitud de presupuesto."
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__create_uid
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__create_date
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_bill_union__currency_id
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__currency_id
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__currency_id
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__currency_id
+msgid "Currency"
+msgstr "Moneda"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__currency_rate
+msgid "Currency Rate"
+msgstr "Tasa monetaria"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order__access_url
+msgid "Customer Portal URL"
+msgstr "URL del portal de cliente"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_bill_union__date
+msgid "Date"
+msgstr "Fecha"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_report__date_order
+msgid "Date on which this document has been created"
+msgstr "Fecha en el que fue creado este documento."
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__delay
+msgid "Days to Confirm"
+msgstr "Días para confirmar"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__delay_pass
+msgid "Days to Receive"
+msgstr "Días para recibir"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Define your terms and conditions ..."
+msgstr "Defina sus términos y condiciones ..."
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order__date_order
+#: model:ir.model.fields,help:warehouse.field_warehouse_order_line__date_order
+msgid ""
+"Depicts the date where the Quotation should be validated and converted into "
+"a Warehouse Booking."
+msgstr ""
+"Representa la fecha en que el presupuesto debe ser validado y se convierte "
+"en una orden de compra."
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__name
+msgid "Description"
+msgstr "Descripción"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_bill_union__display_name
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__display_name
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__display_name
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__display_type
+msgid "Display Type"
+msgstr "Tipo de pantalla"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__warehouse_report__state__done
+msgid "Done"
+msgstr "Hecho"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_company__po_double_validation_amount
+msgid "Double validation amount"
+msgstr "Cantidad doble de validación"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__warehouse_report__state__draft
+msgid "Draft Booking"
+msgstr "SdP en borrador"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__dest_address_id
+msgid "Drop Ship Address"
+msgstr "Dirección Drop Ship"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_search
+msgid "Extended Filters"
+msgstr "Filtro avanzado"
+
+#. module: warehouse
+#: code:addons/warehouse/models/warehouse.py:0
+#, python-format
+msgid "Extra line with %s "
+msgstr "Linea extra con %s"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__fiscal_position_id
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__fiscal_position_id
+msgid "Fiscal Position"
+msgstr "Posición fiscal"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__message_follower_ids
+msgid "Followers"
+msgstr "Seguidores"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__message_channel_ids
+msgid "Followers (Channels)"
+msgstr "Seguidores (Canales)"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Seguidores (Empresas)"
+
+#. module: warehouse
+#: model:ir.model.constraint,message:warehouse.constraint_warehouse_order_line_non_accountable_null_fields
+msgid "Forbidden values on non-accountable Warehouse Booking line"
+msgstr "Valores prohibidos en una línea de pedido de compra no computable"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__warehouse_order__invoice_status__invoiced
+msgid "Fully Billed"
+msgstr "Totalmente facturado"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_search
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_filter
+msgid "Future Activities"
+msgstr "Actividades futuras"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__res_company__po_double_validation__tpo_step
+msgid "Get 2 levels of approvals to confirm a Warehouse Booking"
+msgstr "Requerir dos niveles de aprobación para confirmar un pedido de compra"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.res_config_settings_view_form_warehouse
+msgid "Get warnings in orders for products or vendors"
+msgstr "Recibe advertencias en pedidos de productos o proveedores"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__weight
+msgid "Gross Weight"
+msgstr "Peso bruto"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_line_search
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_search
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_filter
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_search
+msgid "Group By"
+msgstr "Agrupar por"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_line_search
+msgid "Hide cancelled lines"
+msgstr "Ocultar líneas canceladas"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_bill_union__id
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__id
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__id
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__id
+msgid "ID"
+msgstr "ID"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__activity_exception_icon
+msgid "Icon"
+msgstr "Icono"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "Icono para indicar una actividad de excepción."
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order__message_needaction
+#: model:ir.model.fields,help:warehouse.field_warehouse_order__message_unread
+msgid "If checked, new messages require your attention."
+msgstr "Si está marcado hay nuevos mensajes que requieren su atención."
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order__message_has_error
+#: model:ir.model.fields,help:warehouse.field_warehouse_order__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si se encuentra marcado, algunos mensajes tienen error de envío."
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.res_config_settings_view_form_warehouse
+msgid ""
+"If enabled, activates 3-way matching on vendor bills : the items must be "
+"received in order to pay the invoice."
+msgstr ""
+"Si está habilitado, activa la coincidencia en 3-vías en las facturas del "
+"proveedor: los artículos deben recibirse para pagar la factura."
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.res_config_settings_view_form_warehouse
+msgid ""
+"If installed, the product variants will be added to Warehouse Booking through "
+"a grid entry."
+msgstr ""
+"Si está instalado, las variantes del producto se agregarán a los pedidos de "
+"compra a través de una entrada de cuadrícula."
+
+#. module: warehouse
+#: code:addons/warehouse/models/product.py:0
+#, python-format
+msgid "Import Template for Products"
+msgstr "Importar plantilla de productos"
+
+#. module: warehouse
+#: code:addons/warehouse/models/warehouse.py:0
+#, python-format
+msgid "In order to delete a Warehouse Booking, you must cancel it first."
+msgstr "Para borrar un pedido de compra, debe cancelarlo primero."
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__incoterm_id
+msgid "Incoterm"
+msgstr "Incoterm"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order__incoterm_id
+msgid ""
+"International Commercial Terms are a series of predefined commercial terms "
+"used in international transactions."
+msgstr ""
+"Los términos de comercio internacional son una serie de condiciones "
+"comerciales usadas en las transacciones internacionales."
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Invoices and Incoming Shipments"
+msgstr "Facturas y recepciones"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.res_config_settings_view_form_warehouse
+msgid "Invoicing"
+msgstr "Contabilidad"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__message_is_follower
+msgid "Is Follower"
+msgstr "Es un seguidor"
+
+#. module: warehouse
+#: model_terms:ir.actions.act_window,help:warehouse.warehouse_form_action
+msgid "It will be converted into a Warehouse Booking."
+msgstr "Se convertirá en una orden de compra."
+
+#. module: warehouse
+#: model:ir.model,name:warehouse.model_account_move
+msgid "Journal Entries"
+msgstr "Asientos contables"
+
+#. module: warehouse
+#: model:ir.model,name:warehouse.model_account_move_line
+msgid "Journal Item"
+msgstr "Apunte contable"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_bill_union____last_update
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order____last_update
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line____last_update
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report____last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__write_uid
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__write_date
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_search
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_filter
+msgid "Late Activities"
+msgstr "Actividades tardías"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_company__po_double_validation
+msgid "Levels of Approvals"
+msgstr "Niveles de aprobación"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_config_settings__po_double_validation
+msgid "Levels of Approvals *"
+msgstr "Niveles de aprobación"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Lock"
+msgstr "Bloquear"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_config_settings__lock_confirmed_po
+msgid "Lock Confirmed Orders"
+msgstr "Bloquear pedidos confirmados"
+
+#. module: warehouse
+#: code:addons/warehouse/controllers/portal.py:0
+#: model:ir.model.fields.selection,name:warehouse.selection__warehouse_order__state__done
+#, python-format
+msgid "Locked"
+msgstr "Bloqueado"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Adjuntos principales"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.res_config_settings_view_form_warehouse
+msgid ""
+"Make sure you only pay bills for which you received the goods you ordered"
+msgstr ""
+"Asegúrese de pagar solo las facturas por las cuales recibió los bienes que "
+"ordenó"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.res_config_settings_view_form_warehouse
+msgid "Manage your warehouse agreements (call for tenders, blanket orders)"
+msgstr ""
+"Administre sus acuerdos de compra (convocatoria de ofertas, órdenes "
+"generales)"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__warehouse_order_line__qty_received_method__manual
+msgid "Manual"
+msgstr "Manual"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_line_form2
+msgid "Manual Invoices"
+msgstr "Facturas manuales"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__qty_received_manual
+msgid "Manual Received Qty"
+msgstr "Cantidad recibida manual"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_res_company__po_lead
+#: model:ir.model.fields,help:warehouse.field_res_config_settings__po_lead
+msgid ""
+"Margin of error for vendor lead times. When the system generates warehouse "
+"Orders for procuring products, they will be scheduled that many days earlier"
+" to cope with unexpected vendor delays."
+msgstr ""
+"Margen de error para los plazos de entrega de proveedores. Cuando el sistema"
+" genera pedidos de compra para la adquisición de productos, se programarán "
+"muchos días anteriores para hacer frente a los retrasos inesperados de los "
+"proveedores."
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_res_config_settings__use_po_lead
+msgid ""
+"Margin of error for vendor lead times. When the system generates warehouse "
+"Orders for reordering products,they will be scheduled that many days earlier"
+" to cope with unexpected vendor delays."
+msgstr ""
+"Margen de error para los plazos de entrega del proveedor. Cuando el sistema "
+"genera pedidos de compra para abastecer productos, se programarán muchos "
+"días antes para hacer frente a las demoras inesperadas de los proveedores."
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__message_has_error
+msgid "Message Delivery error"
+msgstr "Error de Envío de Mensaje"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_partner__warehouse_warn_msg
+#: model:ir.model.fields,field_description:warehouse.field_res_users__warehouse_warn_msg
+msgid "Message for Warehouse Booking"
+msgstr "Mensaje para el pedido de compra"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_product_product__warehouse_line_warn_msg
+#: model:ir.model.fields,field_description:warehouse.field_product_template__warehouse_line_warn_msg
+msgid "Message for Warehouse Booking Line"
+msgstr "Mensaje para la línea del pedido de compra"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__message_ids
+msgid "Messages"
+msgstr "Mensajes"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_config_settings__po_double_validation_amount
+msgid "Minimum Amount"
+msgstr "Monto minimo"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_res_company__po_double_validation_amount
+#: model:ir.model.fields,help:warehouse.field_res_config_settings__po_double_validation_amount
+msgid "Minimum amount for which a double validation is required"
+msgstr "Cantidad mínima para la que se requiere doble validación"
+
+#. module: warehouse
+#: model:ir.model.constraint,message:warehouse.constraint_warehouse_order_line_accountable_required_fields
+msgid "Missing required fields on accountable Warehouse Booking line."
+msgstr "Faltan campos obligatorios en la línea de orden de compra contable."
+
+#. module: warehouse
+#: model:ir.filters,name:warehouse.filter_warehouse_order_monthly_warehouses
+msgid "Monthly warehouses"
+msgstr "Compras mensuales"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_search
+msgid "My Orders"
+msgstr "Mis pedidos"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_filter
+msgid "My warehouses"
+msgstr "Mis compras"
+
+#. module: warehouse
+#: code:addons/warehouse/controllers/portal.py:0
+#, python-format
+msgid "Name"
+msgstr "Nombre"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Name, TIN, Email, or Reference"
+msgstr "Nombre, NIF, correo electrónico o referencia."
+
+#. module: warehouse
+#: code:addons/warehouse/controllers/portal.py:0
+#, python-format
+msgid "Newest"
+msgstr "Más moderno"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Siguiente plazo de actividad"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__activity_summary
+msgid "Next Activity Summary"
+msgstr "Resumen de la siguiente actividad"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__activity_type_id
+msgid "Next Activity Type"
+msgstr "Siguiente tipo de actividad"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__product_template__warehouse_line_warn__no-message
+#: model:ir.model.fields.selection,name:warehouse.selection__res_partner__warehouse_warn__no-message
+msgid "No Message"
+msgstr "Sin mensaje"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__warehouse_order_line__display_type__line_note
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Note"
+msgstr "Nota"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Notes"
+msgstr "Notas"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__warehouse_order__invoice_status__no
+msgid "Nothing to Bill"
+msgstr "Nada para facturar"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Número de acciones"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__message_has_error_counter
+msgid "Number of errors"
+msgstr "Numero de errores"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "Número de mensajes que requieren una acción"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Número de mensajes con error de envío"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order__message_unread_counter
+msgid "Number of unread messages"
+msgstr "Número de mensajes no leidos"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__product_template__warehouse_method__warehouse
+msgid "On ordered quantities"
+msgstr "Sobre cantidades pedidas"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_product_product__warehouse_method
+#: model:ir.model.fields,help:warehouse.field_product_template__warehouse_method
+msgid ""
+"On ordered quantities: Control bills based on ordered quantities.\n"
+"On received quantities: Control bills based on received quantities."
+msgstr ""
+"Sobre cantidades pedidas: Control de facturas basado en cantidades pedidas.\n"
+"Sobre cantidades recibidas: Control de facturas basado en cantidades recibidas."
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__product_template__warehouse_method__receive
+msgid "On received quantities"
+msgstr "Sobre cantidades recibidas"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__order_id
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_search
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_filter
+msgid "Order"
+msgstr "Pedido"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__date_order
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__date_order
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__date_order
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_warehouse_orders
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_search
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_filter
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_search
+msgid "Order Date"
+msgstr "Fecha de pedido"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__order_line
+msgid "Order Lines"
+msgstr "Líneas del pedido"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__name
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__order_id
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_line_search
+msgid "Order Reference"
+msgstr "Referencia del pedido"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__state
+msgid "Order Status"
+msgstr "Estado del pedido"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.track_po_line_template
+msgid "Ordered Quantity:"
+msgstr "Cantidad pedida:"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__res_config_settings__default_warehouse_method__warehouse
+msgid "Ordered quantities"
+msgstr "Cantidades pedidas"
+
+#. module: warehouse
+#: model:ir.ui.menu,name:warehouse.menu_procurement_management
+#: model_terms:ir.ui.view,arch_db:warehouse.res_config_settings_view_form_warehouse
+msgid "Orders"
+msgstr "Pedidos"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Other Information"
+msgstr "Otra información"
+
+#. module: warehouse
+#: model:mail.template,report_name:warehouse.email_template_edi_warehouse_done
+msgid "po_${(object.name or '').replace('/','_')}"
+msgstr "PC_${(object.name or '').replace('/','_')}"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__partner_id
+msgid "Partner"
+msgstr "Empresa"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__country_id
+msgid "Partner Country"
+msgstr "País del Asociado"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__payment_term_id
+msgid "Payment Terms"
+msgstr "Plazos de pago"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__access_url
+msgid "Portal Access URL"
+msgstr "URL de acceso al portal"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_product_category__property_account_creditor_price_difference_categ
+#: model:ir.model.fields,field_description:warehouse.field_product_product__property_account_creditor_price_difference
+#: model:ir.model.fields,field_description:warehouse.field_product_template__property_account_creditor_price_difference
+msgid "Price Difference Account"
+msgstr "Cuenta diferencia de precio"
+
+#. module: warehouse
+#: model:ir.filters,name:warehouse.filter_warehouse_order_price_per_supplier
+msgid "Price Per Vendor"
+msgstr "Precio por proveedor"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Print Booking"
+msgstr "Imprimir SdP"
+
+#. module: warehouse
+#: model:ir.model,name:warehouse.model_product_product
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__product_id
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__product_id
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__product_id
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_warehouse_order
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_line_search
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_search
+msgid "Product"
+msgstr "Producto"
+
+#. module: warehouse
+#: model:ir.ui.menu,name:warehouse.menu_product_category_config_warehouse
+msgid "Product Categories"
+msgstr "Categorías de productos"
+
+#. module: warehouse
+#: model:ir.model,name:warehouse.model_product_category
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__category_id
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_search
+msgid "Product Category"
+msgstr "Categoría de producto"
+
+#. module: warehouse
+#: model:ir.model,name:warehouse.model_product_template
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__product_tmpl_id
+msgid "Product Template"
+msgstr "Plantilla de producto"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__product_type
+msgid "Product Type"
+msgstr "Tipo de producto"
+
+#. module: warehouse
+#: model:ir.actions.act_window,name:warehouse.product_product_action
+#: model:ir.ui.menu,name:warehouse.product_product_menu
+msgid "Product Variants"
+msgstr "Variantes de producto"
+
+#. module: warehouse
+#: model:ir.actions.act_window,name:warehouse.product_normal_action_warehoused
+#: model:ir.ui.menu,name:warehouse.menu_procurement_partner_contact_form
+#: model:ir.ui.menu,name:warehouse.menu_product_in_config_warehouse
+#: model:ir.ui.menu,name:warehouse.menu_warehouse_products
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+#: model_terms:ir.ui.view,arch_db:warehouse.res_config_settings_view_form_warehouse
+msgid "Products"
+msgstr "Productos"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_res_company__po_double_validation
+#: model:ir.model.fields,help:warehouse.field_res_config_settings__po_double_validation
+msgid "Provide a double validation mechanism for warehouses"
+msgstr "Ofrecer un mecanismo de doble validación para compras"
+
+#. module: warehouse
+#: model:ir.ui.menu,name:warehouse.menu_warehouse_root
+#: model:ir.ui.menu,name:warehouse.menu_report_warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.res_config_settings_view_form_warehouse
+msgid "warehouse"
+msgstr "Compra"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_config_settings__module_warehouse_requisition
+msgid "warehouse Agreements"
+msgstr "Acuerdos de compra"
+
+#. module: warehouse
+#: model:ir.actions.act_window,name:warehouse.action_warehouse_order_report_all
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_pivot
+msgid "warehouse Analysis"
+msgstr "Análisis compra"
+
+#. module: warehouse
+#: model_terms:ir.actions.act_window,help:warehouse.action_warehouse_order_report_all
+msgid ""
+"warehouse Analysis allows you to easily check and analyse your company "
+"warehouse history and performance. From this menu you can track your "
+"negotiation performance, the delivery performance of your vendors, etc."
+msgstr ""
+"Análisis de compra le permite comprobar fácilmente y analizar el historial "
+"de compras y el rendimiento de la compañía. Desde este menú puede realizar "
+"un seguimiento de su rendimiento de negociación, el rendimiento de entrega "
+"de sus proveedores, etc."
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.view_product_supplier_inherit
+msgid "warehouse Description"
+msgstr "Descripción de compra"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_config_settings__module_warehouse_product_matrix
+msgid "warehouse Grid Entry"
+msgstr "Entrada de cuadrícula de compra"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_company__po_lead
+#: model:ir.model.fields,field_description:warehouse.field_res_config_settings__po_lead
+msgid "warehouse Lead Time"
+msgstr "Plazo de tiempo de compra"
+
+#. module: warehouse
+#: code:addons/warehouse/controllers/portal.py:0
+#: code:addons/warehouse/models/warehouse.py:0
+#: model:ir.actions.report,name:warehouse.action_report_warehouse_order
+#: model:ir.model,name:warehouse.model_warehouse_order
+#: model:ir.model.fields,field_description:warehouse.field_account_move__warehouse_id
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_bill_union__warehouse_order_id
+#: model:ir.model.fields,field_description:warehouse.field_res_partner__warehouse_warn
+#: model:ir.model.fields,field_description:warehouse.field_res_users__warehouse_warn
+#: model:ir.model.fields.selection,name:warehouse.selection__warehouse_order__state__warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__warehouse_report__state__warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_warehouse_order
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_graph
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_pivot
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_tree
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_activity
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_tree
+#, python-format
+msgid "Warehouse Booking"
+msgstr "Pedido de compra"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehouseorder_document
+msgid "Warehouse Booking #"
+msgstr "Orden de Compra #"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_config_settings__po_order_approval
+msgid "Warehouse Booking Approval"
+msgstr "Aprobación de orden de compra"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_partner__warehouse_order_count
+#: model:ir.model.fields,field_description:warehouse.field_res_users__warehouse_order_count
+msgid "Warehouse Booking Count"
+msgstr "Nº de pedidos de compra"
+
+#. module: warehouse
+#: model:ir.model,name:warehouse.model_warehouse_order_line
+#: model:ir.model.fields,field_description:warehouse.field_account_move_line__warehouse_line_id
+#: model:ir.model.fields,field_description:warehouse.field_product_product__warehouse_line_warn
+#: model:ir.model.fields,field_description:warehouse.field_product_template__warehouse_line_warn
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_line_form2
+msgid "Warehouse Booking Line"
+msgstr "Línea de pedido de compra"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_line_tree
+msgid "Warehouse Booking Lines"
+msgstr "Líneas pedido de compra"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_company__po_lock
+msgid "Warehouse Booking Modification"
+msgstr "Modificación del pedido de compra"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_config_settings__po_lock
+msgid "Warehouse Booking Modification *"
+msgstr "Modificación del pedido de compra *"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_res_company__po_lock
+#: model:ir.model.fields,help:warehouse.field_res_config_settings__po_lock
+msgid ""
+"Warehouse Booking Modification used when you want to Warehouse Booking editable "
+"after confirm"
+msgstr "Permite modificar una orden de compra ya confirmada"
+
+#. module: warehouse
+#: model:ir.actions.act_window,name:warehouse.warehouse_form_action
+#: model:ir.actions.act_window,name:warehouse.warehouse_order_action_generic
+#: model:ir.ui.menu,name:warehouse.menu_warehouse_form_action
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_home_menu_warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_home_warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_warehouse_orders
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_bill_union_filter
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_filter
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_search
+msgid "Warehouse Booking"
+msgstr "Pedidos de compra"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_warehouse_orders
+msgid "Warehouse Booking #"
+msgstr "Pedidos de compra #"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_graph
+msgid "Warehouse Booking Statistics"
+msgstr "Estadísticas pedidos de compra"
+
+#. module: warehouse
+#: model:ir.model,name:warehouse.model_warehouse_report
+msgid "warehouse Report"
+msgstr "Reporte de Compras"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__user_id
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__user_id
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_search
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_filter
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_search
+msgid "warehouse Representative"
+msgstr "Representante del Proveedor"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_config_settings__group_warning_warehouse
+msgid "warehouse Warnings"
+msgstr "Advertencias de Compra"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_search
+msgid "Warehouse Booking that have been invoiced."
+msgstr "Pedidos de compra facturados"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_search
+msgid "Warehouse Booking that include lines not invoiced."
+msgstr "Pedidos de compra que incluyen líneas no facturadas."
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_product_product__warehoused_product_qty
+#: model:ir.model.fields,field_description:warehouse.field_product_template__warehoused_product_qty
+msgid "warehoused"
+msgstr "Comprado"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.product_normal_form_view_inherit_warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.view_product_template_warehouse_buttons_from
+msgid "warehoused in the last 365 days"
+msgstr "Comprado en los últimos 365 días"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.res_partner_view_warehouse_buttons
+msgid "warehouses"
+msgstr "Compras"
+
+#. module: warehouse
+#: model:ir.model,name:warehouse.model_warehouse_bill_union
+msgid "warehouses & Bills Union"
+msgstr "Unión de Compras y Facturas"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order__dest_address_id
+msgid ""
+"Put an address if you want to deliver directly from the vendor to the "
+"customer. Otherwise, keep empty to deliver to your own company."
+msgstr ""
+"Ponga una dirección si desea entregar directamente desde el proveedor al "
+"cliente. De lo contrario, mantenga vacía para entregar a su propia compañía."
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__qty_billed
+msgid "Qty Billed"
+msgstr "Ctdad facturada"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__qty_ordered
+msgid "Qty Ordered"
+msgstr "Ctdad Ordenada"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__qty_received
+msgid "Qty Received"
+msgstr "Ctdad recibida"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__qty_to_be_billed
+msgid "Qty to be Billed"
+msgstr "Ctdad a facturar"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.res_config_settings_view_form_warehouse
+msgid "Quantities billed by vendors"
+msgstr "Cantidades facturadas por los proveedores"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__product_qty
+msgid "Quantity"
+msgstr "Cantidad"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Quantity:"
+msgstr "Cantidad:"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__warehouse_order__state__draft
+msgid "Booking"
+msgstr "Petición presupuesto"
+
+#. module: warehouse
+#: model:mail.message.subtype,name:warehouse.mt_Booking_approved
+msgid "Booking Approved"
+msgstr "SdP aprobada"
+
+#. module: warehouse
+#: model:mail.message.subtype,name:warehouse.mt_Booking_confirmed
+msgid "Booking Confirmed"
+msgstr "SdP confirmada"
+
+#. module: warehouse
+#: model:mail.message.subtype,name:warehouse.mt_Booking_done
+msgid "Booking Done"
+msgstr "SdP realizada"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__warehouse_order__state__sent
+#: model:ir.model.fields.selection,name:warehouse.selection__warehouse_report__state__sent
+msgid "Booking Sent"
+msgstr "Petición de cotización enviada"
+
+#. module: warehouse
+#: model:mail.template,report_name:warehouse.email_template_edi_warehouse
+msgid "Booking_${(object.name or '').replace('/','_')}"
+msgstr "PdO_${(object.name or '').replace('/','_')}"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_filter
+msgid "Bookings"
+msgstr "Solicitudes de presupuesto"
+
+#. module: warehouse
+#: model:ir.actions.act_window,name:warehouse.act_res_partner_2_warehouse_order
+msgid "Bookings and warehouses"
+msgstr "SdPs y compras"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order__currency_rate
+msgid "Ratio between the Warehouse Booking currency and the company currency"
+msgstr ""
+"Precisión decimal entre la moneda de la compañía y la del pedido de compra"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Re-Send by Email"
+msgstr "Reenviar por correo electrónico"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__date_planned
+msgid "Receipt Date"
+msgstr "Fecha de recepción"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Received"
+msgstr "Recibido"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__qty_received
+msgid "Received Qty"
+msgstr "Ctdad recibida"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__qty_received_method
+msgid "Received Qty Method"
+msgstr "Método de cantidad recibida"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Received Quantity"
+msgstr "Cantidad recibida"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.track_po_line_template
+msgid "Received Quantity:"
+msgstr "Cantidad recibida:"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__res_config_settings__default_warehouse_method__receive
+msgid "Received quantities"
+msgstr "Cantidades recibidas"
+
+#. module: warehouse
+#: model_terms:ir.actions.act_window,help:warehouse.act_res_partner_2_supplier_invoices
+msgid "Record a new vendor bill"
+msgstr "Registrar una nueva factura de proveedor"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_bill_union__name
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_tree
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_tree
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_bill_union_filter
+msgid "Reference"
+msgstr "Referencia"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_bill_union_tree
+msgid "Reference Document"
+msgstr "Documento de referencia "
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__product_uom
+msgid "Reference Unit of Measure"
+msgstr "Unidad de medida de referencia"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order__origin
+msgid ""
+"Reference of the document that generated this Warehouse Booking request (e.g. a"
+" sales order)"
+msgstr ""
+"Referencia del documento que generó esta solicitud de pedido de compra (por "
+"ejemplo, un pedido de cliente)"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order__partner_ref
+msgid ""
+"Reference of the sales order or bid sent by the vendor. It's used to do the "
+"matching when you receive the products as this reference is usually written "
+"on the delivery order sent by your vendor."
+msgstr ""
+"Referencia del pedido de venta o la oferta enviada por el proveedor. Se "
+"utiliza para hacer la correspondencia cuando usted recibe los productos, "
+"esta referencia se suele escribir en la orden de entrega enviado por el "
+"proveedor."
+
+#. module: warehouse
+#: model:ir.ui.menu,name:warehouse.warehouse_report
+msgid "Reporting"
+msgstr "Informes"
+
+#. module: warehouse
+#: code:addons/warehouse/models/warehouse.py:0
+#: model:ir.actions.report,name:warehouse.report_warehouse_quotation
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_warehouse_order
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehousequotation_document
+#, python-format
+msgid "Warehouse  Booking"
+msgstr "Solicitud de presupuesto"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehouseorder_document
+msgid "Warehouse  Booking #"
+msgstr "Solicitud de presupuesto #"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.res_config_settings_view_form_warehouse
+msgid "Request managers to approve orders above a minimum amount"
+msgstr ""
+"Solicitar a administradores que aprueben pedidos superiores a un importe "
+"mínimo"
+
+#. module: warehouse
+#: model:ir.actions.act_window,name:warehouse.warehouse_Booking
+#: model:ir.ui.menu,name:warehouse.menu_warehouse_Booking
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_search
+msgid "Warehouse Booking"
+msgstr "Solicitudes de presupuesto"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__activity_user_id
+msgid "Responsible User"
+msgstr "Usuario responsable"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Error de entrega del SMS"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__date_planned
+msgid "Scheduled Date"
+msgstr "Fecha prevista"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_line_search
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_search
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_filter
+msgid "Search Warehouse Booking"
+msgstr "Buscar pedido de compra"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_bill_union_filter
+msgid "Search Reference Document"
+msgstr "Buscar referencia de documento"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__warehouse_order_line__display_type__line_section
+msgid "Section"
+msgstr "Sección"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Section Name (eg. Products, Services)"
+msgstr "Nombre de la sección (p. ej., productos, servicios)"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_config_settings__use_po_lead
+msgid "Security Lead Time for warehouse"
+msgstr "Plazo de ejecución de seguridad para la compra"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__access_token
+msgid "Security Token"
+msgstr "Token de seguridad"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.view_move_form_inherit_warehouse
+msgid "Select a Warehouse Booking or an old bill"
+msgstr "Seleccionar un pedido de compra o factura antiguos"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_product_product__warehouse_line_warn
+#: model:ir.model.fields,help:warehouse.field_product_template__warehouse_line_warn
+#: model:ir.model.fields,help:warehouse.field_res_partner__warehouse_warn
+#: model:ir.model.fields,help:warehouse.field_res_users__warehouse_warn
+msgid ""
+"Selecting the \"Warning\" option will notify user with the message, "
+"Selecting \"Blocking Message\" will throw an exception with the message and "
+"block the flow. The Message has to be written in the next field."
+msgstr ""
+"Si selecciona la opción \"Aviso\" se notificará a los usuarios con el "
+"mensaje, si selecciona \"Mensaje de bloqueo\" se lanzará una excepción con "
+"el mensaje y se bloqueará el flujo. El mensaje debe escribirse en el "
+"siguiente campo."
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Send Booking by Email"
+msgstr "Enviar PC por correo electrónico"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Send by Email"
+msgstr "Enviar por correo electrónico"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__sequence
+msgid "Sequence"
+msgstr "Secuencia"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Set to Draft"
+msgstr "Establecer a borrador"
+
+#. module: warehouse
+#: model:ir.actions.act_window,name:warehouse.action_warehouse_configuration
+#: model:ir.ui.menu,name:warehouse.menu_warehouse_general_settings
+msgid "Settings"
+msgstr "Ajustes"
+
+#. module: warehouse
+#: model:ir.actions.server,name:warehouse.model_warehouse_order_action_share
+msgid "Share"
+msgstr "Compartir"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_search
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_filter
+msgid "Show all records which has next action date is before today"
+msgstr ""
+"Mostrar todos los registros que tienen la próxima fecha de acción antes de "
+"hoy"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_bill_union__reference
+msgid "Source"
+msgstr "Fuente"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__origin
+msgid "Source Document"
+msgstr "Documento origen"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__state
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__state
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_line_search
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_search
+msgid "Status"
+msgstr "Estado"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"Estado basado en actividades\n"
+"Vencida: la fecha tope ya ha pasado\n"
+"Hoy: La fecha tope es hoy\n"
+"Planificada: futuras actividades."
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__price_subtotal
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_warehouse_order
+msgid "Subtotal"
+msgstr "Subtotal"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_res_partner__property_warehouse_currency_id
+#: model:ir.model.fields,field_description:warehouse.field_res_users__property_warehouse_currency_id
+msgid "Supplier Currency"
+msgstr "Moneda de Proveedor"
+
+#. module: warehouse
+#: model:ir.model,name:warehouse.model_product_supplierinfo
+msgid "Supplier Pricelist"
+msgstr "Tarifa de proveedor"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__price_tax
+msgid "Tax"
+msgstr "Impuesto"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__amount_tax
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__taxes_id
+#: model_terms:ir.ui.view,arch_db:warehouse.report_warehouseorder_document
+msgid "Taxes"
+msgstr "Impuestos"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_warehouse_order
+msgid "Taxes:"
+msgstr "Impuestos:"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order_line__display_type
+msgid "Technical field for UX purpose."
+msgstr "Campo técnico para propósitos de usabilidad"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__notes
+msgid "Terms and Conditions"
+msgstr "Términos y condiciones"
+
+#. module: warehouse
+#: model_terms:ir.actions.act_window,help:warehouse.warehouse_Booking
+msgid ""
+"The quotation contains the history of the discussion\n"
+"                you had with your vendor."
+msgstr ""
+"El presupuesto contiene los mensajes que ha intercambiado con el vendedor."
+
+#. module: warehouse
+#: model_terms:ir.actions.act_window,help:warehouse.act_res_partner_2_warehouse_order
+msgid ""
+"The Warehouse  Booking is the first step of the warehouses flow. Once\n"
+"                    converted into a Warehouse Booking, you will be able to control the receipt\n"
+"                    of the products and the vendor bill."
+msgstr ""
+"La solicitud de presupuesto es el primer paso del flujo de compras. una vez \n"
+"convertida en un pedido de compra, usted será capaz de controlar el recibo\n"
+"de los productos y la factura de proveedor."
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_product_product__property_account_creditor_price_difference
+#: model:ir.model.fields,help:warehouse.field_product_template__property_account_creditor_price_difference
+msgid ""
+"This account is used in automated inventory valuation to record the price "
+"difference between a Warehouse Booking and its related vendor bill when "
+"validating this vendor bill."
+msgstr ""
+"Esta cuenta se utiliza en la valoración de inventario automatizada para "
+"registrar la diferencia de precio entre un pedido de compra y su factura de "
+"proveedor relacionada al validar esta factura de proveedor."
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_product_category__property_account_creditor_price_difference_categ
+msgid ""
+"This account will be used to value price difference between warehouse price "
+"and accounting cost."
+msgstr ""
+"Esta cuenta se utilizará para valorar la diferencia de precios entre el "
+"precio de compra y precio contabilizado."
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_res_partner__property_warehouse_currency_id
+#: model:ir.model.fields,help:warehouse.field_res_users__property_warehouse_currency_id
+msgid ""
+"This currency will be used, instead of the default one, for warehouses from "
+"the current partner"
+msgstr ""
+"Se utilizará esta moneda, en lugar de la predeterminada, para las compras de"
+" la pareja actual"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_res_config_settings__default_warehouse_method
+#: model_terms:ir.ui.view,arch_db:warehouse.res_config_settings_view_form_warehouse
+msgid ""
+"This default value is applied to any new product created. This can be "
+"changed in the product detail form."
+msgstr ""
+"Este valor predeterminado se aplica a cualquier producto nuevo creado. Esto "
+"se puede cambiar en el formulario de detalles del producto."
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.view_product_supplier_inherit
+msgid "This note is added to Warehouse Booking."
+msgstr "Esta nota se agrega a los pedidos de compra."
+
+#. module: warehouse
+#: code:addons/warehouse/models/account_invoice.py:0
+#, python-format
+msgid "This vendor bill has been created from: %s"
+msgstr "Esta factura de proveedor ha sido creada desde: %s"
+
+#. module: warehouse
+#: code:addons/warehouse/models/account_invoice.py:0
+#, python-format
+msgid "This vendor bill has been modified from: %s"
+msgstr "Esta factura de proveedor ha sido modificada desde: %s"
+
+#. module: warehouse
+#: model_terms:ir.actions.act_window,help:warehouse.act_res_partner_2_warehouse_order
+msgid "This vendor has no Warehouse Booking. Create a new Booking"
+msgstr ""
+"Este vendedor no tiene ningún pedido de compra. Cree una nueva solicitud de "
+"presupuesto"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__warehouse_order__state__to_approve
+#: model:ir.model.fields.selection,name:warehouse.selection__warehouse_report__state__to_approve
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_filter
+msgid "To Approve"
+msgstr "Para aprobar"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_search
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_filter
+msgid "Today Activities"
+msgstr "Actividades de Hoy"
+
+#. module: warehouse
+#: code:addons/warehouse/controllers/portal.py:0
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__amount_total
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__price_total
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__price_total
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_warehouse_orders
+#, python-format
+msgid "Total"
+msgstr "Total"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__product_uom_qty
+msgid "Total Quantity"
+msgstr "Cantidad total"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_tree
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_tree
+msgid "Total Untaxed amount"
+msgstr "Total importe base"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_tree
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_tree
+msgid "Total amount"
+msgstr "Importe total"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "Tipo de actividad de excepción registrada."
+
+#. module: warehouse
+#: code:addons/warehouse/models/warehouse.py:0
+#, python-format
+msgid ""
+"Unable to cancel this Warehouse Booking. You must first cancel the related "
+"vendor bills."
+msgstr ""
+"No se puede cancelar este pedido de compra. Primero debe cancelar las "
+"facturas de proveedor relacionadas."
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__price_unit
+msgid "Unit Price"
+msgstr "Precio unitario"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Unit Price:"
+msgstr "Precio unitario:"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order_line__product_uom
+msgid "Unit of Measure"
+msgstr "Unidad de medida"
+
+#. module: warehouse
+#: model:ir.ui.menu,name:warehouse.menu_warehouse_uom_form_action
+msgid "Units of Measure"
+msgstr "Unidades de medida"
+
+#. module: warehouse
+#: model:ir.ui.menu,name:warehouse.menu_warehouse_uom_categ_form_action
+msgid "Units of Measure Categories"
+msgstr "Categorías de las unidades de medida"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "Unlock"
+msgstr "Desbloquear"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__message_unread
+msgid "Unread Messages"
+msgstr "Mensajes sin leer"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "Contador de mensajes sin leer"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_tree
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_tree
+msgid "Untaxed"
+msgstr "Base imponible"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__amount_untaxed
+msgid "Untaxed Amount"
+msgstr "Base imponible"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.portal_my_warehouse_order
+msgid "Untaxed Amount:"
+msgstr "Base imponible:"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__untaxed_total
+msgid "Untaxed Total"
+msgstr "Total libre de impuestos"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+msgid "UoM"
+msgstr "UdM"
+
+#. module: warehouse
+#: model:res.groups,name:warehouse.group_warehouse_user
+msgid "User"
+msgstr "Usuario"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_res_config_settings__company_currency_id
+msgid "Utility field to express amount currency"
+msgstr "Campo útil para expresar importe en divisa."
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.res_config_settings_view_form_warehouse
+msgid "Variant Grid Entry"
+msgstr "Entrada de la cuadrícula de variante"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_bill_union__partner_id
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__partner_id
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__partner_id
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_line_search
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_line_tree
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_search
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_filter
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_search
+msgid "Vendor"
+msgstr "Proveedor"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_bill_union__vendor_bill_id
+msgid "Vendor Bill"
+msgstr "Factura de proveedor"
+
+#. module: warehouse
+#: model:ir.actions.act_window,name:warehouse.act_res_partner_2_supplier_invoices
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_form
+#: model_terms:ir.ui.view,arch_db:warehouse.res_partner_view_warehouse_account_buttons
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_bill_union_filter
+msgid "Vendor Bills"
+msgstr "Facturas de proveedor"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_search
+msgid "Vendor Country"
+msgstr "País del vendedor"
+
+#. module: warehouse
+#: model:ir.ui.menu,name:warehouse.menu_product_pricelist_action2_warehouse
+msgid "Vendor Pricelists"
+msgstr "Tarifa de compra"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__partner_ref
+msgid "Vendor Reference"
+msgstr "Referencia de proveedor"
+
+#. module: warehouse
+#: model:ir.ui.menu,name:warehouse.menu_procurement_management_supplier_name
+msgid "Vendors"
+msgstr "Proveedores"
+
+#. module: warehouse
+#: model_terms:ir.actions.act_window,help:warehouse.act_res_partner_2_supplier_invoices
+msgid ""
+"Vendors bills can be pre-generated based on warehouse\n"
+"                    orders or receipts. This allows you to control bills\n"
+"                    you receive from your vendor according to the draft\n"
+"                    document in Odoo."
+msgstr ""
+"Las facturas de proveedor pueden ser pre-generadas basadas en la orden de\n"
+"compra o recibos. Esto le permite controlar las facturas\n"
+"que recibe de su proveedor de acuerdo con el documento\n"
+"borrador en Odoo."
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_report__volume
+msgid "Volume"
+msgstr "Volumen"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__warehouse_order__invoice_status__to_invoice
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_search
+msgid "Waiting Bills"
+msgstr "Para facturar"
+
+#. module: warehouse
+#: model:ir.model.fields.selection,name:warehouse.selection__product_template__warehouse_line_warn__warning
+#: model:ir.model.fields.selection,name:warehouse.selection__res_partner__warehouse_warn__warning
+msgid "Warning"
+msgstr "Alerta"
+
+#. module: warehouse
+#: code:addons/warehouse/models/warehouse.py:0
+#: code:addons/warehouse/models/warehouse.py:0
+#, python-format
+msgid "Warning for %s"
+msgstr "Aviso para %s"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.res_partner_view_warehouse_buttons
+msgid "Warning on the Warehouse Booking"
+msgstr "Aviso en el pedido de compra"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.view_product_supplier_inherit
+msgid "Warning when Purchasing this Product"
+msgstr "Aviso cuando compra este producto"
+
+#. module: warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.warehouse_order_view_search
+#: model_terms:ir.ui.view,arch_db:warehouse.res_config_settings_view_form_warehouse
+#: model_terms:ir.ui.view,arch_db:warehouse.view_warehouse_order_filter
+msgid "Warnings"
+msgstr "Avisos"
+
+#. module: warehouse
+#: model:ir.model.fields,field_description:warehouse.field_warehouse_order__website_message_ids
+msgid "Website Messages"
+msgstr "Mensajes del sitio web"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order__website_message_ids
+msgid "Website communication history"
+msgstr "Historial de comunicaciones del sitio web"
+
+#. module: warehouse
+#: model:ir.model.fields,help:warehouse.field_warehouse_order__partner_id
+#: model:ir.model.fields,help:warehouse.field_warehouse_order_line__partner_id
+msgid "You can find a vendor by its Name, TIN, Email or Internal Reference."
+msgstr ""
+"Puede encontrar un proveedor por su nombre, NIF, correo electrónico o "
+"referencia interna."
+
+#. module: warehouse
+#: model_terms:ir.actions.act_window,help:warehouse.product_product_action
+msgid ""
+"You must define a product for everything you sell or warehouse,\n"
+"                whether it's a storable product, a consumable or a service."
+msgstr ""
+"Debe definir un producto para todo lo que vende o compra, ya sea un producto"
+" almacenable, un consumible o un servicio."
+
+#. module: warehouse
+#: model_terms:ir.actions.act_window,help:warehouse.product_normal_action_warehoused
+msgid ""
+"You must define a product for everything you sell or warehouse,\n"
+"            whether it's a storable product, a consumable or a service."
+msgstr ""
+"Debe definir un producto para todo lo que vende o compra,\n"
+"             ya sea un producto almacenable, un consumible o un servicio."
+
+#. module: warehouse
+#: code:addons/warehouse/models/warehouse.py:0
+#, python-format
+msgid ""
+"Your quotation contains products from company %s whereas your quotation belongs to company %s. \n"
+" Please change the company of your quotation or remove the products from other companies (%s)."
+msgstr ""
+"Su presupuesto contiene productos de la compañía %s mientras que pertenece a la compañía %s. \n"
+"Cambie por favor cambie la compañía del presupuesto o elimine los productos de otras compañías (%s)."
+
+#. module: warehouse
+#: code:addons/warehouse/models/warehouse.py:0
+#, python-format
+msgid ""
+"You cannot change the type of a Warehouse Booking line. Instead you should "
+"delete the current line and create a new line of the proper type."
+msgstr ""
+"No puede cambiar el tipo de línea de pedido de compra. En su lugar, debe "
+"eliminar la línea actual y crear una nueva línea del tipo adecuado."

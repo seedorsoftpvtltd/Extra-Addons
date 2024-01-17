@@ -1,0 +1,2 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+visitor_gate_pass_user,visitor_gate_pass_user,model_visitor_gate_pass_custom,visitor_gate_pass.group_gate_pass_user,1,1,1,1

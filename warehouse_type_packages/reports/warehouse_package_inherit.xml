@@ -1,0 +1,20 @@
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<odoo>-->
+<!--    <template id="warehouse_package_inherit" inherit_id="warehouse.report_warehouseorder">-->
+
+<!--        <xpath expr="//div[@class='row mt32 mb32']" position="after">-->
+<!--            <t t-foreach="docs" t-as="doc">-->
+<!--            &lt;!&ndash;            <attribute name="invisible">0</attribute>&ndash;&gt;-->
+<!--           <div t-if="o.type_of_package" class="col-3 bm-2">-->
+<!--                    <strong>Type of Pkgs:</strong>-->
+<!--                    <p t-field="o.type_of_package" class="m-0"/>-->
+<!--                </div>-->
+<!--                </t>-->
+
+<!--        </xpath>-->
+
+
+
+
+<!--</template>-->
+<!--        </odoo>-->

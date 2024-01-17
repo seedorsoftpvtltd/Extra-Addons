@@ -1,0 +1,17 @@
+{
+    "name": "UOM Views",
+    "version": "13.0.1.0.0",
+    "sequence": 1,
+    "category": "Inventory",
+    "license": "LGPL-3",
+    "summary": """This Module updates existing UOM view with additional fields and computations.""",
+    "author": "Fousia Banu A.R.",
+    "website": "http://www.serpentcs.com",
+    "depends": ["stock",'uom','uom_unece'],
+    "data": ['views/uom_views.xml'],
+    "images": ["static/description/odoo-app-freight.jpg"],
+    "application": True,
+    "installable": True,
+    "price": 80,
+    "currency": "EUR",
+}

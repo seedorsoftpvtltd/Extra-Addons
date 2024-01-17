@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_partner_property_form" model="ir.ui.view">
+            <field name="name">res.partner.warehouse.property.form.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="priority">36</field>
+            <field name="groups_id" eval="[(4, ref('base.group_multi_currency'))]"/>
+            <field name="arch" type="xml">
+                <group name="warehouse" position="inside">
+                    <field name="property_warehouse_currency_id" options="{'no_create': True, 'no_open': True}"/>
+                </group>
+            </field>
+    </record>
+    <record id="act_res_partner_2_warehouse_order" model="ir.actions.act_window">
+            <field name="name">Bookings and warehouses</field>
+            <field name="res_model">warehouse.order</field>
+            <field name="view_mode">tree,form,graph</field>
+            <field name="context">{'search_default_partner_id': active_id, 'default_partner_id': active_id}</field>
+            <field name="groups_id" eval="[(4, ref('warehouse.group_warehouse_user'))]"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    This vendor has no Warehouse Booking. Create a new Booking
+                </p><p>
+                    The Warehouse  Booking is the first step of the warehouses flow. Once
+                    converted into a Warehouse Booking, you will be able to control the receipt
+                    of the products and the vendor bill.
+                </p>
+            </field>
+        </record>
+
+        <!-- Partner kanban view inherited -->
+        <record model="ir.ui.view" id="warehouse_partner_kanban_view">
+            <field name="name">res.partner.kanban.warehouseorder.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.res_partner_kanban_view"/>
+            <field name="groups_id" eval="[(4, ref('warehouse.group_warehouse_user'))]"/>
+            <field name="arch" type="xml">
+                <field name="mobile" position="after">
+                    <field name="warehouse_order_count"/>
+                </field>
+                <xpath expr="//div[hasclass('oe_kanban_partner_links')]" position="inside">
+                    <span t-if="record.warehouse_order_count.value>0" class="badge badge-pill"><i class="fa fa-fw fa-shopping-cart" role="img" aria-label="Shopping cart" title="Shopping cart"/><t t-esc="record.warehouse_order_count.value"/></span>
+                </xpath>
+            </field>
+        </record>
+
+    <record id="act_res_partner_2_supplier_invoices" model="ir.actions.act_window">
+            <field name="name">Vendor Bills</field>
+            <field name="res_model">account.move</field>
+            <field name="view_mode">tree,form,graph</field>
+            <field name="domain">[('type','in',('in_invoice', 'in_refund'))]</field>
+            <field name="context">{'search_default_partner_id': active_id, 'default_type': 'in_invoice', 'default_partner_id': active_id}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Record a new vendor bill
+                </p><p>
+                    Vendors bills can be pre-generated based on warehouse
+                    orders or receipts. This allows you to control bills
+                    you receive from your vendor according to the draft
+                    document in Odoo.
+                </p>
+            </field>
+        </record>
+
+        <record id="res_partner_view_warehouse_buttons" model="ir.ui.view">
+            <field name="name">res.partner.view.warehouse.buttons</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form" />
+            <field name="priority" eval="9"/>
+            <field name="groups_id" eval="[(4, ref('warehouse.group_warehouse_user'))]"/>
+            <field name="arch" type="xml">
+                <div name="button_box" position="inside">
+                    <button class="oe_stat_button" name="%(warehouse.act_res_partner_2_warehouse_order)d" type="action"
+                        groups="warehouse.group_warehouse_user"
+                        icon="fa-shopping-cart">
+                        <field string="warehouses" name="warehouse_order_count" widget="statinfo"/>
+                    </button>
+                </div>
+                <page name="internal_notes" position="inside">
+                    <group colspan="2" col="2" groups="warehouse.group_warning_warehouse">
+                        <separator string="Warning on the Warehouse Booking" colspan="4"/>
+                        <field name="warehouse_warn" nolabel="1" />
+                        <field name="warehouse_warn_msg" colspan="3" nolabel="1"
+                                attrs="{'required':[('warehouse_warn', '!=', False), ('warehouse_warn','!=','no-message')],'readonly':[('warehouse_warn','=','no-message')]}"/>
+                    </group>
+                </page>
+            </field>
+        </record>
+
+<!--        <record id="res_partner_view_warehouse_account_buttons" model="ir.ui.view">-->
+<!--            <field name="name">res.partner.view.warehouse.account.buttons</field>-->
+<!--            <field name="model">res.partner</field>-->
+<!--            <field name="inherit_id" ref="base.view_partner_form" />-->
+<!--            <field name="priority" eval="12"/>-->
+<!--            <field name="groups_id" eval="[(4, ref('account.group_account_invoice'))]"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <div name="button_box" position="inside">-->
+<!--                    <button class="oe_stat_button" name="%(warehouse.act_res_partner_2_supplier_invoices)d" type="action"-->
+<!--                        icon="fa-pencil-square-o" help="Vendor Bills">-->
+<!--                        <field string="Vendor Bills" name="supplier_invoice_count" widget="statinfo"/>-->
+<!--                    </button>-->
+<!--                </div>-->
+<!--            </field>-->
+<!--        </record>-->
+</odoo>
