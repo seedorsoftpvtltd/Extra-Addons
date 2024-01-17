@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+      <report
+            id="excel_report_xlsx"
+            model="sub.job"
+            string="Cargo Status Report"
+            report_type="xlsx"
+            name="cargo_status_report.report_xlsx"
+            file="cargo_status_report.report_xlsx"
+            attachment_use="False"/>
+    </data>
+</odoo>

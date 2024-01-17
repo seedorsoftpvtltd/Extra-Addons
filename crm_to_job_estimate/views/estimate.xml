@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<odoo>
+<data>
+        <record model="ir.actions.act_window" id="action_crm_view">
+        <field name="name">Job Estimation</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.estimate.job</field>
+        <field name="view_mode">form,tree</field>
+        <field name="domain">[('estim_id','=',active_id)]</field>
+        <field name="context">{
+            "default_estim_id":active_id,
+            "default_user_id": False,
+            }
+        </field>
+    </record>
+
+    <record id="action_sale_estim_tree" model="ir.actions.act_window.view">
+        <field eval="1" name="sequence"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="job_cost_estimate_customer.view_sale_estimate_tree_job"/>
+        <field name="act_window_id" ref="action_crm_view"/>
+    </record>
+ FORM VIEW
+
+        <record id="crm_lead_view" model="ir.ui.view">
+            <field name="name">crm.lead.form</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='button_box']" position="inside">
+<!--                <xpath expr="//header" position="inside">-->
+                    <button icon="fa-pencil-square-o"  name="%(action_crm_view)d" class="oe_highlight" type="action">
+                        <field name="estimate_job_count" string="Estimation" widget="statinfo"/>
+                    </button>
+                    <!--/div-->
+                </xpath>
+
+                <header>
+                        <button name="action_create_estimate_from_crm" string="Create Estimate" type="object" class="btn-primary"/>
+                </header>
+
+            </field>
+        </record>
+        <record id="sale_estimate_form_view" model="ir.ui.view">
+            <field name="name">sale.estimate.form</field>
+            <field name="model">sale.estimate.job</field>
+            <field name="inherit_id" ref="job_cost_estimate_customer.view_sale_estimate_form_job"/>
+            <field name="arch" type="xml">
+             <xpath expr="//field[@name='reference']" position="after">
+                <field name="lead_ref"/>
+
+
+             </xpath>
+
+            </field>
+        </record>
+</data>
+</odoo>

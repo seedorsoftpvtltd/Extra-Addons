@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report 
+            id="report_customer_overdue_print"
+            string="Customer Overdue Statement"
+            model="res.partner" 
+            report_type="qweb-pdf"
+            file="bi_payment_overdue.bi_report_overdue_due" 
+            name="bi_payment_overdue.bi_report_overdue_due" 
+            attachment="(object.name + '_Customer_Statement.pdf')"
+        />
+    </data>
+</odoo>

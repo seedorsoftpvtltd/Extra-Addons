@@ -1,0 +1,7 @@
+13.0.0.1 ===> 1. Solved issue of icon/logo not showing in general settings.
+			  2. Solved issue of projects are not showing in project table if project visibilty is portal user/all employees.
+			  3. Solved issue of lead/opportunity grid not showing.
+			  4. Solved issue of labels for product table.
+			  5. Solved issue of labels for purchase table.
+			  6. Solved issue of draft quotations are not showing.
+13.0.0.2===>Leads and opportunities tab not visible in portal account.

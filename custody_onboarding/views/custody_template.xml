@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="onboarding_custody_step1">
+        <t t-call="custody_onboarding.onboarding_default_steps">
+            <t t-set="title">Define</t>
+            <t t-set="description">
+                Create  the properties of the company under property.
+            </t>
+            <t t-set="sl">1</t>
+        </t>
+    </template>
+
+    <template id="onboarding_custody_step2">
+        <t t-call="custody_onboarding.onboarding_default_steps">
+            <t t-set="title">Request</t>
+            <t t-set="description">
+                Employees can request for custody with valid reason , date and send them for Approval.
+            </t>
+            <t t-set="sl">2</t>
+        </t>
+    </template>
+
+    <template id="onboarding_custody_step3">
+        <t t-call="custody_onboarding.onboarding_default_steps">
+            <t t-set="title">Renew/ Return</t>
+            <t t-set="description">
+                Renew/Return the employees custody.
+            </t>
+            <t t-set="sl">3</t>
+        </t>
+    </template>
+
+    <template id="onboarding_custody_step4">
+        <t t-call="custody_onboarding.onboarding_default_steps">
+            <t t-set="title">Analyze</t>
+            <t t-set="description">
+                Various views of reports to fetch overall custody analysis.
+            </t>
+            <t t-set="sl">4</t>
+        </t>
+    </template>
+
+    <template id="custody_dashboard_onboarding_panel" name="onboarding.custody.onboarding.panel">
+        <t t-call="custody_onboarding.onboarding_default_container">
+            <t t-set="classes" t-value="'o_onboarding_blue'"/>
+<!--            <t t-set="bg_image" t-value="'/onboarding/static/src/img/attendance_dashboard_onboarding_bg.jpg'"/>-->
+<!--            <t t-set="close_method" t-value="'action_close_account_dashboard_onboarding'"/>-->
+<!--            <t t-set="close_model" t-value="'res.company'"/>-->
+<!--            <t t-set="text_completed">Congratulations! You are all set.</t>-->
+
+            <t t-call="custody_onboarding.onboarding_custody_step1" name="custody_define " />
+            <t t-call="custody_onboarding.onboarding_custody_step2" name="option_request" />
+            <t t-call="custody_onboarding.onboarding_custody_step3" name="option_renewal" />
+            <t t-call="custody_onboarding.onboarding_custody_step4" name="option_analyze" />
+
+
+        </t>
+    </template>
+</odoo>

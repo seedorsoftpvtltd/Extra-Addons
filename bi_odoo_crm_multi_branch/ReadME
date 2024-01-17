@@ -1,0 +1,16 @@
+Version:-
+
+Commit Date -22-05-2019 
+13.0.0.3 : Made changes in security file and overriden report with super().
+
+Version 13.0.0.4:
+	- Added branch field in tree view of lead and pipeline. 
+	- Added group by based on branch in lead and pipeline. 
+
+Version 13.0.0.5 : (08/01/21)
+-- Fixed the multi branch record issue	
+
+Version 13.0.0.6 : (26/01/21)
+-- Added warning message while change the branch that is not active
+
+13.0.0.7 ==>fixed issue of CRM records for CRM users which shows only user records.

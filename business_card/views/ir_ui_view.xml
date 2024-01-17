@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="business_card_partner" model="ir.ui.view">
+        <field name="name">business_card_partner</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button class="oe_stat_button" type="action"
+                        name="%(business_card.business_card_partner_action)d"
+                        icon="fa-users"
+                        attrs="{'invisible': [('is_company', '=', False)]}">
+                    <field string="Business Cards" name="x_business_card_count"
+                           widget="statinfo"/>
+                </button>
+            </div>
+            <page name="sales_purchases" position="before">
+                <page string="Business Card"
+                      attrs="{'invisible': [('is_company','=',True)]}">
+                    <field name="x_image_ids" mode="kanban"
+                           context="{'default_name': name}">
+                        <kanban>
+                            <field name="x_name"/>
+                            <field name="x_description"/>
+                            <field name="x_image"/>
+                            <templates>
+                                <t t-name="kanban-box">
+                                    <div class="oe_kanban_global_area o_kanban_attachment oe_kanban_global_click ">
+                                        <a t-if="widget.deletable" type="delete"
+                                           class="fa fa-times pull-right">Delete</a>
+                                        <img t-if="record.x_image.raw_value"
+                                             t-att-src="'data:image/png;base64,'+record.x_image.raw_value"
+                                             class="img img-fluid"
+                                        alt="Business Card"/>
+                                    </div>
+                                </t>
+                            </templates>
+                        </kanban>
+                        <form string="Business Card">
+                            <sheet>
+                                <field name="x_image" widget="image"
+                                       class="oe_avatar oe_left"/>
+                                <group>
+                                    <field name="x_name" invisible="1"/>
+                                    <field name="x_description"/>
+
+                                </group>
+
+                            </sheet>
+                        </form>
+                    </field>
+                </page>
+            </page>
+            <xpath expr="//field[@name='child_ids']/form/sheet/field[@name='user_id']" position="after">
+                <notebook colspan="4">
+                    <page string="Business Card">
+                        <field name="x_image_ids" mode="kanban"
+                               context="{'default_name': name}">
+                            <kanban>
+                                <field name="x_name"/>
+                                <field name="x_description"/>
+                                <field name="x_image"/>
+                                <templates>
+                                <t t-name="kanban-box">
+                                    <div class="oe_kanban_global_area o_kanban_attachment oe_kanban_global_click">
+                                        <a t-if="widget.deletable" type="delete"
+                                           class="fa fa-times pull-right">Delete</a>
+                                        <img t-if="record.x_image.raw_value"
+                                             t-att-src="'data:image/png;base64,'+record.x_image.raw_value"
+                                             class="img img-fluid" alt="Business Card"/>
+                                    </div>
+                                </t>
+                                </templates>
+                            </kanban>
+                            <form string="Business Card">
+                                <sheet>
+                                    <field name="x_image" widget="image"
+                                           class="oe_avatar oe_left"/>
+                                    <group>
+                                        <field name="x_name" invisible="1"/>
+                                        <field name="x_description"/>
+                                    </group>
+
+                                </sheet>
+                            </form>
+                        </field>
+                    </page>
+                </notebook>
+
+
+            </xpath>
+
+        </field>
+    </record>
+    <record id="business_card_tree" model="ir.ui.view">
+        <field name="name">business.card.tree</field>
+        <field name="model">x_business.card</field>
+        <field name="arch" type="xml">
+            <tree string="Business Card" create="false">
+                <field name="x_partner_id"/>
+                <field name="x_image" string="Business Card Image"
+                       widget="image"/>
+            </tree>
+        </field>
+    </record>
+    <record id="business_card_form" model="ir.ui.view">
+        <field name="name">business.card.form</field>
+        <field name="model">x_business.card</field>
+        <field name="arch" type="xml">
+            <form string="Business Card">
+                <sheet>
+                    <group>
+                        <field name="x_partner_id"/>
+                        <field name="x_image" string="Business Card Image"
+                               widget="image" nolabel="True"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

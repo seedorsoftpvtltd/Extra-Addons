@@ -1,0 +1,19 @@
+.o_address_street::placeholder{
+    color:#717171;
+}
+
+.o_address_city::placeholder{
+    color:#717171;
+}
+
+.o_address_state input::placeholder{
+    color:#717171;
+}
+
+.o_address_zip::placeholder{
+    color:#717171;
+}
+.o_address_country input::placeholder{
+    color:#717171;
+}
+

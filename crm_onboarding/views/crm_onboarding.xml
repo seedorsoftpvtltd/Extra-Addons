@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ONBOARDING STEPS -->
+
+    <template id="crm_step1">
+        <t t-call="crm_onboarding.onboarding_default_step">
+            <t t-set="title"> Leads</t>
+            <t t-set="description">
+                 Forecast  &amp; Generate Leads from Various Sources
+            </t>
+            <t t-set="sl">1</t>
+                        <t t-set="btn_text">Create</t><t t-set="btn_text3">Import</t>
+                        <t t-set="method" t-value="'onboardings_step_crm_action'" />
+                        <t t-set="method2" t-value="'onboardings_step_crm_import_action'" />
+                        <t t-set="model" t-value="'res.company'" />
+        </t>
+    </template>
+
+    <template id="crm_step2">
+        <t t-call="crm_onboarding.onboarding_default_step">
+            <t t-set="title">Follow-up</t>
+            <t t-set="description">
+                 Effortlessly Nurture Leads, Schedule Meetings,  &amp;  Follow Up them
+
+            </t>
+            <t t-set="sl">2</t>
+<!--                    <t t-set="btn_text">Confirm</t>-->
+<!--                    <t t-set="method" t-value="'onboardings_Allocation1_crm_action'" />-->
+<!--                    <t t-set="model" t-value="'res.company'" />-->
+
+        </t>
+    </template>
+
+    <template id="crm_step3">
+        <t t-call="crm_onboarding.onboarding_default_step">
+            <t t-set="title">Opportunities</t>
+            <t t-set="description">
+                Convert Qualified Leads to Opportunities
+
+            </t>
+            <t t-set="sl">3</t>
+                        <t t-set="btn_text1">Track</t>
+                        <t t-set="method1" t-value="'onboarding_approve2_action_crm'" />
+                        <t t-set="model" t-value="'res.company'" />
+        </t>
+    </template>
+
+    <template id="crm_step4">
+        <t t-call="crm_onboarding.onboarding_default_step">
+            <t t-set="title">Estimates / Quotations</t>
+            <t t-set="description">
+               Efficiently Manage Sales Estimates / Quotations for the opportunities
+            </t>
+            <t t-set="sl">4</t>
+<!--                        <t t-set="btn_text1">Generate</t>-->
+<!--                        <t t-set="method1" t-value="'onboarding_step2_action_crm'" />-->
+<!--                        <t t-set="model" t-value="'res.company'" />-->
+        </t>
+    </template>
+
+
+
+
+    <template id="crm_onboarding_onboarding_panel" name="crm.onboarding.dashboard.panel">
+        <t t-call="crm_onboarding.onboarding_default_container">
+            <t t-set="classes" t-value="'o_onboarding_blue'"/>
+            <t t-set="bg_image" t-value="'/onboarding/static/src/img/employee_dashboard_onboarding_bg.jpg'"/>
+            <!--            <t t-set="close_method" t-value="'action_close_account_dashboard_onboarding'"/>-->
+            <!--            <t t-set="close_model" t-value="'res.company'"/>-->
+            <!--            <t t-set="text_completed">Congratulations! You are all set.</t>-->
+
+            <t t-call="crm_onboarding.crm_step1" name="lead_setup"/>
+            <t t-call="crm_onboarding.crm_step2" name="followup_setup"/>
+            <t t-call="crm_onboarding.crm_step3" name="opportunity_setup"/>
+            <t t-call="crm_onboarding.crm_step4" name="quotation_setup"/>
+
+
+
+        </t>
+    </template>
+    <!-- SAMPLE INVOICE EMAIL -->
+
+</odoo>

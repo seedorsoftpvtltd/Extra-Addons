@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <data>
+   <record id="seq_warehouse_order" model="ir.sequence">
+       <field name="name">Warehouse Order</field>
+       <field name="code">warehouse.order.bl</field>
+       <field name="prefix">MBL</field>
+       <field name="padding">5</field>
+       <field name="company_id" eval="False"/>
+   </record>
+</data>
+        <data>
+   <record id="seq_sale_order" model="ir.sequence">
+       <field name="name">Sale Order</field>
+       <field name="code">sale.order.hbl</field>
+       <field name="prefix">HBL</field>
+       <field name="padding">5</field>
+       <field name="company_id" eval="False"/>
+   </record>
+</data>
+
+    <data>
+        <record model="ir.actions.act_window" id="action_create_asn">
+        <field name="name">Advance Shipping Note</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">warehouse.order</field>
+        <field name="view_mode">form,tree</field>
+        <field name="domain">[('main_id','=',active_id)]</field>
+        <field name="context">{
+            "default_main_id":active_id,
+
+            }
+        </field>
+    </record>
+
+    <record id="action_asn_tree" model="ir.actions.act_window.view">
+        <field eval="1" name="sequence"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="warehouse.warehouse_order_tree"/>
+        <field name="act_window_id" ref="action_create_asn"/>
+    </record>
+
+
+<record model='ir.ui.view' id='fright_view_from_asn'>
+        <field name="name">freight.operation_view</field>
+        <field name="model">freight.operation</field>
+        <field name="inherit_id" ref="scs_freight.view_freight_operation_form" />
+        <field name="arch" type="xml">
+           <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                    <button icon="fa-pencil-square-o"  name="%(action_create_asn)d"
+                       class="oe_highlight" type="action">
+                        <field name="asn_cnt" string="Create ASN" widget="statinfo"/>
+                    </button>
+
+             </xpath>
+         <xpath expr="//header" position="inside">
+
+             <button name="action_create_asn" string="Create ASN" class="oe_highlight" type="object"/><!--                    <button name="action_create_invoice" string="Create Invoice"-->
+
+        </xpath>
+
+        </field>
+        </record>
+
+        <record model='ir.ui.view' id='warehouse_fright_view'>
+        <field name="name">warehouse.order_view</field>
+        <field name="model">warehouse.order</field>
+        <field name="inherit_id" ref="warehouse.warehouse_order_form" />
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='date_order']" position="after">
+                   <field name="master_bl"/>
+
+
+           </xpath>
+        </field>
+        </record>
+
+<!--        <record model='ir.ui.view' id='sale_hbl_view'>
+        <field name="name">sale.order_view</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='date_order']" position="after">
+                   <field name="house_bl"/>
+
+
+           </xpath>
+        </field>
+        </record> -->
+    </data>
+</odoo>

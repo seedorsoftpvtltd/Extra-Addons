@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+      <record id="birthday_plan_view_partner_form_ext" model="ir.ui.view">
+            <field name="name">res.partner.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet/group/group/field[@name='website']" position="after">
+                        <field name="birthdate"/>
+                        <field name="birthdate_month" invisible="1"/>
+                        <label for="birthday_promotion_range" class="oe_inline"
+                               attrs="{'invisible':[('birthdate','=',False)]}"/>
+                        <div attrs="{'invisible':[('birthdate','=',False)]}">
+                            <span><field name="birthday_promotion_range"
+                                    class="oe_inline"/> Days</span>
+                        </div>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_partner_search_birthmonth" model="ir.ui.view">
+            <field name="name">res.partner.search</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_res_partner_filter" />
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='type_company']" position="after">
+                    <separator/>
+                    <filter name="jan-birthday" string="BirthdayMonth - Jan" domain="[('birthdate_month','=',1)]"/>
+                    <filter name="feb-birthday" string="BirthdayMonth - Feb" domain="[('birthdate_month','=',2)]"/>
+                    <filter name="mar-birthday" string="BirthdayMonth - Mar" domain="[('birthdate_month','=',3)]"/>
+                    <filter name="apr-birthday" string="BirthdayMonth - Apr" domain="[('birthdate_month','=',4)]"/>
+                    <filter name="may-birthday" string="BirthdayMonth - May" domain="[('birthdate_month','=',5)]"/>
+                    <filter name="jun-birthday" string="BirthdayMonth - Jun" domain="[('birthdate_month','=',6)]"/>
+                    <filter name="jul-birthday" string="BirthdayMonth - Jul" domain="[('birthdate_month','=',7)]"/>
+                    <filter name="aug-birthday" string="BirthdayMonth - Aug" domain="[('birthdate_month','=',8)]"/>
+                    <filter name="sep-birthday" string="BirthdayMonth - Sep" domain="[('birthdate_month','=',9)]"/>
+                    <filter name="oct-birthday" string="BirthdayMonth - Oct" domain="[('birthdate_month','=',10)]"/>
+                    <filter name="nov-birthday" string="BirthdayMonth - Nov" domain="[('birthdate_month','=',11)]"/>
+                    <filter name="dec-birthday" string="BirthdayMonth - Dec" domain="[('birthdate_month','=',12)]"/>
+                </xpath>
+                <xpath expr="//filter[@name='group_country']" position="after">
+                    <filter name="group_birthdate" string="Birthday Month" domain="[ ]" context="{'group_by': 'birthdate:month'}" />
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

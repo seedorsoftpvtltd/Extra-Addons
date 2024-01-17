@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_doc_management_manager,doc.management.manager,basic_document.model_doc_management,basic_document.group_doc_manager,1,1,1,1
+access_doc_management_user,doc.management.user,basic_document.model_doc_management,basic_document.group_doc_user,1,0,0,0
+access_doc_management_line_manager,doc.management.line.manager,basic_document.model_doc_management_line,basic_document.group_doc_manager,1,1,1,1
+access_doc_management_line_user,doc.management.line.user,basic_document.model_doc_management_line,basic_document.group_doc_user,1,0,0,0
