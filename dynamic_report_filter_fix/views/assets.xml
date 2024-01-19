@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<odoo>
-    <template id="assets_backend_report" inherit_id="web.assets_backend" name="dynamic_report_filter_fix assets">
-        <xpath expr="." position="inside">
-             <link rel="stylesheet" href="/dynamic_report_filter_fix/static/src/scss/filter.css"/>
-        </xpath>
-    </template>
-
-</odoo>

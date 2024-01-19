@@ -1,1 +1,0 @@
-The documentation is available at OdooPBX.com.

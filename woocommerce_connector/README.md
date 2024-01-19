@@ -1,1 +1,0 @@
-# odoo-woocommerce yes

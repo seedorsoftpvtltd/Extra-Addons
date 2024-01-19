@@ -1,7 +1,0 @@
-<odoo>
-    <data>
-        <record id="enable_sale_purchase_order_line" model="res.groups">
-            <field name="name">Enable Sale-Purchase order line  Menu</field>
-        </record>
-    </data>
-</odoo>

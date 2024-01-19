@@ -1,3 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_mrp_wrk_report_user,vamk_work_sheet.mrp_wrkreport_user,model_mrp_wrkreport,mrp.group_mrp_user,1,1,1,1
-access_mrp_wrk_report_manager,vamk_work_sheet.mrp_wrkreport_manager,model_mrp_wrkreport,mrp.group_mrp_manager,1,1,1,1

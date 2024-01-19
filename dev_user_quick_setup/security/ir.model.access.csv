@@ -1,5 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-quick_setup_user_access,User Quick Setup,model_user_quick_setup,base.group_user,1,1,1,0
-quick_setup_manager_access,User Quick Setup,model_user_quick_setup,hr.group_hr_manager,1,1,1,1
-
-leave_allocation_line_global_access,Leave Allocation Lines,model_leave_allocation_line,base.group_user,1,1,1,1

@@ -1,3 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_custom_stockpicking_stages_stockmanager,access_custom_stock_stages_sm,stock_picking_stages_odoo.model_custom_stock_picking_stage,stock.group_stock_manager,1,1,1,1
-access_custom_stockpick_stages_baseuser,access_custom_stockpick_stages_su,stock_picking_stages_odoo.model_custom_stock_picking_stage,base.group_user,1,0,0,0

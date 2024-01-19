@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<odoo>
-    <template id="assets_backend_chatter_message_visibility_inherit" inherit_id="web.assets_backend">
-        <xpath expr="." position="inside">
-          <link rel="stylesheet" href="/chatter_message_visibility/static/src/css/style.css"></link>
-        	<script type="text/javascript" src="/chatter_message_visibility/static/src/js/form_renderer.js"></script>
-        </xpath>
-    </template>
-</odoo>

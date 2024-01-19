@@ -1,9 +1,0 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<odoo>
-  <record id="business_card" model="ir.model">
-    <field name="model">x_business.card</field>
-    <field name="name">Business Card</field>
-    <field name="state">manual</field>
-    <field name="transient" eval="False"/>
-  </record>
-</odoo>
